@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>jTableJavaExample</display-name>
+  <welcome-file-list>
+    <welcome-file>2a1.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 
+    <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ 
+   -->
+  
+  <servlet>
+    <servlet-name>CRUDController</servlet-name>
+    <servlet-class>com.sdpk.controller.CRUDController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CRUDController</servlet-name>
+    <url-pattern>/CRUDController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaname</servlet-name>
+    <servlet-class>com.sdpk.controller.aaControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaname</servlet-name>
+    <url-pattern>/aa</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaStudentN</servlet-name>
+    <servlet-class>com.sdpk.controller.StudentControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaStudentN</servlet-name>
+    <url-pattern>/aaStudent</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaEmpname</servlet-name>
+    <servlet-class>com.sdpk.controller.EmployeeControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaEmpname</servlet-name>
+    <url-pattern>/aaEmp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaCourseN</servlet-name>
+    <servlet-class>com.sdpk.controller.CourseControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaCourseN</servlet-name>
+    <url-pattern>/aaCourse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaContractN</servlet-name>
+    <servlet-class>com.sdpk.controller.ContractControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaContractN</servlet-name>
+    <url-pattern>/aaContract</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaClassRoomN</servlet-name>
+    <servlet-class>com.sdpk.controller.ClassRoomControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaClassRoomN</servlet-name>
+    <url-pattern>/aaClassRoom</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaPaiKeN</servlet-name>
+    <servlet-class>com.sdpk.controller.PaikeRecordControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaPaiKeN</servlet-name>
+    <url-pattern>/aaPaiKe</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>aaClaN</servlet-name>
+    <servlet-class>com.sdpk.controller.ClaControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaClaN</servlet-name>
+    <url-pattern>/aaCla</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaAnd_ClassEmpN</servlet-name>
+    <servlet-class>com.sdpk.controller.And_ClassEmpControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaAnd_ClassEmpN</servlet-name>
+    <url-pattern>/aaAnd_ClassEmp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaAnd_ClassStuN</servlet-name>
+    <servlet-class>com.sdpk.controller.And_ClassStuControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaAnd_ClassStuN</servlet-name>
+    <url-pattern>/aaAnd_ClassStu</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaAnd_ClassCourseN</servlet-name>
+    <servlet-class>com.sdpk.controller.And_ClassCourseControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaAnd_ClassCourseN</servlet-name>
+    <url-pattern>/aaAnd_ClassCourse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaCourse_EmpN</servlet-name>
+    <servlet-class>com.sdpk.controller.Course_EmpControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaCourse_EmpN</servlet-name>
+    <url-pattern>/aaCourse_Emp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaClass_ContractN</servlet-name>
+    <servlet-class>com.sdpk.controller.Class_ContractControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaClass_ContractN</servlet-name>
+    <url-pattern>/aaClass_Contract</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaUserPKN</servlet-name>
+    <servlet-class>com.sdpk.controller.UserPKControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaUserPKN</servlet-name>
+    <url-pattern>/aaUserPK</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaDengLuN</servlet-name>
+    <servlet-class>com.sdpk.controller.DengLuControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaDengLuN</servlet-name>
+    <url-pattern>/aaDengLu</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
