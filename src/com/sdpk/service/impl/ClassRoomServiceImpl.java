@@ -64,9 +64,7 @@ public class ClassRoomServiceImpl implements ClassRoomService{
     String uuid = classRoom.getUuid();
     if(uuid!=null&&uuid!="")
     {
-      
-        boolean daoFlag = classRoomDao.update(classRoom);
-        
+      boolean daoFlag = classRoomDao.update(classRoom);
         if(daoFlag)
         {
         return uuid;
@@ -98,7 +96,7 @@ public class ClassRoomServiceImpl implements ClassRoomService{
   public ArrayList<ClassRoom> getList() {
     // TODO Auto-generated method stub
     ArrayList<ClassRoom> classRoomlist = classRoomDao.getList();
-
+    
     return classRoomlist;
   }//end method getList()
 
