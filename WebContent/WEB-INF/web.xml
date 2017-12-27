@@ -25,6 +25,14 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>RoleRsController</servlet-name>
+    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoleRsController</servlet-name>
+    <url-pattern>/aaRoleResource</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>Resource</servlet-name>
     <servlet-class>com.sdpk.controller.ResourceController</servlet-class>
@@ -171,6 +179,13 @@
     <servlet-name>ResourceController</servlet-name>
     <servlet-class>com.sdpk.controller.ResourceController</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RoleResourceController</servlet-name>
+    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
+  </servlet>
+
 
   <servlet-mapping>
     <servlet-name>aaDengLuN</servlet-name>
@@ -179,6 +194,10 @@
   <servlet-mapping>
     <servlet-name>ResourceController</servlet-name>
     <url-pattern>/servlet/ResourceController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RoleResourceController</servlet-name>
+    <url-pattern>/servlet/RoleResourceController</url-pattern>
   </servlet-mapping>
   
 </web-app>
