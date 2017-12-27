@@ -250,3 +250,11 @@ CREATE TABLE t_userPK (
 );
 
 --------------------------------------
+--16、用户角色表t_userPK
+
+CREATE TABLE t_userPK_role (
+  uuid varchar(50) NOT NULL,
+  userPkid varchar(50) NOT NULL,
+  Roleid varchar(50) NOT NULL,
+  PRIMARY KEY (uuid)
+);

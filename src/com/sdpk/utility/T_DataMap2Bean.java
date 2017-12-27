@@ -12,6 +12,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
+import com.sdpk.model.Role;
 import com.sdpk.model.Student;
 import com.sdpk.model.UserPK;
 
@@ -52,6 +53,14 @@ public class T_DataMap2Bean {
     ClassRoom classRoom = new ClassRoom(uuid, name, campus, remark);
     return classRoom;
   }// end method MapToEmp
+  
+  public Role MapToRome(Map<String, Object> map) {
+
+	    String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+	    String name = (String) map.get("name");
+	    Role role = new Role(uuid, name);
+	    return role;
+	  }
 
   public Employee MapToEmp(Map<String, Object> map) {
 
@@ -110,7 +119,6 @@ public class T_DataMap2Bean {
     String parentPhone = (String) map.get("parentPhone");
     String address = (String) map.get("address");
     String remark = (String) map.get("remark");
-    
     String sex = (String) map.get("sex");
     String org = (String) map.get("org");
     String parentRela = (String) map.get("parentRela");
