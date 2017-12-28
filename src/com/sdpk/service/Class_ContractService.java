@@ -12,6 +12,7 @@ import com.sdpk.utility.M_msg;
  * 类说明
  */
 
+
 public interface Class_ContractService {
   
   M_msg getMsg();

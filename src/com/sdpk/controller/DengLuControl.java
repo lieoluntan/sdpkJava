@@ -3,6 +3,7 @@ package com.sdpk.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -62,7 +63,7 @@ public class DengLuControl extends HttpServlet {
       }
 
       // 3 执行qqiu里面的增或删或改或查 的操作
-      qqiuChoice(qqiu, userPK,response);
+      qqiuChoice(qqiu, userPK,response, str);
     } else if (qqiu.equals("list")) {
       // TODO 待完成
      
@@ -81,13 +82,15 @@ public class DengLuControl extends HttpServlet {
 
   }// end method doPost 主入口
   
-  private void qqiuChoice(String qqiu, UserPK userPK,HttpServletResponse response) {
+  private void qqiuChoice(String qqiu, UserPK userPK,HttpServletResponse response, String uuid) {
     // TODO Auto-generated method stub
     boolean test = false;
     boolean denglu = false;
-
+    boolean js = false;
+    js = qqiu.equals("js");
     test = qqiu.equals("test");
     denglu = qqiu.equals("denglu");
+    
 
     if (test) {
       backResult.setMessage("信息值,测试成功");
@@ -98,14 +101,14 @@ public class DengLuControl extends HttpServlet {
       resultList.add("登录,测试成功3");
       backResult.setData(resultList);
     }
-    
     if(denglu){
+      List<String> rsList = new ArrayList<String>();
+      rsList.add(uuid);
       boolean flag =  userPKService.judge(userPK);
       m_msg = userPKService.getMsg();
       backResult.setQingqiu("notyes");
       //步骤一：判断
       if(flag){
-        
         String msg = "登录成功";
         System.out.println(msg);
         backResult.setQingqiu("yes");

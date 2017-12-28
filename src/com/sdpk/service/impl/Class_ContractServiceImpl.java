@@ -203,8 +203,4 @@ public class Class_ContractServiceImpl implements Class_ContractService{
 
     return reList;
   }//end method getListBycla
-
-
-  
-
 }//end class

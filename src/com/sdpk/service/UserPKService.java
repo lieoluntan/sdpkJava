@@ -1,6 +1,7 @@
 package com.sdpk.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.UserPK;
 import com.sdpk.utility.M_msg;
@@ -27,5 +28,7 @@ public interface UserPKService {
   ArrayList<UserPK> getList();
 
   boolean judge(UserPK userPK);
+  
+  List<UserPK>getList(String uLogUser);
 
 }//end interface

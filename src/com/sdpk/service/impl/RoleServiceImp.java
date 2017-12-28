@@ -1,11 +1,13 @@
 package com.sdpk.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import com.sdpk.dao.RoleDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
-import com.sdpk.model.ClassRoom;
+
+import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Role;
 import com.sdpk.service.RoleService;
 /**
@@ -90,4 +92,35 @@ public class RoleServiceImp implements RoleService{
 		 ArrayList<Role> Rolelist = roledao.getList();
 		 return Rolelist;
 	}
+
+	@Override
+	public String insert_batch(ArrayList<Role> pr_List) {
+		//步骤二，执行无冲突插入操作
+	    int count = 0;
+	    for (Role one : pr_List) {
+	      Role tutupr = selectConflict(one);
+		
+		if (!tutupr.isEmpConflict() && !tutupr.isCroomConflict()) {
+		  // 单个插入操作
+		  one.setUuid(null);
+		  one.setUuid(UUID.randomUUID().toString());
+		  boolean daoFlag = roledao.insert(one);
+		  if (daoFlag) {
+		    count++;
+		  } else {
+		    System.out.println("排课insert_batch批量插入有个不成功!!!");
+		  }
+		  // 单个插入操作
+		}//end if判断，没有冲突才插入
+	    }// end for 结束for循环
+	    String recount = String.valueOf(count);
+	    return recount;
+	  }
+
+	private Role selectConflict(Role one) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
+

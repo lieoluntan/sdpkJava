@@ -20,10 +20,12 @@ public interface UserPKDao {
   boolean deleteUserRole(String uuid);
   boolean update(UserPK userPK);
 
-  UserPK getByUuid(String uuid);
+  public UserPK getByUuid(String uuid);
 
   ArrayList<UserPK> getList();
 
   UserPK getByuLogUser(String uLogUser);
-
+  
+  ArrayList<UserPK>getList2(String uLogUser);
+ 
 }//end interface

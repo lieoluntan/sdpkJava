@@ -1,5 +1,10 @@
 package com.sdpk.model;
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2017-12-27下午6:38:56
+ * @version 1.0
+ */
 public class UserPK_Role {
 
 	private String uuid;

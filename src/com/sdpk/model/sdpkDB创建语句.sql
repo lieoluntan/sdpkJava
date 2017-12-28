@@ -167,6 +167,36 @@ CREATE TABLE t_classroom (
   PRIMARY KEY (uuid)
 );
 
+--------------------------------------
+--9、角色表t_role
+
+CREATE TABLE t_role (
+  uuid varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
+--------------------------------------
+--9、资源表t_resource
+
+CREATE TABLE t_resource (
+  uuid varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
 
 --------------------------------------
 

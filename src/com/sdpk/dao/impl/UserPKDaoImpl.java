@@ -1,3 +1,4 @@
+
 package com.sdpk.dao.impl;
 
 import java.sql.Connection;
@@ -65,12 +66,16 @@ public class UserPKDaoImpl implements UserPKDao{
     PreparedStatement PSdelete = null; //关闭数据库连接insert和update和delete用到
     try {
       connection = DBUtility.open();//打开数据库连接
-      // Parameters start with 1
-       PSdelete = connection
-          .prepareStatement("DELETE FROM t_userPK WHERE uuid = ? ");
-      PSdelete.setString(1, uuid);
+      PreparedStatement num = connection.prepareStatement("select sum(uName) from t_userPK_role where uuid=?");
+  		if(num !=null){
+  			System.out.println("请修改XXX用户,XXX用户的角色,再删除");
+  			}
+      //Parameters start with 1
+       PSdelete = connection.prepareStatement("DELETE FROM t_userPK WHERE uuid = ? ");
+    
+       PSdelete.setString(1, uuid);
       PSdelete.executeUpdate();
-
+     
       System.out.println("^^在执行t_userPK中的删除delete");
       daoFlag = true;
       return daoFlag;
@@ -248,5 +253,36 @@ public boolean deleteUserRole(String uuid) {
   
   
   
-
-}//end class
+@Override
+	public ArrayList<UserPK> getList2(String uLogUser) {
+	// TODO Auto-generated method stub
+	  ArrayList<UserPK> userPKList = new ArrayList<UserPK>();
+	    Statement statement = null;//finally关闭数据库连接  
+	    ResultSet rs = null;//关闭数据库连接get和getlist会用到
+	    try {
+	      connection = DBUtility.open();//打开数据库连接
+	         statement = connection.createStatement();
+	         rs = statement.executeQuery("SELECT tr.* FROM t_userpk_role tuserpk  LEFT JOIN t_userpk_role  tuser ON tuserpk.uuid  = tuser.userpkid LEFT JOIN t_role tr ON tr.uuid = tuserpk.roleid ");
+	        while (rs.next()) {
+	          UserPK userPK = new UserPK();
+	          userPK.setUuid(rs.getString("uuid"));
+	          userPK.setuLogUser(rs.getString("uLogUser"));
+	          userPK.setuPassWord(rs.getString("uPassWord"));             
+	          userPK.setuName(rs.getString("uName"));
+	          userPKList.add(userPK);
+	        }
+	        return userPKList;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("ClaDaoImpl的getList查询失败");
+	        UserPK aX = new UserPK();
+	        aX.setUuid("UserPKDao的getList失败返回的uuid");
+	        ArrayList<UserPK> aXL = new ArrayList<UserPK>();
+	        aXL.add(aX);
+	        return aXL;
+	    }finally{   
+	      DBUtility.close(rs, statement, connection);   
+	      System.out.println("userPKDao getList 调用了关闭数据库连接");
+	     }
+	}
+}

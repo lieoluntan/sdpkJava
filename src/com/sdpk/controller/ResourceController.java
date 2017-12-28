@@ -182,6 +182,5 @@ public class ResourceController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 
-	}//
-
+	}
 }
