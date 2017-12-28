@@ -13,6 +13,9 @@ public class Role {
 	private String modifyDate;
 	private String createPeople;
 	private String modifyPeople;
+	
+	private boolean empConflict;
+	private boolean croomConflict;
 	public Role(){
 		
 		
@@ -57,6 +60,19 @@ public class Role {
 	public void setModifyPeople(String modifyPeople) {
 		this.modifyPeople = modifyPeople;
 	}
+    public boolean isEmpConflict() {
+		    return empConflict;
+		  }
 
+   public void setEmpConflict(boolean empConflict) {
+		    this.empConflict = empConflict;
+		  }
+   public boolean isCroomConflict() {
+	    return croomConflict;
+	  }
+
+  public void setCroomConflict(boolean croomConflict) {
+	    this.croomConflict = croomConflict;
+	  }
 	
 }

@@ -21,5 +21,6 @@ public interface RoleService {
 	Role getByUuid(String uuid);
 	
 	ArrayList<Role>getList();
-	
+
+	String insert_batch(ArrayList<Role> pr_List);
 }

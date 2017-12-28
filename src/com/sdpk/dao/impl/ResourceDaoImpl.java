@@ -62,14 +62,16 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		PreparedStatement PSdelete = null; // 关闭数据库连接insert和update和delete用到
 		try {
+			
 			connection = DBUtility.open();// 打开数据库连接
 			// Parameters start with 1
+			
 			PSdelete = connection
 					.prepareStatement("DELETE FROM t_resource WHERE uuid = ? ");
 			PSdelete.setString(1, uuid);
 			PSdelete.executeUpdate();
-
 			System.out.println("^^在执行ResourceDaoImpl中的删除delete");
+			
 			daoFlag = true;
 			return daoFlag;
 		} catch (SQLException e) {

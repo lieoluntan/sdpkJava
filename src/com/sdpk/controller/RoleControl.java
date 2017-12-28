@@ -3,8 +3,6 @@ package com.sdpk.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -14,12 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
+import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Role;
 import com.sdpk.service.RoleService;
 import com.sdpk.service.impl.RoleServiceImp;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
+
 
 /**
  * 
@@ -60,8 +63,6 @@ public class RoleControl extends HttpServlet{
 	      } else {
 	        System.out.println("前台传入post请求体数据为空，请联系管理员！");
 	      }
-
-	     
 	      qqiuChoice(qqiu, role);
 	    } else if (qqiu.equals("list")) {
 	     
@@ -69,17 +70,45 @@ public class RoleControl extends HttpServlet{
 	      backResult.setMessage("信息值：成功");
 	      backResult.setQingqiu("list查询列表");
 	      backResult.setData(resultList);
+	   
+	    } else if (qqiu.equals("add_batch")) {// 批量添加
+			// start前台数据转换
+			// 拿到本地JSON 并转成String
+			T_DataControl t_data = new T_DataControl();
+			String str =t_data. getRequestPayload(request);
+			System.out.println(str);
+			// Json的解析类对象
+			JsonParser parser = new JsonParser();
+			// 将JSON的String 转成一个JsonArray对象
+			JsonArray jsonArray = parser.parse(str).getAsJsonArray();
 
-	    } else {
-	      System.out.println("qqiu请求参数  " + qqiu + "  不规范");
+			Gson gson = new Gson();
+			ArrayList<Role> pr_List = new ArrayList<Role>();
+
+			// 加强for循环遍历JsonArray
+			for (JsonElement one : jsonArray) {
+				// 使用GSON，直接转成Bean对象
+				Role pr = gson.fromJson(one, Role.class);
+				pr_List.add(pr);
+			}
+			System.out.println("数组转换出来的列表数据!!!!!" + pr_List);
+			// end前台数据转换
+			String count = roleService.insert_batch(pr_List);
+			backResult.setMessage("信息值：成功" + "插入数量" + count);
+			backResult.setQingqiu("add_batch查询列表");
+			ArrayList<Role> resultList = new ArrayList<Role>();
+			backResult.setData(resultList);
+	    }else{
+	    	System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 	    }
-
 	    Gson gson = new Gson();
-	    String back = gson.toJson(backResult);
-	    System.out.println("最后back值是：" + back);
-	    out.write(back);
-	    out.flush();
-	    out.close();
+		// 4 执行完qqiuChoice里面操作后的全局返回值backResult对象,转成json格式
+		String back = gson.toJson(backResult);
+		System.out.println("最后back值是：" + back);
+		// 5 将json格式的back传给前台
+		out.write(back);
+		out.flush();
+		out.close();
 }
 	  
 	  private void qqiuChoice(String qqiu, Role role) {

@@ -12,6 +12,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
+import com.sdpk.model.UserPK_Role;
 
 import com.sdpk.model.Role;
 
@@ -204,6 +205,16 @@ public class T_DataMap2Bean {
     Course_Emp course_Emp = new Course_Emp(uuid, courseUuid,empUuid);
     return course_Emp;
   }// end method MapToAnd_ClassCourse
+  
+  public UserPK_Role MapToUserPK_Role(Map<String, Object> map) {
+	    // TODO Auto-generated method stub
+	    String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+	    String userPkid = (String) map.get("userPkid");
+	    String roleid = (String) map.get("roleid");
+
+	    UserPK_Role userPK_Role = new UserPK_Role(uuid, userPkid,roleid);
+	    return userPK_Role;
+	  }
 
   public Class_Contract MapToClass_Contract(Map<String, Object> map) {
     String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值

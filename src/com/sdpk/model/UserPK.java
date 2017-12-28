@@ -100,7 +100,4 @@ public class UserPK {
   public void setuName(String uName) {
     this.uName = uName;
   }
-  
-
-
 }//end class 

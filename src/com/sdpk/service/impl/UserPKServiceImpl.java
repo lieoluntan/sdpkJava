@@ -1,6 +1,7 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.UserPKDao;
@@ -48,7 +49,7 @@ public class UserPKServiceImpl implements UserPKService{
   @Override
   public String delete(String uuid) {
     // TODO Auto-generated method stub
-    if(uuid!=null&&uuid!="")
+	  if(uuid!=null&&uuid!="")
     {
       boolean daoFlag = userPKDao.delete(uuid);
       
@@ -106,7 +107,6 @@ public class UserPKServiceImpl implements UserPKService{
   public ArrayList<UserPK> getList() {
     // TODO Auto-generated method stub
     ArrayList<UserPK> userPKlist = userPKDao.getList();
-
     return userPKlist;
   }//end method getList()
 
@@ -117,11 +117,11 @@ public class UserPKServiceImpl implements UserPKService{
     //传进来的账户密码
     String uLogUser = userPK.getuLogUser();
     String uPassWord = userPK.getuPassWord();
-
     //数据库里查的账户密码
     UserPK old = new UserPK();
     old = userPKDao.getByuLogUser(uLogUser);
     String uLogUser_Old = old.getuLogUser();
+    System.out.println(uLogUser);
     String uPassWord_Old = old.getuPassWord();
     if(uLogUser.equals(uLogUser_Old)){
       
@@ -136,4 +136,10 @@ public class UserPKServiceImpl implements UserPKService{
     return flag;
   }//end method judge
 
+@Override
+	public	List<UserPK> getList(String uLogUser) {
+	// TODO Auto-generated method stub
+	ArrayList<UserPK> userPKlist = userPKDao.getList2(uLogUser);
+		return userPKlist;
+	}
 }//end class

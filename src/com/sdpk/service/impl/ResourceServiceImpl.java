@@ -46,9 +46,7 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 
 		}
-
 	}
-
 	@Override
 	public String delete(String uuid) {
 		// TODO Auto-generated method stub
