@@ -2,13 +2,18 @@ package com.sdpk.service.impl;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.RoleDao;
+import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
+import com.sdpk.dao.impl.RoleResourceImpl;
 
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Role;
+import com.sdpk.model.RoleResource;
+import com.sdpk.service.RoleResourceService;
 import com.sdpk.service.RoleService;
 /**
  * 
@@ -19,19 +24,29 @@ import com.sdpk.service.RoleService;
 public class RoleServiceImp implements RoleService{
 	
 	private RoleDao roledao = new RoleDaoImpl();
+	private RoleResourceDao roleResourceDao = new RoleResourceImpl();
+	private RoleResourceService roleResourceService = new RoleResourceServiceImpl();
 		
 	@Override
-	public String insert(Role Role) {
+	public String insert(Role role) {
 		// TODO Auto-generated method stub
-		Role.setUuid(null);
-		Role.setUuid(UUID.randomUUID().toString());
-		System.out.println("^^在RoleServiceImle收到数据:"+Role.toString()+"收到结束!");
-		boolean daoFlag = roledao.insert(Role);
+		role.setUuid(null);
+		role.setUuid(UUID.randomUUID().toString());
+		System.out.println("^^在RoleServiceImle收到数据:"+role.toString()+"收到结束!");
+		boolean daoFlag = roledao.insert(role);
 	    if(daoFlag)
 	    {
-	    return Role.getUuid();
+	    	List<String> rsListNew = role.getRsList(); 
+	    	for(String str:rsListNew){
+	    		RoleResource roleResource = new RoleResource();
+		    	roleResource.setRoleid(role.getUuid());
+		    	roleResource.setResourceid(str);
+		    	roleResourceService.insert(roleResource);
+	    	}
+	    	
+	    return role.getUuid();
 	    }else{
-	      return "插入不成功,dao层执行有出错地方,请联系管理员";
+	      return "插入角色失败";
 	    }
 	}
 
@@ -98,29 +113,22 @@ public class RoleServiceImp implements RoleService{
 		//步骤二，执行无冲突插入操作
 	    int count = 0;
 	    for (Role one : pr_List) {
-	      Role tutupr = selectConflict(one);
-		
-		if (!tutupr.isEmpConflict() && !tutupr.isCroomConflict()) {
-		  // 单个插入操作
-		  one.setUuid(null);
-		  one.setUuid(UUID.randomUUID().toString());
-		  boolean daoFlag = roledao.insert(one);
-		  if (daoFlag) {
-		    count++;
-		  } else {
-		    System.out.println("排课insert_batch批量插入有个不成功!!!");
-		  }
-		  // 单个插入操作
-		}//end if判断，没有冲突才插入
-	    }// end for 结束for循环
+	      try{
+	    	one.setUuid(null);
+	    	one.setUuid(UUID.randomUUID().toString());
+	    	boolean daoFlag = roledao.insert(one);
+	    	if(daoFlag){
+	    		System.out.println(one.getName()+"插入成功");
+	    		count++;
+	    	}else{
+	    		System.out.println(one.getName()+"已存在重复名字");
+	    	}
+	      }catch(Exception e){
+	    	  System.out.println("insert_batch查询冲突有错误");
+	      }
+	   }
 	    String recount = String.valueOf(count);
 	    return recount;
 	  }
-
-	private Role selectConflict(Role one) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
 
