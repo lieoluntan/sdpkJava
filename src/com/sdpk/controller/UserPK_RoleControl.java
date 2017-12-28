@@ -3,6 +3,7 @@ package com.sdpk.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
+import com.sdpk.model.RoleResource;
 import com.sdpk.model.UserPK_Role;
 import com.sdpk.service.UserPK_RoleService;
 import com.sdpk.service.impl.UserPK_RoleServiceImpl;
@@ -67,7 +72,21 @@ public class UserPK_RoleControl {
 	      backResult.setMessage("信息值：成功");
 	      backResult.setQingqiu("getListByCour课程员工查询单条记录");
 	      backResult.setData(resultList);
-
+	    }
+	    //批量新增
+	    else if(qqiu.equals("add_batch")){
+	    	T_DataControl t_date = new T_DataControl();
+	    	String str = t_date.getRequestPayload(request);
+	    	System.out.println(str);
+	    	JsonParser parser = new JsonParser();
+	    	JsonArray jsonArray = parser.parse(str).getAsJsonArray();
+	    	
+	    	Gson gson = new Gson();
+	    	ArrayList<UserPK_Role> pr_List = new ArrayList<UserPK_Role>();
+	    	for(JsonElement one : jsonArray){
+	    		UserPK_Role pr = gson.fromJson(one, UserPK_Role.class);
+	    		pr_List.add(pr);
+	    	}
 	    } else {
 	      System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 	    }

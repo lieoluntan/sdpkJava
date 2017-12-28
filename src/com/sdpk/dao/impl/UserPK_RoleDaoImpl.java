@@ -136,7 +136,7 @@ public class UserPK_RoleDaoImpl implements UserPK_RoleDao{
 	}
 
 	@Override
-	public ArrayList<UserPK_Role> getListByRole(String roleid) {
+	public ArrayList<UserPK_Role> getListByRole(String roleid,String userPkid) {
 		// TODO Auto-generated method stub
 		   ArrayList<UserPK_Role> reList = new ArrayList<UserPK_Role>();
 		    Statement statement = null;//finally关闭数据库连接  
@@ -150,8 +150,7 @@ public class UserPK_RoleDaoImpl implements UserPK_RoleDao{
 		        	userPK_role.setUuid(rs.getString("uuid"));
 		        	userPK_role.setUserPkid(rs.getString("UserPkid"));
 		        	userPK_role.setRoleid(rs.getString("Roleid"));
-		          
-		          reList.add(userPK_role);
+		        	reList.add(userPK_role);
 		        }
 		        
 		        return reList;
@@ -168,6 +167,9 @@ public class UserPK_RoleDaoImpl implements UserPK_RoleDao{
 		     }//finally关闭jdbc与数据库连接  
 
 		  }
+	@Override
+	public ArrayList<UserPK_Role> getListByRole(String roleid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
+}

@@ -86,8 +86,6 @@ public class DengLuControl extends HttpServlet {
     // TODO Auto-generated method stub
     boolean test = false;
     boolean denglu = false;
-    boolean js = false;
-    js = qqiu.equals("js");
     test = qqiu.equals("test");
     denglu = qqiu.equals("denglu");
     
@@ -102,16 +100,15 @@ public class DengLuControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if(denglu){
-      List<String> rsList = new ArrayList<String>();
-      rsList.add(uuid);
       boolean flag =  userPKService.judge(userPK);
       m_msg = userPKService.getMsg();
       backResult.setQingqiu("notyes");
       //步骤一：判断
       if(flag){
-        String msg = "登录成功";
+    	 String msg = "登录成功";
         System.out.println(msg);
         backResult.setQingqiu("yes");
+        
 //        try {
 //          response.sendRedirect("xppu8.html");
 //          
@@ -126,8 +123,7 @@ public class DengLuControl extends HttpServlet {
         System.out.println(msg);
         backResult.setQingqiu("notyes");
       }//用户名、密码错误
-      
-      //步骤二：赋值
+    //步骤二：赋值
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add("初始值");
       backResult.setMessage("信息值："+m_msg.getGetOneMsg());

@@ -188,6 +188,6 @@ public class RoleResourceController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 
-	}//
+	}
 
 }

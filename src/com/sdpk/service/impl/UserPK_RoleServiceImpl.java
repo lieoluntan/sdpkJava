@@ -1,6 +1,7 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.RoleDao;
@@ -142,4 +143,10 @@ public class UserPK_RoleServiceImpl implements UserPK_RoleService{
 	}
 		return reList;
      }
+
+	@Override
+	public List<String> getByUserid(List<String> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

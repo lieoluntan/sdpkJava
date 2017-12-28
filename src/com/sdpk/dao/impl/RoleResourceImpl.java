@@ -289,5 +289,4 @@ public class RoleResourceImpl implements RoleResourceDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

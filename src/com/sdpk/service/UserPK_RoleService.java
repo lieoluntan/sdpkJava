@@ -1,6 +1,7 @@
 package com.sdpk.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.UserPK_Role;
 import com.sdpk.utility.M_msg;
@@ -24,5 +25,13 @@ public interface UserPK_RoleService {
 	String deleteByuse(String userPKid);
 	
 	ArrayList<UserPK_Role>getListByContr(String roleid);
+	
+	/**
+	 * 
+	 * @param list
+	 * 
+	 * @return
+	 */
+	List<String>getByUserid(List<String>list);
 	
 }

@@ -39,5 +39,6 @@ public interface UserPK_RoleDao {
 	 * @param roleid
 	 * @return
 	 */
-	ArrayList<UserPK_Role>getListByRole(String roleid);
+	 public ArrayList<UserPK_Role>getListByRole(String roleid);
+	ArrayList<UserPK_Role> getListByRole(String roleid, String userPkid);
 }

@@ -45,7 +45,4 @@ public class BackResult {
   public void setData(ArrayList<?> data) {
     this.data = data;
   }
-  
-  
-
 }
