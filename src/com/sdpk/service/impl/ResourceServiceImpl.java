@@ -1,11 +1,11 @@
 package com.sdpk.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import com.sdpk.dao.ResourceDao;
 import com.sdpk.dao.impl.ResourceDaoImpl;
-import com.sdpk.model.ClassRoom;
 import com.sdpk.model.Resource;
 import com.sdpk.service.ResourceService;
 import com.sdpk.utility.M_msg;
@@ -25,26 +25,18 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public String insert(Resource resource) {
 		// TODO Auto-generated method stub
-		ArrayList<Resource> list = resourceDao
-				.getListbyName(resource.getName());
-		if (!list.isEmpty() && list != null && list.size() != 0) {
-			String msg = "已存在重复名字";
-			m_msg.setAddMsg(msg);
-			return msg;
+
+		resource.setUuid(null);
+
+		resource.setUuid(UUID.randomUUID().toString());
+		System.out.println("^^在ResourceServiceImpl收到数据 ：" + resource.toString()
+				+ "收到结束!");
+
+		boolean daoFlag = resourceDao.insert(resource);
+		if (daoFlag) {
+			return resource.getUuid();
 		} else {
-			resource.setUuid(null);
-
-			resource.setUuid(UUID.randomUUID().toString());
-			System.out.println("^^在ResourceServiceImpl收到数据 ："
-					+ resource.toString() + "收到结束!");
-
-			boolean daoFlag = resourceDao.insert(resource);
-			if (daoFlag) {
-				return resource.getUuid();
-			} else {
-				return "插入不成功,dao层执行有出错地方,请联系管理员";
-			}
-
+			return "已存在重复名字";
 		}
 
 	}
@@ -129,5 +121,33 @@ public class ResourceServiceImpl implements ResourceService {
 		// TODO Auto-generated method stub
 		return m_msg;
 	}
+
+	@Override
+	public String insert_batch(ArrayList<Resource> PR_List) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		for (Resource one : PR_List) {
+			// TODO 此处加if判断，包围后面的插入操作，要没有冲突才能做新增语句
+			try {
+
+				// 单个插入操作
+				one.setUuid(null);
+				one.setUuid(UUID.randomUUID().toString());
+				boolean daoFlag = resourceDao.insert(one);
+				if (daoFlag) {
+					System.out.println(one.getName()+"插入成功");
+					count++;
+				} else {
+					System.out.println(one.getName()+"已存在重复名字");
+				}
+				// 单个插入操作
+
+			} catch (Exception e) {
+				System.out.println("insert_batch查询冲突有错误");
+			}
+		}// end for 结束for循环
+		String recount = String.valueOf(count);
+		return recount;
+	}// end method insert_batch
 
 }

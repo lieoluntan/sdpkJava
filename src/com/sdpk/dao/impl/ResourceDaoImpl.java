@@ -32,29 +32,35 @@ public class ResourceDaoImpl implements ResourceDao {
 	@Override
 	public boolean insert(Resource resource) {
 		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
-		try {
-			connection = DBUtility.open();// 打开数据库连接
-			preparedStatement = connection
-					.prepareStatement("insert into t_resource(uuid,name) values (?,?)");
-			// Parameters start with 1
-			preparedStatement.setString(1, resource.getUuid());
-			preparedStatement.setString(2, resource.getName());
+		ArrayList<Resource> list = this.getListbyName(resource.getName());
+		if (!list.isEmpty() && list != null && list.size() != 0) {
 
-			preparedStatement.executeUpdate();
+			return false;
+		} else {
+			try {
+				connection = DBUtility.open();// 打开数据库连接
+				preparedStatement = connection
+						.prepareStatement("insert into t_resource(uuid,name) values (?,?)");
+				// Parameters start with 1
+				preparedStatement.setString(1, resource.getUuid());
+				preparedStatement.setString(2, resource.getName());
 
-			System.out.println("^^在执行ResourceDaoImpl中的添加insert");
-			daoFlag = true;
-			return daoFlag;
-		} catch (SQLException e) {
-			System.out
-					.println("^^在执行ResourceDaoImpl中insert,出现sql语法执行错误，请联系管理员!");
-			e.printStackTrace();
-			daoFlag = false;
-			return daoFlag;
-		} finally {
-			ResultSet rs = null;
-			DBUtility.close(rs, preparedStatement, connection);
-		}// finally关闭jdbc与数据库连接
+				preparedStatement.executeUpdate();
+
+				System.out.println("^^在执行ResourceDaoImpl中的添加insert");
+				daoFlag = true;
+				return daoFlag;
+			} catch (SQLException e) {
+				System.out
+						.println("^^在执行ResourceDaoImpl中insert,出现sql语法执行错误，请联系管理员!");
+				e.printStackTrace();
+				daoFlag = false;
+				return daoFlag;
+			} finally {
+				ResultSet rs = null;
+				DBUtility.close(rs, preparedStatement, connection);
+			}// finally关闭jdbc与数据库连接\
+		}
 	}
 
 	@Override
@@ -214,6 +220,12 @@ public class ResourceDaoImpl implements ResourceDao {
 
 		return ResourceList;
 
+	}
+
+	@Override
+	public String insert_batch(ArrayList<Resource> PR_List) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

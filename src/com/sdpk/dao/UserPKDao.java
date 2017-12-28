@@ -17,6 +17,7 @@ public interface UserPKDao {
 
   boolean delete(String uuid);
 
+  boolean deleteUserRole(String uuid);
   boolean update(UserPK userPK);
 
   UserPK getByUuid(String uuid);

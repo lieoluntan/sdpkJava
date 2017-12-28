@@ -1,5 +1,6 @@
 package com.sdpk.utility;
 
+import java.util.List;
 import java.util.Map;
 
 import com.sdpk.model.And_ClassCourse;
@@ -12,11 +13,9 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
-
-import com.sdpk.model.Role;
-
 import com.sdpk.model.Resource;
-
+import com.sdpk.model.Role;
+import com.sdpk.model.RoleResource;
 import com.sdpk.model.Student;
 import com.sdpk.model.UserPK;
 
@@ -219,8 +218,8 @@ public class T_DataMap2Bean {
     String uLogUser = (String) map.get("uLogUser");
     String uPassWord = (String) map.get("uPassWord");
     String uName = (String) map.get("uName");
-    
-    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName);
+    List<String> roleList=(List<String>)map.get("roleList");
+    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList);
     return userPK;
   }// end method MapToEmp
 
@@ -260,10 +259,18 @@ public class T_DataMap2Bean {
 		// String remark = (String) map.get("remark");
 
 		// ClassRoom classRoom = new ClassRoom(uuid, name, campus, remark);
-		Resource resource = new Resource(uuid, name, null, null, null, null);
+		Resource resource = new Resource(uuid, name, null, null, null, null,null);
 		return resource;
 	}// end method MapToEmp
+	public RoleResource MapToRoleResource(Map<String, Object> map) {
 
+		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+		String roleid = (String) map.get("roleid");
+		String resourceid = (String) map.get("resourceid");
+		
+		RoleResource resource = new RoleResource(uuid, roleid, resourceid);
+		return resource;
+	}
 	public Employee MapToEmp1(Map<String, Object> map) {
 
 		String uuid = (String) map.get("uuid");
@@ -420,8 +427,8 @@ public class T_DataMap2Bean {
 		String uLogUser = (String) map.get("uLogUser");
 		String uPassWord = (String) map.get("uPassWord");
 		String uName = (String) map.get("uName");
-
-		UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName);
+		  List<String> roleList=(List<String>)map.get("roleList");
+		    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList);
 		return userPK;
 	}// end method MapToEmp
 

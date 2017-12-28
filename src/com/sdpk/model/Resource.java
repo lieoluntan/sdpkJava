@@ -16,16 +16,19 @@ public class Resource {
 	private String modifyDate;
 	private String createPeople;
 	private String modifyPeople;
+	private String remark;
 
 	@Override
 	public String toString() {
-		return "资源 [uuid=" + uuid + ", name=" + name + ", createDate="
+		return "Resource [uuid=" + uuid + ", name=" + name + ", createDate="
 				+ createDate + ", modifyDate=" + modifyDate + ", createPeople="
-				+ createPeople + ", modifyPeople=" + modifyPeople + "]";
+				+ createPeople + ", modifyPeople=" + modifyPeople + ", remark="
+				+ remark + "]";
 	}
 
 	public Resource(String uuid, String name, String createDate,
-			String modifyDate, String createPeople, String modifyPeople) {
+			String modifyDate, String createPeople, String modifyPeople,
+			String remark) {
 		super();
 		this.uuid = uuid;
 		this.name = name;
@@ -33,6 +36,7 @@ public class Resource {
 		this.modifyDate = modifyDate;
 		this.createPeople = createPeople;
 		this.modifyPeople = modifyPeople;
+		this.remark = remark;
 	}
 
 	public Resource() {
@@ -85,6 +89,14 @@ public class Resource {
 
 	public void setModifyPeople(String modifyPeople) {
 		this.modifyPeople = modifyPeople;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

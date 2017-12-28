@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
-import com.sdpk.model.ClassRoom;
+import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Resource;
 import com.sdpk.service.ResourceService;
 import com.sdpk.service.impl.ResourceServiceImpl;
@@ -73,7 +76,37 @@ public class ResourceController extends HttpServlet {
 			backResult.setQingqiu("list查询列表");
 			backResult.setData(resultList);
 
-		} else {
+		} else if (qqiu.equals("add_batch")) {// 批量添加
+			// start前台数据转换
+			// 拿到本地JSON 并转成String
+			T_DataControl t_data = new T_DataControl();
+			String str =t_data. getRequestPayload(request);
+			System.out.println(str);
+			// Json的解析类对象
+			JsonParser parser = new JsonParser();
+			// 将JSON的String 转成一个JsonArray对象
+			JsonArray jsonArray = parser.parse(str).getAsJsonArray();
+
+			Gson gson = new Gson();
+			ArrayList<Resource> pr_List = new ArrayList<Resource>();
+
+			// 加强for循环遍历JsonArray
+			for (JsonElement one : jsonArray) {
+				// 使用GSON，直接转成Bean对象
+				Resource pr = gson.fromJson(one, Resource.class);
+				pr_List.add(pr);
+			}
+			System.out.println("数组转换出来的列表数据!!!!!" + pr_List);
+			// end前台数据转换
+			String count = resourceService.insert_batch(pr_List);
+			backResult.setMessage("信息值：成功" + "插入数量" + count);
+			backResult.setQingqiu("add_batch查询列表");
+			ArrayList<PaikeRecord> resultList = new ArrayList<PaikeRecord>();
+			backResult.setData(resultList);
+
+		}
+
+		else {
 			System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 		}
 
@@ -86,6 +119,11 @@ public class ResourceController extends HttpServlet {
 		out.flush();
 		out.close();
 
+	}
+
+	private String getRequestPayload(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private void qqiuChoice(String qqiu, Resource resource) {
@@ -103,7 +141,7 @@ public class ResourceController extends HttpServlet {
 		getOne = qqiu.equals("getOne");
 
 		if (test) {
-			backResult.setMessage("信息值,测试成功");		
+			backResult.setMessage("信息值,测试成功");
 			backResult.setQingqiu("test新增");
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add("内容值,测试成功1");
@@ -115,7 +153,7 @@ public class ResourceController extends HttpServlet {
 			String result = resourceService.insert(resource);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage("信息值："+result);
+			backResult.setMessage("信息值：" + result);
 			backResult.setQingqiu("add新增");
 			backResult.setData(resultList);
 		}

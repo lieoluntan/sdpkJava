@@ -14,11 +14,8 @@ import com.sdpk.model.Resource;
  * 
  */
 public interface ResourceDao {
-	/**
-	 * 
-	 * @param resource
-	 * @return
-	 */
+	public String insert_batch(ArrayList<Resource> PR_List);
+
 	public boolean insert(Resource resource);
 
 	public boolean delete(String uuid);
@@ -28,8 +25,8 @@ public interface ResourceDao {
 	public Resource getByUuid(String uuid);
 
 	public ArrayList<Resource> getList();
-	//根据name查询信息，如果有信息，说明name存在；
-	public ArrayList<Resource> getListbyName(String name);
 
+	// 根据name查询信息，如果有信息，说明name存在；
+	public ArrayList<Resource> getListbyName(String name);
 
 }

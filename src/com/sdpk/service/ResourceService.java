@@ -28,4 +28,7 @@ public interface ResourceService {
 
 	// 根据name查询信息，如果有信息，说明name存在；
 	ArrayList<Resource> getListbyName(String name);
+	
+	String insert_batch(ArrayList<Resource> PR_List);
+	
 }
