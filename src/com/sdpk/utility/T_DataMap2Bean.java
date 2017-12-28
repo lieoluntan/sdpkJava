@@ -13,16 +13,12 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
-
 import com.sdpk.model.Resource;
-
 import com.sdpk.model.Role;
-
-import com.sdpk.model.Resource;
-
 import com.sdpk.model.RoleResource;
 import com.sdpk.model.Student;
 import com.sdpk.model.UserPK;
+import com.sdpk.model.UserPK_Role;
 
 /**
  * 树袋老师
@@ -430,17 +426,14 @@ public class T_DataMap2Bean {
 		return class_Contract;
 	}// end method
 
-	public UserPK MapToUserPK1(Map<String, Object> map) {
+	public UserPK_Role MapToUserPK_Role(Map<String, Object> map) {
 		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
-		String uLogUser = (String) map.get("uLogUser");
-		String uPassWord = (String) map.get("uPassWord");
-		String uName = (String) map.get("uName");
+		String userPkid = (String) map.get("userPkid");
+		String roleid = (String) map.get("roleid");
 
-
-		  List<String> roleList=(List<String>)map.get("roleList");
-		    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList);
-		return userPK;
-	}// end method MapToEmp
-
+		UserPK_Role userPK_role = new UserPK_Role(uuid, userPkid,
+				roleid);
+		return  userPK_role;
+	}// end method
 
 }// end class T_DataMap2Bean
