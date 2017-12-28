@@ -111,7 +111,7 @@ public class UserPKControl extends HttpServlet {
     }
     
     if (add) {
-    	for (String roleList : userPK.getroleList()) {
+    	for (String roleList : userPK.getRoleList()) {
 			System.out.println(roleList);
 		}
       String result = userPKService.insert(userPK);

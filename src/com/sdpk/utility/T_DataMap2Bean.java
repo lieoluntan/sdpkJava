@@ -224,7 +224,7 @@ public class T_DataMap2Bean {
     String uPassWord = (String) map.get("uPassWord");
     String uName = (String) map.get("uName");
     
-    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName);
+
     List<String> roleList=(List<String>)map.get("roleList");
     UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList);
     return userPK;
@@ -266,7 +266,7 @@ public class T_DataMap2Bean {
 		// String remark = (String) map.get("remark");
 
 		// ClassRoom classRoom = new ClassRoom(uuid, name, campus, remark);
-		Resource resource = new Resource(uuid, name, null, null, null, null);
+	
 		Resource resource = new Resource(uuid, name, null, null, null, null,null);
 		return resource;
 	}// end method MapToEmp
@@ -436,7 +436,7 @@ public class T_DataMap2Bean {
 		String uPassWord = (String) map.get("uPassWord");
 		String uName = (String) map.get("uName");
 
-		UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName);
+
 		  List<String> roleList=(List<String>)map.get("roleList");
 		    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList);
 		return userPK;
