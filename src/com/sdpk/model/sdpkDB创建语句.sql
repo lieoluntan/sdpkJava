@@ -1,4 +1,4 @@
---------------------------------------
+﻿--------------------------------------
 --2、学生表t_student
 
 CREATE TABLE t_student (
@@ -280,3 +280,25 @@ CREATE TABLE t_userPK (
 );
 
 --------------------------------------
+
+--16、用户角色表t_userPK
+
+CREATE TABLE t_userPK_role (
+  uuid varchar(50) NOT NULL,
+  userPkid varchar(50) NOT NULL,
+  Roleid varchar(50) NOT NULL,
+
+  PRIMARY KEY (uuid)
+);
+
+=======
+
+--15、角色资源表t_role_resource
+
+CREATE TABLE t_role_resource (
+  uuid varchar(50) NOT NULL,
+  roleid varchar(50) NOT NULL,
+  resourceid varchar(50) NOT NULL,
+  
+  PRIMARY KEY (uuid)
+);

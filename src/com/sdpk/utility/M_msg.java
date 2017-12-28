@@ -82,9 +82,4 @@ public class M_msg {
   public void setListMsg(String listMsg) {
     this.listMsg = listMsg;
   }
-  
-  
-  
-  
-
 }//end class 

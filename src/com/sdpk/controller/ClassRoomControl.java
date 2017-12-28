@@ -74,7 +74,7 @@ public class ClassRoomControl extends HttpServlet {
     } else {
       System.out.println("qqiu请求参数  " + qqiu + "  不规范");
     }
-
+    
     Gson gson = new Gson();
     // 4 执行完qqiuChoice里面操作后的全局返回值backResult对象,转成json格式
     String back = gson.toJson(backResult);

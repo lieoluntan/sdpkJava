@@ -25,6 +25,22 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>RoleRsController</servlet-name>
+    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoleRsController</servlet-name>
+    <url-pattern>/aaRoleResource</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Resource</servlet-name>
+    <servlet-class>com.sdpk.controller.ResourceController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Resource</servlet-name>
+    <url-pattern>/aaResource</url-pattern>
+  </servlet-mapping>
   
   <servlet>
     <servlet-name>aaname</servlet-name>
@@ -78,6 +94,15 @@
   <servlet-mapping>
     <servlet-name>aaClassRoomN</servlet-name>
     <url-pattern>/aaClassRoom</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>aaRoleN</servlet-name>
+    <servlet-class>com.sdpk.controller.RoleControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaRoleN</servlet-name>
+    <url-pattern>/aaRole</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -143,8 +168,8 @@
     <servlet-name>aaClass_ContractN</servlet-name>
     <url-pattern>/aaClass_Contract</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
+ 
+ <servlet>
     <servlet-name>aaUserPKN</servlet-name>
     <servlet-class>com.sdpk.controller.UserPKControl</servlet-class>
   </servlet>
@@ -157,9 +182,31 @@
     <servlet-name>aaDengLuN</servlet-name>
     <servlet-class>com.sdpk.controller.DengLuControl</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ResourceController</servlet-name>
+    <servlet-class>com.sdpk.controller.ResourceController</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RoleResourceController</servlet-name>
+    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
+  </servlet>
+
+
   <servlet-mapping>
     <servlet-name>aaDengLuN</servlet-name>
     <url-pattern>/aaDengLu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ResourceController</servlet-name>
+    <url-pattern>/servlet/ResourceController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RoleResourceController</servlet-name>
+    <url-pattern>/servlet/RoleResourceController</url-pattern>
   </servlet-mapping>
   
 </web-app>

@@ -25,7 +25,6 @@ public class ContractServiceImpl implements ContractService{
 //    
    
     contract.setUuid(null);
-
     contract.setUuid(UUID.randomUUID().toString());
     System.out.println("^^在StudentServiceImpl收到数据 ："+contract.toString()+"收到结束!");
     boolean daoFlag = contractDao.insert(contract);
@@ -73,8 +72,7 @@ public class ContractServiceImpl implements ContractService{
     String uuid = contract.getUuid();
     if(uuid!=null&&uuid!="")
     {
-      
-        boolean daoFlag = contractDao.update(contract);
+    	boolean daoFlag = contractDao.update(contract);
         
         if(daoFlag)
         {
@@ -86,6 +84,7 @@ public class ContractServiceImpl implements ContractService{
       String msg="ContractServiceImpl update方法中的uuid为空，或格式不正确，请重新选择";
       System.out.println("ContractServiceImpl update方法中的uuid为空，或格式不正确，请联系管理员");
       return msg;
+      
     }
   }//end method update
 
