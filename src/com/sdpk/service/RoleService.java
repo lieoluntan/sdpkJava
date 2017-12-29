@@ -1,6 +1,7 @@
 package com.sdpk.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.Role;
 
@@ -23,4 +24,6 @@ public interface RoleService {
 	ArrayList<Role>getList();
 
 	String insert_batch(ArrayList<Role> pr_List);
+	
+	
 }

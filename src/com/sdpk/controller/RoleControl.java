@@ -59,7 +59,7 @@ public class RoleControl extends HttpServlet{
 	      if (str != null && str != "" && str.length() != 0) {
 	        Map<String, Object> map = t_data.JsonStrToMap(str);
 	        T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
-	     role= t_map2bean.MapToRome(map);
+	     role= t_map2bean.MapToUserRole(map);
 	      } else {
 	        System.out.println("前台传入post请求体数据为空，请联系管理员！");
 	      }

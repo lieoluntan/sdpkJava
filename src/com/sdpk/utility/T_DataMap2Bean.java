@@ -59,12 +59,11 @@ public class T_DataMap2Bean {
     return classRoom;
   }// end method MapToEmp
   
-  public Role MapToRome(Map<String, Object> map) {
-
-	    String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+  public Role MapToRole(Map<String, Object> map) {
+	  	String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
 	    String name = (String) map.get("name");
-	    Role role = new Role(uuid, name);
-	    return role;
+	    Role role = new Role(uuid, name, null, null, null, null,null);
+		return role;
 	  }
 
   public Employee MapToEmp(Map<String, Object> map) {
@@ -224,7 +223,18 @@ public class T_DataMap2Bean {
     return userPK;
   }// end method MapToEmp
 
-	public Cla MapToCla1(Map<String, Object> map) {
+  public Role MapToUserRole(Map<String, Object> map) {
+	    String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+	    String name = (String) map.get("name");
+	    String modifyDate = (String) map.get("modifyDate");
+	    String createPeople = (String) map.get("createPeople");
+	    String modifyPeople = (String)map.get("modifyDate");
+	    String createDate = (String)map.get("createDate");
+	    List<String> rsList=(List<String>)map.get("rsList");
+	    Role role = new Role(uuid,name,modifyDate,createPeople,modifyPeople,createDate,rsList);
+	    return role;
+	  }
+   public Cla MapToCla1(Map<String, Object> map) {
 
 		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
 		String org = (String) map.get("org");

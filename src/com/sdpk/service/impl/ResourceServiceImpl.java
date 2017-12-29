@@ -31,7 +31,7 @@ public class ResourceServiceImpl implements ResourceService {
 		resource.setUuid(UUID.randomUUID().toString());
 		System.out.println("^^在ResourceServiceImpl收到数据 ：" + resource.toString()
 				+ "收到结束!");
-
+		
 		boolean daoFlag = resourceDao.insert(resource);
 		if (daoFlag) {
 			return resource.getUuid();

@@ -1,4 +1,7 @@
 package com.sdpk.model;
+
+import java.util.List;
+
 /**
  * 
  * @author 罗成峰
@@ -14,16 +17,37 @@ public class Role {
 	private String createPeople;
 	private String modifyPeople;
 	
-	private boolean empConflict;
-	private boolean croomConflict;
+	private List<String> rsList;//存放角色id
+	
 	public Role(){
 		
-		
 	}
-	 public Role(String uuid,String name) {
-		    this.uuid = uuid;
-		    this.name = name;
-		  }
+	
+	public List<String> getRsList() {
+		return rsList;
+	}
+	public void setRsList(List<String> rsList) {
+		this.rsList = rsList;
+	}
+	public Role(String uuid,String name,String createDate,String modifyDate,String createPeople,String modifyPeople,
+			List<String> rsList){
+		super();
+		this.uuid = uuid;
+		this.name = name;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.createPeople = createPeople;
+		this.modifyPeople = modifyPeople;
+		this.rsList = rsList;
+	}
+	@Override
+	public String toString(){
+		return "UserPK [uuid=" + uuid + ", name=" + name
+				+ ", createDate=" + createDate + ", modifyDate="
+				+ modifyDate + ", modifyPeople=" + modifyPeople
+				+ ", name=" + name + "+ rsList=" + rsList + "]";
+	}
+	
 	 public String getUuid() {
 		return uuid;
 	}
@@ -60,19 +84,4 @@ public class Role {
 	public void setModifyPeople(String modifyPeople) {
 		this.modifyPeople = modifyPeople;
 	}
-    public boolean isEmpConflict() {
-		    return empConflict;
-		  }
-
-   public void setEmpConflict(boolean empConflict) {
-		    this.empConflict = empConflict;
-		  }
-   public boolean isCroomConflict() {
-	    return croomConflict;
-	  }
-
-  public void setCroomConflict(boolean croomConflict) {
-	    this.croomConflict = croomConflict;
-	  }
-	
 }
