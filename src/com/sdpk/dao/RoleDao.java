@@ -1,6 +1,7 @@
 package com.sdpk.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.Role;
 
@@ -21,4 +22,6 @@ public interface RoleDao {
 	public Role getByUuid (String uuid);
 	
 	public ArrayList<Role>getList();
+	
+	List<String>getRole(String uuid);
 }

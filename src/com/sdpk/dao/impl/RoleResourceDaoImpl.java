@@ -33,6 +33,7 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 	}
 
 	@Override
+	//掉这个角色资源列表方法
 	public List<String> getRsbyRoleid(List<String> list) {
 		// TODO Auto-generated method stub
 		RoleResource roleResourceResult = new RoleResource();

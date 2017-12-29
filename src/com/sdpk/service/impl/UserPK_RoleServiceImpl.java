@@ -1,7 +1,13 @@
 package com.sdpk.service.impl;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.sdpk.dao.RoleDao;
@@ -14,6 +20,7 @@ import com.sdpk.model.Role;
 import com.sdpk.model.UserPK;
 import com.sdpk.model.UserPK_Role;
 import com.sdpk.service.UserPK_RoleService;
+import com.sdpk.utility.DBUtility;
 import com.sdpk.utility.M_msg;
 
 /**
@@ -23,7 +30,7 @@ import com.sdpk.utility.M_msg;
  * @version 1.0
  */
 public class UserPK_RoleServiceImpl implements UserPK_RoleService{
-
+	private Connection connection;
 	private UserPK_RoleDao userpk_roledao = new UserPK_RoleDaoImpl();
 	private UserPKDao userpkdao = new UserPKDaoImpl();
 	private RoleDao roledao = new RoleDaoImpl();
@@ -147,6 +154,46 @@ public class UserPK_RoleServiceImpl implements UserPK_RoleService{
 	@Override
 	public List<String> getByUserid(List<String> list) {
 		// TODO Auto-generated method stub
-		return null;
+		UserPK_Role userpkRoleResult = new UserPK_Role();
+		Statement statement = null;
+		ResultSet rs = null;
+		List<String>rsList  = new ArrayList<String>();
+		
+		for(String userpkid :list){
+			
+			try {
+				connection = DBUtility.open();
+				statement  = connection.createStatement();
+				rs = statement.executeQuery("select * from t_userpk_role WHERE userpkid = "
+						+ "'" + userpkid + "'");
+				while(rs.next()){
+					UserPK_Role userpk_role = new UserPK_Role();
+					userpk_role.setUuid(rs.getString("uuid"));
+					userpk_role.setUserPkid(rs.getString("userpkid"));
+					userpk_role.setRoleid(rs.getString("roleid"));
+					
+					userpkRoleResult = userpk_role;
+					rsList.add(userpkRoleResult.getRoleid());
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("UserPK_RoleImpl的getByUuid查询失败");
+			}finally{
+				DBUtility.close(rs, statement, connection);
+			}
+			for(String a : rsList){
+				System.out.println(a);
+			}
+		}
+		//去角色资源表名字重复值
+		Set set = new HashSet();
+		List newRsList = new ArrayList();
+		for(String cb : rsList){
+			if(set.add(cb)){
+				newRsList.add(cb);
+			}
+		}
+		return newRsList;
 	}
 }

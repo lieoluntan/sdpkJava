@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.sdpk.dao.ResourceDao;
-import com.sdpk.model.ClassRoom;
 import com.sdpk.model.Resource;
 import com.sdpk.utility.DBUtility;
 
@@ -229,5 +228,4 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

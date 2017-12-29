@@ -97,7 +97,6 @@ public class UserPKServiceImpl implements UserPKService {
 				daoFlag = userPKDao.update(userPK);// 先对用户进行修改
 				userPKDao.deleteUserRole(userPK.getUuid());// 然后删掉该用户在用户角色表中的记录
 				userPKDao.insertUserRole(userPK);// 然后重新指定角色
-
 			}
 
 			if (daoFlag) {

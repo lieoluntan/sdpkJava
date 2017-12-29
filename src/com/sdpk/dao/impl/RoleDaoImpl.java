@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.dao.RoleDao;
 import com.sdpk.model.Role;
+import com.sdpk.model.UserPK_Role;
 import com.sdpk.utility.DBUtility;
 
 /**
@@ -26,14 +28,15 @@ public class RoleDaoImpl implements RoleDao{
 	    System.out.println("connection对象在RoleDaoImpl连接!");
 	  }
 	  @Override
-	public boolean insert(Role Role) {
+	public boolean insert(Role role) {
 		// TODO Auto-generated method stub
 		  PreparedStatement preparedStatement = null;
 		 try {
 			 connection = DBUtility.open();
-		      preparedStatement = connection.prepareStatement("insert into t_role(uuid,name) values (?,?)");
-		      preparedStatement.setString(1, Role.getUuid());
-		      preparedStatement.setString(2, Role.getName());
+		      preparedStatement = connection.prepareStatement("insert into t_role(uuid,name,remark) values (?,?,?)");
+		      preparedStatement.setString(1, role.getUuid());
+		      preparedStatement.setString(2, role.getName());
+		      preparedStatement.setString(3, role.getRemark());
 		      preparedStatement.executeUpdate();
 		      System.out.println("^^在执行RoleDaoImpl中的添加insert");
 		      dao = true;
@@ -123,7 +126,6 @@ public class RoleDaoImpl implements RoleDao{
 	    }finally{   
 	      DBUtility.close(rs, statement, connection);   
 	     }
-
 	    return RoleResult;
 	}
 	
@@ -157,7 +159,38 @@ public class RoleDaoImpl implements RoleDao{
 	      DBUtility.close(rs, statement, connection);   
 	     }
 	}
-
+	@Override
+	public List<String> getRole(String uuid) {
+		// TODO Auto-generated method stub
+		List<String> roleList = new ArrayList<String>();
+		Role roleResult = new Role();
+		Statement statement = null;
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_userPK_role WHERE userPkid ="
+							+ "'" + uuid + "'");
+			while (rs.next()) {
+				UserPK_Role userPKRole = new UserPK_Role();
+				userPKRole.setUuid(rs.getString("uuid"));
+				userPKRole.setUserPkid(rs.getString("userPkid"));
+				userPKRole.setRoleid(rs.getString("roleid"));
+				
+				roleList.add(userPKRole.getRoleid());
+			}	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("t_userPK的getByUuid查询失败");
+			
+		} finally {
+			DBUtility.close(rs, statement, connection);
+			System.out.println("getByuLogUser 调用了关闭数据库连接");
+		}// finally关闭jdbc与数据库连接
+		return roleList;
+	}
 }
 
 
