@@ -9,12 +9,6 @@ import com.sdpk.dao.RoleDao;
 import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
 import com.sdpk.dao.impl.RoleResourceDaoImpl;
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 376f5b636ace8e45a1a35fb67cfb27c1535b94c7
 import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
