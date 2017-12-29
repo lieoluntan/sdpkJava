@@ -13,6 +13,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
+import com.sdpk.model.PaikeSearch;
 import com.sdpk.model.Resource;
 import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
@@ -273,6 +274,13 @@ public class T_DataMap2Bean {
 	
 		Resource resource = new Resource(uuid, name, null, null, null, null,null);
 		return resource;
+	}// end method MapToEmp
+	public PaikeSearch MapToEmpUuid(Map<String, Object> map) {//老师uuid
+
+		String uuid = (String) map.get("empUuid");// 删除和修改的时候会有值，新增和查询的时候没有值
+		String MonthDay=(String) map.get("MonthDay");
+		PaikeSearch paikeSearch=new PaikeSearch(uuid,MonthDay);
+		return paikeSearch;
 	}// end method MapToEmp
 	public RoleResource MapToRoleResource(Map<String, Object> map) {
 

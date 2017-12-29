@@ -1,6 +1,5 @@
 package com.sdpk.service.impl;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -8,9 +7,7 @@ import java.util.UUID;
 import com.sdpk.dao.RoleDao;
 import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
-import com.sdpk.dao.impl.RoleResourceImpl;
-
-import com.sdpk.model.PaikeRecord;
+import com.sdpk.dao.impl.RoleResourceDaoImpl;
 import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
@@ -24,7 +21,7 @@ import com.sdpk.service.RoleService;
 public class RoleServiceImp implements RoleService{
 	
 	private RoleDao roledao = new RoleDaoImpl();
-	private RoleResourceDao roleResourceDao = new RoleResourceImpl();
+	private RoleResourceDao roleResourceDao = new RoleResourceDaoImpl();
 	private RoleResourceService roleResourceService = new RoleResourceServiceImpl();
 		
 	@Override
