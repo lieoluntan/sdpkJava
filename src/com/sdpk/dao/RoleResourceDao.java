@@ -3,7 +3,7 @@ package com.sdpk.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Resource;
+import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 
 /**
@@ -21,7 +21,7 @@ public interface RoleResourceDao {
 	List<String> getRsbyRoleid(List<String> list);
 	
 	//根据角色id返回角色资源列表
-	List<String> getRsbyRole(List<String> list);
+	ArrayList<String> getListbyRoleUuid(String RoleUuid);
 
 	
 	public boolean insert(RoleResource roleResource);

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.sdpk.dao.RoleResourceDao;
+import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.utility.DBUtility;
 
@@ -287,23 +288,19 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 	
 	//根据角色id返回角色资源列表
 	@Override
-	public List getRsbyRole(List<String> list) {
+	public ArrayList<String> getListbyRoleUuid(String RoleUuid) {
 		// TODO Auto-generated method stub
 		RoleResource roleResourceResult = new RoleResource();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
-
-		List newrsList = new ArrayList();
-		for (String roleid : list) {
-			System.out.println("测试"+roleid);
-			List rsList = new ArrayList();// 
-			List rsidList =new ArrayList();
+		ArrayList<String> rsidList = new ArrayList<String>();
 			try {
 				connection = DBUtility.open();// 打开数据库连接
 				statement = connection.createStatement();
 				rs = statement
 						.executeQuery("select * from t_role_resource WHERE roleid ="
-								+ "'" + roleid + "'");
+								+ "'" + RoleUuid + "'");
+				
 				while (rs.next()) {
 					RoleResource roleResource = new RoleResource();
 					roleResource.setUuid(rs.getString("uuid"));
@@ -313,11 +310,8 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 					rsidList.add(roleResourceResult.getResourceid());
 					
 				}
-				rsList.add(roleid);
-				rsList.add(rsidList);
-				newrsList.add(rsList);
-				
 
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("RoleResourceImpl的getByUuid查询失败");
@@ -326,10 +320,7 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 				DBUtility.close(rs, statement, connection);
 			}// finally关闭jdbc与数据库连接
 			
-			
-		}// end foreach
-
-		return newrsList;
+		return rsidList;
 	}
 
 	@Override

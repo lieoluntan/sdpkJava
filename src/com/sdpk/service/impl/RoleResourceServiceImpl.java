@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleResourceDaoImpl;
+import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
 import com.sdpk.utility.M_msg;
@@ -161,9 +162,11 @@ public class RoleResourceServiceImpl implements RoleResourceService {
 
 	//根据角色id返回角色资源列表
 	@Override
-	public List<String> getRsbyRole(List<String> list) {
+	public ArrayList<String> getListbyRoleUuid(Role role) {
 		// TODO Auto-generated method stub
-		return roleResourceDao.getRsbyRole(list);
+		String RoleUuid = role.getUuid();
+		ArrayList<String> rsList = roleResourceDao.getListbyRoleUuid(RoleUuid);
+		return rsList;
 	}
 
 }
