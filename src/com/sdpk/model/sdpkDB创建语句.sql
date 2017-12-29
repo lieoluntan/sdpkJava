@@ -178,7 +178,7 @@ CREATE TABLE t_role (
   modifyDate datetime DEFAULT NULL,
   createPeople varchar(50) DEFAULT NULL,
   modifyPeople varchar(50) DEFAULT NULL,
-  
+  remark varchar(50)Not Null,
   PRIMARY KEY (uuid)
 );
 
@@ -287,7 +287,6 @@ CREATE TABLE t_userPK_role (
   uuid varchar(50) NOT NULL,
   userPkid varchar(50) NOT NULL,
   Roleid varchar(50) NOT NULL,
-
   PRIMARY KEY (uuid)
 );
 

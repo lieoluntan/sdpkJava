@@ -16,7 +16,15 @@ public class Role {
 	private String modifyDate;
 	private String createPeople;
 	private String modifyPeople;
+	private String remark;
 	
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 	private List<String> rsList;//存放角色id
 	
 	public Role(){
@@ -29,7 +37,7 @@ public class Role {
 	public void setRsList(List<String> rsList) {
 		this.rsList = rsList;
 	}
-	public Role(String uuid,String name,String createDate,String modifyDate,String createPeople,String modifyPeople,
+	public Role(String uuid,String name,String createDate,String modifyDate,String createPeople,String modifyPeople,String remark,
 			List<String> rsList){
 		super();
 		this.uuid = uuid;
@@ -38,14 +46,16 @@ public class Role {
 		this.modifyDate = modifyDate;
 		this.createPeople = createPeople;
 		this.modifyPeople = modifyPeople;
+		this.remark = remark;
 		this.rsList = rsList;
 	}
 	@Override
-	public String toString(){
+	public String toString() {
 		return "UserPK [uuid=" + uuid + ", name=" + name
 				+ ", createDate=" + createDate + ", modifyDate="
-				+ modifyDate + ", modifyPeople=" + modifyPeople
-				+ ", name=" + name + "+ rsList=" + rsList + "]";
+				+ modifyDate + ", createPeople=" + createPeople
+				+ ", modifyPeople=" + modifyPeople + ", remark=" + remark
+				+ ", rsList=" + rsList + "]";
 	}
 	
 	 public String getUuid() {
