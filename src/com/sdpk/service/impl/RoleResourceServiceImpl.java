@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.RoleResourceDao;
-import com.sdpk.dao.impl.RoleResourceImpl;
+import com.sdpk.dao.impl.RoleResourceDaoImpl;
 import com.sdpk.model.ClassRoom;
 import com.sdpk.model.Resource;
 import com.sdpk.model.RoleResource;
@@ -21,7 +21,7 @@ import com.sdpk.utility.M_msg;
  * 
  */
 public class RoleResourceServiceImpl implements RoleResourceService {
-	private RoleResourceDao roleResourceDao = new RoleResourceImpl();
+	private RoleResourceDao roleResourceDao = new RoleResourceDaoImpl();
 
 	@Override
 	public List<String> getRsbyRoleid(List<String> rolelist) {

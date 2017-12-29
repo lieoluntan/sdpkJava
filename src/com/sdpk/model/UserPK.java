@@ -8,6 +8,7 @@ import java.util.List;
  * @author 作者 xpp
  * @version 创建时间：2017-11-24 上午11:42:20 类说明
  * @version 创建时间：2017-11-24 上午11:42:20 类说明
+ * 薛人杰+加入了roleList字段用来存放用户下面对应的角色集合
  */
 
 public class UserPK {
@@ -115,7 +116,7 @@ public class UserPK {
 	}
 
 	public void setRoleList(List<String> roleList) {
-		this.roleList = roleList;
+		this.roleList = null;
 	}
 
 }// end class

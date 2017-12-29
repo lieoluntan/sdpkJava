@@ -29,6 +29,8 @@ public interface UserPKService {
 
   boolean judge(UserPK userPK);
   
-  List<UserPK>getList(String uLogUser);
+  UserPK getUser(String uLogUser);
+  
+  List<String> getRole(String userPkid);
 
 }//end interface
