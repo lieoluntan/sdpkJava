@@ -35,7 +35,6 @@ public class RoleResourceServiceImpl implements RoleResourceService {
 		}
 
 	}
-
 	@Override
 	public String insert(RoleResource roleResource) {
 		// TODO Auto-generated method stub
@@ -158,6 +157,13 @@ public class RoleResourceServiceImpl implements RoleResourceService {
 					.println("RoleResourceServiceImpl getListbyName方法中的name为空，或格式不正确，请联系管理员");
 		}
 		return null;
+	}
+
+	//根据角色id返回角色资源列表
+	@Override
+	public List<String> getRsbyRole(List<String> list) {
+		// TODO Auto-generated method stub
+		return roleResourceDao.getRsbyRole(list);
 	}
 
 }
