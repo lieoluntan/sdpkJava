@@ -9,7 +9,6 @@ import com.sdpk.dao.RoleDao;
 import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
 import com.sdpk.dao.impl.RoleResourceDaoImpl;
-
 import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
