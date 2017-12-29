@@ -10,8 +10,11 @@ import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleDaoImpl;
 import com.sdpk.dao.impl.RoleResourceDaoImpl;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 376f5b636ace8e45a1a35fb67cfb27c1535b94c7
 import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
@@ -80,9 +83,9 @@ public class RoleServiceImp implements RoleService{
 		    	if(role.getRsList()== null){
 		    		daoFlag = roledao.update(role);
 		    	}else{
-		    		daoFlag = roledao.update(role);//对用户修改
-		    		roledao.delete(role.getUuid());//删除角色资源表中记录
-		    		roledao.insert(role);
+		    		daoFlag = roledao.update(role);
+		    		roleResourceDao.deleteRoleRs(role.getUuid());
+		    		roledao.insertRoleRs(role);
 		    	}
 		    	if(daoFlag)
 		        {

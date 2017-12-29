@@ -19,11 +19,15 @@ public interface RoleResourceDao {
 	public String insert_batch(ArrayList<RoleResource> PR_List);
 
 	List<String> getRsbyRoleid(List<String> list);
+	
+	//根据角色id返回角色资源列表
+	List<String> getRsbyRole(List<String> list);
 
+	
 	public boolean insert(RoleResource roleResource);
 
 	public boolean delete(String uuid);
-
+	public boolean deleteRoleRs(String uuid);
 	public boolean update(RoleResource roleResource);
 
 	public RoleResource getByUuid(String uuid);

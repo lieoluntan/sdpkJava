@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,8 +19,14 @@ import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Role;
+import com.sdpk.model.UserPK;
+import com.sdpk.service.RoleResourceService;
 import com.sdpk.service.RoleService;
+import com.sdpk.service.UserPKService;
+import com.sdpk.service.impl.RoleResourceServiceImpl;
 import com.sdpk.service.impl.RoleServiceImp;
+import com.sdpk.service.impl.UserPKServiceImpl;
+import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
 
@@ -33,8 +40,11 @@ import com.sdpk.utility.T_DataMap2Bean;
 public class RoleControl extends HttpServlet{
 
 	private Connection connection;
-	  RoleService roleService = new RoleServiceImp();
+	private RoleResourceService roleResourceService = new RoleResourceServiceImpl();
+	RoleService roleService = new RoleServiceImp();
+	  UserPKService userPKService = new UserPKServiceImpl();
 	  BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
+	  public M_msg m_msg = new M_msg();
 	  
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
@@ -65,11 +75,30 @@ public class RoleControl extends HttpServlet{
 	      }
 	      qqiuChoice(qqiu, role);
 	    } else if (qqiu.equals("list")) {
+	    	List list = new ArrayList();
+	    	List rsList = new ArrayList();
+	    	
+	    	ArrayList<Role> roleList = new ArrayList<Role>();
+	    	ArrayList<String> newRoleList = new ArrayList<String>();
+	    	//user = userPKService.getUser(user.getuLogUser());
+			//roleList = userPKService.getRole(user.getUuid());
+	    	roleList=roleService.getList();
+	    	for (Role str : roleList) {
+	    		newRoleList.add(str.getUuid());
+	    		
+			}
+	    	
+	    	rsList = roleResourceService.getRsbyRole(newRoleList);
+			//list.add(user);
+			//list.add(newRoleList);
+			list.add(rsList);				
+			String msg = "成功";
+			ArrayList<Object> resultList = new ArrayList<Object>();
+			resultList = (ArrayList<Object>) list;
+			backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
+			backResult.setData(resultList);
 	     
-	      ArrayList<Role> resultList =  roleService.getList();
-	      backResult.setMessage("信息值：成功");
-	      backResult.setQingqiu("list查询列表");
-	      backResult.setData(resultList);
+	     
 	   
 	    } else if (qqiu.equals("add_batch")) {// 批量添加
 			// start前台数据转换
@@ -109,6 +138,7 @@ public class RoleControl extends HttpServlet{
 		out.write(back);
 		out.flush();
 		out.close();
+	   
 }
 	  
 	  private void qqiuChoice(String qqiu, Role role) {
@@ -117,7 +147,7 @@ public class RoleControl extends HttpServlet{
 	    boolean delete = false;
 	    boolean edit = false;
 	    boolean getOne = false;
-	    
+	 
 	    test = qqiu.equals("test");
 	    add = qqiu.equals("add");
 	    delete = qqiu.equals("delete");
@@ -165,6 +195,6 @@ public class RoleControl extends HttpServlet{
 	      backResult.setQingqiu("getOne查询单条记录");
 	      backResult.setData(resultList);
 	    }
+	   
 	 }
 }
-

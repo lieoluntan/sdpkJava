@@ -33,7 +33,6 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 	}
 
 	@Override
-	//掉这个角色资源列表方法
 	public List<String> getRsbyRoleid(List<String> list) {
 		// TODO Auto-generated method stub
 		RoleResource roleResourceResult = new RoleResource();
@@ -285,9 +284,84 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 		return ResourceList;
 	}
 
+	
+	//根据角色id返回角色资源列表
+	@Override
+	public List getRsbyRole(List<String> list) {
+		// TODO Auto-generated method stub
+		RoleResource roleResourceResult = new RoleResource();
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+
+		List newrsList = new ArrayList();
+		for (String roleid : list) {
+			System.out.println("测试"+roleid);
+			List rsList = new ArrayList();// 
+			List rsidList =new ArrayList();
+			try {
+				connection = DBUtility.open();// 打开数据库连接
+				statement = connection.createStatement();
+				rs = statement
+						.executeQuery("select * from t_role_resource WHERE roleid ="
+								+ "'" + roleid + "'");
+				while (rs.next()) {
+					RoleResource roleResource = new RoleResource();
+					roleResource.setUuid(rs.getString("uuid"));
+					roleResource.setRoleid(rs.getString("roleid"));
+					roleResource.setResourceid(rs.getString("resourceid"));
+					roleResourceResult = roleResource;
+					rsidList.add(roleResourceResult.getResourceid());
+					
+				}
+				rsList.add(roleid);
+				rsList.add(rsidList);
+				newrsList.add(rsList);
+				
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("RoleResourceImpl的getByUuid查询失败");
+
+			} finally {
+				DBUtility.close(rs, statement, connection);
+			}// finally关闭jdbc与数据库连接
+			
+			
+		}// end foreach
+
+		return newrsList;
+	}
+
 	@Override
 	public String insert_batch(ArrayList<RoleResource> PR_List) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean deleteRoleRs(String uuid) {
+		// TODO Auto-generated method stub
+		PreparedStatement PSdelete = null; // 关闭数据库连接insert和update和delete用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			// Parameters start with 1
+			PSdelete = connection
+					.prepareStatement("DELETE FROM t_role_resource WHERE roleid = ? ");
+			PSdelete.setString(1, uuid);
+			PSdelete.executeUpdate();
+
+			System.out.println("^^在执行RoleResourceImpl中的删除delete");
+			daoFlag = true;
+			return daoFlag;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out
+					.println("^^在执行RoleResourceImpl中delete,出现sql语法执行错误，请联系管理员!");
+			daoFlag = false;
+			return daoFlag;
+		} finally {
+			ResultSet rs = null;
+			DBUtility.close(rs, PSdelete, connection);
+		}// finally关闭jdbc与数据库连接
 	}
 }

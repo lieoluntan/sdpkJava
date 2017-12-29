@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.sdpk.dao.RoleDao;
 import com.sdpk.model.Role;
@@ -115,7 +116,7 @@ public class RoleDaoImpl implements RoleDao{
 	          Role role = new Role();
 	          role.setUuid(rs.getString("uuid"));
 	          role.setName(rs.getString("name"));
-	        RoleResult=role;
+	          RoleResult=role;
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -190,6 +191,35 @@ public class RoleDaoImpl implements RoleDao{
 			System.out.println("getByuLogUser 调用了关闭数据库连接");
 		}// finally关闭jdbc与数据库连接
 		return roleList;
+	}
+	@Override
+	public boolean insertRoleRs(Role role) {
+		// TODO Auto-generated method stub
+		 PreparedStatement preparedStatement = null;
+		 try {
+			 for (String rsid : role.getRsList()) {
+				
+			
+			 connection = DBUtility.open();
+		      preparedStatement = connection.prepareStatement("insert into t_role_resource(uuid,roleid,resourceid) values (?,?,?)");
+		      preparedStatement.setString(1, UUID.randomUUID().toString());
+		      preparedStatement.setString(2, role.getUuid());
+		      preparedStatement.setString(3, rsid);
+		      preparedStatement.executeUpdate();
+		      System.out.println("^^在执行RoleDaoImpl中的添加insert");
+		      dao = true;
+			 }
+		      return dao;
+			
+		    } catch (SQLException e) {
+		      System.out.println("^^在执行RoleDaoImpl中insert,出现sql语法执行错误，请联系管理员!");
+		      e.printStackTrace();
+		      dao = false;
+		      return dao;
+		    }finally{
+		      ResultSet rs = null; 
+		      DBUtility.close(rs, preparedStatement, connection);   
+		     }
 	}
 }
 

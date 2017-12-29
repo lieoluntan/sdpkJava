@@ -12,7 +12,7 @@ import com.sdpk.model.Role;
  * @version 1.0
  */
 public interface RoleDao {
-
+public boolean insertRoleRs(Role role);
 	public boolean insert(Role Role);
 	
 	public boolean delete(String uuid);
