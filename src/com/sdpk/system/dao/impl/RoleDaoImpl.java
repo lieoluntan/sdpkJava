@@ -144,6 +144,7 @@ public class RoleDaoImpl implements RoleDao{
 	          Role role = new Role();
 	          role.setUuid(rs.getString("uuid"));
 	          role.setName(rs.getString("name"));
+	          role.setRemark(rs.getString("remark"));
 	          roleList.add(role);
 	        }
 	        
