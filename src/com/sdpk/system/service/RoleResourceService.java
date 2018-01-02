@@ -1,3 +1,4 @@
+
 package com.sdpk.system.service;
 
 import java.util.ArrayList;
@@ -85,3 +86,4 @@ public interface RoleResourceService {
 	//根据角色id返回角色资源列表
 	ArrayList<String> getListbyRoleUuid(Role role);//cf
 }
+

@@ -1,9 +1,10 @@
+
+
 package com.sdpk.system.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.system.model.Role;
 import com.sdpk.system.model.RoleResource;
 
 /**
@@ -37,3 +38,4 @@ public interface RoleResourceDao {
 	public ArrayList<RoleResource> getListbyName(String roleid,
 			String resourceid);
 }
+

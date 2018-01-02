@@ -1,9 +1,8 @@
-package com.sdpk.controller;
+package com.sdpk.system.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.sdpk.model.BackResult;
+import com.sdpk.model.ClassRoom;
 import com.sdpk.system.model.UserPK;
-import com.sdpk.system.service.RoleResourceService;
 import com.sdpk.system.service.UserPKService;
-import com.sdpk.system.service.impl.RoleResourceServiceImpl;
 import com.sdpk.system.service.impl.UserPKServiceImpl;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_DataControl;
@@ -26,13 +24,11 @@ import com.sdpk.utility.T_DataMap2Bean;
  * 树袋老师
  * 
  * @author 作者 xpp
- * @version 创建时间：2017-11-24 下午3:35:17 类说明
- * 薛人杰+用户登陆后得到角色和资源
+ * @version 创建时间：2017-11-24 上午11:54:23 类说明
  */
 
-public class DengLuControl extends HttpServlet {
-	private RoleResourceService roleResourceService = new RoleResourceServiceImpl();
-	// DengLuService dengLuService = new DengLuServiceImpl();
+public class UserPKControl extends HttpServlet {
+
 	UserPKService userPKService = new UserPKServiceImpl();
 	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
 	public M_msg m_msg = new M_msg();
@@ -52,7 +48,8 @@ public class DengLuControl extends HttpServlet {
 		// 1 获取url问号后面的Query 参数
 		String qqiu = request.getParameter("qqiu");
 
-		if (qqiu.equals("test") || qqiu.equals("denglu")) {
+		if (qqiu.equals("test") || qqiu.equals("add") || qqiu.equals("delete")
+				|| qqiu.equals("edit") || qqiu.equals("getOne")) {
 			// 2 将前台json数据字符串转成实体对象
 			T_DataControl t_data = new T_DataControl();
 			String str = t_data.getRequestPayload(request);
@@ -66,9 +63,13 @@ public class DengLuControl extends HttpServlet {
 			}
 
 			// 3 执行qqiu里面的增或删或改或查 的操作
-			qqiuChoice(qqiu, userPK, response, str);
+			qqiuChoice(qqiu, userPK);
 		} else if (qqiu.equals("list")) {
 			// TODO 待完成
+			ArrayList<UserPK> resultList = userPKService.getList();
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("list查询列表");
+			backResult.setData(resultList);
 
 		} else {
 			System.out.println("qqiu请求参数  " + qqiu + "  不规范");
@@ -85,73 +86,63 @@ public class DengLuControl extends HttpServlet {
 
 	}// end method doPost 主入口
 
-	private void qqiuChoice(String qqiu, UserPK userPK,
-			HttpServletResponse response, String uuid) {
+	private void qqiuChoice(String qqiu, UserPK userPK) {
 		// TODO Auto-generated method stub
 		boolean test = false;
-		boolean denglu = false;
+		boolean add = false;
+		boolean delete = false;
+		boolean edit = false;
+		boolean getOne = false;
+
 		test = qqiu.equals("test");
-		denglu = qqiu.equals("denglu");
+		add = qqiu.equals("add");
+		delete = qqiu.equals("delete");
+		edit = qqiu.equals("edit");
+		getOne = qqiu.equals("getOne");
 
 		if (test) {
 			backResult.setMessage("信息值,测试成功");
 			backResult.setQingqiu("test新增");
 			ArrayList<String> resultList = new ArrayList<String>();
-			resultList.add("登录,测试成功1");
-			resultList.add("登录,测试成功2");
-			resultList.add("登录,测试成功3");
+			resultList.add("用户,测试成功1");
+			resultList.add("用户,测试成功2");
+			resultList.add("用户,测试成功3");
 			backResult.setData(resultList);
 		}
-		if (denglu) {
-			List list=new ArrayList();
-			List rsList = new ArrayList();
-			UserPK user=new UserPK();
-			List<String> roleList=new ArrayList<String>();
-			boolean flag = userPKService.judge(userPK);
-			m_msg = userPKService.getMsg();
-			backResult.setQingqiu("notyes");
-			// 步骤一：判断
-			if (flag) {
 
-				user = userPKService.getUser(userPK.getuLogUser());// 先根据用户名查到用户对象
-				roleList = userPKService.getRole(user.getUuid());//角色id集合
-				rsList = roleResourceService.getRsbyRoleid(roleList);
-				list.add(flag);
-				list.add(user);
-				list.add(roleList);
-				list.add(rsList);				
-				System.out.println("进入");
-				String msg = "成功";
-				System.out.println(msg);
-				backResult.setQingqiu("登陆");
-				ArrayList<Object> resultList = new ArrayList<Object>();
-				resultList = (ArrayList<Object>) list;
-				
-				backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
-				backResult.setData(resultList);
-				// try {
-				// response.sendRedirect("xppu8.html");
-				//
-				// System.out.println("跳转成功");
-				// } catch (IOException e) {
-				// // TODO Auto-generated catch block
-				// e.printStackTrace(); System.out.println("跳转失败,检查跳转");
-				// }
-			}// 用户名、密码正确
-			else {
-				list.add(flag);
-				ArrayList<Object> resultList = new ArrayList<Object>();
-				resultList = (ArrayList<Object>) list;
-			
-				String msg = "失败";
-				System.out.println(msg);
-				backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
-				backResult.setData(resultList);
-				backResult.setQingqiu("登陆");
-			}// 用户名、密码错误
-				// 步骤二：赋值
-			
-		}// end denglu
+		if (add) {
+
+			String result = userPKService.insert(userPK);
+			ArrayList<String> resultList = new ArrayList<String>();
+			resultList.add(result);
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("add新增");
+			backResult.setData(resultList);
+		}
+		if (delete) {
+			String result = userPKService.delete(userPK.getUuid());
+			ArrayList<String> resultList = new ArrayList<String>();
+			resultList.add(result);
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("delete删除" + userPK.getUuid());
+			backResult.setData(resultList);
+		}
+		if (edit) {
+			String result = userPKService.update(userPK);
+			ArrayList<String> resultList = new ArrayList<String>();
+			resultList.add(result);
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("edit修改");
+			backResult.setData(resultList);
+		}
+		if (getOne) {
+			UserPK result = userPKService.getByUuid(userPK.getUuid());
+			ArrayList<UserPK> resultList = new ArrayList<UserPK>();
+			resultList.add(result);
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("getOne查询单条记录");
+			backResult.setData(resultList);
+		}
 
 	}// end method qqiuChoice
 

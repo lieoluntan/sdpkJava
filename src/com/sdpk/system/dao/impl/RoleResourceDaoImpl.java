@@ -1,3 +1,4 @@
+
 package com.sdpk.system.dao.impl;
 
 import java.sql.Connection;
@@ -11,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.sdpk.system.dao.RoleResourceDao;
-import com.sdpk.system.model.Role;
 import com.sdpk.system.model.RoleResource;
 import com.sdpk.utility.DBUtility;
 
@@ -356,3 +356,4 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 		}// finally关闭jdbc与数据库连接
 	}
 }
+

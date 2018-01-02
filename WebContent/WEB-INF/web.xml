@@ -28,7 +28,7 @@
   
    <servlet>
     <servlet-name>RoleRsController</servlet-name>
-    <servlet-class>com.sdpk.system.controller.RoleResourceController</servlet-class>
+    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RoleRsController</servlet-name>
@@ -99,7 +99,7 @@
   
   <servlet>
     <servlet-name>aaRoleN</servlet-name>
-    <servlet-class>com.sdpk.system.controller.RoleControl</servlet-class>
+    <servlet-class>com.sdpk.controller.RoleControl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aaRoleN</servlet-name>
@@ -172,7 +172,7 @@
  
  <servlet>
     <servlet-name>aaUserPKN</servlet-name>
-    <servlet-class>com.sdpk.controller.UserPKControl</servlet-class>
+    <servlet-class>com.sdpk.system.controller.UserPKControl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aaUserPKN</servlet-name>
@@ -199,7 +199,7 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>QueryController</servlet-name>
-    <servlet-class>com.sdpk.controller.QueryController</servlet-class>
+    <servlet-class>com.sdpk.query.controller.QueryController</servlet-class>
   </servlet>
 
 
