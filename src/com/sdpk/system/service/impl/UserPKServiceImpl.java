@@ -123,7 +123,7 @@ public class UserPKServiceImpl implements UserPKService {
 				backRoleList.add(role);
 			}
 
-			userPK.setRoleList(backRoleList);
+			userPK.setRole(backRoleList);
 
 		}
 

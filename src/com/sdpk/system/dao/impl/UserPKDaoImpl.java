@@ -71,8 +71,8 @@ public class UserPKDaoImpl implements UserPKDao {
 			// userPK.setUuid(UUID.randomUUID().toString());
 			PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 			try {
-				for (Role userRole : userPK.getRoleList()) {// 添加用户角色表
-				System.out.println(userRole);
+				for (String userRole : userPK.getRoleList()) {// 添加用户角色表
+				
 				
 				connection = DBUtility.open();// 打开数据库连接
 				preparedStatement = connection
@@ -80,7 +80,7 @@ public class UserPKDaoImpl implements UserPKDao {
 				// Parameters start with 1
 				preparedStatement.setString(1, UUID.randomUUID().toString());
 				preparedStatement.setString(2, userPK.getUuid());
-				preparedStatement.setString(3, userRole.getUuid());
+				preparedStatement.setString(3, userRole);
 
 				preparedStatement.executeUpdate();
 
