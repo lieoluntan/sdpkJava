@@ -35,7 +35,7 @@ import com.sdpk.utility.T_DataMap2Bean;
  * @date 2017-12-26上午10:44:01
  * @version 1.0
  */
-public class RoleControl extends HttpServlet{
+public class RoleController extends HttpServlet{
 
 	private Connection connection;
 	private RoleResourceService roleResourceService = new RoleResourceServiceImpl();

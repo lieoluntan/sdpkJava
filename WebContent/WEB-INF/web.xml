@@ -107,7 +107,7 @@
   
   <servlet>
     <servlet-name>aaRoleN</servlet-name>
-    <servlet-class>com.sdpk.system.controller.RoleControl</servlet-class>
+    <servlet-class>com.sdpk.system.controller.RoleController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aaRoleN</servlet-name>
