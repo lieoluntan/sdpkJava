@@ -138,7 +138,7 @@ public class RoleControl extends HttpServlet{
 		out.flush();
 		out.close();
 	   
-}
+	  }
 	  
 	  private void qqiuChoice(String qqiu, Role role) {
 	    boolean test = false;
@@ -152,7 +152,7 @@ public class RoleControl extends HttpServlet{
 	    delete = qqiu.equals("delete");
 	    edit = qqiu.equals("edit");
 	    getOne = qqiu.equals("getOne");
-
+	    
 	    if (test) {
 	      backResult.setMessage("信息值,测试成功");
 	      backResult.setQingqiu("test新增");
