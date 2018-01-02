@@ -131,7 +131,7 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 			connection = DBUtility.open();// 打开数据库连接
 			// Parameters start with 1
 			PSdelete = connection
-					.prepareStatement("DELETE FROM t_role_resource WHERE uuid = ? ");
+					.prepareStatement("DELETE FROM t_role_resource WHERE roleid = ? ");
 			PSdelete.setString(1, uuid);
 			PSdelete.executeUpdate();
 
@@ -354,6 +354,30 @@ public class RoleResourceDaoImpl implements RoleResourceDao {
 			ResultSet rs = null;
 			DBUtility.close(rs, PSdelete, connection);
 		}// finally关闭jdbc与数据库连接
+	}
+
+	@Override
+	public boolean deleteByuse(String roleid) {
+		// TODO Auto-generated method stub
+		  PreparedStatement PSdelete = null; //关闭数据库连接insert和update和delete用到
+		    try {
+		    	connection = DBUtility.open();//打开数据库连接
+		      // Parameters start with 1
+		      PSdelete = connection.prepareStatement("DELETE FROM t_role_resource WHERE roleid = ? ");
+		      PSdelete.setString(1, roleid);
+		      PSdelete.executeUpdate();
+		      System.out.println("^^在执行userPK_roleDaoImpl中的删除delete");
+		      daoFlag = true;
+		      return daoFlag;
+		    } catch (SQLException e) {
+		      e.printStackTrace();
+		      System.out.println("^^在执行userPK_roleDaoImpl中deleteByuse,出现sql语法执行错误，请联系管理员!");
+		      daoFlag = false;
+		      return daoFlag;
+		    }finally{
+		      ResultSet rs = null; 
+		      DBUtility.close(rs, PSdelete, connection);   
+		     }
 	}
 }
 
