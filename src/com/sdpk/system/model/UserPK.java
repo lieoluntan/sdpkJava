@@ -22,21 +22,50 @@ public class UserPK {
 	private String uLogUser;
 	private String uPassWord;
 	private String uName;
-	private List<String> roleList;// 存放角色id
+	private List<String> roleList;//存放角色id
+	private List<Role> role;// 存放角色
 
 	public UserPK() {
 		
 	}
 
-	public UserPK(String uuid, String uLogUser, String uPassWord, String uName,
-			List<String> roleList) {
+
+	public UserPK(String uuid, String uLogUser,
+			String uPassWord, String uName, List<String> roleList,
+			List<Role> role) {
 		super();
 		this.uuid = uuid;
+//		this.createDate = createDate;
+//		this.modifyDate = modifyDate;
+//		this.createPeople = createPeople;
+//		this.modifyPeople = modifyPeople;
 		this.uLogUser = uLogUser;
 		this.uPassWord = uPassWord;
 		this.uName = uName;
 		this.roleList = roleList;
+		this.role = role;
 	}
+
+
+	public List<String> getRoleList() {
+		return roleList;
+	}
+
+
+	public void setRoleList(List<String> roleList) {
+		this.roleList = roleList;
+	}
+
+
+	public List<Role> getRole() {
+		return role;
+	}
+
+
+	public void setRole(List<Role> role) {
+		this.role = role;
+	}
+
 
 	@Override
 	public String toString() {
@@ -44,8 +73,10 @@ public class UserPK {
 				+ ", modifyDate=" + modifyDate + ", createPeople="
 				+ createPeople + ", modifyPeople=" + modifyPeople
 				+ ", uLogUser=" + uLogUser + ", uPassWord=" + uPassWord
-				+ ", uName=" + uName + ", role=" + roleList + "]";
+				+ ", uName=" + uName + ", roleList=" + roleList + ", role="
+				+ role + "]";
 	}
+
 
 	public String getUuid() {
 		return uuid;
@@ -111,12 +142,5 @@ public class UserPK {
 		this.uName = uName;
 	}
 
-	public List<String> getRoleList() {
-		return roleList;
-	}
-
-	public void setRoleList(List<String> roleList) {
-		this.roleList = null;
-	}
 
 }// end class
