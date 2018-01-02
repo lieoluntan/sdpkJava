@@ -169,6 +169,5 @@ public class RoleResourceServiceImpl implements RoleResourceService {
 		ArrayList<String> rsList = roleResourceDao.getListbyRoleUuid(RoleUuid);
 		return rsList;
 	}
-
 }
 

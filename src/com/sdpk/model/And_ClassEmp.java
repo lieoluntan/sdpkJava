@@ -69,7 +69,4 @@ public class And_ClassEmp {
   public void setEmpName(String empName) {
     this.empName = empName;
   }
-  
-  
-  
 }//end class
