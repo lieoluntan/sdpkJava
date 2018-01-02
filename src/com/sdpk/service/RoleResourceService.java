@@ -3,7 +3,7 @@ package com.sdpk.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Resource;
+import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.utility.M_msg;
 
@@ -83,5 +83,5 @@ public interface RoleResourceService {
 	ArrayList<RoleResource> getListbyName(String roleid,
 			String resourceid);
 	//根据角色id返回角色资源列表
-	List<String> getRsbyRole(List<String> list);//cf
+	ArrayList<String> getListbyRoleUuid(Role role);//cf
 }

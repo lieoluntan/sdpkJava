@@ -51,7 +51,7 @@ public class Role {
 	}
 	@Override
 	public String toString() {
-		return "UserPK [uuid=" + uuid + ", name=" + name
+		return "Role [uuid=" + uuid + ", name=" + name
 				+ ", createDate=" + createDate + ", modifyDate="
 				+ modifyDate + ", createPeople=" + createPeople
 				+ ", modifyPeople=" + modifyPeople + ", remark=" + remark

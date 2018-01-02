@@ -79,24 +79,23 @@ public class RoleControl extends HttpServlet{
 	    	List rsList = new ArrayList();
 	    	
 	    	ArrayList<Role> roleList = new ArrayList<Role>();
-	    	ArrayList<String> newRoleList = new ArrayList<String>();
-	    	//user = userPKService.getUser(user.getuLogUser());
-			//roleList = userPKService.getRole(user.getUuid());
-	    	roleList=roleService.getList();
-	    	for (Role str : roleList) {
-	    		newRoleList.add(str.getUuid());
-	    		
-			}
+	    	ArrayList<Role> newRoleList = new ArrayList<Role>();
 	    	
-	    	rsList = roleResourceService.getRsbyRole(newRoleList);
-			//list.add(user);
-			//list.add(newRoleList);
-			list.add(rsList);				
+			Role role=new Role();
+	    	roleList=roleService.getList();
+	    	
+	    	
+	    	for (Role one : roleList) {
+	    		System.out.println(one.getName());
+	    		rsList = roleResourceService.getListbyRoleUuid(one);
+	    		one.setRsList(rsList);
+	    		newRoleList.add(one);
+			}
+	    	System.out.println("完整的role列表"+newRoleList);
+	    					
 			String msg = "成功";
-			ArrayList<Object> resultList = new ArrayList<Object>();
-			resultList = (ArrayList<Object>) list;
 			backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
-			backResult.setData(resultList);
+			backResult.setData(newRoleList);
 	     
 	     
 	   
