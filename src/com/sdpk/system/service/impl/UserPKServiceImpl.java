@@ -8,6 +8,7 @@ import com.sdpk.system.dao.RoleDao;
 import com.sdpk.system.dao.UserPKDao;
 import com.sdpk.system.dao.impl.RoleDaoImpl;
 import com.sdpk.system.dao.impl.UserPKDaoImpl;
+import com.sdpk.system.model.Role;
 import com.sdpk.system.model.UserPK;
 import com.sdpk.system.service.UserPKService;
 import com.sdpk.utility.M_msg;
@@ -37,33 +38,17 @@ public class UserPKServiceImpl implements UserPKService {
 	public String insert(UserPK userPK) {
 		// TODO Auto-generated method stub
 
-		if (userPK.getRoleList() == null) {// 没有角色权限
+		// 角色有权限
 
-			userPK.setUuid(null);
-
-			userPK.setUuid(UUID.randomUUID().toString());
-			System.out.println("^^在userPKServiceImpl收到数据 ：" + userPK.toString()
-					+ "收到结束!");
-			boolean daoFlag = userPKDao.insert(userPK);
-			if (daoFlag) {
-				return userPK.getUuid();
-			} else {
-				return "插入不成功,dao层执行有出错地方,请联系管理员";
-			}
-		}
-
-		else {// 角色有权限
-
-			userPK.setUuid(null);
-			userPK.setUuid(UUID.randomUUID().toString());
-			System.out.println("^^在userPKServiceImpl收到数据 ");
-			boolean daoFlag = userPKDao.insert(userPK);
-			userPKDao.insertUserRole(userPK);
-			if (daoFlag) {
-				return userPK.getUuid();
-			} else {
-				return "插入不成功,dao层执行有出错地方,请联系管理员";
-			}
+		userPK.setUuid(null);
+		userPK.setUuid(UUID.randomUUID().toString());
+		System.out.println("^^在userPKServiceImpl收到数据 ");
+		boolean daoFlag = userPKDao.insert(userPK);
+		userPKDao.insertUserRole(userPK);
+		if (daoFlag) {
+			return userPK.getUuid();
+		} else {
+			return "插入不成功,dao层执行有出错地方,请联系管理员";
 		}
 
 	}
@@ -93,14 +78,10 @@ public class UserPKServiceImpl implements UserPKService {
 		String uuid = userPK.getUuid();
 		if (uuid != null && uuid != "") {
 			// 如果不修改角色
-			if (userPK.getRoleList() == null) {
-				daoFlag = userPKDao.update(userPK);
-
-			} else {// 修改角色
-				daoFlag = userPKDao.update(userPK);// 先对用户进行修改
-				userPKDao.deleteUserRole(userPK.getUuid());// 然后删掉该用户在用户角色表中的记录
-				userPKDao.insertUserRole(userPK);// 然后重新指定角色
-			}
+			// 修改角色
+			daoFlag = userPKDao.update(userPK);// 先对用户进行修改
+			userPKDao.deleteUserRole(userPK.getUuid());// 然后删掉该用户在用户角色表中的记录
+			userPKDao.insertUserRole(userPK);// 然后重新指定角色
 
 			if (daoFlag) {
 				return uuid;
@@ -132,10 +113,17 @@ public class UserPKServiceImpl implements UserPKService {
 	public ArrayList<UserPK> getList() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPK> userPKlist = userPKDao.getList();
-		for (UserPK userPK : userPKlist) {
+		for (UserPK userPK : userPKlist) {//所有用户集合
+			Role role = new Role();
+			List<Role> backRoleList = new ArrayList<Role>();
+			List<String> roleList = roleDao.getRole(userPK.getUuid());//根据用户id得到用户的所有角色id
+			for (String roleid : roleList) {
+				role = roleDao.getByUuid(roleid);//根据角色id 的到角色对象
+				System.out.println(role.getName()+"  "+role.getUuid());
+				backRoleList.add(role);
+			}
 
-			List<String> roleList = roleDao.getRole(userPK.getUuid());
-			userPK.setRoleList(roleList);
+			userPK.setRoleList(backRoleList);
 
 		}
 

@@ -22,14 +22,14 @@ public class UserPK {
 	private String uLogUser;
 	private String uPassWord;
 	private String uName;
-	private List<String> roleList;// 存放角色id
+	private List<Role> roleList;// 存放角色id
 
 	public UserPK() {
 		
 	}
 
 	public UserPK(String uuid, String uLogUser, String uPassWord, String uName,
-			List<String> roleList) {
+			List<Role> roleList) {
 		super();
 		this.uuid = uuid;
 		this.uLogUser = uLogUser;
@@ -111,11 +111,11 @@ public class UserPK {
 		this.uName = uName;
 	}
 
-	public List<String> getRoleList() {
+	public List<Role> getRoleList() {
 		return roleList;
 	}
 
-	public void setRoleList(List<String> roleList) {
+	public void setRoleList(List<Role> roleList) {
 		this.roleList = roleList;
 	}
 

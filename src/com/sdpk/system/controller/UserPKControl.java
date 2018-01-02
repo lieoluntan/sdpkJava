@@ -69,10 +69,6 @@ public class UserPKControl extends HttpServlet {
 			ArrayList<UserPK> resultList = userPKService.getList();
 			backResult.setMessage("信息值：成功");
 			backResult.setQingqiu("list查询列表");
-			for (UserPK userPK : resultList) {
-				System.out.println(userPK.getUuid());
-				
-			}
 			backResult.setData(resultList);
 
 		} else {

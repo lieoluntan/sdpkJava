@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.system.dao.UserPKDao;
+import com.sdpk.system.model.Role;
 import com.sdpk.system.model.UserPK;
 import com.sdpk.system.model.UserPK_Role;
 import com.sdpk.utility.DBUtility;
@@ -70,7 +71,7 @@ public class UserPKDaoImpl implements UserPKDao {
 			// userPK.setUuid(UUID.randomUUID().toString());
 			PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 			try {
-				for (String userRole : userPK.getRoleList()) {// 添加用户角色表
+				for (Role userRole : userPK.getRoleList()) {// 添加用户角色表
 				System.out.println(userRole);
 				
 				connection = DBUtility.open();// 打开数据库连接
@@ -79,7 +80,7 @@ public class UserPKDaoImpl implements UserPKDao {
 				// Parameters start with 1
 				preparedStatement.setString(1, UUID.randomUUID().toString());
 				preparedStatement.setString(2, userPK.getUuid());
-				preparedStatement.setString(3, userRole);
+				preparedStatement.setString(3, userRole.getUuid());
 
 				preparedStatement.executeUpdate();
 
