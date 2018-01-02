@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.sdpk.system.dao.RoleDao;
 import com.sdpk.system.dao.UserPKDao;
+import com.sdpk.system.dao.impl.RoleDaoImpl;
 import com.sdpk.system.dao.impl.UserPKDaoImpl;
 import com.sdpk.system.model.UserPK;
 import com.sdpk.system.service.UserPKService;
@@ -15,13 +17,14 @@ import com.sdpk.utility.M_msg;
  * 
  * @author 作者 xpp
  * @version 创建时间：2017-11-24 下午12:39:00 类说明
- * @version 创建时间：2017-11-24 下午12:39:00 类说明 
- * 薛人杰+添加了insert方法中判断了添加用户时是否给了用户角色权限,在delete方法中加入了是只修改用户资料还是资料和角色一起修改的判断
+ * @version 创建时间：2017-11-24 下午12:39:00 类说明
+ *          薛人杰+添加了insert方法中判断了添加用户时是否给了用户角色权限,在delete方法中加入了是只修改用户资料还是资料和角色一起修改的判断
  */
 
 public class UserPKServiceImpl implements UserPKService {
 
 	private UserPKDao userPKDao = new UserPKDaoImpl();
+	private RoleDao roleDao = new RoleDaoImpl();
 	public M_msg m_msg = new M_msg();
 
 	@Override
@@ -49,8 +52,8 @@ public class UserPKServiceImpl implements UserPKService {
 			}
 		}
 
-		else {//角色有权限
-			
+		else {// 角色有权限
+
 			userPK.setUuid(null);
 			userPK.setUuid(UUID.randomUUID().toString());
 			System.out.println("^^在userPKServiceImpl收到数据 ");
@@ -129,6 +132,12 @@ public class UserPKServiceImpl implements UserPKService {
 	public ArrayList<UserPK> getList() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPK> userPKlist = userPKDao.getList();
+		for (UserPK userPK : userPKlist) {
+
+			List<String> roleList = roleDao.getRole(userPK.getUuid());
+			userPK.setRoleList(roleList);
+
+		}
 
 		return userPKlist;
 	}// end method getList()
@@ -165,7 +174,7 @@ public class UserPKServiceImpl implements UserPKService {
 	@Override
 	public UserPK getUser(String uLogUser) {
 		// TODO Auto-generated method stub
-		UserPK u=userPKDao.getByuLogUser(uLogUser);
+		UserPK u = userPKDao.getByuLogUser(uLogUser);
 		System.out.println(u.getUuid());
 		return u;
 	}

@@ -116,7 +116,7 @@ public class UserPK {
 	}
 
 	public void setRoleList(List<String> roleList) {
-		this.roleList = null;
+		this.roleList = roleList;
 	}
 
 }// end class
