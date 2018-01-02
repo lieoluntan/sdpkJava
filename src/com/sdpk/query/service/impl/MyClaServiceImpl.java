@@ -9,7 +9,12 @@ import com.sdpk.model.Cla;
 import com.sdpk.query.dao.MyClaDao;
 import com.sdpk.query.dao.impl.MyClaDaoImpl;
 import com.sdpk.query.service.MyClaService;
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-2下午8:42:01
+ * @version 1.0
+ */
 public class MyClaServiceImpl implements MyClaService{
 
 	private MyClaDao myClaDao = new MyClaDaoImpl();

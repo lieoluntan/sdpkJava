@@ -15,7 +15,12 @@ import com.sdpk.model.Student;
 import com.sdpk.query.dao.MyClaDao;
 import com.sdpk.utility.DBUtility;
 
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-2下午8:41:23
+ * @version 1.0
+ */
 public class MyClaDaoImpl implements MyClaDao{
 
 	private Connection connection;

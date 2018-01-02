@@ -13,14 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.sdpk.model.BackResult;
 import com.sdpk.model.Cla;
-import com.sdpk.model.Employee;
-import com.sdpk.model.Student;
 import com.sdpk.query.service.MyClaService;
 import com.sdpk.query.service.impl.MyClaServiceImpl;
 import com.sdpk.utility.M_msg;
 
 
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-2下午8:41:03
+ * @version 1.0
+ */
 public class MyClaController extends HttpServlet{
 	
 	private MyClaService myClaService = new MyClaServiceImpl();
