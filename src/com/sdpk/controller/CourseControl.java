@@ -149,8 +149,7 @@ public class CourseControl extends HttpServlet {
       backResult.setQingqiu("getOne查询单条记录");
       backResult.setData(resultList);
     }
-    
-    
+  
   }// end method qqiuChoice
 
 

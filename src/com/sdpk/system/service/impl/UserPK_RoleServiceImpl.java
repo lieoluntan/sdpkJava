@@ -108,7 +108,7 @@ public class UserPK_RoleServiceImpl implements UserPK_RoleService{
 		ArrayList<UserPK_Role> list = userpk_roledao.getListByRole(roleid);
 		ArrayList<UserPK_Role> reList = new ArrayList<UserPK_Role>();
 		for(UserPK_Role one : list){
-			//从用户表和角色表中找到用户名,用户表修改了名称,关联表也知道
+			
 			String UserPkid = one.getUserPkid();
 			String Roleid = one.getRoleid();
 			UserPK user = userpkdao.getByUuid(UserPkid);

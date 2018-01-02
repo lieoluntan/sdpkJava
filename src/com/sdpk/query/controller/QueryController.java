@@ -89,6 +89,5 @@ public class QueryController extends HttpServlet {
 			newResultList.add(resultList);
 			backResult.setData(newResultList);
 		}
-
 	}
 }
