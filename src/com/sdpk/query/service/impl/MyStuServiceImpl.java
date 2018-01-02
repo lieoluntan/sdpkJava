@@ -66,7 +66,6 @@ public class MyStuServiceImpl implements MyStuService {
 
 		}// end forech 去重复完成
 
-		
 		return newStuIdList;
 
 	}
@@ -74,13 +73,10 @@ public class MyStuServiceImpl implements MyStuService {
 	@Override
 	public List<Student> getStuList(List<String> StuIdList) {
 		// TODO Auto-generated method stub
-		for (String string : StuIdList) {
-			System.out.println(string);
-		}
 		List<Student> StuList = new ArrayList<Student>();
 		for (String stuid : StuIdList) {
 			Student student = myStuDao.getStuList(stuid);
-			//System.out.println(student.getName());
+			// System.out.println(student.getName());
 			StuList.add(student);
 		}
 

@@ -36,8 +36,6 @@ public class MyStuController extends HttpServlet {
 		if (qqiu.equals("list")) {
 			String empUuid = request.getParameter("empUuid");
 
-			
-
 			qqiuChoice(qqiu, empUuid);
 
 		}
@@ -59,12 +57,12 @@ public class MyStuController extends HttpServlet {
 		test = qqiu.equals("list");
 
 		if (test) {
-			List<Student> stuList=myStuService.getClaId(empUuid);
-			
+			List<Student> stuList = myStuService.getClaId(empUuid);
+
 			backResult.setMessage("信息值,成功");
 			backResult.setQingqiu("我的学员浏览");
 
-			backResult.setData((ArrayList)stuList);
+			backResult.setData((ArrayList) stuList);
 		}
 
 	}
