@@ -25,7 +25,14 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>MyStuController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.MyStuController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyStuController</servlet-name>
+    <url-pattern>/aaMyStu</url-pattern>
+  </servlet-mapping>
    <servlet>
     <servlet-name>RoleRsController</servlet-name>
     <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
@@ -212,6 +219,7 @@
     <servlet-name>ResourceController</servlet-name>
     <url-pattern>/servlet/ResourceController</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>RoleResourceController</servlet-name>
     <url-pattern>/servlet/RoleResourceController</url-pattern>
