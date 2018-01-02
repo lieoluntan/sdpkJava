@@ -28,7 +28,7 @@
   
    <servlet>
     <servlet-name>RoleRsController</servlet-name>
-    <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
+    <servlet-class>com.sdpk.system.controller.RoleResourceController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RoleRsController</servlet-name>

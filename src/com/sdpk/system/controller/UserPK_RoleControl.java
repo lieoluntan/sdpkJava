@@ -3,7 +3,6 @@ package com.sdpk.system.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -15,7 +14,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
-import com.sdpk.model.RoleResource;
 import com.sdpk.system.model.UserPK_Role;
 import com.sdpk.system.service.UserPK_RoleService;
 import com.sdpk.system.service.impl.UserPK_RoleServiceImpl;

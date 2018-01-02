@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.sdpk.dao.RoleResourceDao;
-import com.sdpk.dao.impl.RoleResourceDaoImpl;
-import com.sdpk.model.RoleResource;
-import com.sdpk.service.RoleResourceService;
-import com.sdpk.service.impl.RoleResourceServiceImpl;
 import com.sdpk.system.dao.RoleDao;
+import com.sdpk.system.dao.RoleResourceDao;
 import com.sdpk.system.dao.impl.RoleDaoImpl;
+import com.sdpk.system.dao.impl.RoleResourceDaoImpl;
 import com.sdpk.system.model.Role;
+import com.sdpk.system.model.RoleResource;
+import com.sdpk.system.service.RoleResourceService;
 import com.sdpk.system.service.RoleService;
 /**
  * 
