@@ -1,4 +1,4 @@
-package com.sdpk.dao.impl;
+package com.sdpk.system.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.sdpk.dao.RoleDao;
-import com.sdpk.model.Role;
 import com.sdpk.model.UserPK_Role;
+import com.sdpk.system.dao.RoleDao;
+import com.sdpk.system.model.Role;
 import com.sdpk.utility.DBUtility;
 
 /**

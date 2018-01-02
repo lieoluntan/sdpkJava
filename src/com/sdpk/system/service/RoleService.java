@@ -1,9 +1,9 @@
-package com.sdpk.service;
+package com.sdpk.system.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Role;
+import com.sdpk.system.model.Role;
 
 /**
  * 

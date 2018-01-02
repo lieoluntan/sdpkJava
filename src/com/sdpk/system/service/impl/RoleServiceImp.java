@@ -1,18 +1,18 @@
-package com.sdpk.service.impl;
+package com.sdpk.system.service.impl;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.sdpk.dao.RoleDao;
-import com.sdpk.dao.RoleResourceDao;
-import com.sdpk.dao.impl.RoleDaoImpl;
-import com.sdpk.dao.impl.RoleResourceDaoImpl;
-import com.sdpk.model.Role;
-import com.sdpk.model.RoleResource;
-import com.sdpk.service.RoleResourceService;
-import com.sdpk.service.RoleService;
+import com.sdpk.system.dao.RoleDao;
+import com.sdpk.system.dao.RoleResourceDao;
+import com.sdpk.system.dao.impl.RoleDaoImpl;
+import com.sdpk.system.dao.impl.RoleResourceDaoImpl;
+import com.sdpk.system.model.Role;
+import com.sdpk.system.model.RoleResource;
+import com.sdpk.system.service.RoleResourceService;
+import com.sdpk.system.service.RoleService;
 /**
  * 
  * @author 罗成峰

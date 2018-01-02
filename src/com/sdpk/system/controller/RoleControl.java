@@ -1,4 +1,4 @@
-package com.sdpk.controller;
+package com.sdpk.system.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,14 +18,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.sdpk.model.BackResult;
 import com.sdpk.model.PaikeRecord;
-import com.sdpk.model.Role;
 import com.sdpk.model.UserPK;
-import com.sdpk.service.RoleResourceService;
-import com.sdpk.service.RoleService;
 import com.sdpk.service.UserPKService;
-import com.sdpk.service.impl.RoleResourceServiceImpl;
-import com.sdpk.service.impl.RoleServiceImp;
 import com.sdpk.service.impl.UserPKServiceImpl;
+import com.sdpk.system.model.Role;
+import com.sdpk.system.service.RoleResourceService;
+import com.sdpk.system.service.RoleService;
+import com.sdpk.system.service.impl.RoleResourceServiceImpl;
+import com.sdpk.system.service.impl.RoleServiceImp;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;

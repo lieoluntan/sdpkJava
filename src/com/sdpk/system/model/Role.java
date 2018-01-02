@@ -1,4 +1,4 @@
-package com.sdpk.model;
+package com.sdpk.system.model;
 
 import java.util.List;
 

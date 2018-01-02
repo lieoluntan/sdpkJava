@@ -1,9 +1,9 @@
-package com.sdpk.dao;
+package com.sdpk.system.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Role;
+import com.sdpk.system.model.Role;
 
 /**
  * 

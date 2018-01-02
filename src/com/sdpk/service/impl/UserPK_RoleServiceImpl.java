@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import com.sdpk.dao.RoleDao;
 import com.sdpk.dao.UserPKDao;
 import com.sdpk.dao.UserPK_RoleDao;
-import com.sdpk.dao.impl.RoleDaoImpl;
 import com.sdpk.dao.impl.UserPKDaoImpl;
 import com.sdpk.dao.impl.UserPK_RoleDaoImpl;
-import com.sdpk.model.Role;
 import com.sdpk.model.UserPK;
 import com.sdpk.model.UserPK_Role;
 import com.sdpk.service.UserPK_RoleService;
+import com.sdpk.system.dao.RoleDao;
+import com.sdpk.system.dao.impl.RoleDaoImpl;
+import com.sdpk.system.model.Role;
 import com.sdpk.utility.DBUtility;
 import com.sdpk.utility.M_msg;
 
