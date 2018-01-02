@@ -64,6 +64,5 @@ public class MyStuController extends HttpServlet {
 
 			backResult.setData((ArrayList) stuList);
 		}
-
 	}
 }

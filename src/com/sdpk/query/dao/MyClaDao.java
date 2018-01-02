@@ -1,12 +1,17 @@
 package com.sdpk.query.dao;
 
-import java.util.ArrayList;
 
-import com.sdpk.model.And_ClassEmp;
+import java.util.List;
+
+import com.sdpk.model.Cla;
+import com.sdpk.model.Employee;
+import com.sdpk.model.Student;
 
 public interface MyClaDao {
 
-	 public ArrayList<And_ClassEmp> getListByEmp(String empUuid);
-	 
-	 public ArrayList<And_ClassEmp> getListBycla(String classUuid);
+	List<String> getempid(String ClaUuid);
+	
+	List<String> getClaId(String classid);
+	
+	Cla getClaList(String uuid);
 }

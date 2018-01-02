@@ -34,7 +34,17 @@
     <servlet-name>MyStuController</servlet-name>
     <url-pattern>/aaMyStu</url-pattern>
   </servlet-mapping>
-   <servlet>
+  
+  <servlet>
+    <servlet-name>MyClaController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.MyClaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyClaController</servlet-name>
+    <url-pattern>/aaMyCla</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>RoleRsController</servlet-name>
     <servlet-class>com.sdpk.controller.RoleResourceController</servlet-class>
   </servlet>
@@ -68,20 +78,7 @@
     <servlet-name>aaStudentN</servlet-name>
     <url-pattern>/aaStudent</url-pattern>
   </servlet-mapping>
-  
-  
-  <servlet>
-    <servlet-name>aaMyCla</servlet-name>
-    <servlet-class>com.sdpk.query.controller.MyClaController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>aaMyCla</servlet-name>
-    <url-pattern>/aaMyCla</url-pattern>
-  </servlet-mapping>
-  
-  
-  
-  <servlet>
+	<servlet>
     <servlet-name>aaEmpname</servlet-name>
     <servlet-class>com.sdpk.controller.EmployeeControl</servlet-class>
   </servlet>
