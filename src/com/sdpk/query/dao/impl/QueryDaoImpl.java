@@ -1,4 +1,4 @@
-package com.sdpk.dao.impl;
+package com.sdpk.query.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,9 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sdpk.dao.QueryDao;
 import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
+import com.sdpk.query.dao.QueryDao;
 import com.sdpk.utility.DBUtility;
 
 /**

@@ -1,4 +1,4 @@
-package com.sdpk.service.impl;
+package com.sdpk.query.service.impl;
 
 import java.util.ArrayList;
 
@@ -8,21 +8,21 @@ import com.sdpk.dao.Class_ContractDao;
 import com.sdpk.dao.ContractDao;
 import com.sdpk.dao.CourseDao;
 import com.sdpk.dao.EmployeeDao;
-import com.sdpk.dao.QueryDao;
 import com.sdpk.dao.impl.And_ClassEmpDaoImpl;
 import com.sdpk.dao.impl.ClassRoomDaoImpl;
 import com.sdpk.dao.impl.Class_ContractDaoImpl;
 import com.sdpk.dao.impl.ContractDaoImpl;
 import com.sdpk.dao.impl.CourseDaoImpl;
 import com.sdpk.dao.impl.EmployeeDaoImpl;
-import com.sdpk.dao.impl.QueryDaoImpl;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.ClassRoom;
 import com.sdpk.model.Course;
 import com.sdpk.model.Employee;
 import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
-import com.sdpk.service.QueryService;
+import com.sdpk.query.dao.QueryDao;
+import com.sdpk.query.dao.impl.QueryDaoImpl;
+import com.sdpk.query.service.QueryService;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_EndTime;
 /**

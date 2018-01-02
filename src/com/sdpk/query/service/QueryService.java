@@ -1,4 +1,4 @@
-package com.sdpk.service;
+package com.sdpk.query.service;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.sdpk.controller;
+package com.sdpk.query.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +14,8 @@ import com.google.gson.Gson;
 import com.sdpk.model.BackResult_Query;
 import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
-import com.sdpk.service.QueryService;
-import com.sdpk.service.impl.QueryServiceImpl;
+import com.sdpk.query.service.QueryService;
+import com.sdpk.query.service.impl.QueryServiceImpl;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
@@ -45,22 +45,15 @@ public class QueryController extends HttpServlet {
 		String qqiu = request.getParameter("qqiu");
 		PaikeSearch paikeSearch = new PaikeSearch();
 		if (qqiu.equals("list")) {
-			// 2 将前台json数据字符串转成实体对象
-			T_DataControl t_data = new T_DataControl();
-			String str = t_data.getRequestPayload(request);
+			String empUuid = request.getParameter("empUuid");
+			String MonthDay = request.getParameter("MonthDay");
+			System.out.println(empUuid);
+			System.out.println(MonthDay);
+			paikeSearch.setUuid(empUuid);
+			paikeSearch.setMonthDay(MonthDay);
 
-			if (str != null && str != "" && str.length() != 0) { // 非空判断，防止前台传空报500服务器错误中的空指针
-				Map<String, Object> map = t_data.JsonStrToMap(str);
-				T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
-				paikeSearch = t_map2bean.MapToEmpUuid(map);
-
-				qqiuChoice(qqiu, paikeSearch);
-			} else {
-				System.out.println("前台传入post请求体数据为空，请联系管理员！");
-			}
-
-			// 3 执行qqiu里面的增或删或改或查 的操作
-			// qqiuChoice(qqiu, resource);
+			qqiuChoice(qqiu, paikeSearch);
+			
 		}
 		Gson gson = new Gson();
 		// 4 执行完qqiuChoice里面操作后的全局返回值backResult对象,转成json格式

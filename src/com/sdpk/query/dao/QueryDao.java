@@ -1,4 +1,4 @@
-package com.sdpk.dao;
+package com.sdpk.query.dao;
 
 import java.util.ArrayList;
 
