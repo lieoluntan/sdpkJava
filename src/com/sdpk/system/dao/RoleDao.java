@@ -24,4 +24,6 @@ public boolean insertRoleRs(Role role);
 	public ArrayList<Role>getList();
 	
 	List<String>getRole(String uuid);
+	
+	Role getByName(String name);
 }
