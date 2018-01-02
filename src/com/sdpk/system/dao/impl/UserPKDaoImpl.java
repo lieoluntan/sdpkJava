@@ -365,4 +365,40 @@ public class UserPKDaoImpl implements UserPKDao {
 		}// finally关闭jdbc与数据库连接
 		return roleList;
 	}
+
+	@Override
+	public UserPK getByUname(String nUame) {
+		// TODO Auto-generated method stub
+		UserPK userPKResult = new UserPK();
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_userPK WHERE UName ="
+							+ "'" + nUame + "'");
+			while (rs.next()) {
+				UserPK userPK = new UserPK();
+				userPK.setUuid(rs.getString("uuid"));
+				userPK.setuLogUser(rs.getString("uLogUser"));
+				userPK.setuPassWord(rs.getString("uPassWord"));
+				userPK.setuName(rs.getString("uName"));
+
+				userPKResult = userPK;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("t_userPK的getByUuid查询失败");
+			UserPK aX = new UserPK();
+			aX.setUuid("t_userPK失败返回的uuid");
+			return aX;
+		} finally {
+			DBUtility.close(rs, statement, connection);
+			System.out.println("getByuLogUser 调用了关闭数据库连接");
+		}// finally关闭jdbc与数据库连接
+
+		return userPKResult;
+	}
 }

@@ -113,11 +113,11 @@ public class UserPKControl extends HttpServlet {
 		if (add) {
 
 			String result = userPKService.insert(userPK);
-			ArrayList<String> resultList = new ArrayList<String>();
-			resultList.add(result);
-			backResult.setMessage("信息值：成功");
+			//ArrayList<String> resultList = new ArrayList<String>();
+			//resultList.add(result);
+			backResult.setMessage("信息值："+result);
 			backResult.setQingqiu("add新增");
-			backResult.setData(resultList);
+			//backResult.setData(resultList);
 		}
 		if (delete) {
 			String result = userPKService.delete(userPK.getUuid());

@@ -27,6 +27,8 @@ public interface UserPKDao {
 	ArrayList<UserPK> getList();
 
 	UserPK getByuLogUser(String uLogUser);
+	
+	UserPK getByUname(String uName);
 
 	ArrayList<UserPK> getList2(String uLogUser);
 
