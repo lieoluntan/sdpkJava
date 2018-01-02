@@ -58,10 +58,8 @@ public class MyStuController extends HttpServlet {
 
 		if (test) {
 			List<Student> stuList = myStuService.getClaId(empUuid);
-
 			backResult.setMessage("信息值,成功");
 			backResult.setQingqiu("我的学员浏览");
-
 			backResult.setData((ArrayList) stuList);
 		}
 	}

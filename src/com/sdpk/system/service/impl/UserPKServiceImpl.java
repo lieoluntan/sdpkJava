@@ -34,21 +34,31 @@ public class UserPKServiceImpl implements UserPKService {
 		return m_msg;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public String insert(UserPK userPK) {
 		// TODO Auto-generated method stub
 
-		// 角色有权限
+		UserPK userPK1 = userPKDao.getByuLogUser(userPK.getuLogUser());
+		UserPK userPK2 = userPKDao.getByUname(userPK.getuName());
+		if (userPK1.getuLogUser() == null) {
+			if (userPK2.getuName() == null) {
+				userPK.setUuid(null);
+				userPK.setUuid(UUID.randomUUID().toString());
+				System.out.println("^^在userPKServiceImpl收到数据 ");
+				boolean daoFlag = userPKDao.insert(userPK);
+				userPKDao.insertUserRole(userPK);
+				if (daoFlag) {
+					return "用户新增成功";
+				} else {
+					return "插入不成功,dao层执行有出错地方,请联系管理员";
+				}
+			} else {
+				return "已存在重复用户名";
+			}
 
-		userPK.setUuid(null);
-		userPK.setUuid(UUID.randomUUID().toString());
-		System.out.println("^^在userPKServiceImpl收到数据 ");
-		boolean daoFlag = userPKDao.insert(userPK);
-		userPKDao.insertUserRole(userPK);
-		if (daoFlag) {
-			return userPK.getUuid();
 		} else {
-			return "插入不成功,dao层执行有出错地方,请联系管理员";
+			return "已存在重复登陆名";
 		}
 
 	}
@@ -113,13 +123,13 @@ public class UserPKServiceImpl implements UserPKService {
 	public ArrayList<UserPK> getList() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPK> userPKlist = userPKDao.getList();
-		for (UserPK userPK : userPKlist) {//所有用户集合
+		for (UserPK userPK : userPKlist) {// 所有用户集合
 			Role role = new Role();
 			List<Role> backRoleList = new ArrayList<Role>();
-			List<String> roleList = roleDao.getRole(userPK.getUuid());//根据用户id得到用户的所有角色id
+			List<String> roleList = roleDao.getRole(userPK.getUuid());// 根据用户id得到用户的所有角色id
 			for (String roleid : roleList) {
-				role = roleDao.getByUuid(roleid);//根据角色id 的到角色对象
-				System.out.println(role.getName()+"  "+role.getUuid());
+				role = roleDao.getByUuid(roleid);// 根据角色id 的到角色对象
+				System.out.println(role.getName() + "  " + role.getUuid());
 				backRoleList.add(role);
 			}
 
