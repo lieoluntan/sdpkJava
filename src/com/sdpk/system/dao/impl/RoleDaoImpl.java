@@ -82,10 +82,11 @@ public class RoleDaoImpl implements RoleDao{
 	    try {
 	      connection = DBUtility.open();//打开数据库连接
 	       preparedStatement = connection
-	          .prepareStatement("UPDATE t_role SET name = ? WHERE uuid = ? ");
+	          .prepareStatement("UPDATE t_role SET name = ? , remark = ? WHERE uuid = ? ");
 	      // Parameters start with 1
 	      preparedStatement.setString(1, Role.getName());
-	      preparedStatement.setString(2, Role.getUuid());
+	      preparedStatement.setString(2, Role.getRemark());
+	      preparedStatement.setString(3, Role.getUuid());
 	      preparedStatement.executeUpdate();
 
 	      System.out.println("^^在执行RoleDaoImpl中的修改update");

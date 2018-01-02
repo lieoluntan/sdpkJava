@@ -177,6 +177,7 @@ public class RoleController extends HttpServlet{
 	      backResult.setData(resultList);
 	    }
 	    if (edit) {
+	    	System.out.println(role.getRemark());
 	      String result = roleService.update(role);
 	      ArrayList<String> resultList = new ArrayList<String>();
 	      resultList.add(result);
