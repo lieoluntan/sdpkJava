@@ -99,7 +99,7 @@
   
   <servlet>
     <servlet-name>aaRoleN</servlet-name>
-    <servlet-class>com.sdpk.controller.RoleControl</servlet-class>
+    <servlet-class>com.sdpk.system.controller.RoleControl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aaRoleN</servlet-name>
@@ -172,7 +172,7 @@
  
  <servlet>
     <servlet-name>aaUserPKN</servlet-name>
-    <servlet-class>com.sdpk.controller.UserPKControl</servlet-class>
+    <servlet-class>com.sdpk.system.controller.UserPKControl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aaUserPKN</servlet-name>

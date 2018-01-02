@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import com.sdpk.dao.RoleResourceDao;
 import com.sdpk.dao.impl.RoleResourceDaoImpl;
-import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
 import com.sdpk.service.RoleResourceService;
+import com.sdpk.system.model.Role;
 import com.sdpk.utility.M_msg;
 
 /**

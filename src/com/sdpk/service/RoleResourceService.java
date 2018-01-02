@@ -3,8 +3,8 @@ package com.sdpk.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
+import com.sdpk.system.model.Role;
 import com.sdpk.utility.M_msg;
 
 /**

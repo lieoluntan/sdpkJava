@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.sdpk.dao.RoleResourceDao;
-import com.sdpk.model.Role;
 import com.sdpk.model.RoleResource;
+import com.sdpk.system.model.Role;
 import com.sdpk.utility.DBUtility;
 
 /**
