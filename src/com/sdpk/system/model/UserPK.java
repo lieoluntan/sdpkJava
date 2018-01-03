@@ -23,10 +23,21 @@ public class UserPK {
 	private String uPassWord;
 	private String uName;
 	private List<String> roleList;//存放角色id
+	private List<String> rsList;//存放资源id
 	private List<Role> role;// 存放角色
 
 	public UserPK() {
 		
+	}
+
+
+	public List<String> getRsList() {
+		return rsList;
+	}
+
+
+	public void setRsList(List<String> rsList) {
+		this.rsList = rsList;
 	}
 
 

@@ -26,8 +26,7 @@ import com.sdpk.utility.T_DataMap2Bean;
  * 树袋老师
  * 
  * @author 作者 xpp
- * @version 创建时间：2017-11-24 下午3:35:17 类说明
- * 薛人杰+用户登陆后得到角色和资源
+ * @version 创建时间：2017-11-24 下午3:35:17 类说明 薛人杰+用户登陆后得到角色和资源
  */
 
 public class DengLuControl extends HttpServlet {
@@ -103,10 +102,10 @@ public class DengLuControl extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (denglu) {
-			List list=new ArrayList();
+			List list = new ArrayList();
 			List rsList = new ArrayList();
-			UserPK user=new UserPK();
-			List<String> roleList=new ArrayList<String>();
+			UserPK user = new UserPK();
+			List<String> roleList = new ArrayList<String>();
 			boolean flag = userPKService.judge(userPK);
 			m_msg = userPKService.getMsg();
 			backResult.setQingqiu("notyes");
@@ -114,35 +113,28 @@ public class DengLuControl extends HttpServlet {
 			if (flag) {
 
 				user = userPKService.getUser(userPK.getuLogUser());// 先根据用户名查到用户对象
-				roleList = userPKService.getRole(user.getUuid());//角色id集合
+				roleList = userPKService.getRole(user.getUuid());// 角色id集合
 				rsList = roleResourceService.getRsbyRoleid(roleList);
-				list.add(flag);
-				list.add(user);
-				list.add(roleList);
-				list.add(rsList);				
+
+				user.setRoleList(roleList);
+				user.setRsList(rsList);
 				System.out.println("进入");
 				String msg = "成功";
 				System.out.println(msg);
 				backResult.setQingqiu("登陆");
 				ArrayList<Object> resultList = new ArrayList<Object>();
-				resultList = (ArrayList<Object>) list;
-				
+				resultList.add(flag);
+				resultList.add(user);
+
 				backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
 				backResult.setData(resultList);
-				// try {
-				// response.sendRedirect("xppu8.html");
-				//
-				// System.out.println("跳转成功");
-				// } catch (IOException e) {
-				// // TODO Auto-generated catch block
-				// e.printStackTrace(); System.out.println("跳转失败,检查跳转");
-				// }
+
 			}// 用户名、密码正确
 			else {
 				list.add(flag);
 				ArrayList<Object> resultList = new ArrayList<Object>();
 				resultList = (ArrayList<Object>) list;
-			
+
 				String msg = "失败";
 				System.out.println(msg);
 				backResult.setMessage("信息值：" + m_msg.getGetOneMsg());
@@ -150,7 +142,7 @@ public class DengLuControl extends HttpServlet {
 				backResult.setQingqiu("登陆");
 			}// 用户名、密码错误
 				// 步骤二：赋值
-			
+
 		}// end denglu
 
 	}// end method qqiuChoice

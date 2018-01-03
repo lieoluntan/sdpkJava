@@ -44,8 +44,29 @@ public class PaikeRecordView {
  private String stuName;//学生名
  private String keEndTime;//上课截止时间
  private List<Student> stuList;//只在查询时使用
- 
- public PaikeRecordView() {
+ private String headTeaUuid ;//班主任uuid
+ private String  headTeaName;//班主任name
+ public String getHeadTeaUuid() {
+	return headTeaUuid;
+}
+
+
+public void setHeadTeaUuid(String headTeaUuid) {
+	this.headTeaUuid = headTeaUuid;
+}
+
+
+public String getHeadTeaName() {
+	return headTeaName;
+}
+
+
+public void setHeadTeaName(String headTeaName) {
+	this.headTeaName = headTeaName;
+}
+
+
+public PaikeRecordView() {
    this.claTeaUuid = "原始值";
    this.claTeaName = "原始值";
    this.stuUuid = "原始值";

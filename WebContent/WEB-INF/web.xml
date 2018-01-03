@@ -25,6 +25,16 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>QueryStuController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.QueryStuController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryStuController</servlet-name>
+    <url-pattern>/aaQueryStu</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>MyTodPaikeController</servlet-name>
     <servlet-class>com.sdpk.query.controller.MyTodPaikeController</servlet-class>
