@@ -28,24 +28,33 @@ public class RoleServiceImp implements RoleService{
 	@Override
 	public String insert(Role role) {
 		// TODO Auto-generated method stub
-		role.setUuid(null);
-		role.setUuid(UUID.randomUUID().toString());
-		System.out.println("^^在RoleServiceImle收到数据:"+role.toString()+"收到结束!");
-		boolean daoFlag = roledao.insert(role);
-	    if(daoFlag)
-	    {
-	    	List<String> rsListNew = role.getRsList(); 
-	    	for(String str:rsListNew){
-	    		RoleResource roleResource = new RoleResource();
-		    	roleResource.setRoleid(role.getUuid());
-		    	roleResource.setResourceid(str);
-		    	roleResourceService.insert(roleResource);
-	    	}
-	    	
-	    return role.getUuid();
-	    }else{
-	      return "插入角色失败";
-	    }
+		
+		Role r=roledao.getByName(role.getName());
+		
+		if(r.getName()==null){
+			
+			role.setUuid(null);
+			role.setUuid(UUID.randomUUID().toString());
+			System.out.println("^^在RoleServiceImle收到数据:"+role.toString()+"收到结束!");
+			boolean daoFlag = roledao.insert(role);
+		    if(daoFlag)
+		    {
+		    	List<String> rsListNew = role.getRsList(); 
+		    	for(String str:rsListNew){
+		    		RoleResource roleResource = new RoleResource();
+			    	roleResource.setRoleid(role.getUuid());
+			    	roleResource.setResourceid(str);
+			    	roleResourceService.insert(roleResource);
+		    	}
+		    return role.getUuid();
+		    }else{
+		      return "插入角色失败";
+		    }
+		}else{
+			
+			return "角色名已存在";
+		}
+		
 	}
 
 	@Override

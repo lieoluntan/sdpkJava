@@ -216,10 +216,8 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
-
 				userPKList.add(userPK);
 			}
-
 			return userPKList;
 		} catch (SQLException e) {
 			e.printStackTrace();

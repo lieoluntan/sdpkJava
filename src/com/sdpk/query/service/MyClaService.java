@@ -1,14 +1,23 @@
 package com.sdpk.query.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import com.sdpk.model.And_ClassEmp;
-import com.sdpk.utility.M_msg;
 
+import com.sdpk.model.Cla;
+import com.sdpk.model.Student;
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-2下午8:41:53
+ * @version 1.0
+ */
 public interface MyClaService {
 	
-	 ArrayList<And_ClassEmp> getListBycla(String classUuid);
+	List<Cla> getClaId(String ClaUuid);
 	
-	 ArrayList<And_ClassEmp> getListByEmp(String empUuid);
+	List<String> getClaid(List<String> ClaIdList);
+	
+	List<Cla> getClaaList(List<String> ClaIdList);
+	
 }

@@ -28,14 +28,19 @@ public interface RoleResourceDao {
 	public boolean insert(RoleResource roleResource);
 
 	public boolean delete(String uuid);
+	
 	public boolean deleteRoleRs(String uuid);
+	
 	public boolean update(RoleResource roleResource);
 
 	public RoleResource getByUuid(String uuid);
 
 	public ArrayList<RoleResource> getList();
 
+	boolean deleteByuse(String roleid);
+	
 	public ArrayList<RoleResource> getListbyName(String roleid,
 			String resourceid);
-}
+
+	}
 

@@ -62,6 +62,5 @@ public class MyStuController extends HttpServlet {
 			backResult.setQingqiu("我的学员浏览");
 			backResult.setData((ArrayList) stuList);
 		}
-
 	}
 }

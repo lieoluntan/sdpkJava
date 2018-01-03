@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import com.sdpk.system.dao.RoleDao;
 import com.sdpk.system.model.Role;
+import com.sdpk.system.model.UserPK;
 import com.sdpk.system.model.UserPK_Role;
 import com.sdpk.utility.DBUtility;
 
@@ -222,6 +223,40 @@ public class RoleDaoImpl implements RoleDao{
 		      ResultSet rs = null; 
 		      DBUtility.close(rs, preparedStatement, connection);   
 		     }
+	}
+	@Override
+	public Role getByName(String name) {
+		// TODO Auto-generated method stub
+		Role roleResult = new Role();
+		Statement statement = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from t_role WHERE name ="
+					+ "'" + name + "'");
+			while(rs.next()){
+				Role role = new Role();
+				role.setUuid(rs.getString("uuid"));
+				role.setName(rs.getString("name"));
+				
+				roleResult = role;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("t_userPK的getByUuid查询失败");
+			Role aX = new Role();
+			aX.setUuid("t_role失败返回的uuid");
+			return aX;
+		}finally{
+			DBUtility.close(rs, statement, connection);
+			System.out.println("getByuuid 调用了关闭数据库连接");
+		}
+		
+		
+		return roleResult;
 	}
 }
 

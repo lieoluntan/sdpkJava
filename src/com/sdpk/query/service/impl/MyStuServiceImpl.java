@@ -79,7 +79,6 @@ public class MyStuServiceImpl implements MyStuService {
 			// System.out.println(student.getName());
 			StuList.add(student);
 		}
-
 		return StuList;
 	}
 
