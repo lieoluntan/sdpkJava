@@ -20,4 +20,5 @@ public interface StudentDao {
 
   public Student getByUuid(String uuid);
 
+  public Student getStuByUuid(String uuid);//只要学生的id和name
 }

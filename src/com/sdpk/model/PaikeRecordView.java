@@ -1,4 +1,7 @@
 package com.sdpk.model;
+
+import java.util.List;
+
 /**
  *树袋老师
  * @author 作者 xpp
@@ -40,7 +43,7 @@ public class PaikeRecordView {
  private String stuUuid;//学生uuid
  private String stuName;//学生名
  private String keEndTime;//上课截止时间
- 
+ private List<Student> stuList;//只在查询时使用
  
  public PaikeRecordView() {
    this.claTeaUuid = "原始值";
@@ -103,6 +106,16 @@ public void setClaUuid(String claUuid) {
 
 public String getCourseUuid() {
   return courseUuid;
+}
+
+
+public List<Student> getStuList() {
+	return stuList;
+}
+
+
+public void setStuList(List<Student> stuList) {
+	this.stuList = stuList;
 }
 
 

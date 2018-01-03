@@ -216,4 +216,35 @@ public class StudentDaoImpl implements StudentDao {
     return studentResult;
   }// end method getByUuid
 
+@Override
+public Student getStuByUuid(String uuid) {
+	// TODO Auto-generated method stub
+	 Student studentResult = new Student();
+	   connection = DBUtility.open();//打开数据库连接
+	   Statement statement = null;//finally关闭数据库连接  
+	   ResultSet rs = null;//关闭数据库连接get和getlist会用到
+	    try {
+
+	         statement = connection.createStatement();
+	         rs = statement.executeQuery("select * from t_student WHERE uuid ="+"'"+uuid+"'");
+	        while (rs.next()) {
+	          Student student = new Student();
+	          student.setUuid(rs.getString("uuid"));
+	          student.setName(rs.getString("name"));
+
+	          studentResult=student;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("StudentDaoImpl的getByUuid查询失败");
+	        Student studentX = new Student();
+	        studentX.setUuid("StudentDaoImpl失败返回的uuid");
+	        return studentX;
+	    }finally{   
+	      DBUtility.close(rs, statement, connection);   
+	     }//finally关闭jdbc与数据库连接
+
+	    return studentResult;
+}
+
 }// end class StudentDaoImpl

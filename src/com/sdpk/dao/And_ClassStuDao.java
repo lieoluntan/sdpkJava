@@ -1,6 +1,7 @@
 package com.sdpk.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.And_ClassStu;
 
@@ -24,5 +25,7 @@ public interface And_ClassStuDao {
   ArrayList<And_ClassStu> getListByStu(String stuUuid);
 
   And_ClassStu getBystu(String sUuid);
+  
+
 
 }// end class interface

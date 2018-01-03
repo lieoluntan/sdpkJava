@@ -16,7 +16,7 @@
   </welcome-file-list>
  
    -->
-  
+
   <servlet>
     <servlet-name>CRUDController</servlet-name>
     <servlet-class>com.sdpk.controller.CRUDController</servlet-class>
@@ -25,7 +25,22 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>MyTodPaikeController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.MyTodPaikeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyTodPaikeController</servlet-name>
+    <url-pattern>/aaMyPaiKe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MyConController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.MyConController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyConController</servlet-name>
+    <url-pattern>/aaMyCon</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>MyStuController</servlet-name>
     <servlet-class>com.sdpk.query.controller.MyStuController</servlet-class>

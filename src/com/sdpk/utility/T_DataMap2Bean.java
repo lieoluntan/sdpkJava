@@ -13,6 +13,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Employee;
+import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.PaikeSearch;
 import com.sdpk.model.Student;
 import com.sdpk.system.model.Resource;
@@ -195,6 +196,13 @@ public class T_DataMap2Bean {
     And_ClassCourse and_ClassCourse = new And_ClassCourse(uuid,classUuid, courseUuid);
     return and_ClassCourse;
   }// end method MapToAnd_ClassCourse
+  public PaikeRecord MapToPaiKeRecord(Map<String, Object> map) {
+	    String keDateTime = (String) map.get("keDateTime");// 删除和修改的时候会有值，新增和查询的时候没有值
+	    String empUuid = (String) map.get("empUuid");
+	   
+	    PaikeRecord paiKeRecord = new PaikeRecord(null,null,null,empUuid,null,keDateTime,null,null,null);
+	    return paiKeRecord;
+	  }// end method MapToAnd_ClassCourse
 
   public Course_Emp MapToCourse_Emp(Map<String, Object> map) {
     // TODO Auto-generated method stub
