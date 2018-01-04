@@ -17,6 +17,9 @@ public class Contract {
 
   private String cNum; // 合同编号
   private String stuUuid; // 学生uuid
+  private String stuName;//学生姓名
+
+
   private String cDate; // 交易时间
   private String org; // 校区组织
   private String totalCount; // 总上课次数
@@ -35,11 +38,13 @@ public class Contract {
   private String countGiveB; // 送课次数B
   private String sumCountB; // 价格B上课次数
   private String sumPriceB; // 价格B支付金额
+  
+ 
 
   public Contract() {
   }
 
-  public Contract(String uuid, String cNum, String stuUuid, String cDate, String org,
+  public Contract(String uuid, String cNum, String stuUuid, String stuName, String cDate, String org,
       String totalCount, String totalPrice, String onePriceA, String countA, String delPriceA,
       String countGiveA, String sumCountA, String sumPriceA, String onePriceB, String countB,
       String delPriceB, String countGiveB, String sumCountB, String sumPriceB) {
@@ -47,6 +52,7 @@ public class Contract {
     this.uuid = uuid;
     this.cNum = cNum;
     this.stuUuid = stuUuid;
+    this.stuName = stuName;
     this.cDate = cDate;
     this.org = org;
     this.totalCount = totalCount;
@@ -69,14 +75,20 @@ public class Contract {
   public String toString() {
     return "合同toString方法Contract [uuid=" + uuid + ", createDate=" + createDate + ", modifyDate=" + modifyDate
         + ", createPeople=" + createPeople + ", modifyPeople=" + modifyPeople + ", cNum=" + cNum
-        + ", stuUuid=" + stuUuid + ", cDate=" + cDate + ", org=" + org + ", totalCount="
+        + ", stuUuid=" + stuUuid + ",stuName=" + stuName + ", cDate=" + cDate + ", org=" + org + ", totalCount="
         + totalCount + ", totalPrice=" + totalPrice + ", onePriceA=" + onePriceA + ", countA="
         + countA + ", delPriceA=" + delPriceA + ", countGiveA=" + countGiveA + ", sumCountA="
         + sumCountA + ", sumPriceA=" + sumPriceA + ", onePriceB=" + onePriceB + ", countB="
         + countB + ", delPriceB=" + delPriceB + ", countGiveB=" + countGiveB + ", sumCountB="
         + sumCountB + ", sumPriceB=" + sumPriceB + "]结束!";
   }
+  public String getStuName() {
+	return stuName;
+}
 
+  public void setStuName(String stuName) {
+	this.stuName = stuName;
+}
   public String getUuid() {
     return uuid;
   }

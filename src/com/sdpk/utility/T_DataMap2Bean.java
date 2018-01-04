@@ -143,6 +143,7 @@ public class T_DataMap2Bean {
     String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
     String cNum = (String) map.get("cNum");
     String stuUuid = (String) map.get("stuUuid");
+    String stuName = (String) map.get("stuName");
     String cDate = (String) map.get("cDate");
     String org = (String) map.get("org");
     String totalCount = (String) map.get("totalCount");
@@ -162,7 +163,7 @@ public class T_DataMap2Bean {
     String sumCountB = (String) map.get("sumCountB");
     String sumPriceB = (String) map.get("sumPriceB");
 
-    Contract contract = new Contract(uuid, cNum, stuUuid, cDate, org, totalCount, totalPrice,
+    Contract contract = new Contract(uuid, cNum, stuUuid, stuName, cDate, org, totalCount, totalPrice,
         onePriceA, countA, delPriceA, countGiveA, sumCountA, sumPriceA, onePriceB, countB,
         delPriceB, countGiveB, sumCountB, sumPriceB);
     return contract;
@@ -370,6 +371,7 @@ public class T_DataMap2Bean {
 		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
 		String cNum = (String) map.get("cNum");
 		String stuUuid = (String) map.get("stuUuid");
+		String stuName = (String) map.get("stuName");
 		String cDate = (String) map.get("cDate");
 		String org = (String) map.get("org");
 		String totalCount = (String) map.get("totalCount");
@@ -389,7 +391,7 @@ public class T_DataMap2Bean {
 		String sumCountB = (String) map.get("sumCountB");
 		String sumPriceB = (String) map.get("sumPriceB");
 
-		Contract contract = new Contract(uuid, cNum, stuUuid, cDate, org,
+		Contract contract = new Contract(uuid, cNum, stuUuid, stuName,cDate, org,
 				totalCount, totalPrice, onePriceA, countA, delPriceA,
 				countGiveA, sumCountA, sumPriceA, onePriceB, countB, delPriceB,
 				countGiveB, sumCountB, sumPriceB);
