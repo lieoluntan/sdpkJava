@@ -229,8 +229,9 @@ public class T_DataMap2Bean {
     String uLogUser = (String) map.get("uLogUser");
     String uPassWord = (String) map.get("uPassWord");
     String uName = (String) map.get("uName");
+    String empUuid=(String) map.get("empUuid");
     List<String> roleList=(List<String>)map.get("roleList");
-    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList,null);
+    UserPK userPK = new UserPK(uuid, uLogUser, uPassWord, uName,roleList,empUuid);
     return userPK;
   }// end method MapToEmp
 
