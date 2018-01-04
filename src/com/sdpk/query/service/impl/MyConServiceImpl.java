@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.sdpk.dao.StudentDao;
+import com.sdpk.dao.impl.StudentDaoImpl;
 import com.sdpk.model.Contract;
 import com.sdpk.model.Student;
 import com.sdpk.query.dao.MyConDao;
@@ -13,6 +15,7 @@ import com.sdpk.query.service.MyConService;
 
 public class MyConServiceImpl implements MyConService {
 	private MyConDao myConDao = new MyConDaoImpl();
+	private StudentDao studentDao=new StudentDaoImpl();
 	@Override
 	public List<Contract> getClaId(String empUuid) {
 		// TODO Auto-generated method stub
@@ -28,7 +31,12 @@ public class MyConServiceImpl implements MyConService {
 		}// end forech 去重复完成
 		List<String> ConIdList = this.getConId(newClassIdList);
 		List<Contract> ConList = this.getConList(ConIdList);
-
+		for (Contract contract : ConList) {
+			Student st=studentDao.getByUuid(contract.getStuUuid());
+			contract.setStuName(st.getName());
+		}
+		
+		
 		return ConList;
 	}
 
