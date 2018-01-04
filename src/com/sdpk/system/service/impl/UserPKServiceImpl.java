@@ -195,6 +195,9 @@ public class UserPKServiceImpl implements UserPKService {
 	public UserPK getUser(String uLogUser) {
 		// TODO Auto-generated method stub
 		UserPK u = userPKDao.getByuLogUser(uLogUser);
+		Employee emp=empLoyeeDao.getByUuid(u.getEmpUuid());
+		u.setEmpName(emp.getName());
+		
 		System.out.println(u.getUuid());
 		return u;
 	}
