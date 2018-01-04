@@ -51,34 +51,66 @@ public class DBUtility {
      * @param pst 
      * @param conn 
      */  
-    public static void close(ResultSet rs,Statement st,Connection conn){  
-        if(rs != null){  
-            try {  
-                rs.close();  
-            } catch (SQLException e) {  
-                e.printStackTrace();  
-                System.out.println("~~sdpk关闭ResultSet错误");
-            } finally{  
-                if(st != null){  
-                    try {  
-                        st.close();  
-                    } catch (SQLException e) {  
-                        e.printStackTrace();  
-                        System.out.println("~~sdpk关闭Statement st错误");
-                    } finally{  
-                        if(conn != null){  
-                            try {  
-                                conn.close();  
-                            } catch (SQLException e) {  
-                                e.printStackTrace();  
-                                System.out.println("~~sdpk关闭Connection conn错误");
-                            }  
-                        }  
-                    }  
-                }  
-            }  
-        }  
-    }//end method close  
+    public static void close(ResultSet rs, Statement st, Connection conn) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("~~sdpk关闭ResultSet错误");
+			} finally {
+				if (st != null) {
+					try {
+						st.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						System.out.println("~~sdpk关闭Statement st错误");
+					} finally {
+						if (conn != null) {
+							try {
+								conn.close();
+								System.out.println("conn关闭了");
+							} catch (SQLException e) {
+								e.printStackTrace();
+								System.out.println("~~sdpk关闭Connection conn错误");
+							}
+						}
+					}
+				}
+			}
+		}else if(rs == null){
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("~~sdpk关闭Statement st错误");
+				} finally {
+					if (conn != null) {
+						try {
+							conn.close();
+							System.out.println("conn关闭了");
+						} catch (SQLException e) {
+							e.printStackTrace();
+							System.out.println("~~sdpk关闭Connection conn错误");
+						}
+					}
+				}
+			}else if(st == null ){
+				
+				if (conn != null) {
+					try {
+						conn.close();
+						System.out.println("conn关闭了");
+					} catch (SQLException e) {
+						e.printStackTrace();
+						System.out.println("~~sdpk关闭Connection conn错误");
+					}
+				}
+				
+			}//end st 为空的情况
+		}//end rs 为空的情况
+	}// end method close
     
     public static Connection open() {
           try {
