@@ -65,20 +65,20 @@ public class UserPK {
 	}
 
 
+
+
+
 	public UserPK(String uuid, String uLogUser,
 			String uPassWord, String uName, List<String> roleList,
-			List<Role> role) {
+			String empUuid) {
 		super();
 		this.uuid = uuid;
-//		this.createDate = createDate;
-//		this.modifyDate = modifyDate;
-//		this.createPeople = createPeople;
-//		this.modifyPeople = modifyPeople;
+
 		this.uLogUser = uLogUser;
 		this.uPassWord = uPassWord;
 		this.uName = uName;
 		this.roleList = roleList;
-		this.role = role;
+		this.empUuid = empUuid;
 	}
 
 

@@ -20,7 +20,7 @@ import com.sdpk.utility.DBUtility;
  * 
  * @author 作者 xpp
  * @version 创建时间：2017-11-24 下午12:42:55 类说明
- * 薛人杰+加入两个方法insertUserRole(添加用户角色)和deleteUserRole（删除用户角色）
+ *          薛人杰+加入两个方法insertUserRole(添加用户角色)和deleteUserRole（删除用户角色）
  */
 
 public class UserPKDaoImpl implements UserPKDao {
@@ -36,16 +36,18 @@ public class UserPKDaoImpl implements UserPKDao {
 	@Override
 	public boolean insert(UserPK userPK) {
 		// TODO Auto-generated method stub
+		System.out.println(userPK.getEmpUuid());
 		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("insert into t_userPK(uuid,uLogUser,uPassWord,uName) values (?,?,?,?)");
+					.prepareStatement("insert into t_userPK(uuid,uLogUser,uPassWord,uName,empUuid) values (?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, userPK.getUuid());
 			preparedStatement.setString(2, userPK.getuLogUser());
 			preparedStatement.setString(3, userPK.getuPassWord());
 			preparedStatement.setString(4, userPK.getuName());
+			preparedStatement.setString(5, userPK.getEmpUuid());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行t_userPK DaoImpl中的添加insert");
@@ -67,13 +69,11 @@ public class UserPKDaoImpl implements UserPKDao {
 	public boolean insertUserRole(UserPK userPK) {
 		// TODO Auto-generated method stub
 
-		
-			// userPK.setUuid(UUID.randomUUID().toString());
-			PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
-			try {
-				for (String userRole : userPK.getRoleList()) {// 添加用户角色表
-				
-				
+		// userPK.setUuid(UUID.randomUUID().toString());
+		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
+		try {
+			for (String userRole : userPK.getRoleList()) {// 添加用户角色表
+
 				connection = DBUtility.open();// 打开数据库连接
 				preparedStatement = connection
 						.prepareStatement("insert into t_userpk_role(uuid,userPkid,Roleid) values (?,?,?)");
@@ -86,21 +86,20 @@ public class UserPKDaoImpl implements UserPKDao {
 
 				System.out.println("^^在执行t_userPK DaoImpl中的添加insert");
 				daoFlag = true;
-				}
-				return daoFlag;
+			}
+			return daoFlag;
 
-			} catch (SQLException e) {
-				System.out.println("^^在执行t_userPK 中insert,出现sql语法执行错误，请联系管理员!");
-				e.printStackTrace();
-				daoFlag = false;
-				return daoFlag;
-			} finally {
-				ResultSet rs = null;
-				DBUtility.close(rs, preparedStatement, connection);
-				System.out.println("userPKDao insert 调用了关闭数据库连接");
-			}// finally关闭jdbc与数据库连接
-		
-		
+		} catch (SQLException e) {
+			System.out.println("^^在执行t_userPK 中insert,出现sql语法执行错误，请联系管理员!");
+			e.printStackTrace();
+			daoFlag = false;
+			return daoFlag;
+		} finally {
+			ResultSet rs = null;
+			DBUtility.close(rs, preparedStatement, connection);
+			System.out.println("userPKDao insert 调用了关闭数据库连接");
+		}// finally关闭jdbc与数据库连接
+
 	}// edn method insert
 
 	@Override
@@ -143,12 +142,14 @@ public class UserPKDaoImpl implements UserPKDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("UPDATE t_userPK SET uLogUser = ?, uPassWord = ?,uName = ?  WHERE uuid = ? ");
+					.prepareStatement("UPDATE t_userPK SET uLogUser = ?, uPassWord = ?,uName = ?,empUuid = ?  WHERE uuid = ? ");
 			// Parameters start with 1
 			preparedStatement.setString(1, userPK.getuLogUser());
 			preparedStatement.setString(2, userPK.getuPassWord());
 			preparedStatement.setString(3, userPK.getuName());
-			preparedStatement.setString(4, userPK.getUuid());
+			preparedStatement.setString(4, userPK.getEmpUuid());
+			preparedStatement.setString(5, userPK.getUuid());
+		
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行t_userPK中的修改update");
@@ -183,7 +184,7 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
-
+				userPK.setEmpUuid(rs.getString("empUuid"));
 				userPKResult = userPK;
 			}
 		} catch (SQLException e) {
@@ -216,6 +217,7 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
+				userPK.setEmpUuid(rs.getString("empUuid"));
 				userPKList.add(userPK);
 			}
 			return userPKList;
@@ -252,10 +254,10 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
-
+				userPK.setEmpUuid(rs.getString("empUuid"));
 				userPKResult = userPK;
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("t_userPK的getByUuid查询失败");
@@ -314,6 +316,7 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
+				userPK.setEmpUuid(rs.getString("empUuid"));
 				userPKList.add(userPK);
 			}
 			return userPKList;
@@ -334,7 +337,7 @@ public class UserPKDaoImpl implements UserPKDao {
 	@Override
 	public List<String> getRole(String userPkid) {
 		// TODO Auto-generated method stub
-		List<String> roleList=new ArrayList<String>();//存放角色id
+		List<String> roleList = new ArrayList<String>();// 存放角色id
 		UserPK userPKResult = new UserPK();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
@@ -349,14 +352,14 @@ public class UserPKDaoImpl implements UserPKDao {
 				userPKRole.setUuid(rs.getString("uuid"));
 				userPKRole.setUserPkid(rs.getString("userPkid"));
 				userPKRole.setRoleid(rs.getString("roleid"));
-				
+
 				roleList.add(userPKRole.getRoleid());
-			}	
-			
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("t_userPK的getByUuid查询失败");
-			
+
 		} finally {
 			DBUtility.close(rs, statement, connection);
 			System.out.println("getByuLogUser 调用了关闭数据库连接");
@@ -373,19 +376,18 @@ public class UserPKDaoImpl implements UserPKDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
-			rs = statement
-					.executeQuery("select * from t_userPK WHERE UName ="
-							+ "'" + nUame + "'");
+			rs = statement.executeQuery("select * from t_userPK WHERE UName ="
+					+ "'" + nUame + "'");
 			while (rs.next()) {
 				UserPK userPK = new UserPK();
 				userPK.setUuid(rs.getString("uuid"));
 				userPK.setuLogUser(rs.getString("uLogUser"));
 				userPK.setuPassWord(rs.getString("uPassWord"));
 				userPK.setuName(rs.getString("uName"));
-
+				userPK.setEmpUuid(rs.getString("empUuid"));
 				userPKResult = userPK;
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("t_userPK的getByUuid查询失败");

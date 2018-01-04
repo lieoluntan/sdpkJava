@@ -58,6 +58,8 @@ public class UserPKControl extends HttpServlet {
 				Map<String, Object> map = t_data.JsonStrToMap(str);
 				T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
 				userPK = t_map2bean.MapToUserPK(map);
+				System.out.println("进入");
+				System.out.println(userPK.getUuid());
 			} else {
 				System.out.println("前台传入post请求体数据为空，请联系管理员！");
 			}

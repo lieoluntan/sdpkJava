@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.sdpk.dao.EmployeeDao;
+import com.sdpk.dao.impl.EmployeeDaoImpl;
+import com.sdpk.model.Employee;
 import com.sdpk.system.dao.RoleDao;
 import com.sdpk.system.dao.UserPKDao;
 import com.sdpk.system.dao.impl.RoleDaoImpl;
@@ -26,6 +29,7 @@ public class UserPKServiceImpl implements UserPKService {
 
 	private UserPKDao userPKDao = new UserPKDaoImpl();
 	private RoleDao roleDao = new RoleDaoImpl();
+	private EmployeeDao empLoyeeDao=new EmployeeDaoImpl();
 	public M_msg m_msg = new M_msg();
 
 	@Override
@@ -110,6 +114,19 @@ public class UserPKServiceImpl implements UserPKService {
 		// TODO Auto-generated method stub
 		if (uuid != null && uuid != "") {
 			UserPK userPK = userPKDao.getByUuid(uuid);
+			Employee emp=empLoyeeDao.getByUuid(userPK.getEmpUuid());
+			userPK.setEmpName(emp.getName());
+			Role role = new Role();
+			List<Role> backRoleList = new ArrayList<Role>();
+			List<String> roleList = roleDao.getRole(userPK.getUuid());// 根据用户id得到用户的所有角色id
+			for (String roleid : roleList) {
+				role = roleDao.getByUuid(roleid);// 根据角色id 的到角色对象
+				System.out.println(role.getName() + "  " + role.getUuid());
+				backRoleList.add(role);
+			}
+
+			userPK.setRole(backRoleList);
+
 			return userPK;
 		} else {
 			System.out
@@ -123,7 +140,12 @@ public class UserPKServiceImpl implements UserPKService {
 	public ArrayList<UserPK> getList() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPK> userPKlist = userPKDao.getList();
+		
+		
 		for (UserPK userPK : userPKlist) {// 所有用户集合
+			Employee emp=empLoyeeDao.getByUuid(userPK.getEmpUuid());
+			userPK.setEmpName(emp.getName());
+			
 			Role role = new Role();
 			List<Role> backRoleList = new ArrayList<Role>();
 			List<String> roleList = roleDao.getRole(userPK.getUuid());// 根据用户id得到用户的所有角色id
