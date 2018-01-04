@@ -84,6 +84,6 @@ public interface RoleResourceService {
 	ArrayList<RoleResource> getListbyName(String roleid,
 			String resourceid);
 	//根据角色id返回角色资源列表
-	ArrayList<String> getListbyRoleUuid(Role role);//cf
+	ArrayList<String> getListbyRoleUuid(Role role);
 }
 

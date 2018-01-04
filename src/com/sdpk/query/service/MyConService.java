@@ -34,6 +34,4 @@ public interface MyConService {
 	 *    根据学生id查询学生
 	 */
 	List<Contract> getConList(List<String> ConIdList);
-	
-	
 }

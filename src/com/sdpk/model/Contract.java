@@ -1,5 +1,7 @@
 package com.sdpk.model;
 
+import java.util.List;
+
 /**
  * 树袋老师
  * 
@@ -39,9 +41,19 @@ public class Contract {
   private String sumCountB; // 价格B上课次数
   private String sumPriceB; // 价格B支付金额
   
- 
+ private List<Student>student;
 
-  public Contract() {
+
+
+public List<Student> getStudent() {
+	return student;
+}
+
+public void setStudent(List<Student> student) {
+	this.student = student;
+}
+
+public Contract() {
   }
 
   public Contract(String uuid, String cNum, String stuUuid, String stuName, String cDate, String org,

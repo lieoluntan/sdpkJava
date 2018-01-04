@@ -254,8 +254,6 @@ public class RoleDaoImpl implements RoleDao{
 			DBUtility.close(rs, statement, connection);
 			System.out.println("getByuuid 调用了关闭数据库连接");
 		}
-		
-		
 		return roleResult;
 	}
 }

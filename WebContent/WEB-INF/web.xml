@@ -95,6 +95,15 @@
     <url-pattern>/aa</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>ContractNew</servlet-name>
+    <servlet-class>com.sdpk.query.controller.ContractNewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContractNew</servlet-name>
+    <url-pattern>/aaContractNew</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>aaStudentN</servlet-name>
     <servlet-class>com.sdpk.controller.StudentControl</servlet-class>
