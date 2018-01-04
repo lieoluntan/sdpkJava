@@ -10,8 +10,7 @@ import java.util.List;
 
 
 import com.sdpk.model.Cla;
-import com.sdpk.model.Employee;
-import com.sdpk.model.Student;
+
 import com.sdpk.query.dao.MyClaDao;
 import com.sdpk.utility.DBUtility;
 

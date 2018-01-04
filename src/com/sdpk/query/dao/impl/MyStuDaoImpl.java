@@ -7,8 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.And_ClassEmp;
-import com.sdpk.model.ClassRoom;
+
 import com.sdpk.model.Student;
 import com.sdpk.query.dao.MyStuDao;
 import com.sdpk.utility.DBUtility;

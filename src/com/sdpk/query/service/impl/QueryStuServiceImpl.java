@@ -45,8 +45,8 @@ public class QueryStuServiceImpl implements QueryStuService {
 		ArrayList<PaikeRecordView> newList = new ArrayList<PaikeRecordView>();
 		for (String string : claList) {
 			System.out.println(string);
-			And_ClassEmp And_ClassEmp=	and_ClassEmpDao.getBycla(string);
-			Employee e=employeeDao.getByUuid(And_ClassEmp.getEmpUuid());
+			And_ClassEmp And_ClassEmp = and_ClassEmpDao.getBycla(string);
+			Employee e = employeeDao.getByUuid(And_ClassEmp.getEmpUuid());
 			paikeSearch.setClaUuid(string);
 			ArrayList<PaikeRecordView> prvList = queryStuDao
 					.getAllPaike(paikeSearch);
@@ -80,7 +80,7 @@ public class QueryStuServiceImpl implements QueryStuService {
 
 				reAddNameList.add(one);
 			}// end 步骤
-			// 步骤、加入班主任名
+				// 步骤、加入班主任名
 			for (PaikeRecordView one : reAddNameList) {
 				// 1、加入班主任名
 				String claUuid = one.getClaUuid();

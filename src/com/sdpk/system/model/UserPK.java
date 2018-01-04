@@ -26,6 +26,30 @@ public class UserPK {
 	private List<String> rsList;//存放资源id
 	private List<Role> role;// 存放角色
 
+	private String empUuid;//员工uuid
+	private String empName;//员工名
+	
+	
+	public String getEmpUuid() {
+		return empUuid;
+	}
+
+
+	public void setEmpUuid(String empUuid) {
+		this.empUuid = empUuid;
+	}
+
+
+	public String getEmpName() {
+		return empName;
+	}
+
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+
 	public UserPK() {
 		
 	}
