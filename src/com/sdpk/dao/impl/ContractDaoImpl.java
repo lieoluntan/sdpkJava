@@ -42,23 +42,24 @@ public class ContractDaoImpl implements ContractDao{
       preparedStatement.setString(1, contract.getUuid());
       preparedStatement.setString(2, contract.getcNum());
       preparedStatement.setString(3, contract.getStuUuid());
-      preparedStatement.setString(4, contract.getcDate());
-      preparedStatement.setString(5, contract.getOrg());
-      preparedStatement.setString(6, contract.getTotalCount());
-      preparedStatement.setString(7, contract.getTotalPrice());
-      preparedStatement.setString(8, contract.getOnePriceA());
-      preparedStatement.setString(9, contract.getCountA());
-      preparedStatement.setString(10, contract.getDelPriceA());
-      preparedStatement.setString(11, contract.getCountGiveA());
-      preparedStatement.setString(12, contract.getSumCountA());
-      preparedStatement.setString(13, contract.getSumPriceA());
+      preparedStatement.setString(4, contract.getStuName());
+      preparedStatement.setString(5, contract.getcDate());
+      preparedStatement.setString(6, contract.getOrg());
+      preparedStatement.setString(7, contract.getTotalCount());
+      preparedStatement.setString(8, contract.getTotalPrice());
+      preparedStatement.setString(9, contract.getOnePriceA());
+      preparedStatement.setString(10, contract.getCountA());
+      preparedStatement.setString(11, contract.getDelPriceA());
+      preparedStatement.setString(12, contract.getCountGiveA());
+      preparedStatement.setString(13, contract.getSumCountA());
+      preparedStatement.setString(14, contract.getSumPriceA());
       
-      preparedStatement.setString(14, contract.getOnePriceB());
-      preparedStatement.setString(15, contract.getCountB());
-      preparedStatement.setString(16, contract.getDelPriceB());
-      preparedStatement.setString(17, contract.getCountGiveB());
-      preparedStatement.setString(18, contract.getSumCountB());
-      preparedStatement.setString(19, contract.getSumPriceB());
+      preparedStatement.setString(15, contract.getOnePriceB());
+      preparedStatement.setString(16, contract.getCountB());
+      preparedStatement.setString(17, contract.getDelPriceB());
+      preparedStatement.setString(18, contract.getCountGiveB());
+      preparedStatement.setString(19, contract.getSumCountB());
+      preparedStatement.setString(20, contract.getSumPriceB());
       preparedStatement.executeUpdate();
 
       System.out.println("^^在执行ContractDaoImpl中的添加insert");
@@ -89,7 +90,8 @@ public class ContractDaoImpl implements ContractDao{
           Contract contract = new Contract();
           contract.setUuid(rs.getString("uuid"));
           contract.setcNum(rs.getString("cNum"));
-          contract.setStuUuid(rs.getString("stuUuid"));             
+          contract.setStuUuid(rs.getString("stuUuid"));  
+          contract.setStuName(rs.getString("stuName"));
           contract.setcDate(rs.getString("cDate"));
           contract.setOrg(rs.getString("org"));
           contract.setTotalCount(rs.getString("totalCount"));
@@ -162,28 +164,29 @@ public class ContractDaoImpl implements ContractDao{
           .prepareStatement("UPDATE t_contract SET cNum = ?, stuUuid = ?,cDate = ?, org = ?, totalCount = ?, totalPrice = ?, onePriceA = ?, countA = ?, delPriceA = ?, countGiveA = ?, sumCountA = ?,sumPriceA = ?, onePriceB = ?, countB = ?, delPriceB = ?, countGiveB = ?, sumCountB = ?,sumPriceB = ? WHERE uuid = ? ");
       // Parameters start with 1
       
-      preparedStatement.setString(1, contract.getcNum());
-      preparedStatement.setString(2, contract.getStuUuid());
-      preparedStatement.setString(3, contract.getcDate());
-      preparedStatement.setString(4, contract.getOrg());
-      preparedStatement.setString(5, contract.getTotalCount());
-      preparedStatement.setString(6, contract.getTotalPrice());
-      preparedStatement.setString(7, contract.getOnePriceA());
-      preparedStatement.setString(8, contract.getCountA());
-      preparedStatement.setString(9, contract.getDelPriceA());
-      preparedStatement.setString(10, contract.getCountGiveA());
-      preparedStatement.setString(11, contract.getSumCountA());
-      preparedStatement.setString(12, contract.getSumPriceA());
-      
-      preparedStatement.setString(13, contract.getOnePriceB());
-      preparedStatement.setString(14, contract.getCountB());
-      preparedStatement.setString(15, contract.getDelPriceB());
-      preparedStatement.setString(16, contract.getCountGiveB());
-      preparedStatement.setString(17, contract.getSumCountB());
-      preparedStatement.setString(18, contract.getSumPriceB());
-      
-      preparedStatement.setString(19, contract.getUuid());
-      preparedStatement.executeUpdate();
+       preparedStatement.setString(1, contract.getUuid());
+       preparedStatement.setString(2, contract.getcNum());
+       preparedStatement.setString(3, contract.getStuUuid());
+       preparedStatement.setString(4, contract.getStuName());
+       preparedStatement.setString(5, contract.getcDate());
+       preparedStatement.setString(6, contract.getOrg());
+       preparedStatement.setString(7, contract.getTotalCount());
+       preparedStatement.setString(8, contract.getTotalPrice());
+       preparedStatement.setString(9, contract.getOnePriceA());
+       preparedStatement.setString(10, contract.getCountA());
+       preparedStatement.setString(11, contract.getDelPriceA());
+       preparedStatement.setString(12, contract.getCountGiveA());
+       preparedStatement.setString(13, contract.getSumCountA());
+       preparedStatement.setString(14, contract.getSumPriceA());
+       
+       preparedStatement.setString(15, contract.getOnePriceB());
+       preparedStatement.setString(16, contract.getCountB());
+       preparedStatement.setString(17, contract.getDelPriceB());
+       preparedStatement.setString(18, contract.getCountGiveB());
+       preparedStatement.setString(19, contract.getSumCountB());
+       preparedStatement.setString(20, contract.getSumPriceB());
+       preparedStatement.executeUpdate();
+
 
       System.out.println("^^在执行ContractDaoImpl中的修改update");
       daoFlag = true;
@@ -213,7 +216,8 @@ public class ContractDaoImpl implements ContractDao{
           Contract contract = new Contract();
           contract.setUuid(rs.getString("uuid"));
           contract.setcNum(rs.getString("cNum"));
-          contract.setStuUuid(rs.getString("stuUuid"));             
+          contract.setStuUuid(rs.getString("stuUuid"));   
+          contract.setStuName(rs.getString("stuName"));
           contract.setcDate(rs.getString("cDate"));
           contract.setOrg(rs.getString("org"));
           contract.setTotalCount(rs.getString("totalCount"));
