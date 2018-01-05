@@ -38,7 +38,7 @@ public class PaikeRecordView {
  private String categoryName;//课程价格类别名
  
  //全校今日课程特有的字段
- private String claTeaUuid;//班主任uuid
+ private String claTeaUuid;//班主任uuid   班主任的id和name统一用headTeaUuid和headTeaName
  private String claTeaName;//班主任名
  private String stuUuid;//学生uuid
  private String stuName;//学生名
