@@ -8,4 +8,5 @@ package com.sdpk.query.nameQuery.dao;
  */
 public interface NameReStuDao {
 
+	
 }

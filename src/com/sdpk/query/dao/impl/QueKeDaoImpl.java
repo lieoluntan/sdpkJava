@@ -63,5 +63,4 @@ public class QueKeDaoImpl implements QueKeDao{
 
 		return empPaikeList;
 	}
-
 }

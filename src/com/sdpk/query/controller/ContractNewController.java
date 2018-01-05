@@ -55,6 +55,5 @@ public class ContractNewController extends HttpServlet{
 		out.write(back);
 		out.flush();
 		out.close();
-
 	}
 }
