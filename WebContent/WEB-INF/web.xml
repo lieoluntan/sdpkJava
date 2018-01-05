@@ -27,6 +27,16 @@
   </servlet-mapping>
   
    <servlet>
+    <servlet-name>NameReContrController</servlet-name>
+    <servlet-class>com.sdpk.query.nameQuery.controller.NameReContrController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NameReContrController</servlet-name>
+    <url-pattern>/aaNameReContr</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
     <servlet-name>NameReEmpController</servlet-name>
     <servlet-class>com.sdpk.query.nameQuery.controller.NameReEmpController</servlet-class>
   </servlet>
