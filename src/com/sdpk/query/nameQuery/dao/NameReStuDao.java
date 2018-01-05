@@ -13,7 +13,9 @@ import com.sdpk.model.Student;
  */
 public interface NameReStuDao {
 
+
 	public List<Student> getStuByName(Student student);
 	
+
 	
 }
