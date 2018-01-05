@@ -11,7 +11,12 @@ import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
 import com.sdpk.query.dao.QueKeDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-5下午2:38:51
+ * @version 1.0
+ */
 public class QueKeDaoImpl implements QueKeDao{
 	private Connection connection;
 	boolean dao = false;

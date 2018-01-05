@@ -17,7 +17,12 @@ import com.sdpk.model.Contract;
 import com.sdpk.query.service.ContractNewService;
 import com.sdpk.query.service.impl.ContractNewServiceImpl;
 
-
+/**
+ * 
+ * @author 罗成峰
+ * @date 2018-1-5下午2:38:38
+ * @version 1.0
+ */
 public class ContractNewController extends HttpServlet{
 	ContractNewService contractNewService = new ContractNewServiceImpl();
 	
