@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import com.sdpk.dao.CourseDao;
+import com.sdpk.dao.Course_EmpDao;
 import com.sdpk.dao.impl.CourseDaoImpl;
-import com.sdpk.model.Cla;
+import com.sdpk.dao.impl.Course_EmpDaoImpl;
 import com.sdpk.model.Course;
 import com.sdpk.service.CourseService;
 
@@ -19,6 +20,7 @@ import com.sdpk.service.CourseService;
 public class CourseServiceImpl implements CourseService{
   
   private CourseDao courseDao= new CourseDaoImpl();
+  private Course_EmpDao course_EmpDao=new Course_EmpDaoImpl();
 
   @Override
   public String insert(Course course) {
@@ -43,7 +45,7 @@ public class CourseServiceImpl implements CourseService{
     if(uuid!=null&&uuid!="")
     {
       boolean daoFlag = courseDao.delete(uuid);
-      
+      course_EmpDao.deleteByCour(uuid);
         if(daoFlag)
         {
         return uuid;
