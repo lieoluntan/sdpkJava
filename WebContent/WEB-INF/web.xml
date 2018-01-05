@@ -27,6 +27,15 @@
   </servlet-mapping>
   
    <servlet>
+    <servlet-name>NameReStuController</servlet-name>
+    <servlet-class>com.sdpk.query.nameQuery.controller.NameReStuController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NameReStuController</servlet-name>
+    <url-pattern>/aaNameReStu</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
     <servlet-name>QueryKeMyController</servlet-name>
     <servlet-class>com.sdpk.query.controller.QueryKeMyController</servlet-class>
   </servlet>

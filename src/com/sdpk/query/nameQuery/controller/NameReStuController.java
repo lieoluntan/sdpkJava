@@ -2,92 +2,78 @@ package com.sdpk.query.nameQuery.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.sdpk.model.BackResult;
+import com.sdpk.model.Cla;
+import com.sdpk.model.Student;
+import com.sdpk.query.nameQuery.service.NameReStuService;
+import com.sdpk.query.nameQuery.service.impl.NameReStuServiceImpl;
+import com.sdpk.utility.M_msg;
+import com.sdpk.utility.T_DataControl;
+import com.sdpk.utility.T_DataMap2Bean;
+
 public class NameReStuController extends HttpServlet {
+	private NameReStuService nameReStuService = new NameReStuServiceImpl();
+	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
+	public M_msg m_msg = new M_msg();
 
-	/**
-	 * Constructor of the object.
-	 */
-	public NameReStuController() {
-		super();
-	}
-
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
-
-	/**
-	 * The doGet method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to get.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		this.doPost(request, response);
 	}
 
-	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
+		String qqiu = request.getParameter("qqiu");
+		if (qqiu.equals("query")) {
+			T_DataControl t_data = new T_DataControl();
+			String str = t_data.getRequestPayload(request);
+			Student stu = new Student();
+			if (str != null && str != "" && str.length() != 0) { // 非空判断，防止前台传空报500服务器错误中的空指针
+				Map<String, Object> map = t_data.JsonStrToMap(str);
+				T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
+				stu = t_map2bean.MapToStudent(map);
+			} else {
+				System.out.println("前台传入post请求体数据为空，请联系管理员！");
+			}
+
+			// 3 执行qqiu里面的增或删或改或查 的操作
+			qqiuChoice(qqiu, stu);
+
+		}
+		Gson gson = new Gson();
+		// 4 执行完qqiuChoice里面操作后的全局返回值backResult对象,转成json格式
+		String back = gson.toJson(backResult);
+		System.out.println("最后back值是：" + back);
+		// 5 将json格式的back传给前台
+		out.write(back);
 		out.flush();
 		out.close();
 	}
 
-	/**
-	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
-	 */
-	public void init() throws ServletException {
-		// Put your code here
-	}
+	private void qqiuChoice(String qqiu, Student student) {
+		// TODO Auto-generated method stub
+		boolean test = false;
 
+		test = qqiu.equals("query");
+
+		if (test) {
+			String flag = nameReStuService.getStuByName(student);// 得到名字是否已存在
+			String flag1 = nameReStuService.getStuByName1(student);// 得到yes/no
+			backResult.setMessage(flag);
+			backResult.setQingqiu(flag1);
+
+		}
+	}
 }
