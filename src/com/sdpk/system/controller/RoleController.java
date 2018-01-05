@@ -161,11 +161,12 @@ public class RoleController extends HttpServlet{
 	      backResult.setData(resultList);
 	    }
 	    if (add) {
+	     ArrayList resultList=new ArrayList();
 	      String result = roleService.insert(role);
-	     
-	      backResult.setMessage("信息值："+result);
+	      resultList.add(result) ;
+	      backResult.setMessage("信息值：成功");
 	      backResult.setQingqiu("add新增");
-	      //backResult.setData(resultList);
+	      backResult.setData(resultList);
 	    }
 	    if (delete) {
 	      String result = roleService.delete(role.getUuid());
