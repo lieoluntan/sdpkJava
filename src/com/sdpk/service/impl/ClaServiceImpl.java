@@ -3,16 +3,21 @@ package com.sdpk.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.sdpk.dao.And_ClassCourseDao;
 import com.sdpk.dao.And_ClassEmpDao;
+import com.sdpk.dao.And_ClassStuDao;
 import com.sdpk.dao.ClaDao;
+import com.sdpk.dao.Class_ContractDao;
 import com.sdpk.dao.EmployeeDao;
+import com.sdpk.dao.impl.And_ClassCourseDaoImpl;
 import com.sdpk.dao.impl.And_ClassEmpDaoImpl;
+import com.sdpk.dao.impl.And_ClassStuDaoImpl;
 import com.sdpk.dao.impl.ClaDaoImpl;
+import com.sdpk.dao.impl.Class_ContractDaoImpl;
 import com.sdpk.dao.impl.EmployeeDaoImpl;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.Cla;
 import com.sdpk.model.Employee;
-import com.sdpk.service.And_ClassEmpService;
 import com.sdpk.service.ClaService;
 import com.sdpk.utility.M_msg;
 
@@ -27,6 +32,9 @@ public class ClaServiceImpl implements ClaService{
   
   private ClaDao claDao= new ClaDaoImpl();
   private And_ClassEmpDao and_ClassEmpDao = new And_ClassEmpDaoImpl();
+  private And_ClassStuDao and_ClassStuDao = new And_ClassStuDaoImpl();
+  private And_ClassCourseDao and_ClassCourseDao = new And_ClassCourseDaoImpl();
+  private Class_ContractDao class_ContractDao = new Class_ContractDaoImpl();
   public M_msg m_msg = new M_msg();
   private EmployeeDao employeeDao = new EmployeeDaoImpl();
   
@@ -59,7 +67,10 @@ public class ClaServiceImpl implements ClaService{
     if(uuid!=null&&uuid!="")
     {
       boolean daoFlag = claDao.delete(uuid);
-      
+      and_ClassStuDao.deleteBycla(uuid);
+      and_ClassEmpDao.deleteBycla(uuid);
+      and_ClassCourseDao.deleteBycla(uuid);
+      class_ContractDao.deleteBycla(uuid);
         if(daoFlag)
         {
         return uuid;
