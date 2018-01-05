@@ -70,7 +70,7 @@ public class CourseControl extends HttpServlet {
 
       // 3 执行qqiu里面的增或删或改或查 的操作
       qqiuChoice(qqiu, course);
-    } else if (qqiu.equals("list")) {
+    } else if (qqiu.equals("list")) {    
       // TODO 待完成
       ArrayList<Course> resultList = courseService.getListCourse();
       backResult.setMessage("信息值：成功");
