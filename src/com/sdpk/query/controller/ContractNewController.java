@@ -3,8 +3,6 @@ package com.sdpk.query.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,20 +51,5 @@ public class ContractNewController extends HttpServlet{
 		out.flush();
 		out.close();
 
-	}
-	
-
-	private void qqiuChoice(String qqiu) {
-		// TODO Auto-generated method stub
-		boolean test = false;
-
-		test = qqiu.equals("list");
-
-		if (test) {
-		List<Contract> contractList = contractNewService.getList();
-			backResult.setMessage("信息值,成功");
-			backResult.setQingqiu("我的班级浏览");
-			backResult.setData((ArrayList) contractList);
-		}
 	}
 }

@@ -33,9 +33,9 @@ public class ContractNewServiceImpl implements ContractNewService{
 		for (Contract contract : contractlist) {
 			
 			
-			Student stuList = studentdao.getByUuid(contract.getStuUuid());
+			Student stu = studentdao.getByUuid(contract.getStuUuid());
 		
-			contract.setStuName(stuList.getName());
+			contract.setStuName(stu.getName());
 				
 			
 			
