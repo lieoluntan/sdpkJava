@@ -25,6 +25,25 @@
     <servlet-name>CRUDController</servlet-name>
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
+   <!-- ContrtextController -->
+  <servlet>
+    <servlet-name>ContrtextController</servlet-name>
+    <servlet-class>com.sdpk.controller.ContrtextController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContrtextController</servlet-name>
+    <url-pattern>/aaContrtext</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ConPriceController -->
+   <servlet>
+    <servlet-name>ConPriceController</servlet-name>
+    <servlet-class>com.sdpk.controller.ConPriceController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConPriceController</servlet-name>
+    <url-pattern>/CRUDController</url-pattern>
+  </servlet-mapping>
   
    <servlet>
     <servlet-name>NameReContrController</servlet-name>
