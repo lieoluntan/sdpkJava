@@ -92,9 +92,9 @@ public class QueryStuServiceImpl implements QueryStuService {
 				one.setClaTeaName(claTeaName);
 
 			}// end 步骤
-			for (PaikeRecordView paikeRecordView : reAddNameList) {
-				// System.out.println(paikeRecordView.getKeDateTime());
-			}
+//			for (PaikeRecordView paikeRecordView : reAddNameList) {
+//				// System.out.println(paikeRecordView.getKeDateTime());
+//			}
 
 			newList.addAll(reAddNameList);
 

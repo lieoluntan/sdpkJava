@@ -1,0 +1,16 @@
+
+
+
+<Context>
+  <Resource name="aaaPoolName"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="aaabbb"
+            password="aaabbb"
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://101.132.130.149:3306/UserDB"
+            initialSize="30" 
+            maxActive="90"
+            maxWait="20000"
+            maxIdle="30"/>
+</Context>
