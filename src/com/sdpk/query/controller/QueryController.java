@@ -45,12 +45,15 @@ public class QueryController extends HttpServlet {
 		String qqiu = request.getParameter("qqiu");
 		PaikeSearch paikeSearch = new PaikeSearch();
 		if (qqiu.equals("list")) {
-			String empUuid = request.getParameter("empUuid");
-			String MonthDay = request.getParameter("MonthDay");
-			System.out.println(empUuid);
-			System.out.println(MonthDay);
-			paikeSearch.setUuid(empUuid);
-			paikeSearch.setMonthDay(MonthDay);
+			String uuid = request.getParameter("empUuid");
+			String year = request.getParameter("year");
+			String month = request.getParameter("month");
+			String today = request.getParameter("today");
+
+			paikeSearch.setUuid(uuid);
+			paikeSearch.setYear(year);
+			paikeSearch.setMonth(month);
+			paikeSearch.setToday(today);
 
 			qqiuChoice(qqiu, paikeSearch);
 			
@@ -80,7 +83,7 @@ public class QueryController extends HttpServlet {
 
 			ArrayList<PaikeRecordView> resultList = queryService
 					.getAllPaike(paikeSearch);// 老师在本月的所有排课
-			int SumEmpPaike = queryService.SumEmpPaike(paikeSearch);// 老师在本月的所有排课数量
+			int SumEmpPaike = resultList.size();// 老师在本月的所有排课数量
 			int SumDayBefore = queryService.SumDayBefore(paikeSearch);// 老师在本月到今天的所有排课总量
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			backResult.setSumEmpPaike(SumEmpPaike);

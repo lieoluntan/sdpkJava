@@ -38,11 +38,13 @@ public class QueryDaoImpl implements QueryDao {
 		String sf = "";
 		;// 月末
 		
-		String d = paikeSearch.getMonthDay();
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
 		String[] s = d.split("-");
 		s[0] += "-";
 		s[1] += "-";
-		s[2] = "1";
+		s[2] = "01";
 		for (String string : s) {
 			sd += string;
 		}
@@ -95,11 +97,13 @@ public class QueryDaoImpl implements QueryDao {
 		String sf = "";
 		;// 月末
 		
-		String d = paikeSearch.getMonthDay();
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
 		String[] s = d.split("-");
 		s[0] += "-";
 		s[1] += "-";
-		s[2] = "1";
+		s[2] = "01";
 		for (String string : s) {
 			sd += string;
 		}
@@ -107,7 +111,6 @@ public class QueryDaoImpl implements QueryDao {
 		for (String string : s) {
 			sf += string;
 		}
-	
 
 		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
 		Statement statement = null;// finally关闭数据库连接
@@ -148,21 +151,28 @@ public class QueryDaoImpl implements QueryDao {
 	@Override
 	public int SumDayBefore(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
+		
+	
 		Date date = new Date();
 		String sd = "";// 月初
-	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String d = sdf.format(date);
+		String sf = "";
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
 		String[] s = d.split("-");
 		s[0] += "-";
 		s[1] += "-";
 		
 		
-		s[2] = "1";
+		s[2] = "01";
 		for (String string : s) {
 			sd += string;
 		}
 		
+		s[2] = "31";
+		for (String string : s) {
+			sf += string;
+		}
 	
 
 		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
@@ -172,7 +182,7 @@ public class QueryDaoImpl implements QueryDao {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_paike_all where empUuid='"+paikeSearch.getUuid()+"' and KeDateTime >='"+sd+"' and KeDateTime <='"+paikeSearch.getMonthDay()+"'");
+					.executeQuery("select * from t_paike_all where empUuid='"+paikeSearch.getUuid()+"' and KeDateTime >='"+sd+"' and KeDateTime <='"+sf+"' and KeDateTime <= '"+paikeSearch.getToday()+"'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 
