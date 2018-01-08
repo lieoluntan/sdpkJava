@@ -106,6 +106,52 @@ CREATE TABLE t_contract (
 );
 
 --------------------------------------
+--5-1、合同表t_contrtext
+
+CREATE TABLE t_contrtext (
+  uuid varchar(50) NOT NULL,
+  cNum varchar(50) NOT NULL,
+  stuUuid varchar(50) DEFAULT NULL,
+  cDate varchar(30) DEFAULT NULL,
+  org varchar(30) DEFAULT NULL,
+  totalCount varchar(30) DEFAULT NULL,
+  totalPrice varchar(30) DEFAULT NULL,
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
+
+--------------------------------------
+--5-2、合同价格表t_conPrice
+
+CREATE TABLE t_conPrice (
+  uuid varchar(50) NOT NULL,
+  contrUuid varchar(50) NOT NULL,
+  
+  
+  onePriceA varchar(30) DEFAULT NULL,
+  countA varchar(30) DEFAULT NULL,
+  delPriceA varchar(30) DEFAULT NULL,
+  countGiveA varchar(30) DEFAULT NULL,
+  sumCountA varchar(30) DEFAULT NULL,
+  sumPriceA varchar(30) DEFAULT NULL,
+  priceType varchar(30) DEFAULT NULL,
+ 
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
+--------------------------------------
 --6、排课表t_paike_all
 
 CREATE TABLE t_paike_all (
