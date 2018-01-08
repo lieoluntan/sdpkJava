@@ -15,6 +15,7 @@ public class ConPrice {
 	  private String countGiveA; // 送课次数A
 	  private String sumCountA; // 价格A上课次数
 	  private String sumPriceA; // 价格A支付金额
+	  private String priceType;//价格类型：线上，线下
 	  
 	  
 
