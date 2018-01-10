@@ -23,6 +23,8 @@ public interface ContrtextDao {
 	
 	public Contrtext getOne(String uuid);
 	
+	public Contrtext getByCnum(String cNum);
+	
 	
 	
 }

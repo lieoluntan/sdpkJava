@@ -199,4 +199,42 @@ public class ContrtextDaoImpl implements ContrtextDao {
 		return contractResult;
 	}
 
+	@Override
+	public Contrtext getByCnum(String cNum) {
+		// TODO Auto-gContrtext contractResult = new Contrtext();
+		Contrtext contractResult = new Contrtext();
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_contrtext WHERE cNum ="
+							+ "'" + cNum + "'");
+			while (rs.next()) {
+				Contrtext contract = new Contrtext();
+				contract.setUuid(rs.getString("uuid"));
+				contract.setcNum(rs.getString("cNum"));
+				contract.setStuUuid(rs.getString("stuUuid"));
+
+				contract.setcDate(rs.getString("cDate"));
+				contract.setOrg(rs.getString("org"));
+				contract.setTotalCount(rs.getString("totalCount"));
+				contract.setTotalPrice(rs.getString("totalPrice"));
+
+				contractResult = contract;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ContrtextDaoImpl的getByUuid查询失败");
+			Contrtext contractX = new Contrtext();
+			contractX.setUuid("ContrtextDaoImpl失败返回的uuid");
+			return contractX;
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return contractResult;
+	}
+
 }
