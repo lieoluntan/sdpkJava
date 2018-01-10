@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sdpk.dao.ContrtextDao;
-import com.sdpk.model.Contract;
+
 import com.sdpk.model.Contrtext;
 import com.sdpk.utility.DBUtility;
 
@@ -32,17 +32,17 @@ public class ContrtextDaoImpl implements ContrtextDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("insert into t_contrtext(uuid,cNum,stuUuid,cDate,org,totalCount,totalPrice) values (?,?,?,?,?,?,?)");
+					.prepareStatement("insert into t_contrtext(uuid,cNum,stuUuid,cDate,org,totalCount,totalPrice,sumLineUpA,sumLineDownB) values (?,?,?,?,?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, contrtext.getUuid());
 			preparedStatement.setString(2, contrtext.getcNum());
 			preparedStatement.setString(3, contrtext.getStuUuid());
-
 			preparedStatement.setString(4, contrtext.getcDate());
 			preparedStatement.setString(5, contrtext.getOrg());
 			preparedStatement.setString(6, contrtext.getTotalCount());
 			preparedStatement.setString(7, contrtext.getTotalPrice());
-
+			preparedStatement.setInt(8, contrtext.getSumLineUpA());
+			preparedStatement.setInt(9, contrtext.getSumLineDownB());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行ContrtextDaoImpl中的添加insert");
@@ -94,19 +94,16 @@ public class ContrtextDaoImpl implements ContrtextDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("UPDATE t_contrtext SET cNum = ?, stuUuid = ?,cDate = ?, org = ?, totalCount = ?, totalPrice = ? WHERE uuid = ? ");
-			// Parameters start with 1
-
-			//
+					.prepareStatement("UPDATE t_contrtext SET cNum = ?, stuUuid = ?,cDate = ?, org = ?, totalCount = ?, totalPrice = ?,sumLineUpA = ?,sumLineDownB = ?  WHERE uuid = ? ");
 			preparedStatement.setString(1, contrtext.getcNum());
 			preparedStatement.setString(2, contrtext.getStuUuid());
-
 			preparedStatement.setString(3, contrtext.getcDate());
 			preparedStatement.setString(4, contrtext.getOrg());
 			preparedStatement.setString(5, contrtext.getTotalCount());
 			preparedStatement.setString(6, contrtext.getTotalPrice());
-
-			preparedStatement.setString(7, contrtext.getUuid());
+			preparedStatement.setLong(7, contrtext.getSumLineUpA());
+			preparedStatement.setLong(8, contrtext.getSumLineDownB());
+			preparedStatement.setString(9, contrtext.getUuid());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行ContrtextDaoImpl中的修改update");
@@ -143,7 +140,8 @@ public class ContrtextDaoImpl implements ContrtextDao {
 				contract.setOrg(rs.getString("org"));
 				contract.setTotalCount(rs.getString("totalCount"));
 				contract.setTotalPrice(rs.getString("totalPrice"));
-
+				contract.setSumLineUpA(rs.getInt("sumLineUpA"));
+				contract.setSumLineDownB(rs.getInt("sumLineDownB"));
 				contractList.add(contract);
 			}
 		} catch (SQLException e) {
@@ -178,12 +176,12 @@ public class ContrtextDaoImpl implements ContrtextDao {
 				contract.setUuid(rs.getString("uuid"));
 				contract.setcNum(rs.getString("cNum"));
 				contract.setStuUuid(rs.getString("stuUuid"));
-
 				contract.setcDate(rs.getString("cDate"));
 				contract.setOrg(rs.getString("org"));
 				contract.setTotalCount(rs.getString("totalCount"));
 				contract.setTotalPrice(rs.getString("totalPrice"));
-
+				contract.setSumLineUpA(rs.getInt("sumLineUpA"));
+				contract.setSumLineDownB(rs.getInt("sumLineDownB"));
 				contractResult = contract;
 			}
 		} catch (SQLException e) {
@@ -216,12 +214,12 @@ public class ContrtextDaoImpl implements ContrtextDao {
 				contract.setUuid(rs.getString("uuid"));
 				contract.setcNum(rs.getString("cNum"));
 				contract.setStuUuid(rs.getString("stuUuid"));
-
 				contract.setcDate(rs.getString("cDate"));
 				contract.setOrg(rs.getString("org"));
 				contract.setTotalCount(rs.getString("totalCount"));
 				contract.setTotalPrice(rs.getString("totalPrice"));
-
+				contract.setSumLineUpA(rs.getInt("sumLineUpA"));
+				contract.setSumLineDownB(rs.getInt("sumLineDownB"));
 				contractResult = contract;
 			}
 		} catch (SQLException e) {
