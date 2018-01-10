@@ -46,6 +46,10 @@ public class PaikeRecordView {
  private List<Student> stuList;//只在查询时使用
  private String headTeaUuid ;//班主任uuid
  private String  headTeaName;//班主任name
+ 
+ private String pkType;// 上课类型：LineUpA    LineDownB  
+ private String pkTypeName;// 上课类型中文名：  线上                                线下
+ 
  public String getHeadTeaUuid() {
 	return headTeaUuid;
 }
@@ -302,6 +306,26 @@ public String getKeEndTime() {
 
 public void setKeEndTime(String keEndTime) {
   this.keEndTime = keEndTime;
+}
+
+
+public String getPkType() {
+	return pkType;
+}
+
+
+public void setPkType(String pkType) {
+	this.pkType = pkType;
+}
+
+
+public String getPkTypeName() {
+	return pkTypeName;
+}
+
+
+public void setPkTypeName(String pkTypeName) {
+	this.pkTypeName = pkTypeName;
 }
 
 
