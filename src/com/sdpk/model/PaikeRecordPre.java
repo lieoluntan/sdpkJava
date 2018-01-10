@@ -63,6 +63,7 @@ public class PaikeRecordPre {
     this.weekDay = weekDay;
     this.empConflict = empConflict;
     this.croomConflict = croomConflict;
+  
   }
 
   public String getId() {
