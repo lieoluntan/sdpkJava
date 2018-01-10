@@ -179,27 +179,36 @@ public class T_DataMap2Bean {
 		String org = (String) map.get("org");
 		String totalCount = (String) map.get("totalCount");
 		String totalPrice = (String) map.get("totalPrice");
+		String sumLineUpA = (String) map.get("sumLineUpA");
+		if(sumLineUpA==null){
+			sumLineUpA="0";
+		}
+	
+		String sumLineDownB = (String) map.get("sumLineDownB");
+		if(sumLineDownB==null){
+			sumLineDownB="0";
+		}
 		List<Map> conPriceList = (List) map.get("conPriceList");
 		List<ConPrice> conList = new ArrayList<ConPrice>();//
-		if(conPriceList==null){
-			
-		}else{
-		
-		
-		for (Map map2 : conPriceList) {
-			ConPrice conPrice = new ConPrice();
-			conPrice.setOnePriceA((String) map2.get("onePriceA"));
-			conPrice.setCountA((String) map2.get("countA"));
-			conPrice.setDelPriceA((String) map2.get("delPriceA"));
-			conPrice.setCountGiveA((String) map2.get("countGiveA"));
-			conPrice.setSumCountA((String) map2.get("sumCountA"));
-			conPrice.setSumPriceA((String) map2.get("sumPriceA"));
-			conPrice.setPriceType((String) map2.get("priceType"));
-			conList.add(conPrice);
-		}
+		if (conPriceList == null) {// 删除时不需要conPriceList
+
+		} else {
+
+			for (Map map2 : conPriceList) {
+				ConPrice conPrice = new ConPrice();
+				conPrice.setOnePriceA((String) map2.get("onePriceA"));
+				conPrice.setCountA((String) map2.get("countA"));
+				conPrice.setDelPriceA((String) map2.get("delPriceA"));
+				conPrice.setCountGiveA((String) map2.get("countGiveA"));
+				conPrice.setSumCountA((String) map2.get("sumCountA"));
+				conPrice.setSumPriceA((String) map2.get("sumPriceA"));
+				conPrice.setPriceType((String) map2.get("priceType"));
+				conList.add(conPrice);
+			}
 		}
 		Contrtext contrtext = new Contrtext(uuid, cNum, stuUuid, cDate, org,
-				totalCount, totalPrice, conList);
+				totalCount, totalPrice, Integer.parseInt(sumLineUpA),
+				Integer.parseInt(sumLineDownB), conList);
 		return contrtext;
 	}// end method MapToEmp
 

@@ -24,24 +24,29 @@ public class Contrtext {
 
 	private List<ConPrice> conPriceList;
 
+
+
 	public Contrtext(String uuid, String cNum, String stuUuid, String cDate,
-			String org, String totalCount, String totalPrice,
-			List<ConPrice> conPriceList) {
+			String org, String totalCount, String totalPrice, int sumLineUpA,
+			int sumLineDownB, List<ConPrice> conPriceList) {
 		super();
 		this.uuid = uuid;
 		this.cNum = cNum;
 		this.stuUuid = stuUuid;
-
 		this.cDate = cDate;
 		this.org = org;
 		this.totalCount = totalCount;
 		this.totalPrice = totalPrice;
+		this.sumLineUpA = sumLineUpA;
+		this.sumLineDownB = sumLineDownB;
 		this.conPriceList = conPriceList;
 	}
 
 	public Contrtext() {
 		super();
 	}
+
+	
 
 	@Override
 	public String toString() {
@@ -50,8 +55,9 @@ public class Contrtext {
 				+ createPeople + ", modifyPeople=" + modifyPeople + ", cNum="
 				+ cNum + ", stuUuid=" + stuUuid + ", stuName=" + stuName
 				+ ", cDate=" + cDate + ", org=" + org + ", totalCount="
-				+ totalCount + ", totalPrice=" + totalPrice + ", conPriceList="
-				+ conPriceList + "]";
+				+ totalCount + ", totalPrice=" + totalPrice + ", sumLineUpA="
+				+ sumLineUpA + ", sumLineDownB=" + sumLineDownB
+				+ ", conPriceList=" + conPriceList + "]";
 	}
 
 	public String getUuid() {
