@@ -18,6 +18,9 @@ public class Contrtext {
 	private String org; // 校区组织
 	private String totalCount; // 总上课次数
 	private String totalPrice; // 总支付金额
+	
+	private int sumLineUpA; //线上课的次数，排课限制参照点
+	private int sumLineDownB; //线下课的次数，排课限制参照点
 
 	private List<ConPrice> conPriceList;
 
@@ -153,6 +156,22 @@ public class Contrtext {
 
 	public void setConPriceList(List<ConPrice> conPriceList) {
 		this.conPriceList = conPriceList;
+	}
+
+	public int getSumLineUpA() {
+		return sumLineUpA;
+	}
+
+	public void setSumLineUpA(int sumLineUpA) {
+		this.sumLineUpA = sumLineUpA;
+	}
+
+	public int getSumLineDownB() {
+		return sumLineDownB;
+	}
+
+	public void setSumLineDownB(int sumLineDownB) {
+		this.sumLineDownB = sumLineDownB;
 	}
 
 }// end class
