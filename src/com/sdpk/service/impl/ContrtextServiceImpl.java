@@ -30,23 +30,31 @@ public class ContrtextServiceImpl implements ContrtextService {
 
 	@Override
 	public String insert(Contrtext contrtext) {
-		// TODO Auto-generated method stub
-		contrtext.setUuid(null);
-		contrtext.setUuid(UUID.randomUUID().toString());
-		for (ConPrice c : contrtext.getConPriceList()) {// 先添加价格
-			c.setUuid(null);
-			c.setUuid(UUID.randomUUID().toString());
-			c.setContrUuid(contrtext.getUuid());
-			ConPriceDao.insert(c);
+		Contrtext con = contrtextDao.getByCnum(contrtext.getcNum());
+		if (con.getcNum() == null) {
+			contrtext.setUuid(null);
+			contrtext.setUuid(UUID.randomUUID().toString());
+			for (ConPrice c : contrtext.getConPriceList()) {// 先添加价格
+				c.setUuid(null);
+				c.setUuid(UUID.randomUUID().toString());
+				c.setContrUuid(contrtext.getUuid());
+				ConPriceDao.insert(c);
 
-		}
-		boolean flag = contrtextDao.insert(contrtext);// 添加合同
-		if (flag) {
-			return contrtext.getUuid();
+			}
+			boolean flag = contrtextDao.insert(contrtext);// 添加合同
+			if (flag) {
+				return contrtext.getUuid();
+
+			} else {
+				return "插入不成功,dao层执行有出错地方,请联系管理员";
+			}
 
 		} else {
-			return "插入不成功,dao层执行有出错地方,请联系管理员";
+
+			return "合同编号已存在！" + contrtext.getcNum();
 		}
+
+		// TODO Auto-generated method stub
 
 	}
 
@@ -96,9 +104,9 @@ public class ContrtextServiceImpl implements ContrtextService {
 		if (uuid != null && uuid != "") {
 			boolean daoFlag = contrtextDao.update(contrtext);// 先修改合同
 
-			ConPriceDao.deleteByContrUuid(contrtext.getUuid());// 先根据合同id删除价格表中这个合同的所有价格
+			ConPriceDao.deleteByContrUuid(contrtext.getUuid());// 根据合同id删除价格表中这个合同的所有价格
 
-			for (ConPrice c : contrtext.getConPriceList()) {// 先添加价格
+			for (ConPrice c : contrtext.getConPriceList()) {// 添加价格
 				c.setUuid(null);
 				c.setUuid(UUID.randomUUID().toString());
 				c.setContrUuid(contrtext.getUuid());

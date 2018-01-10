@@ -112,7 +112,7 @@ public class ContrtextController extends HttpServlet {
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage("信息值：插入的uuid是" + result);
+			backResult.setMessage("信息值：" + result);
 			backResult.setQingqiu("add新增");
 			backResult.setData(resultList);
 		}
