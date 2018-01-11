@@ -81,5 +81,4 @@ public class MyStuServiceImpl implements MyStuService {
 		}
 		return StuList;
 	}
-
 }

@@ -82,8 +82,17 @@
     <url-pattern>/aaQueKeMy</url-pattern>
   </servlet-mapping>
   
+   
+   <servlet>
+    <servlet-name>aaQueKeHeadController</servlet-name>
+    <servlet-class>com.sdpk.query.controller.aaQueKeHeadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaQueKeHeadController</servlet-name>
+    <url-pattern>/aaQueKeHead</url-pattern>
+  </servlet-mapping>
   
-  <servlet>
+	<servlet>
     <servlet-name>QueryStuController</servlet-name>
     <servlet-class>com.sdpk.query.controller.QueryStuController</servlet-class>
   </servlet>

@@ -121,5 +121,4 @@ public class ContractNewDaoImpl implements ContractNewDao{
 	     }
 		return contractList;
 	}
-	
 }

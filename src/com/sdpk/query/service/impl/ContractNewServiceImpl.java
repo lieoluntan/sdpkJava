@@ -31,14 +31,8 @@ public class ContractNewServiceImpl implements ContractNewService{
 		// TODO Auto-generated method stub
 		ArrayList<Contract> contractlist = contractnewdao.getList();
 		for (Contract contract : contractlist) {
-			
-			
 			Student stu = studentdao.getByUuid(contract.getStuUuid());
-		
 			contract.setStuName(stu.getName());
-				
-			
-			
 		}
 		return contractlist;
 	}
