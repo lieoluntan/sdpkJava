@@ -63,10 +63,10 @@ public class QueryStuController extends HttpServlet {
 	private void qqiuChoice(String qqiu, PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 		boolean test = false;
-
+		boolean stuUuid=paikeSearch.getStuUuid().equals("allGet");
 		test = qqiu.equals("list");
 
-		if (test) {
+		if (test&&!stuUuid) {
 			backResult.setMessage("信息值,成功");
 			backResult.setQingqiu("学生月课查询");
 
@@ -83,7 +83,24 @@ public class QueryStuController extends HttpServlet {
 			newResultList.add(resultList);
 			backResult.setData(newResultList);
 		}
+		if (test&&stuUuid) {
+			System.out.println("进入");
+			backResult.setMessage("信息值,成功");
+			backResult.setQingqiu("所有学生月课查询");
 
+			ArrayList newResultList = new ArrayList();
+
+			ArrayList<PaikeRecordView> resultList = queryStuService
+					.getAllPaike1(paikeSearch);// 老师在本月的所有排课
+			int SumEmpPaike = resultList.size();// 老师在本月的所有排课数量
+			int SumDayBefore = queryStuService.SumDayBefore1(paikeSearch);// 老师在本月到今天的所有排课总量
+			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
+			backResult.setSumEmpPaike(SumEmpPaike);
+			backResult.setSumDayBefore(SumDayBefore);
+			backResult.setSumDayAfter(SumDayAfter);
+			newResultList.add(resultList);
+			backResult.setData(newResultList);
+		}
 	}
 
 }
