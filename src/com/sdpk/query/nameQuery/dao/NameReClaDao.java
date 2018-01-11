@@ -1,4 +1,10 @@
 package com.sdpk.query.nameQuery.dao;
+
+import java.util.List;
+
+import com.sdpk.model.Cla;
+
+
 /**
  * 
  * @author 罗成峰
@@ -6,6 +12,5 @@ package com.sdpk.query.nameQuery.dao;
  * @version 1.0
  */
 public interface NameReClaDao {
-
-	
+	public List<Cla> getClaByName(Cla cla);
 }

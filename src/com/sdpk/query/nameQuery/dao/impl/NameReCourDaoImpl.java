@@ -7,33 +7,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdpk.model.Cla;
-import com.sdpk.query.nameQuery.dao.NameReClaDao;
+import com.sdpk.model.Course;
+import com.sdpk.model.Employee;
+import com.sdpk.query.nameQuery.dao.NameReCourDao;
 import com.sdpk.utility.DBUtility;
-/**
- * 
- * @author 罗成峰
- * @date 2018-1-5下午3:46:28
- * @version 1.0
- */
-public class NameReClaDaoImpl implements NameReClaDao{
+
+public class NameReCourDaoImpl implements NameReCourDao{
 	private Connection connection;
 	@Override
-	public List<Cla> getClaByName(Cla cla) {
+	public List<Course> getCourByName(Course cour) {
 		// TODO Auto-generated method stub
-		List<Cla> claList = new ArrayList<Cla>();
+		List<Course> courList = new ArrayList<Course>();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_class WHERE name ='"
-							+ cla.getName() + "'");
+					.executeQuery("select * from t_course WHERE name ='"
+							+ cour.getName() + "'");
 			while (rs.next()) {
-				Cla s = new Cla();
+				Course s = new Course();
 				s.setUuid(rs.getString("uuid"));
-				claList.add(s);
+				courList.add(s);
 
 			}
 		} catch (SQLException e) {
@@ -44,6 +40,7 @@ public class NameReClaDaoImpl implements NameReClaDao{
 			DBUtility.close(rs, statement, connection);
 		}// finally关闭jdbc与数据库连接
 
-		return claList;
+		return courList;
 	}
+
 }

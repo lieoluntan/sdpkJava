@@ -1,8 +1,8 @@
 package com.sdpk.query.nameQuery.service;
 
-import java.util.ArrayList;
+import com.sdpk.model.Cla;
 
-import com.sdpk.model.Student;
+
 
 /**
  * 
@@ -12,5 +12,7 @@ import com.sdpk.model.Student;
  */
 public interface NameReClaService {
 
-	ArrayList<Student>getListbyName(String name);
+	public String getClaByName(Cla cla);
+	
+	public String getClaByName1(Cla cla);
 }

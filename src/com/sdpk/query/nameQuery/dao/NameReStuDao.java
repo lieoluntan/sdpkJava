@@ -15,7 +15,4 @@ public interface NameReStuDao {
 
 
 	public List<Student> getStuByName(Student student);
-	
-
-	
 }

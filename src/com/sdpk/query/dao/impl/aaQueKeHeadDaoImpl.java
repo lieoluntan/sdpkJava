@@ -109,7 +109,8 @@ public class aaQueKeHeadDaoImpl implements aaQueKeHeadDao{
 				PaikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				PaikeRecord.setStatus(rs.getString("status"));
 				PaikeRecord.setWeekSome(rs.getString("weekSome"));
-
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
 				empPaikeList.add(PaikeRecord);
 			}
 		} catch (SQLException e) {
@@ -119,7 +120,6 @@ public class aaQueKeHeadDaoImpl implements aaQueKeHeadDao{
 		} finally {
 			DBUtility.close(rs, statement, connection);
 		}// finally关闭jdbc与数据库连接
-
 		return empPaikeList;
 	}
 }
