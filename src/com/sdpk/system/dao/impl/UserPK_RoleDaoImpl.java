@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.junit.Test;
+
 import com.sdpk.system.dao.UserPK_RoleDao;
 import com.sdpk.system.model.UserPK_Role;
 import com.sdpk.utility.DBUtility;
@@ -58,6 +60,7 @@ public class UserPK_RoleDaoImpl implements UserPK_RoleDao{
 }
 
 	@Override
+	
 	public boolean insert(UserPK_Role userPK_Role) {
 		// TODO Auto-generated method stub
 		PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
