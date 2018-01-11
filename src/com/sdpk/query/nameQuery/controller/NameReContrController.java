@@ -64,13 +64,13 @@ BackResult backResult = new BackResult("信息值,默认", "请求值,默认", n
 
 		test = qqiu.equals("query");
 
-		if (test) {
-			String flag = nameReContrService.getStuByName(contract);// 得到名字是否已存在
-			String flag1 = nameReContrService.getStuByName1(contract);// 得到yes/no
-			backResult.setMessage(flag);
-			backResult.setQingqiu(flag1);
-
-		}
+//		if (test) {
+//			String flag = nameReContrService.getStuByName(contract);// 得到名字是否已存在
+//			String flag1 = nameReContrService.getStuByName1(contract);// 得到yes/no
+//			backResult.setMessage(flag);
+//			backResult.setQingqiu(flag1);
+//
+//		}
 	}
 
 }

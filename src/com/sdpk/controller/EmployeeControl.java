@@ -115,11 +115,12 @@ public class EmployeeControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (add) {
+    	String flag=employeeService.getStuByName(employee);
       String result = employeeService.insert(employee);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("add新增");
+      backResult.setMessage(flag);
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if (delete) {
@@ -131,11 +132,12 @@ public class EmployeeControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (edit) {
+    	String flag=employeeService.getStuByName(employee);
       String result = employeeService.update(employee);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("edit修改");
+      backResult.setMessage(flag);
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if(getOne){

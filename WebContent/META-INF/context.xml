@@ -9,9 +9,22 @@
             password="aaabbb"
             driverClassName="com.mysql.jdbc.Driver"
             url="jdbc:mysql://101.132.130.149:3306/UserDB"
+            
+            maxActive="200"
+            initialSize="10" 
+            maxIdle="60"
+            minIdle="10"
+            maxWait="3000"
             validationQuery="SELECT 1"
-            initialSize="30" 
-            maxActive="90"
-            maxWait="20000"
-            maxIdle="30"/>
+            testWhileIdle = "true"
+            testOnBorrow = "false"
+            timeBetweenEvictionRunsMillis = "30000"
+            minEvictableIdleTimeMillis = "1800000"
+            numTestsPerEvictionRun="3"
+            removeAbandoned="true"
+            removeAbandonedTimeout="180"
+            logAbandoned="true"
+            
+            
+            />
 </Context>
