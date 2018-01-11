@@ -23,4 +23,7 @@ public interface ContrtextService {
 	  String update(Contrtext contrtext);
 	  
 	  Contrtext getByUuid(String uuid);
+	  public String getStuByName(Contrtext contract);
+		
+		public String getStuByName1(Contrtext contract);
 }

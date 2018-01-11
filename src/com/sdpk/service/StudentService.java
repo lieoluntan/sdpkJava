@@ -19,5 +19,9 @@ public interface StudentService {
   ArrayList<Student> getList();
 
   Student getByUuid(String uuid);
+  
+  public String getStuByName(Student student);
+	
+	public String getStuByName1(Student student);
 
 }

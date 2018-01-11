@@ -24,5 +24,8 @@ public interface EmployeeService {
   ArrayList<Employee> getList();
 
   ArrayList<Employee> getclaTeaList();
+  public String getStuByName(Employee employee);
+	
+	public String getStuByName1(Employee employee);
 
 }

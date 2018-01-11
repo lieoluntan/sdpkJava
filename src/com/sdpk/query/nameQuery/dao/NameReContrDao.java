@@ -3,7 +3,7 @@ package com.sdpk.query.nameQuery.dao;
 import java.util.List;
 
 import com.sdpk.model.Contract;
-import com.sdpk.model.Employee;
+import com.sdpk.model.Contrtext;
 
 /**
  * 
@@ -13,5 +13,5 @@ import com.sdpk.model.Employee;
  *
  */
 public interface NameReContrDao {
-	public List<Contract> getStuByName(Contract contract);
+	public List<Contrtext> getStuByName(Contrtext contract);
 }

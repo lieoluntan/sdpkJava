@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sdpk.model.Contract;
-import com.sdpk.model.Employee;
+import com.sdpk.model.Contrtext;
 import com.sdpk.query.nameQuery.dao.NameReContrDao;
 import com.sdpk.utility.DBUtility;
 /**
@@ -21,19 +21,19 @@ import com.sdpk.utility.DBUtility;
 public class NameReContrDaoImpl implements NameReContrDao {
 	private Connection connection;
 	@Override
-	public List<Contract> getStuByName(Contract contract) {
+	public List<Contrtext> getStuByName(Contrtext contract) {
 		// TODO Auto-generated method stub
-		List<Contract> conList = new ArrayList<Contract>();
+		List<Contrtext> conList = new ArrayList<Contrtext>();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_contract WHERE cNum ='"
+					.executeQuery("select * from t_contrtext WHERE cNum ='"
 							+ contract.getcNum() + "'");
 			while (rs.next()) {
-				Contract s = new Contract();
+				Contrtext s = new Contrtext();
 				s.setUuid(rs.getString("uuid"));
 				conList.add(s);
 
