@@ -105,6 +105,7 @@ public class StudentControl extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (add) {
+			
 			String flag = studentService.getStuByName(student);
 			String result = studentService.insert(student);
 
