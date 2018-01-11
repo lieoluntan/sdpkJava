@@ -124,7 +124,7 @@ public class ContrtextController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (edit) {
-			String flag = contrtextService.getStuByName(contrtext);
+			
 			String result = contrtextService.update(contrtext);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);

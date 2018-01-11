@@ -16,47 +16,59 @@ import com.sdpk.query.nameQuery.service.NameReContrService;
  */
 public class NameReContrServiceImpl implements NameReContrService {
 private NameReContrDao nameReContrDao=new NameReContrDaoImpl();
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
+//@Override
+//public String getStuByName(Contrtext contract) {
+//	// TODO Auto-generated method stub
+//	String flag = "";
+//
+//	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
+//	for (Contrtext student2 : conList) {
+//
+//		if (student2.getUuid() != null) {
+//			flag = "（有重名）" + contract.getcNum();
+//
+//			return flag;
+//		}
+//
+//	}
+//	flag = "（无重名）" + contract.getcNum();
+//
+//	return flag;
+//}
+//
+//@Override
+//public String getStuByName1(Contrtext contract) {
+//	// TODO Auto-generated method stub
+//	String flag = "";
+//
+//	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
+//	for (Contrtext student2 : conList) {
+//
+//		if (student2.getUuid() != null) {
+//			flag = "yes";
+//
+//			return flag;
+//		}
+//
+//	}
+//	flag = "no";
+//
+//	return flag;
+//}
+//
+
 @Override
 public String getStuByName(Contrtext contract) {
 	// TODO Auto-generated method stub
-	String flag = "";
-
-	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
-	for (Contrtext student2 : conList) {
-
-		if (student2.getUuid() != null) {
-			flag = "（有重名）" + contract.getcNum();
-
-			return flag;
-		}
-
-	}
-	flag = "（无重名）" + contract.getcNum();
-
-	return flag;
+	return null;
 }
 
 @Override
 public String getStuByName1(Contrtext contract) {
 	// TODO Auto-generated method stub
-	String flag = "";
-
-	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
-	for (Contrtext student2 : conList) {
-
-		if (student2.getUuid() != null) {
-			flag = "yes";
-
-			return flag;
-		}
-
-	}
-	flag = "no";
-
-	return flag;
+	return null;
 }
-
 
 	
 }
