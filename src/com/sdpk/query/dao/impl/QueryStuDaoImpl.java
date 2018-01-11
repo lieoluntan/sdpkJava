@@ -78,7 +78,8 @@ public class QueryStuDaoImpl implements QueryStuDao {
 				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				paikeRecord.setStatus(rs.getString("status"));
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
-
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
 				stuPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
@@ -139,7 +140,8 @@ public class QueryStuDaoImpl implements QueryStuDao {
 				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				paikeRecord.setStatus(rs.getString("status"));
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
-
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {

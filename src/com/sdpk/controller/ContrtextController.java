@@ -60,8 +60,7 @@ public class ContrtextController extends HttpServlet {
 
 			// 3 执行qqiu里面的增或删或改或查 的操作
 			qqiuChoice(qqiu, contrtext);
-		} 
-		else if (qqiu.equals("list")) {
+		} else if (qqiu.equals("list")) {
 			// TODO 待完成
 			ArrayList<Contrtext> resultList = contrtextService.getList();
 			backResult.setMessage("信息值：成功");
@@ -107,12 +106,13 @@ public class ContrtextController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (add) {
+			String flag = contrtextService.getStuByName(contrtext);
 			String result = contrtextService.insert(contrtext);
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage("信息值：" + result);
-			backResult.setQingqiu("add新增");
+			backResult.setMessage(flag);
+			backResult.setQingqiu(result == "yes" ? "yes" : "no");
 			backResult.setData(resultList);
 		}
 		if (delete) {
@@ -124,11 +124,12 @@ public class ContrtextController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (edit) {
+			String flag = contrtextService.getStuByName(contrtext);
 			String result = contrtextService.update(contrtext);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage("信息值：成功");
-			backResult.setQingqiu("edit修改" + result);
+			backResult.setMessage(flag);
+			backResult.setQingqiu(result == "yes" ? "yes" : "no");
 			backResult.setData(resultList);
 		}
 		if (getOne) {

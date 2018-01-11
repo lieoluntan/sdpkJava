@@ -1,7 +1,7 @@
 package com.sdpk.query.nameQuery.service;
 
 import com.sdpk.model.Contract;
-import com.sdpk.model.Employee;
+import com.sdpk.model.Contrtext;
 
 /**
  * 
@@ -11,7 +11,9 @@ import com.sdpk.model.Employee;
  *
  */
 public interface NameReContrService {
-public String getStuByName(Contract contract);
+public String getStuByName(Contrtext contract);
 	
-	public String getStuByName1(Contract contract);
+	public String getStuByName1(Contrtext contract);
+
+	
 }

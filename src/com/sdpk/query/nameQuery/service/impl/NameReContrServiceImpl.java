@@ -3,7 +3,7 @@ package com.sdpk.query.nameQuery.service.impl;
 import java.util.List;
 
 import com.sdpk.model.Contract;
-import com.sdpk.model.Employee;
+import com.sdpk.model.Contrtext;
 import com.sdpk.query.nameQuery.dao.NameReContrDao;
 import com.sdpk.query.nameQuery.dao.impl.NameReContrDaoImpl;
 import com.sdpk.query.nameQuery.service.NameReContrService;
@@ -18,12 +18,12 @@ public class NameReContrServiceImpl implements NameReContrService {
 private NameReContrDao nameReContrDao=new NameReContrDaoImpl();
 @SuppressWarnings("unused")
 @Override
-public String getStuByName(Contract contract) {
+public String getStuByName(Contrtext contract) {
 	// TODO Auto-generated method stub
 	String flag = "";
 
-	List<Contract> conList = nameReContrDao.getStuByName(contract);
-	for (Contract student2 : conList) {
+	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
+	for (Contrtext student2 : conList) {
 
 		if (student2.getUuid() != null) {
 			flag = "（有重名）" + contract.getcNum();
@@ -38,12 +38,12 @@ public String getStuByName(Contract contract) {
 }
 
 @Override
-public String getStuByName1(Contract contract) {
+public String getStuByName1(Contrtext contract) {
 	// TODO Auto-generated method stub
 	String flag = "";
 
-	List<Contract> conList = nameReContrDao.getStuByName(contract);
-	for (Contract student2 : conList) {
+	List<Contrtext> conList = nameReContrDao.getStuByName(contract);
+	for (Contrtext student2 : conList) {
 
 		if (student2.getUuid() != null) {
 			flag = "yes";
@@ -56,6 +56,7 @@ public String getStuByName1(Contract contract) {
 
 	return flag;
 }
-	
+
+
 	
 }
