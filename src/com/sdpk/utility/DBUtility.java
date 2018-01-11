@@ -123,6 +123,7 @@ public class DBUtility {
               String password = prop.getProperty("password");
               Class.forName(driver);
               connection = DriverManager.getConnection(url, user, password);
+              System.out.println("打开数据库连接!");
           } catch (ClassNotFoundException e) {
               e.printStackTrace();
           } catch (SQLException e) {
