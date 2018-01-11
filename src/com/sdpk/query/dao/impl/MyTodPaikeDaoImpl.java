@@ -50,7 +50,8 @@ public class MyTodPaikeDaoImpl implements MyTodPaikeDao {
 				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				paikeRecord.setStatus(rs.getString("status"));
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
-
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {

@@ -344,6 +344,14 @@ public class PaikeRecordControl extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (edit) {
+			String pktype = paikeRecord.getPkType();
+			if (pktype.equals("LineUpA") || pktype.equals("LineDownB")) {
+				if (paikeRecord.equals("LineUpA")) {
+					paikeRecord.setPkTypeName("线上");
+				}
+				if (paikeRecord.equals("LineDownB")) {
+					paikeRecord.setPkTypeName("线下");
+				}
 			String result = paikeRecordService.update(paikeRecord);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
@@ -351,6 +359,11 @@ public class PaikeRecordControl extends HttpServlet {
 			backResult.setMessage("信息：" + m_msg.getEditMsg());
 			backResult.setQingqiu("edit修改");
 			backResult.setData(resultList);
+			}else{
+				backResult.setMessage("信息值：前台传入课表上课类型（线上，线下）错误");
+				backResult.setQingqiu("list修改列表");
+				backResult.setData(new ArrayList<PaikeRecord>());
+			}
 		}
 		if (getOne) {
 			PaikeRecord result = paikeRecordService.getByUuid(paikeRecord

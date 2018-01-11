@@ -221,17 +221,16 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		int count1200yu = 0;
 		int count1500yu = 0;
 		for (PaikeRecord one : PR_List) {
-			String courUuid = one.getCourseUuid();
-			Course cour = courseDao.getByUuid(courUuid);
-			String priceType = cour.getCategory();
-			if (priceType.equals("1200A")) {
+			String pkType = one.getPkType();
+			if (pkType.equals("LineUpA")) {
 				count1200yu++;
-			} else if (priceType.equals("1500B")) {
+				System.out.println(count1200yu);
+			} else if (pkType.equals("LineDownB")) {
 				count1500yu++;
 			} else {
-				System.out.println("课程价格类别有错误,不是1200A，1500B");
-				String msg = "课程价格类别有错误,不是1200A，1500B";
-				m_msg.setEditMsg(msg);
+				System.out.println("排课表，上课类型类别有错误,不是LineUpA，LineDownB");
+				String msg = "排课表，上课类型类别有错误,不是线上，线下类型";
+				m_msg.setAddMsg(msg);
 				return msg;
 			}
 		}// end外圈 for
@@ -247,24 +246,16 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		int count1200db = 0;
 		int count1500db = 0;
 		for (PaikeRecord one : db_List) {
-			// 统计数据库中的数据，过滤掉编辑的那一个记录
-			String oldUuid = one.getUuid();
-			String newUuid = paikeRecord.getUuid();
-			boolean flag = oldUuid.equals(newUuid);
-			if (!flag) {
-				String courUuid = one.getCourseUuid();
-				Course cour = courseDao.getByUuid(courUuid);
-				String priceType = cour.getCategory();
-				if (priceType.equals("1200A")) {
-					count1200db++;
-				} else if (priceType.equals("1500B")) {
-					count1500db++;
-				} else {
-					System.out.println("已排课数据里课程价格类别有错误,不是1200A，1500B");
-				}
-			}// 过滤掉前台编辑的那一个记录
-
-		}// end for
+			String pkType = one.getPkType();
+			if (pkType.equals("LineUpA")) {
+				count1200db++;
+				System.out.println(count1200db);
+			} else if (pkType.equals("LineDownB")) {
+				count1500db++;
+			} else {
+				System.out.println("排课表，上课类型类别有错误,不是LineUpA，LineDownB");
+			}
+		}
 			// 分步3，计算计划要排的课次数总和
 		int has1200all = count1200yu + count1200db;
 		int has1500all = count1500yu + count1500db;
@@ -281,18 +272,18 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			sumcountAZong = sumcountAZong + sumcountA;
 			sumcountBZong = sumcountBZong + sumcountB;
 		}
-		System.out.println("1200合同排" + sumcountAZong + "1500合同排"
+		System.out.println("线上SumLineUpA合同排" + sumcountAZong + "线下SumLineDownB合同排"
 				+ sumcountBZong);
 		// 分步5，合同总数和要排的总和比较，超过次数不执行后面语句return，不超过就继续执行
 		if (has1200all > sumcountAZong) {
-			String msg = "没有保存，1200课程超次数,预览排:" + count1200yu + "已排:"
+			String msg = "没有保存，线上课程超次数,预览排:" + count1200yu + "已排:"
 					+ count1200db + "~总排:" + has1200all + "~总可排:"
 					+ sumcountAZong;
 			m_msg.setEditMsg(msg);
 			return msg;
 		}
 		if (has1500all > sumcountBZong) {
-			String msg = "没有保存，1500课程超次数,预览排:" + count1500yu + "已排:"
+			String msg = "没有保存，线下课程超次数,预览排:" + count1500yu + "已排:"
 					+ count1500db + "~总排:" + has1500all + "~总可排:"
 					+ sumcountBZong;
 			m_msg.setEditMsg(msg);
