@@ -8,30 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sdpk.model.Cla;
-import com.sdpk.query.nameQuery.dao.NameReClaDao;
+import com.sdpk.model.ClassRoom;
+import com.sdpk.query.nameQuery.dao.NameReCRoomDao;
 import com.sdpk.utility.DBUtility;
 /**
  * 
  * @author 罗成峰
- * @date 2018-1-5下午3:46:28
+ * @date 2018-1-11下午3:29:56
  * @version 1.0
  */
-public class NameReClaDaoImpl implements NameReClaDao{
+public class NameReCRoomDaoImpl implements NameReCRoomDao{
 	private Connection connection;
 	@Override
-	public List<Cla> getClaByName(Cla cla) {
+	public List<ClassRoom> getCRByName(ClassRoom cR) {
 		// TODO Auto-generated method stub
-		List<Cla> claList = new ArrayList<Cla>();
+		List<ClassRoom> claList = new ArrayList<ClassRoom>();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_class WHERE name ='"
-							+ cla.getName() + "'");
+					.executeQuery("select * from t_classroom WHERE name ='"
+							+ cR.getName() + "'");
 			while (rs.next()) {
-				Cla s = new Cla();
+				ClassRoom s = new ClassRoom();
 				s.setUuid(rs.getString("uuid"));
 				claList.add(s);
 
@@ -47,3 +48,5 @@ public class NameReClaDaoImpl implements NameReClaDao{
 		return claList;
 	}
 }
+
+

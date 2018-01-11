@@ -45,7 +45,31 @@
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
   
-   <servlet>
+    <servlet>
+    <servlet-name>NameReCRoomController</servlet-name>
+    <servlet-class>com.sdpk.query.nameQuery.controller.NameReCRoomController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NameReCRoomController</servlet-name>
+    <url-pattern>/aaNameReCRoom</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>NameReCourController</servlet-name>
+    <servlet-class>com.sdpk.query.nameQuery.controller.NameReCourController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NameReCourController</servlet-name>
+    <url-pattern>/aaNameReCour</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>NameReClaController</servlet-name>
+    <servlet-class>com.sdpk.query.nameQuery.controller.NameReClaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NameReClaController</servlet-name>
+    <url-pattern>/aaNameReCla</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>NameReContrController</servlet-name>
     <servlet-class>com.sdpk.query.nameQuery.controller.NameReContrController</servlet-class>
   </servlet>

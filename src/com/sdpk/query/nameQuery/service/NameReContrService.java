@@ -11,7 +11,7 @@ import com.sdpk.model.Employee;
  *
  */
 public interface NameReContrService {
-public String getStuByName(Contract contract);
+	public String getStuByName(Contract contract);
 	
 	public String getStuByName1(Contract contract);
 }
