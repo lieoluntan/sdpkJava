@@ -115,11 +115,10 @@ public class EmployeeControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (add) {
-    	String flag=employeeService.getStuByName(employee);
       String result = employeeService.insert(employee);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage(flag);
+      backResult.setMessage(result=="yes"?"(已存在重复名字)"+employee.getName():"插入成功!");
       backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
@@ -132,11 +131,11 @@ public class EmployeeControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (edit) {
-    	String flag=employeeService.getStuByName(employee);
+    	
       String result = employeeService.update(employee);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage(flag);
+      backResult.setMessage(result=="yes"?"(已存在重复名字)"+employee.getName():"修改成功!");
       backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }

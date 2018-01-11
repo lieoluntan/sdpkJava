@@ -106,13 +106,13 @@ public class ContrtextController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (add) {
-			String flag = contrtextService.getStuByName(contrtext);
+			
 			String result = contrtextService.insert(contrtext);
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage(flag);
-			backResult.setQingqiu(result == "yes" ? "yes" : "no");
+			backResult.setMessage(result=="yes"?"(已存在重复名字)"+contrtext.getcNum():"新增成功!");
+		      backResult.setQingqiu(result=="yes"?"yes":"no");
 			backResult.setData(resultList);
 		}
 		if (delete) {
@@ -128,8 +128,8 @@ public class ContrtextController extends HttpServlet {
 			String result = contrtextService.update(contrtext);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage(flag);
-			backResult.setQingqiu(result == "yes" ? "yes" : "no");
+			backResult.setMessage(result=="yes"?"(已存在重复名字)"+contrtext.getcNum():"修改成功!");
+		      backResult.setQingqiu(result=="yes"?"yes":"no");
 			backResult.setData(resultList);
 		}
 		if (getOne) {
