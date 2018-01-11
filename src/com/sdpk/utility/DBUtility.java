@@ -10,9 +10,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 
 public class DBUtility {
 	private static Connection connection = null;
+	
+	private static DataSource ds = null;
+	  
+	  static{
+	      try{
+
+	          Context initCtx = new InitialContext();
+	          Context envCtx = (Context)initCtx.lookup("java:comp/env");
+	          ds = (DataSource) envCtx.lookup("aaaPoolName");    
+	//根据<Resource>元素的name属性值到JNDI容器中检索连接池对象        
+	      }catch (Exception e) {
+	          System.out.println("连接池：第一步,找context异常");
+	          throw new ExceptionInInitializerError(e);
+	      }
+	  }
 
     public static Connection getConnection() {
         if (connection != null)
@@ -52,88 +71,41 @@ public class DBUtility {
      * @param conn 
      */  
     public static void close(ResultSet rs, Statement st, Connection conn) {
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("~~sdpk关闭ResultSet错误");
-			} finally {
-				if (st != null) {
-					try {
-						st.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-						System.out.println("~~sdpk关闭Statement st错误");
-					} finally {
-						if (conn != null) {
-							try {
-								conn.close();
-								System.out.println("conn关闭了");
-							} catch (SQLException e) {
-								e.printStackTrace();
-								System.out.println("~~sdpk关闭Connection conn错误");
-							}
-						}
-					}
-				}
-			}
-		}else if(rs == null){
-			if (st != null) {
-				try {
-					st.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-					System.out.println("~~sdpk关闭Statement st错误");
-				} finally {
-					if (conn != null) {
-						try {
-							conn.close();
-							System.out.println("conn关闭了");
-						} catch (SQLException e) {
-							e.printStackTrace();
-							System.out.println("~~sdpk关闭Connection conn错误");
-						}
-					}
-				}
-			}else if(st == null ){
-				
-				if (conn != null) {
-					try {
-						conn.close();
-						System.out.println("conn关闭了");
-					} catch (SQLException e) {
-						e.printStackTrace();
-						System.out.println("~~sdpk关闭Connection conn错误");
-					}
-				}
-				
-			}//end st 为空的情况
-		}//end rs 为空的情况
-	}// end method close
+      if(rs!=null) {
+        try{
+            rs.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//end if(rs!=null)
+    if(st!=null) {
+        try{
+            st.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//end if(st!=null)
+    if(conn!=null) {
+        try{
+            conn.close();
+            System.out.println("连接池关闭");
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//end if(conn!=null)
+}// end method close
     
     public static Connection open() {
-          try {
-              Properties prop = new Properties();
-              InputStream inputStream = DBUtility.class.getClassLoader().getResourceAsStream("/config.properties");
-              prop.load(inputStream);
-              String driver = prop.getProperty("driver");
-              String url = prop.getProperty("url");
-              String user = prop.getProperty("user");
-              String password = prop.getProperty("password");
-              Class.forName(driver);
-              connection = DriverManager.getConnection(url, user, password);
-              System.out.println("打开数据库连接!");
-          } catch (ClassNotFoundException e) {
-              e.printStackTrace();
-          } catch (SQLException e) {
-              e.printStackTrace();
-          } catch (FileNotFoundException e) {
-              e.printStackTrace();
-          } catch (IOException e) {
-              e.printStackTrace();
-          }
-          return connection;
+      System.out.println("连接池：第二步,利用数据源获取连接");
+      System.out.println("连接池：打开");
+      Connection aconn = null;
+        try {
+          return ds.getConnection();
+        } catch (SQLException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }  //利用数据源获取连接
+      return aconn;
   }//end method
 
 }//end class
