@@ -169,6 +169,9 @@ CREATE TABLE t_paike_all (
   status varchar(30) DEFAULT NULL,
   weekSome varchar(30) DEFAULT NULL,
   
+  pkType varchar(30) DEFAULT NULL,
+  pkTypeName varchar(30) DEFAULT NULL,
+  
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
   createPeople varchar(50) DEFAULT NULL,
