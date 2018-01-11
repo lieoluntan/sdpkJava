@@ -117,6 +117,9 @@ CREATE TABLE t_contrtext (
   totalCount varchar(30) DEFAULT NULL,
   totalPrice varchar(30) DEFAULT NULL,
   
+  sumLineUpA int NOT NULL,
+  sumLineDownB int NOT NULL,
+  
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
   createPeople varchar(50) DEFAULT NULL,

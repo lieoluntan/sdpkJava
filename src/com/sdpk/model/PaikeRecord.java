@@ -38,6 +38,9 @@ public class PaikeRecord {
   private String empName;
   private String croomName;
   private String categoryName;//课程价格类别名
+  
+  private String pkType;// 上课类型：LineUpA    LineDownB  
+  private String pkTypeName;// 上课类型中文名：  线上                                线下
 
 
 
@@ -250,6 +253,22 @@ public class PaikeRecord {
   public void setCourConflict(boolean courConflict) {
     this.courConflict = courConflict;
   }
+
+public String getPkType() {
+	return pkType;
+}
+
+public void setPkType(String pkType) {
+	this.pkType = pkType;
+}
+
+public String getPkTypeName() {
+	return pkTypeName;
+}
+
+public void setPkTypeName(String pkTypeName) {
+	this.pkTypeName = pkTypeName;
+}
   
   //新增end
 

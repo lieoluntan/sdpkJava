@@ -29,6 +29,9 @@ public class PaikeRecordPre {
   private String status;
   private WeekDay weekDay;
   private String weekSome;
+  
+  private String pkType;// 上课类型：LineUpA    LineDownB  
+  private String pkTypeName;// 上课类型中文名：  线上                                线下
 
   /**
    * 中文名字：员工uuid冲突 作用：表示员工在排课时间内已被占用 false表示没冲突，正常 true表示有冲突,不正常
@@ -60,6 +63,7 @@ public class PaikeRecordPre {
     this.weekDay = weekDay;
     this.empConflict = empConflict;
     this.croomConflict = croomConflict;
+  
   }
 
   public String getId() {
@@ -173,5 +177,21 @@ public class PaikeRecordPre {
   public void setWeekSome(String weekSome) {
     this.weekSome = weekSome;
   }
+
+public String getPkType() {
+	return pkType;
+}
+
+public void setPkType(String pkType) {
+	this.pkType = pkType;
+}
+
+public String getPkTypeName() {
+	return pkTypeName;
+}
+
+public void setPkTypeName(String pkTypeName) {
+	this.pkTypeName = pkTypeName;
+}
 
 }// end class PaikeRecordPre
