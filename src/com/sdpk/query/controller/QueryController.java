@@ -44,7 +44,7 @@ public class QueryController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String qqiu = request.getParameter("qqiu");
 		PaikeSearch paikeSearch = new PaikeSearch();
-		if (qqiu.equals("list")) {
+		if (qqiu.equals("list") || qqiu.equals("")) {
 			String uuid = request.getParameter("empUuid");
 			String year = request.getParameter("year");
 			String month = request.getParameter("month");
@@ -56,7 +56,7 @@ public class QueryController extends HttpServlet {
 			paikeSearch.setToday(today);
 
 			qqiuChoice(qqiu, paikeSearch);
-			
+
 		}
 		Gson gson = new Gson();
 		// 4 执行完qqiuChoice里面操作后的全局返回值backResult对象,转成json格式
@@ -73,8 +73,8 @@ public class QueryController extends HttpServlet {
 		boolean test = false;
 
 		test = qqiu.equals("list");
-
-		if (test) {
+		boolean empUuid = paikeSearch.getUuid().equals("allGet");
+		if (test && !empUuid) {
 			backResult.setMessage("信息值,成功");
 			backResult.setQingqiu("list老师月课浏览");
 
@@ -85,6 +85,24 @@ public class QueryController extends HttpServlet {
 					.getAllPaike(paikeSearch);// 老师在本月的所有排课
 			int SumEmpPaike = resultList.size();// 老师在本月的所有排课数量
 			int SumDayBefore = queryService.SumDayBefore(paikeSearch);// 老师在本月到今天的所有排课总量
+			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
+			backResult.setSumEmpPaike(SumEmpPaike);
+			backResult.setSumDayBefore(SumDayBefore);
+			backResult.setSumDayAfter(SumDayAfter);
+			newResultList.add(resultList);
+			backResult.setData(newResultList);
+		}
+		if (test && empUuid) {
+			backResult.setMessage("信息值,成功");
+			backResult.setQingqiu("list所有老师月课浏览");
+
+			ArrayList newResultList = new ArrayList();
+			ArrayList SumPaikeList = new ArrayList();
+
+			ArrayList<PaikeRecordView> resultList = queryService
+					.getAllPaike1(paikeSearch);// 老师在本月的所有排课
+			int SumEmpPaike = resultList.size();// 老师在本月的所有排课数量
+			int SumDayBefore = queryService.SumDayBefore1(paikeSearch);// 老师在本月到今天的所有排课总量
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			backResult.setSumEmpPaike(SumEmpPaike);
 			backResult.setSumDayBefore(SumDayBefore);
