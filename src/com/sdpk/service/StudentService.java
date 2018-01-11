@@ -22,6 +22,6 @@ public interface StudentService {
   
   public String getStuByName(Student student);
 	
-	public String getStuByName1(Student student);
+  public String getStuByName1(Student student);
 
 }

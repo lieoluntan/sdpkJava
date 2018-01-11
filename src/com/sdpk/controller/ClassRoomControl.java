@@ -113,8 +113,8 @@ public class ClassRoomControl extends HttpServlet {
       String result = classRoomService.insert(classRoom);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("add新增");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" +classRoom.getName() : "插入成功" );
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if (delete) {
@@ -129,8 +129,8 @@ public class ClassRoomControl extends HttpServlet {
       String result = classRoomService.update(classRoom);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("edit修改");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" +classRoom.getName() : "修改成功");
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if(getOne){

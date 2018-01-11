@@ -1,12 +1,15 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.ClassRoomDao;
 import com.sdpk.dao.impl.ClassRoomDaoImpl;
 import com.sdpk.model.Cla;
 import com.sdpk.model.ClassRoom;
+import com.sdpk.query.nameQuery.dao.NameReCRoomDao;
+import com.sdpk.query.nameQuery.dao.impl.NameReCRoomDaoImpl;
 import com.sdpk.service.ClassRoomService;
 
 /**
@@ -17,13 +20,17 @@ import com.sdpk.service.ClassRoomService;
  */
 
 public class ClassRoomServiceImpl implements ClassRoomService{
-  
+	private NameReCRoomDao nameReCRoomDao=new NameReCRoomDaoImpl();
   private ClassRoomDao classRoomDao= new ClassRoomDaoImpl();
 
   @Override
   public String insert(ClassRoom classRoom) {
     // TODO Auto-generated method stub
-    classRoom.setUuid(null);
+	  String flag = this.getClaSSRoomByName1(classRoom);
+	  if(flag.equals("yes")){
+		  return flag;
+	  }else{
+	  classRoom.setUuid(null);
 
     classRoom.setUuid(UUID.randomUUID().toString());
     System.out.println("^^在ClassRoomServiceImpl收到数据 ："+classRoom.toString()+"收到结束!");
@@ -33,8 +40,8 @@ public class ClassRoomServiceImpl implements ClassRoomService{
     return classRoom.getUuid();
     }else{
       return "插入不成功,dao层执行有出错地方,请联系管理员";
-    }
-
+    	   }	
+	  }
   }//end method insert
 
   @Override
@@ -61,7 +68,11 @@ public class ClassRoomServiceImpl implements ClassRoomService{
   @Override
   public String update(ClassRoom classRoom) {
     // TODO Auto-generated method stub
-    String uuid = classRoom.getUuid();
+	  String flag = this.getClaSSRoomByName1(classRoom);
+	  if(flag.equals("yes")){
+		  return flag;
+	  }else{
+	String uuid = classRoom.getUuid();
     if(uuid!=null&&uuid!="")
     {
       boolean daoFlag = classRoomDao.update(classRoom);
@@ -75,9 +86,9 @@ public class ClassRoomServiceImpl implements ClassRoomService{
       String msg="ClassRoomServiceImpl update方法中的uuid为空，或格式不正确，请重新选择";
       System.out.println(msg);
       return msg;
-    }
-  }//end method update
-
+    		}
+      }//end method update
+}
   @Override
   public ClassRoom getByUuid(String uuid) {
     // TODO Auto-generated method stub
@@ -99,5 +110,42 @@ public class ClassRoomServiceImpl implements ClassRoomService{
     
     return classRoomlist;
   }//end method getList()
+
+  @Override
+	public String getClassRoomByName(ClassRoom cR) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<ClassRoom> crList = nameReCRoomDao.getCRByName(cR);
+		for (ClassRoom cR2 : crList) {
+
+			if (cR2.getUuid() != null) {
+				flag = "（有重名）" + cR.getName();
+
+				return flag;
+			}
+		}
+		flag = "（无重名）" + cR.getName();
+
+		return flag;
+	}
+
+	@Override
+	public String getClaSSRoomByName1(ClassRoom CR) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<ClassRoom> crList = nameReCRoomDao.getCRByName(CR);
+		for (ClassRoom cr2 : crList) {
+
+			if (cr2.getUuid() != null) {
+				flag = "yes";
+
+				return flag;
+			}
+		}
+		flag = "no";
+		return flag;
+	}
 
 }//end class 

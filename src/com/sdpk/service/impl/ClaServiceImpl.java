@@ -1,6 +1,7 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.And_ClassCourseDao;
@@ -18,6 +19,8 @@ import com.sdpk.dao.impl.EmployeeDaoImpl;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.Cla;
 import com.sdpk.model.Employee;
+import com.sdpk.query.nameQuery.dao.NameReClaDao;
+import com.sdpk.query.nameQuery.dao.impl.NameReClaDaoImpl;
 import com.sdpk.service.ClaService;
 import com.sdpk.utility.M_msg;
 
@@ -35,6 +38,7 @@ public class ClaServiceImpl implements ClaService{
   private And_ClassStuDao and_ClassStuDao = new And_ClassStuDaoImpl();
   private And_ClassCourseDao and_ClassCourseDao = new And_ClassCourseDaoImpl();
   private Class_ContractDao class_ContractDao = new Class_ContractDaoImpl();
+  private NameReClaDao nameReClaDao=new NameReClaDaoImpl();
   public M_msg m_msg = new M_msg();
   private EmployeeDao employeeDao = new EmployeeDaoImpl();
   
@@ -47,7 +51,13 @@ public class ClaServiceImpl implements ClaService{
   @Override
   public String insert(Cla cla) {
     // TODO Auto-generated method stub
-    cla.setUuid(null);
+	  String flag = this.getClaByName1(cla);
+	  if(flag.equals("yes")){
+		  return flag;
+	  }else{
+		  
+	  
+	  cla.setUuid(null);
 
     cla.setUuid(UUID.randomUUID().toString());
     System.out.println("^^在StudentServiceImpl收到数据 ："+cla.toString()+"收到结束!");
@@ -57,8 +67,8 @@ public class ClaServiceImpl implements ClaService{
     return cla.getUuid();
     }else{
       return "插入不成功,dao层执行有出错地方,请联系管理员";
-    }
-
+    	}
+	  }
   }//end method insert
 
   @Override
@@ -88,7 +98,13 @@ public class ClaServiceImpl implements ClaService{
   @Override
   public String update(Cla cla) {
     // TODO Auto-generated method stub
-    String uuid = cla.getUuid();
+	  String flag = this.getClaByName1(cla);
+	  if(flag.equals("yes")){
+		  return flag;
+	  }else{
+	  
+	
+	 String uuid = cla.getUuid();
     if(uuid!=null&&uuid!="")
     {
       
@@ -104,8 +120,9 @@ public class ClaServiceImpl implements ClaService{
       String msg="ClaServiceImpl update方法中的uuid为空，或格式不正确，请重新选择";
       System.out.println(msg);
       return msg;
-    }
-  }//end method update
+         }
+	  }
+}//end method update
 
   @Override
   public Cla getByUuid(String uuid) {
@@ -140,4 +157,40 @@ public class ClaServiceImpl implements ClaService{
     return clalist;
   }//end method getList()
 
+  @Override
+	public String getClaByName(Cla cla) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<Cla> claList = nameReClaDao.getClaByName(cla);
+		for (Cla cla2 : claList) {
+
+			if (cla2.getUuid() != null) {
+				flag = "（有重名）" + cla.getName();
+
+				return flag;
+			}
+		}
+		flag = "（无重名）" + cla.getName();
+
+		return flag;
+	}
+
+	@Override
+	public String getClaByName1(Cla cla) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<Cla> claList = nameReClaDao.getClaByName(cla);
+		for (Cla cla2 : claList) {
+
+			if (cla2.getUuid() != null) {
+				flag = "yes";
+
+				return flag;
+			}
+		}
+		flag = "no";
+		return flag;
+	}
 }//end class ClaServiceImpl

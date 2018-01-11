@@ -26,5 +26,9 @@ public interface ClaService {
   Cla getByUuid(String uuid);
 
   ArrayList<Cla> getList();
+  
+public String getClaByName(Cla cla);
+	
+public String getClaByName1(Cla cla);
 
 }//end class interface ClaService

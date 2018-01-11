@@ -112,11 +112,14 @@ public class ClaControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (add) {
+     
       String result = claService.insert(cla);
+      
+      System.out.println("插入的uuid是: " + result);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("add新增");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + cla.getName() : "插入成功");
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if (delete) {
@@ -128,12 +131,12 @@ public class ClaControl extends HttpServlet {
       backResult.setData(resultList);
     }
     if (edit) {
-      String result = claService.update(cla);
-      ArrayList<String> resultList = new ArrayList<String>();
-      resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("edit修改");
-      backResult.setData(resultList);
+    	String result = claService.update(cla);
+        ArrayList<String> resultList = new ArrayList<String>();
+      	resultList.add(result);
+      	backResult.setMessage(result=="yes" ? "(已存在重复名字)" + cla.getName() : "修改成功");
+		backResult.setQingqiu(result=="yes"?"yes":"no");
+		backResult.setData(resultList);
     }
     if(getOne){
       Cla result = claService.getByUuid(cla.getUuid());
