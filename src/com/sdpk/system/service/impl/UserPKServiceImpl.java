@@ -42,7 +42,6 @@ public class UserPKServiceImpl implements UserPKService {
 	@Override
 	public String insert(UserPK userPK) {
 		// TODO Auto-generated method stub
-
 		UserPK userPK1 = userPKDao.getByuLogUser(userPK.getuLogUser());
 		UserPK userPK2 = userPKDao.getByUname(userPK.getuName());
 		if (userPK1.getuLogUser() == null) {
@@ -158,7 +157,6 @@ public class UserPKServiceImpl implements UserPKService {
 			userPK.setRole(backRoleList);
 
 		}
-
 		return userPKlist;
 	}// end method getList()
 
@@ -197,7 +195,6 @@ public class UserPKServiceImpl implements UserPKService {
 		UserPK u = userPKDao.getByuLogUser(uLogUser);
 		Employee emp=empLoyeeDao.getByUuid(u.getEmpUuid());
 		u.setEmpName(emp.getName());
-		
 		System.out.println(u.getUuid());
 		return u;
 	}

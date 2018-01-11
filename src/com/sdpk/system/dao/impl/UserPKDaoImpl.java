@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.Test;
+
 import com.sdpk.system.dao.UserPKDao;
 import com.sdpk.system.model.Role;
 import com.sdpk.system.model.UserPK;
@@ -34,6 +36,7 @@ public class UserPKDaoImpl implements UserPKDao {
 	}
 
 	@Override
+	
 	public boolean insert(UserPK userPK) {
 		// TODO Auto-generated method stub
 		System.out.println(userPK.getEmpUuid());
@@ -202,6 +205,7 @@ public class UserPKDaoImpl implements UserPKDao {
 	}// end method getByUuid
 
 	@Override
+	@Test
 	public ArrayList<UserPK> getList() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPK> userPKList = new ArrayList<UserPK>();

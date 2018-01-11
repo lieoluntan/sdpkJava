@@ -85,7 +85,6 @@ public class MyClaDaoImpl implements MyClaDao{
 		return cla;
 
 	}
-
 	@Override
 	public List<String> getClaId(String classid) {
 		// TODO Auto-generated method stub
