@@ -23,7 +23,6 @@
             numTestsPerEvictionRun="3"
             removeAbandoned="true"
             removeAbandonedTimeout="180"
-            logAbandoned="true"
             
             
             />
