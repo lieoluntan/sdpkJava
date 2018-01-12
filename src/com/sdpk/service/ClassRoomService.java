@@ -23,5 +23,10 @@ public interface ClassRoomService {
   ClassRoom getByUuid(String uuid);
 
   ArrayList<ClassRoom> getList();
+  
+
+	public String getClassRoomByName(ClassRoom cR);
+	
+	public String getClaSSRoomByName1(ClassRoom CR);
 
 }//end class interface

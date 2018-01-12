@@ -1,6 +1,8 @@
 package com.sdpk.service.impl;
 
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.CourseDao;
@@ -8,7 +10,10 @@ import com.sdpk.dao.Course_EmpDao;
 import com.sdpk.dao.impl.CourseDaoImpl;
 import com.sdpk.dao.impl.Course_EmpDaoImpl;
 import com.sdpk.model.Course;
+import com.sdpk.query.nameQuery.dao.NameReCourDao;
+import com.sdpk.query.nameQuery.dao.impl.NameReCourDaoImpl;
 import com.sdpk.service.CourseService;
+import com.sdpk.utility.DBUtility;
 
 /**
  *树袋老师
@@ -18,14 +23,19 @@ import com.sdpk.service.CourseService;
  */
 
 public class CourseServiceImpl implements CourseService{
-  
+  private NameReCourDao nameReCourDao=new NameReCourDaoImpl();
   private CourseDao courseDao= new CourseDaoImpl();
   private Course_EmpDao course_EmpDao=new Course_EmpDaoImpl();
-
   @Override
   public String insert(Course course) {
     // TODO Auto-generated method stub
-    course.setUuid(null);
+    String flag = this.getCourByName1(course);
+    if(flag.equals("yes")){
+    	return flag;
+    }else{
+    	
+    
+	course.setUuid(null);
 
     course.setUuid(UUID.randomUUID().toString());
     System.out.println("^^在CourseDaoImpl收到数据 ："+course.toString()+"收到结束!");
@@ -35,9 +45,9 @@ public class CourseServiceImpl implements CourseService{
     return course.getUuid();
     }else{
       return "插入不成功,dao层执行有出错地方,请联系管理员";
+    	}
     }
-
-  }//end method insert
+ }//end method insert
 
   @Override
   public String delete(String uuid) {
@@ -63,7 +73,11 @@ public class CourseServiceImpl implements CourseService{
   @Override
   public String update(Course course) {
     // TODO Auto-generated method stub
-    String uuid = course.getUuid();
+	  String flag = this.getCourByName1(course);
+	    if(flag.equals("yes")){
+	    	return flag;
+	    }else{
+	 String uuid = course.getUuid();
     if(uuid!=null&&uuid!="")
     {
       boolean daoFlag = courseDao.update(course);
@@ -78,8 +92,9 @@ public class CourseServiceImpl implements CourseService{
       String msg="CourseServiceImpl update方法中的uuid为空，或格式不正确，请联系管理员";
       System.out.println(msg);
       return msg;
-    }
-  }//end method update
+    	}
+	}
+ }//end method update
 
   @Override
   public ArrayList<Course> getListCourse() {
@@ -103,5 +118,44 @@ public class CourseServiceImpl implements CourseService{
     return courseX;
     }
   }//end method getByUuid
+
+	@Override
+	public String getCourByName(Course cour) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<Course> courList = nameReCourDao.getCourByName(cour);
+		for (Course cour2 : courList) {
+
+			if (cour2.getUuid() != null) {
+				flag = "（有重名）" + cour.getName();
+
+				return flag;
+			}
+
+		}
+		flag = "（无重名）" + cour.getName();
+
+		return flag;
+	}
+
+	@Override
+	public String getCourByName1(Course cour) {
+		// TODO Auto-generated method stub
+		String flag = "";
+
+		List<Course> courList = nameReCourDao.getCourByName(cour);
+		for (Course cour2 : courList) {
+
+			if (cour2.getUuid() != null) {
+				flag = "yes";
+
+				return flag;
+			}
+		}
+		flag = "no";
+		return flag;
+	}
+
 
 }//end class CourseServiceImpl

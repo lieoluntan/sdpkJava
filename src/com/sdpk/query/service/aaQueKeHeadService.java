@@ -16,6 +16,7 @@ import com.sdpk.model.PaikeRecordView;
 public interface aaQueKeHeadService {
 
 	ArrayList<PaikeRecordView>getAllpaike(PaikeRecord paikeRecord);
+	
 	//根据empUuid查出cla_emp关联表里的所有ClaUuid
 	
 	public PaikeRecordView getByEmpUuid(String empUuid);

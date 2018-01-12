@@ -23,22 +23,50 @@ public class Student {
   private String org;
   private String parentRela;
 
-  
+  private String  parentName2;//家长姓名
+  private String parentPhone2;//家长电话
+  private String address2;//家庭住址
 
-  @Override
+
+
+  public String getParentName2() {
+	return parentName2;
+}
+
+public void setParentName2(String parentName2) {
+	this.parentName2 = parentName2;
+}
+
+public String getParentPhone2() {
+	return parentPhone2;
+}
+
+public void setParentPhone2(String parentPhone2) {
+	this.parentPhone2 = parentPhone2;
+}
+
+public String getAddress2() {
+	return address2;
+}
+
+public void setAddress2(String address2) {
+	this.address2 = address2;
+}
+
+@Override
   public String toString() {
     return "学生 [uuid=" + uuid + ", name=" + name + ", studentID=" + studentID + ", school=" + school + ", grade="
         + grade + ", phone=" + phone + ", date=" + date + ", parentName=" + parentName
         + ", parentPhone=" + parentPhone + ", address=" + address + ", remark=" + remark +
 
-        "]";
+        ",parentName2=" + parentName2 + ", parentPhone2=" + parentPhone2 + "  address2=" + address2 + "]";
   }
   
   public Student(){}
 
   public Student(String uuid, String name, String studentID, String school, String grade,
       String phone, String date, String parentName, String parentPhone, String address,
-      String remark) {
+      String remark,String parentName2,String parentPhone2,String address2) {
     super();
     this.uuid = uuid;
     this.name = name;
@@ -51,6 +79,9 @@ public class Student {
     this.parentPhone = parentPhone;
     this.address = address;
     this.remark = remark;
+    this.parentName2 = parentName2;
+    this.parentPhone2 = parentPhone2;
+    this.address2 = address2;
   }
 
   public String getUuid() {

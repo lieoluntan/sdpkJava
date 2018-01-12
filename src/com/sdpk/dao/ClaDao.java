@@ -1,6 +1,7 @@
 package com.sdpk.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.Cla;
 
@@ -22,5 +23,6 @@ public interface ClaDao {
   public Cla getByUuid(String uuid);
 
   public ArrayList<Cla> getList();
+  
 
 }

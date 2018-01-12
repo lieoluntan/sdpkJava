@@ -119,8 +119,8 @@ public class CourseControl extends HttpServlet {
       System.out.println("插入的uuid是：" + result);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("add新增");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + course.getName() : "插入成功");
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if (delete) {
@@ -137,8 +137,8 @@ public class CourseControl extends HttpServlet {
       System.out.println("修改的uuid是：" + result);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage("信息值：成功");
-      backResult.setQingqiu("edit修改");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + course.getName() : "修改成功");
+      backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }
     if(getOne){

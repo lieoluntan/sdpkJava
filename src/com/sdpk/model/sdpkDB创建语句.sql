@@ -27,6 +27,10 @@ CREATE TABLE t_student (
   createPeople varchar(50) DEFAULT NULL,
   modifyPeople varchar(50) DEFAULT NULL,
   
+  parentName2 varchar(50) DEFAULT NULL,//家长姓名 
+  parentPhone2 varchar(50)DEFAULT NULL,//家长电话
+  address2 varchar(50)DEFAULT NULL,//家庭住址
+  
   PRIMARY KEY (uuid)
 );
 --------------------------------------

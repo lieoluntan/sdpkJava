@@ -20,8 +20,12 @@ public interface QueryDao {
  */
 	ArrayList<PaikeRecordView> getAllPaike(PaikeSearch paikeSearch); 
 	
+	ArrayList<PaikeRecordView> getAllPaike1(PaikeSearch paikeSearch);
+	
 	int SumEmpPaike(PaikeSearch paikeSearch);
 	
 	int SumDayBefore(PaikeSearch paikeSearch);
+	
+	int SumDayBefore1(PaikeSearch paikeSearch);
 	
 }

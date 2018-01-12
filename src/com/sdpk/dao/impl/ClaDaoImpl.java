@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.dao.ClaDao;
 import com.sdpk.model.Cla;
@@ -197,5 +198,4 @@ public class ClaDaoImpl implements ClaDao {
 
     
   }//emd method getList
-
 }// end class
