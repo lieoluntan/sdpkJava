@@ -30,7 +30,7 @@ System.out.println(stu.getName());
 		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 		try {
 			preparedStatement = connection
-					.prepareStatement("insert into t_student(uuid,name,studentID,school,grade,phone,date,parentName,parentPhone,address,remark,sex,org,parentRela,parentName2,parentPhone2,address2) "
+					.prepareStatement("insert into t_student(uuid,name,studentID,school,grade,phone,date,parentName,parentPhone,address,remark,sex,org,parentRela,parentName2,parentPhone2,parentRela2) "
 							+ "	values (?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, stu.getUuid());
@@ -50,7 +50,7 @@ System.out.println(stu.getName());
 			preparedStatement.setString(14, stu.getParentRela());
 			preparedStatement.setString(15, stu.getParentName2());
 			preparedStatement.setString(16, stu.getParentPhone2());
-			preparedStatement.setString(17, stu.getAddress2());
+			preparedStatement.setString(17, stu.getParentRela2());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行StudentDao中的insert添加");
@@ -101,7 +101,7 @@ System.out.println(stu.getName());
 		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 		try {
 			preparedStatement = connection
-					.prepareStatement("UPDATE t_student SET name = ?, studentID = ?,school = ?, grade = ?, phone = ?, date = ?, parentName = ?, parentPhone = ?, address = ?, remark = ?,sex = ?,org = ?,parentRela = ?,parentName2 = ?,parentPhone2 = ? ,address2 = ? WHERE uuid = ? ");
+					.prepareStatement("UPDATE t_student SET name = ?, studentID = ?,school = ?, grade = ?, phone = ?, date = ?, parentName = ?, parentPhone = ?, address = ?, remark = ?,sex = ?,org = ?,parentRela = ?,parentName2 = ?,parentPhone2 = ? ,parentRela2 = ? WHERE uuid = ? ");
 			// Parameters start with 1
 			preparedStatement.setString(1, student.getName());
 			preparedStatement.setString(2, student.getStudentID());
@@ -117,10 +117,12 @@ System.out.println(stu.getName());
 			preparedStatement.setString(11, student.getSex());
 			preparedStatement.setString(12, student.getOrg());
 			preparedStatement.setString(13, student.getParentRela());
-			preparedStatement.setString(14, student.getUuid());
-			preparedStatement.setString(15, student.getParentName2());
-			preparedStatement.setString(16, student.getParentPhone2());
-			preparedStatement.setString(17, student.getAddress2());
+			
+			preparedStatement.setString(14, student.getParentName2());
+			preparedStatement.setString(15, student.getParentPhone2());
+			preparedStatement.setString(16, student.getParentRela2());
+			
+			preparedStatement.setString(17, student.getUuid());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行CourseDaoImpl中的修改update");
@@ -168,7 +170,7 @@ System.out.println(stu.getName());
 
 				student.setParentName2(rs.getString("parentName2"));
 				student.setParentPhone2(rs.getString("parentPhone2"));
-				student.setAddress2(rs.getString("address2"));
+				student.setParentRela2(rs.getString("parentRela2"));
 
 				studentList.add(student);
 			}
@@ -215,7 +217,7 @@ System.out.println(stu.getName());
 
 				student.setParentName2(rs.getString("parentName2"));
 				student.setParentPhone2(rs.getString("parentPhone2"));
-				student.setAddress2(rs.getString("address2"));
+				student.setParentRela2(rs.getString("parentRela2"));
 
 				studentResult = student;
 			}

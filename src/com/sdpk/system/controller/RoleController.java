@@ -164,7 +164,7 @@ public class RoleController extends HttpServlet{
 	     ArrayList resultList=new ArrayList();
 	      String result = roleService.insert(role);
 	      resultList.add(result) ;
-	      backResult.setMessage("信息值：成功");
+	      backResult.setMessage(result);
 	      backResult.setQingqiu("add新增");
 	      backResult.setData(resultList);
 	    }

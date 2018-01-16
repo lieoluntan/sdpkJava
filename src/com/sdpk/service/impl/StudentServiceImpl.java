@@ -119,15 +119,23 @@ public class StudentServiceImpl implements StudentService {
 
 		List<Student> stuList = nameReStuDao.getStuByName(student);
 		for (Student student2 : stuList) {
+			//编辑验证重名要过滤掉自己本身的名字
+			String s2Uuid = student2.getUuid();
+			boolean flagSelf = s2Uuid.equals(student.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if(flagNotSelf){//编辑验证重名要过滤
+			
 			System.out.println(student2.getUuid());
 			if (student2.getUuid() != null) {
 				flag = "（有重名）" + student.getName();
 
 				return flag;
-			}
+			 }
+		  }//end if(flagNotSelf)
+			
 
-		}
-		flag = "（无重名）" + student.getName();
+		}//end for
+		flag = "修改成功（无重名）";
 
 		return flag;
 	}
@@ -139,12 +147,18 @@ public class StudentServiceImpl implements StudentService {
 
 		List<Student> stuList = nameReStuDao.getStuByName(student);
 		for (Student student2 : stuList) {
+			//编辑验证重名要过滤掉自己本身的名字
+			String s2Uuid = student2.getUuid();
+			boolean flagSelf = s2Uuid.equals(student.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if(flagNotSelf){//编辑验证重名要过滤
 
 			if (student2.getUuid() != null) {
 				flag = "yes";
 
 				return flag;
-			}
+			 }
+			}//end if(flagNotSelf)
 
 		}
 		flag = "no";

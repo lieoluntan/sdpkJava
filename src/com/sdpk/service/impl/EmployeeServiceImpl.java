@@ -154,12 +154,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		List<Employee> stuList = nameReEmpDao.getStuByName(employee);
 		for (Employee student2 : stuList) {
+			//编辑验证重名要过滤掉自己本身的名字
+			String s2Uuid = student2.getUuid();
+			boolean flagSelf = s2Uuid.equals(employee.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if(flagNotSelf){//编辑验证重名要过滤
 
 			if (student2.getUuid() != null) {
 				flag = "yes";
 
 				return flag;
 			}
+		 }//end if(flagNotSelf)
 
 		}
 		flag = "no";

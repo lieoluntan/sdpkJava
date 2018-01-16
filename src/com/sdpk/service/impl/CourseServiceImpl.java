@@ -146,12 +146,18 @@ public class CourseServiceImpl implements CourseService{
 
 		List<Course> courList = nameReCourDao.getCourByName(cour);
 		for (Course cour2 : courList) {
+			//编辑验证重名要过滤掉自己本身的名字
+			String s2Uuid = cour2.getUuid();
+			boolean flagSelf = s2Uuid.equals(cour.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if(flagNotSelf){//编辑验证重名要过滤
 
 			if (cour2.getUuid() != null) {
 				flag = "yes";
 
 				return flag;
 			}
+		 }//end if(flagNotSelf)
 		}
 		flag = "no";
 		return flag;

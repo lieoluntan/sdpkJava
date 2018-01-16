@@ -6,14 +6,17 @@ import java.util.UUID;
 import com.sdpk.dao.ClaDao;
 import com.sdpk.dao.Class_ContractDao;
 import com.sdpk.dao.ContractDao;
+import com.sdpk.dao.ContrtextDao;
 import com.sdpk.dao.impl.ClaDaoImpl;
 import com.sdpk.dao.impl.Class_ContractDaoImpl;
 import com.sdpk.dao.impl.ContractDaoImpl;
+import com.sdpk.dao.impl.ContrtextDaoImpl;
 import com.sdpk.model.And_ClassCourse;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.Cla;
 import com.sdpk.model.Class_Contract;
 import com.sdpk.model.Contract;
+import com.sdpk.model.Contrtext;
 import com.sdpk.model.Course;
 import com.sdpk.service.Class_ContractService;
 import com.sdpk.utility.M_msg;
@@ -29,7 +32,7 @@ public class Class_ContractServiceImpl implements Class_ContractService{
   
   private Class_ContractDao class_ContractDao = new Class_ContractDaoImpl();
   private ClaDao claDao = new ClaDaoImpl();
-  private ContractDao contractDao= new ContractDaoImpl();
+  private ContrtextDao contrtextDao = new ContrtextDaoImpl();
   public M_msg m_msg = new M_msg();
   
   @Override
@@ -49,7 +52,7 @@ public class Class_ContractServiceImpl implements Class_ContractService{
       String cUuid = one.getClassUuid();
       String contrUuid = one.getContrUuid();
       Cla cla = claDao.getByUuid(cUuid);
-      Contract contr = contractDao.getByUuid(contrUuid);
+      Contrtext contr = contrtextDao.getOne(contrUuid);
       String cName = cla.getName();
       String contrName = contr.getcNum();
       
@@ -100,7 +103,7 @@ public class Class_ContractServiceImpl implements Class_ContractService{
     
     //2、判断从基础班级表和合同表中有找到数据
     Cla cla = claDao.getByUuid(cUuid);
-    Contract contr = contractDao.getByUuid(contrUuid);
+    Contrtext contr = contrtextDao.getOne(contrUuid);
     String cName = cla.getName();
     String contrName = contr.getcNum();
     if (cName != null && cName != "" && cName.length() != 0) {
@@ -186,7 +189,7 @@ public class Class_ContractServiceImpl implements Class_ContractService{
       String cUuid = one.getClassUuid();
       String contrUuidA = one.getContrUuid();
       Cla cla = claDao.getByUuid(cUuid);
-      Contract contr = contractDao.getByUuid(contrUuidA);
+      Contrtext contr = contrtextDao.getOne(contrUuidA);
       String cName = cla.getName();
       String contrName = contr.getcNum();
       

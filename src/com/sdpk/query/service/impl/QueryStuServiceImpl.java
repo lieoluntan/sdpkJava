@@ -122,92 +122,151 @@ public class QueryStuServiceImpl implements QueryStuService {
 		return sum;
 	}
 
+//	@Override
+//	public ArrayList<PaikeRecordView> getAllPaike1(PaikeSearch paikeSearch) {
+//		// TODO Auto-generated method stub
+//		List<Student> stuList=studentDao.getList();
+//		List<String> claList=new ArrayList<String>();
+//		for (Student stu : stuList) {
+//			claList = queryStuDao.getClaidByStuId(stu.getUuid());
+//		}
+//		ArrayList<PaikeRecordView> newList = new ArrayList<PaikeRecordView>();
+//		for (String string : claList) {
+//			System.out.println(string);
+//			And_ClassEmp And_ClassEmp = and_ClassEmpDao.getBycla(string);
+//			Employee e = employeeDao.getByUuid(And_ClassEmp.getEmpUuid());
+//			paikeSearch.setClaUuid(string);
+//			ArrayList<PaikeRecordView> prvList = queryStuDao
+//					.getAllPaike(paikeSearch);
+//			ArrayList<PaikeRecordView> reAddNameList = new ArrayList<PaikeRecordView>();
+//			for (PaikeRecordView one : prvList) {
+//				// 1、从基础表中找到课程名、员工名、教室名,保证基础表修改了名称，关联表也能知道
+//				String courUuid = one.getCourseUuid();
+//				String empUuid = one.getEmpUuid();
+//				String crUuid = one.getClassroomUuid();
+//				Course cour = courseDao.getByUuid(courUuid);
+//				Employee emp = employeeDao.getByUuid(empUuid);
+//				ClassRoom croom = classRoomDao.getByUuid(crUuid);
+//
+//				String courName = cour.getName();
+//				String cageName = cour.getCategory();
+//				String empName = emp.getName();
+//				String croomName = croom.getName();
+//				one.setHeadTeaUuid(e.getUuid());
+//				one.setHeadTeaName(e.getName());
+//				one.setCourseName(courName);
+//				one.setEmpName(empName);
+//				one.setCroomName(croomName);
+//				one.setCategoryName(cageName);
+//
+//				// 2、加入截止时间
+//				String keStartTime = one.getKeStartTime();
+//				String keLongTime = one.getKeLongTime();
+//				T_EndTime time = new T_EndTime();
+//				String keEndTime = time.getEndTime(keStartTime, keLongTime);
+//				one.setKeEndTime(keEndTime);
+//
+//				reAddNameList.add(one);
+//			}// end 步骤
+//				// 步骤、加入班主任名
+//			for (PaikeRecordView one : reAddNameList) {
+//				// 1、加入班主任名
+//				String claUuid = one.getClaUuid();
+//				And_ClassEmp and_ClassEmp = and_ClassEmpDao.getBycla(claUuid);
+//				String claTeaUuid = and_ClassEmp.getEmpUuid();
+//				Employee claTea = employeeDao.getByUuid(claTeaUuid);
+//				String claTeaName = claTea.getName();
+//				one.setClaTeaUuid(claTeaUuid);
+//				one.setClaTeaName(claTeaName);
+//
+//			}// end 步骤
+////			for (PaikeRecordView paikeRecordView : reAddNameList) {
+////				// System.out.println(paikeRecordView.getKeDateTime());
+////			}
+//
+//			newList.addAll(reAddNameList);
+//
+//			// return reAddNameList;
+//
+//		}
+//
+//		return newList;
+//	}//end method
+	
 	@Override
 	public ArrayList<PaikeRecordView> getAllPaike1(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
-		List<Student> stuList=studentDao.getList();
-		List<String> claList=new ArrayList<String>();
-		for (Student stu : stuList) {
-			claList = queryStuDao.getClaidByStuId(stu.getUuid());
-		}
-		ArrayList<PaikeRecordView> newList = new ArrayList<PaikeRecordView>();
-		for (String string : claList) {
-			System.out.println(string);
-			And_ClassEmp And_ClassEmp = and_ClassEmpDao.getBycla(string);
-			Employee e = employeeDao.getByUuid(And_ClassEmp.getEmpUuid());
-			paikeSearch.setClaUuid(string);
-			ArrayList<PaikeRecordView> prvList = queryStuDao
-					.getAllPaike(paikeSearch);
-			ArrayList<PaikeRecordView> reAddNameList = new ArrayList<PaikeRecordView>();
-			for (PaikeRecordView one : prvList) {
-				// 1、从基础表中找到课程名、员工名、教室名,保证基础表修改了名称，关联表也能知道
-				String courUuid = one.getCourseUuid();
-				String empUuid = one.getEmpUuid();
-				String crUuid = one.getClassroomUuid();
-				Course cour = courseDao.getByUuid(courUuid);
-				Employee emp = employeeDao.getByUuid(empUuid);
-				ClassRoom croom = classRoomDao.getByUuid(crUuid);
+		ArrayList<PaikeRecordView> prvList = queryStuDao.getAllPaike1(paikeSearch);
+		// 步骤:记录课程名、员工名、教室名
+		ArrayList<PaikeRecordView> reAddNameList = new ArrayList<PaikeRecordView>();
+		for (PaikeRecordView one : prvList) {
+			// 1、从基础表中找到课程名、员工名、教室名,保证基础表修改了名称，关联表也能知道\
+			ClaStuTool ClaStuTool=new ClaStuTool();
+			List<Student> stuList=ClaStuTool.getStuByCla(one.getClaUuid());//根据每个班级id查出班级下的所有学生
+			one.setStuList(stuList);
+			String courUuid = one.getCourseUuid();
+			String empUuid = one.getEmpUuid();
+			String crUuid = one.getClassroomUuid();
+			Course cour = courseDao.getByUuid(courUuid);
+			Employee emp = employeeDao.getByUuid(empUuid);
+			ClassRoom croom = classRoomDao.getByUuid(crUuid);
 
-				String courName = cour.getName();
-				String cageName = cour.getCategory();
-				String empName = emp.getName();
-				String croomName = croom.getName();
-				one.setHeadTeaUuid(e.getUuid());
-				one.setHeadTeaName(e.getName());
-				one.setCourseName(courName);
-				one.setEmpName(empName);
-				one.setCroomName(croomName);
-				one.setCategoryName(cageName);
+			String courName = cour.getName();
+			String cageName = cour.getCategory();
+			String empName = emp.getName();
+			String croomName = croom.getName();
 
-				// 2、加入截止时间
-				String keStartTime = one.getKeStartTime();
-				String keLongTime = one.getKeLongTime();
-				T_EndTime time = new T_EndTime();
-				String keEndTime = time.getEndTime(keStartTime, keLongTime);
-				one.setKeEndTime(keEndTime);
+			one.setCourseName(courName);
+			one.setEmpName(empName);
+			one.setCroomName(croomName);
+			one.setCategoryName(cageName);
 
-				reAddNameList.add(one);
-			}// end 步骤
-				// 步骤、加入班主任名
-			for (PaikeRecordView one : reAddNameList) {
-				// 1、加入班主任名
-				String claUuid = one.getClaUuid();
-				And_ClassEmp and_ClassEmp = and_ClassEmpDao.getBycla(claUuid);
-				String claTeaUuid = and_ClassEmp.getEmpUuid();
-				Employee claTea = employeeDao.getByUuid(claTeaUuid);
-				String claTeaName = claTea.getName();
-				one.setClaTeaUuid(claTeaUuid);
-				one.setClaTeaName(claTeaName);
+			// 2、加入截止时间
+			String keStartTime = one.getKeStartTime();
+			String keLongTime = one.getKeLongTime();
+			T_EndTime time = new T_EndTime();
+			String keEndTime = time.getEndTime(keStartTime, keLongTime);
+			one.setKeEndTime(keEndTime);
 
-			}// end 步骤
-//			for (PaikeRecordView paikeRecordView : reAddNameList) {
-//				// System.out.println(paikeRecordView.getKeDateTime());
-//			}
+			reAddNameList.add(one);
+		}// end 步骤
+		// 步骤、加入班主任名
+		for (PaikeRecordView one : reAddNameList) {
+			// 1、加入班主任名
+			String claUuid = one.getClaUuid();
+			And_ClassEmp and_ClassEmp = and_ClassEmpDao.getBycla(claUuid);
+			String claTeaUuid = and_ClassEmp.getEmpUuid();
+			Employee claTea = employeeDao.getByUuid(claTeaUuid);
+			String claTeaName = claTea.getName();
+			one.setHeadTeaUuid(claTeaUuid);
+			one.setHeadTeaName(claTeaName);
 
-			newList.addAll(reAddNameList);
+		}// end 步骤
 
-			// return reAddNameList;
+		return reAddNameList;
+	}//end method
 
-		}
-
-		return newList;
-	}
-
+//	@Override
+//	public int SumDayBefore1(PaikeSearch paikeSearch) {
+//		// TODO Auto-generated method stub
+//		List<Student> stuList=studentDao.getList();
+//		List<String> claList=new ArrayList<String>();
+//		for (Student stu : stuList) {
+//			claList = queryStuDao.getClaidByStuId(stu.getUuid());
+//		}
+//		int sum = 0;
+//		for (String string : claList) {
+//			paikeSearch.setClaUuid(string);
+//			sum = queryStuDao.SumDayBefore(paikeSearch);
+//
+//		}
+//		return sum;
+//	}//end method
+	
 	@Override
 	public int SumDayBefore1(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
-		List<Student> stuList=studentDao.getList();
-		List<String> claList=new ArrayList<String>();
-		for (Student stu : stuList) {
-			claList = queryStuDao.getClaidByStuId(stu.getUuid());
-		}
-		int sum = 0;
-		for (String string : claList) {
-			paikeSearch.setClaUuid(string);
-			sum = queryStuDao.SumDayBefore(paikeSearch);
+		return queryStuDao.SumDayBefore1(paikeSearch);
+	}//end method
 
-		}
-		return sum;
-	}
-
-}
+}//end class

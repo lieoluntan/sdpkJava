@@ -182,6 +182,129 @@ public class QueryStuDaoImpl implements QueryStuDao {
 		}// finally关闭jdbc与数据库连接
 
 		return claIdList;
-	}
+	}//end method
+	
+	@Override
+	public ArrayList<PaikeRecordView> getAllPaike1(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		String sd = "";// 月初
+		String sf = "";
+		;// 月末
 
-}
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
+		String[] s = d.split("-");
+		s[0] += "-";
+		s[1] += "-";
+		s[2] = "01";
+		for (String string : s) {
+			sd += string;
+		}
+		s[2] = "31";
+		for (String string : s) {
+			sf += string;
+		}
+
+		ArrayList<PaikeRecordView> stuPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_paike_all where KeDateTime >='"
+							+ sd + "' and KeDateTime <='" + sf + "'");
+			while (rs.next()) {
+				PaikeRecordView paikeRecord = new PaikeRecordView();
+
+				paikeRecord.setUuid(rs.getString("uuid"));
+				paikeRecord.setClaUuid(rs.getString("claUuid"));
+				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
+				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
+				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
+				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
+				paikeRecord.setStatus(rs.getString("status"));
+				paikeRecord.setWeekSome(rs.getString("weekSome"));
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				stuPaikeList.add(paikeRecord);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ResourceDaoImpl的getByUuid查询失败");
+
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return stuPaikeList;
+	}//end method
+	
+	@Override
+	public int SumDayBefore1(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+
+		String sd = "";// 月初
+		String sf = "";
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
+		String[] s = d.split("-");
+		s[0] += "-";
+		s[1] += "-";
+
+		s[2] = "01";
+		for (String string : s) {
+			sd += string;
+		}
+
+		s[2] = "31";
+		for (String string : s) {
+			sf += string;
+		}
+
+		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_paike_all where  KeDateTime >='"
+							+ sd
+							+ "' and KeDateTime <='"
+							+ sf
+							+ "' and KeDateTime <= '"
+							+ paikeSearch.getToday()
+							+ "'");
+			while (rs.next()) {
+				PaikeRecordView paikeRecord = new PaikeRecordView();
+
+				paikeRecord.setUuid(rs.getString("uuid"));
+				paikeRecord.setClaUuid(rs.getString("claUuid"));
+				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
+				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
+				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
+				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
+				paikeRecord.setStatus(rs.getString("status"));
+				paikeRecord.setWeekSome(rs.getString("weekSome"));
+
+				empPaikeList.add(paikeRecord);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ResourceDaoImpl的getByUuid查询失败");
+
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return empPaikeList.size();
+	}//end method
+
+}//end class

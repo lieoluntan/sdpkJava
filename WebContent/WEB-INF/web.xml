@@ -26,6 +26,14 @@
     <url-pattern>/CRUDController</url-pattern>
   </servlet-mapping>
    <!-- ContrtextController -->
+   <servlet>
+    <servlet-name>QueKeAllN</servlet-name>
+    <servlet-class>com.sdpk.query.controller.QueKeAllController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueKeAllN</servlet-name>
+    <url-pattern>/aaQueKeAll</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>ContrtextController</servlet-name>
     <servlet-class>com.sdpk.controller.ContrtextController</servlet-class>

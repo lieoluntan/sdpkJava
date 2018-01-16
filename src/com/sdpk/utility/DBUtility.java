@@ -96,7 +96,7 @@ public class DBUtility {
 }// end method close
     
     public static Connection open() {
-      System.out.println("连接池：第二步,利用数据源获取连接");
+
       System.out.println("连接池：打开");
       Connection aconn = null;
         try {

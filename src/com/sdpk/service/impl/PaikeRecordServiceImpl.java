@@ -624,6 +624,11 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			one.setEmpName(empName);
 			one.setCroomName(croomName);
 //			one.setCategoryName(cageName);新版接口，不用Category，改用pkType
+			//设置pkType线上线下,从方法传进来的变量对象获取
+			String aType = paikeRecordPre.getPkType();
+			String aName = paikeRecordPre.getPkTypeName();
+			one.setPkType(aType);
+			one.setPkTypeName(aName);
 
 			reAddNameList.add(one);
 		}

@@ -183,12 +183,18 @@ public class ClaServiceImpl implements ClaService{
 
 		List<Cla> claList = nameReClaDao.getClaByName(cla);
 		for (Cla cla2 : claList) {
+			//编辑验证重名要过滤掉自己本身的名字
+			String s2Uuid = cla2.getUuid();
+			boolean flagSelf = s2Uuid.equals(cla.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if(flagNotSelf){//编辑验证重名要过滤
 
 			if (cla2.getUuid() != null) {
 				flag = "yes";
 
 				return flag;
 			}
+		  }//end if(flagNotSelf)
 		}
 		flag = "no";
 		return flag;

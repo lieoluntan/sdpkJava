@@ -26,7 +26,7 @@ public class QueKeDaoImpl implements QueKeDao{
 		System.out.println("connection对象在QueKeDaoImpl连接!");
 	}
 	@Override
-	public ArrayList<PaikeRecordView> getAllpaike(PaikeRecord paikeRecord) {
+	public ArrayList<PaikeRecordView> getAllpaike(PaikeRecord pkr) {
 		// TODO Auto-generated method stub
 		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
 		Statement statement = null;// finally关闭数据库连接
@@ -36,7 +36,7 @@ public class QueKeDaoImpl implements QueKeDao{
 			statement = connection.createStatement();
 			rs = statement
 					.executeQuery("select * from t_paike_all where KeDateTime ='"
-							+ paikeRecord.getKeDateTime() + "'");
+							+ pkr.getKeDateTime() + "'");
 			while (rs.next()) {
 				PaikeRecordView PaikeRecord = new PaikeRecordView();
 
@@ -50,8 +50,8 @@ public class QueKeDaoImpl implements QueKeDao{
 				PaikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				PaikeRecord.setStatus(rs.getString("status"));
 				PaikeRecord.setWeekSome(rs.getString("weekSome"));
-				paikeRecord.setPkType(rs.getString("pkType"));
-				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				PaikeRecord.setPkType(rs.getString("pkType"));
+				PaikeRecord.setPkTypeName(rs.getString("pkTypeName"));
 				empPaikeList.add(PaikeRecord);
 			}
 		} catch (SQLException e) {

@@ -112,7 +112,9 @@ public class StudentControl extends HttpServlet {
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
-			backResult.setMessage(flag);
+			String flgmsg = "初始值";
+			if(result.equals("yes")){flgmsg = flag;}else{flgmsg = "新增成功";}
+			backResult.setMessage(flgmsg);
 			backResult.setQingqiu(result=="yes"?"yes":"no");
 			backResult.setData(resultList);
 		}

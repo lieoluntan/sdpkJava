@@ -131,9 +131,9 @@ public class T_DataMap2Bean {
 
 		String parentName2 = (String)map.get("parentName2");//1.11新增家长名字字段
 		String parentPhone2 = (String)map.get("parentPhone2");//1.11新增家长电话字段
-		String address2 = (String)map.get("address2");//1.11新增家长备注字段
+		String parentRela2 = (String)map.get("parentRela2");//1.11新增家长备注字段
 		Student stu = new Student(uuid, name, studentID, school, grade, phone,
-				date, parentName, parentPhone, address, remark,parentName2,parentPhone2,address2);
+				date, parentName, parentPhone, address, remark,parentName2,parentPhone2,parentRela2);
 		stu.setSex(sex);
 		stu.setOrg(org);
 		stu.setParentRela(parentRela);
@@ -417,9 +417,9 @@ public class T_DataMap2Bean {
 
 		String parentName2 = (String)map.get("parentName2");//1.11新增家长名字字段
 		String parentPhone2 = (String)map.get("parentPhone2");//1.11新增家长电话字段
-		String address2 = (String)map.get("address2");//1.11新增家长备注字段
+		String parentRela2 = (String)map.get("parentRela2");//1.11新增家长备注字段
 		Student stu = new Student(uuid, name, studentID, school, grade, phone,
-				date, parentName, parentPhone, address, remark,parentName2,parentPhone2,address2);
+				date, parentName, parentPhone, address, remark,parentName2,parentPhone2,parentRela2);
 		stu.setSex(sex);
 		stu.setOrg(org);
 		stu.setParentRela(parentRela);

@@ -122,5 +122,48 @@ public class aaQueKeHeadDaoImpl implements aaQueKeHeadDao{
 		}// finally关闭jdbc与数据库连接
 		return empPaikeList;
 	}
-}
+	
+	@Override
+	public ArrayList<PaikeRecordView> getListByclaUuid(String claUuid,String KeDateTime) {
+		// TODO Auto-generated method stub
+		ArrayList<PaikeRecordView> paikeRecordList = new ArrayList<PaikeRecordView>();
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select * from t_paike_all WHERE claUuid ="
+							+ "'" + claUuid + "'"+"and KeDateTime="+"'" + KeDateTime + "'");
+			while (rs.next()) {
+				PaikeRecordView paikeRecord = new PaikeRecordView();
+				paikeRecord.setUuid(rs.getString("uuid"));
+				paikeRecord.setClaUuid(rs.getString("claUuid"));
+				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
+				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
+				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
+				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
+				paikeRecord.setStatus(rs.getString("status"));
+				paikeRecord.setWeekSome(rs.getString("weekSome"));
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecordList.add(paikeRecord);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("PaikeRecordDaoImpl的getList查询失败");
+			PaikeRecordView paikeRecordX = new PaikeRecordView();
+			paikeRecordX.setUuid("PaikeRecordDaoImpl的getList失败返回的uuid");
+			ArrayList<PaikeRecordView> errListX = new ArrayList<PaikeRecordView>();
+			errListX.add(paikeRecordX);
+			return errListX;
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return paikeRecordList;
+	}// end method getListByclaUuid
+}//end class
 

@@ -25,7 +25,7 @@ public class Student {
 
   private String  parentName2;//家长姓名
   private String parentPhone2;//家长电话
-  private String address2;//家庭住址
+  private String parentRela2;//家庭住址
 
 
 
@@ -45,13 +45,7 @@ public void setParentPhone2(String parentPhone2) {
 	this.parentPhone2 = parentPhone2;
 }
 
-public String getAddress2() {
-	return address2;
-}
 
-public void setAddress2(String address2) {
-	this.address2 = address2;
-}
 
 @Override
   public String toString() {
@@ -59,14 +53,14 @@ public void setAddress2(String address2) {
         + grade + ", phone=" + phone + ", date=" + date + ", parentName=" + parentName
         + ", parentPhone=" + parentPhone + ", address=" + address + ", remark=" + remark +
 
-        ",parentName2=" + parentName2 + ", parentPhone2=" + parentPhone2 + "  address2=" + address2 + "]";
+        ",parentName2=" + parentName2 + ", parentPhone2=" + parentPhone2 + "  parentRela2=" + parentRela2 + "]";
   }
   
   public Student(){}
 
   public Student(String uuid, String name, String studentID, String school, String grade,
       String phone, String date, String parentName, String parentPhone, String address,
-      String remark,String parentName2,String parentPhone2,String address2) {
+      String remark,String parentName2,String parentPhone2,String parentRela2) {
     super();
     this.uuid = uuid;
     this.name = name;
@@ -81,7 +75,7 @@ public void setAddress2(String address2) {
     this.remark = remark;
     this.parentName2 = parentName2;
     this.parentPhone2 = parentPhone2;
-    this.address2 = address2;
+    this.parentRela2 = parentRela2;
   }
 
   public String getUuid() {
@@ -230,5 +224,13 @@ public void setAddress2(String address2) {
   public void setParentRela(String parentRela) {
     this.parentRela = parentRela;
   }
+
+public String getParentRela2() {
+	return parentRela2;
+}
+
+public void setParentRela2(String parentRela2) {
+	this.parentRela2 = parentRela2;
+}
 
 }// end class student

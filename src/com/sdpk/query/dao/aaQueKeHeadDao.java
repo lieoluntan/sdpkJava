@@ -18,4 +18,7 @@ public interface aaQueKeHeadDao {
 	public PaikeRecordView getByEmpUuid(String empUuid);
 	
 	public PaikeRecord getByClaUuid(String ClaUuid);
-}
+
+	public ArrayList<PaikeRecordView> getListByclaUuid(String claUuid,
+			String KeDateTime);
+}//end interface

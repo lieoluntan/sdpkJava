@@ -1,11 +1,8 @@
-
-
-
 <Context>
   <Resource name="aaaPoolName"
             auth="Container"
             type="javax.sql.DataSource"
-            username="aaabbb"
+            username="aaabbbccc"
             password="aaabbb"
             driverClassName="com.mysql.jdbc.Driver"
             url="jdbc:mysql://101.132.130.149:3306/UserDB"
@@ -16,13 +13,14 @@
             minIdle="10"
             maxWait="3000"
             validationQuery="SELECT 1"
+            testOnBorrow = "true"
             testWhileIdle = "true"
-            testOnBorrow = "false"
+            testOnReturn = "true"
             timeBetweenEvictionRunsMillis = "30000"
-            minEvictableIdleTimeMillis = "1800000"
+            minEvictableIdleTimeMillis = "60000"
             numTestsPerEvictionRun="3"
             removeAbandoned="true"
-            removeAbandonedTimeout="180"
+            removeAbandonedTimeout="60"
             
             
             />

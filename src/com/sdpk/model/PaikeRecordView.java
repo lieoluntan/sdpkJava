@@ -105,7 +105,7 @@ public String toString() {
       + ", weekSome=" + weekSome + ", courseName=" + courseName + ", empName=" + empName
       + ", croomName=" + croomName + ", categoryName=" + categoryName + ", claTeaUuid="
       + claTeaUuid + ", claTeaName=" + claTeaName + ", stuUuid=" + stuUuid + ", stuName=" + stuName
-      + ", keEndTime=" + keEndTime + "]结束";
+      + ", keEndTime=" + keEndTime+ ", pkType=" + pkType+ ", pkTypeName=" + pkTypeName + "]结束";
 }
 
 

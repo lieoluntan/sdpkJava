@@ -46,7 +46,7 @@ public class RoleServiceImp implements RoleService{
 			    	roleResource.setResourceid(str);
 			    	roleResourceService.insert(roleResource);
 		    	}
-		    return role.getUuid();
+		    return "插入角色成功";
 		    }else{
 		      return "插入角色失败";
 		    }

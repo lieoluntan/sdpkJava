@@ -23,4 +23,8 @@ public interface QueryStuDao {
 	
 	int SumDayBefore(PaikeSearch paikeSearch);
 
+	ArrayList<PaikeRecordView> getAllPaike1(PaikeSearch paikeSearch);
+
+	int SumDayBefore1(PaikeSearch paikeSearch);
+
 }
