@@ -119,7 +119,7 @@ public class CourseControl extends HttpServlet {
       System.out.println("插入的uuid是：" + result);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + course.getName() : "插入成功");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + course.getName() : "新增成功");
       backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }

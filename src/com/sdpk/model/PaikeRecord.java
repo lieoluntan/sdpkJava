@@ -37,6 +37,8 @@ public class PaikeRecord {
   private String courseName;
   private String empName;
   private String croomName;
+  private String claName;
+  
   private String categoryName;//课程价格类别名
   
   private String pkType;// 上课类型：LineUpA    LineDownB  
@@ -268,6 +270,14 @@ public String getPkTypeName() {
 
 public void setPkTypeName(String pkTypeName) {
 	this.pkTypeName = pkTypeName;
+}
+
+public String getClaName() {
+	return claName;
+}
+
+public void setClaName(String claName) {
+	this.claName = claName;
 }
   
   //新增end

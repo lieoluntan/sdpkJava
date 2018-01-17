@@ -118,7 +118,7 @@ public class ClaControl extends HttpServlet {
       System.out.println("插入的uuid是: " + result);
       ArrayList<String> resultList = new ArrayList<String>();
       resultList.add(result);
-      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + cla.getName() : "插入成功");
+      backResult.setMessage(result=="yes" ? "(已存在重复名字)" + cla.getName() : "新增成功");
       backResult.setQingqiu(result=="yes"?"yes":"no");
       backResult.setData(resultList);
     }

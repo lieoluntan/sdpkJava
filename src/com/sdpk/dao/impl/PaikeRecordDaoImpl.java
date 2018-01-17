@@ -37,7 +37,7 @@ public class PaikeRecordDaoImpl implements PaikeRecordDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("insert into t_paike_all(uuid,claUuid,courseUuid,empUuid,classroomUuid,keDateTime,keStartTime,keLongTime,status,weekSome,pkType,pkTypeName) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into t_paike_all(uuid,claUuid,courseUuid,empUuid,classroomUuid,keDateTime,keStartTime,keLongTime,status,weekSome,pkType,pkTypeName,courseName,empName,croomName,claName) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, paikeRecord.getUuid());
 			preparedStatement.setString(2, paikeRecord.getClaUuid());
@@ -52,6 +52,12 @@ public class PaikeRecordDaoImpl implements PaikeRecordDao {
 
 			preparedStatement.setString(11, paikeRecord.getPkType());
 			preparedStatement.setString(12, paikeRecord.getPkTypeName());
+			
+			preparedStatement.setString(13, paikeRecord.getCourseName());
+			preparedStatement.setString(14, paikeRecord.getEmpName());
+			preparedStatement.setString(15, paikeRecord.getCroomName());
+			preparedStatement.setString(16, paikeRecord.getClaName());
+			
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行PaikeRecordDaoImpl中的添加insert");

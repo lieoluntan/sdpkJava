@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import com.sdpk.dao.And_ClassEmpDao;
+import com.sdpk.dao.ClaDao;
 import com.sdpk.dao.ClassRoomDao;
 import com.sdpk.dao.Class_ContractDao;
 import com.sdpk.dao.ContractDao;
@@ -17,6 +18,7 @@ import com.sdpk.dao.CourseDao;
 import com.sdpk.dao.EmployeeDao;
 import com.sdpk.dao.PaikeRecordDao;
 import com.sdpk.dao.impl.And_ClassEmpDaoImpl;
+import com.sdpk.dao.impl.ClaDaoImpl;
 import com.sdpk.dao.impl.ClassRoomDaoImpl;
 import com.sdpk.dao.impl.Class_ContractDaoImpl;
 import com.sdpk.dao.impl.ContractDaoImpl;
@@ -25,6 +27,7 @@ import com.sdpk.dao.impl.CourseDaoImpl;
 import com.sdpk.dao.impl.EmployeeDaoImpl;
 import com.sdpk.dao.impl.PaikeRecordDaoImpl;
 import com.sdpk.model.And_ClassEmp;
+import com.sdpk.model.Cla;
 import com.sdpk.model.ClassRoom;
 import com.sdpk.model.Class_Contract;
 import com.sdpk.model.Contract;
@@ -50,6 +53,7 @@ import com.sdpk.utility.T_covert;
 
 public class PaikeRecordServiceImpl implements PaikeRecordService {
 
+	private ClaDao claDao= new ClaDaoImpl();
 	private PaikeRecordDao paikeRecordDao = new PaikeRecordDaoImpl();
 	private ClassRoomDao classRoomDao = new ClassRoomDaoImpl();
 	private CourseDao courseDao = new CourseDaoImpl();
@@ -174,6 +178,9 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 					// 单个插入操作
 					one.setUuid(null);
 					one.setUuid(UUID.randomUUID().toString());
+					//存入班级名
+					Cla cla = claDao.getByUuid(one.getClaUuid());
+					one.setClaName(cla.getName());
 					boolean daoFlag = paikeRecordDao.insert(one);
 					if (daoFlag) {
 						count++;

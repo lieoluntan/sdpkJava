@@ -180,6 +180,11 @@ CREATE TABLE t_paike_all (
   pkType varchar(30) DEFAULT NULL,
   pkTypeName varchar(30) DEFAULT NULL,
   
+  courseName varchar(30) DEFAULT NULL,
+  empName varchar(30) DEFAULT NULL,
+  croomName varchar(30) DEFAULT NULL,
+  claName varchar(30) DEFAULT NULL,
+  
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
   createPeople varchar(50) DEFAULT NULL,
