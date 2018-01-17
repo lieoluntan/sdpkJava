@@ -21,6 +21,8 @@ public class ClassRoom {
   //备注
   private String remark;
   
+  private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
+  
   public ClassRoom() {
   }
   
@@ -100,5 +102,16 @@ public class ClassRoom {
   public void setRemark(String remark) {
     this.remark = remark;
   }
+
+public String getOpenAndclose() {
+	return openAndclose;
+}
+
+public void setOpenAndclose(String openAndclose) {
+	this.openAndclose = openAndclose;
+}
+
+
+
   
 }//end class ClassRoom

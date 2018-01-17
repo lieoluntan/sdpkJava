@@ -29,4 +29,6 @@ public interface ClassRoomService {
 	
 	public String getClaSSRoomByName1(ClassRoom CR);
 
+	String getonoff(ClassRoom classRoom);
+
 }//end class interface

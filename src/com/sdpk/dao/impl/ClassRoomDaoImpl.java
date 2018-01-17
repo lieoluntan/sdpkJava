@@ -161,6 +161,7 @@ public class ClassRoomDaoImpl implements ClassRoomDao{
           classRoom.setName(rs.getString("name"));
           classRoom.setCampus(rs.getString("campus"));             
           classRoom.setRemark(rs.getString("remark"));
+          classRoom.setOpenAndclose(rs.getString("openAndclose"));
           
           classRoomList.add(classRoom);
         }
@@ -180,5 +181,32 @@ public class ClassRoomDaoImpl implements ClassRoomDao{
 
     
   }//emd method getList
+
+@Override
+public boolean updateOnOff(String uuid, String oAc) {
+	// TODO Auto-generated method stub
+	PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
+    try {
+      connection = DBUtility.open();//打开数据库连接
+       preparedStatement = connection
+          .prepareStatement("UPDATE t_classroom SET openAndclose = ?  WHERE uuid = ? ");
+      // Parameters start with 1
+      preparedStatement.setString(1, oAc);
+      preparedStatement.setString(2, uuid);
+      preparedStatement.executeUpdate();
+
+      System.out.println("^^在执行ClassRoomDaoImpl中的修改update");
+      daoFlag = true;
+      return daoFlag;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("^^在执行ClassRoomDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+      daoFlag = false;
+      return daoFlag;
+    }finally{
+      ResultSet rs = null; 
+      DBUtility.close(rs, preparedStatement, connection);   
+     }//finally关闭jdbc与数据库连接  
+}//end method 
 
 }//end class

@@ -137,6 +137,8 @@ public class CourseDaoImpl implements CourseDao {
           course.setCategory(rs.getString("category"));             
           course.setDescribe(rs.getString("describeA"));
           course.setOrg(rs.getString("org"));
+          course.setOpenAndclose(rs.getString("openAndclose"));
+          
           courList.add(course);
         }
     } catch (SQLException e) {

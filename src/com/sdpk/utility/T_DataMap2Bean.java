@@ -56,8 +56,10 @@ public class T_DataMap2Bean {
 		String name = (String) map.get("name");
 		String campus = (String) map.get("campus");
 		String remark = (String) map.get("remark");
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 
 		ClassRoom classRoom = new ClassRoom(uuid, name, campus, remark);
+		classRoom.setOpenAndclose(openAndclose);
 		return classRoom;
 	}// end method MapToEmp
 

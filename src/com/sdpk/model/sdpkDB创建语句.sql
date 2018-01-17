@@ -222,6 +222,7 @@ CREATE TABLE t_classroom (
   name varchar(50) NOT NULL,
   campus varchar(50) DEFAULT NULL,
   remark varchar(250) DEFAULT NULL,
+  openAndclose varchar(10) DEFAULT NULL,
   
   org varchar(50) DEFAULT NULL,
   createDate datetime DEFAULT NULL,

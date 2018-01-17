@@ -23,4 +23,6 @@ public interface ClassRoomDao {
 
   public ArrayList<ClassRoom> getList();
 
+public boolean updateOnOff(String uuid, String oAc);
+
 }

@@ -14,6 +14,7 @@ public class Course {
   private String describe;
   
   private String org;
+  private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
   
   public Course(){}
   
@@ -103,6 +104,14 @@ public class Course {
   public void setOrg(String org) {
     this.org = org;
   }
+
+public String getOpenAndclose() {
+	return openAndclose;
+}
+
+public void setOpenAndclose(String openAndclose) {
+	this.openAndclose = openAndclose;
+}
   
   
   
