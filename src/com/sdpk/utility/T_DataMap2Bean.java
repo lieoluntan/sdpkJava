@@ -43,9 +43,11 @@ public class T_DataMap2Bean {
 		String status = (String) map.get("status");
 		String remark = (String) map.get("remark");
 		String claNum = (String) map.get("claNum");
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 
 		Cla cla = new Cla(uuid, org, name, empUuid, classDate, status, remark);
 		cla.setClaNum(claNum);
+		cla.setOpenAndclose(openAndclose);
 
 		return cla;
 	}// end method MapToEmp
@@ -87,6 +89,7 @@ public class T_DataMap2Bean {
 		String workDate = (String) map.get("workDate");
 		String fullhalf = (String) map.get("fullhalf");
 		String jobRemark = (String) map.get("jobRemark");
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 
 		Employee emp = new Employee(uuid, name, empNum, phone, depart, job,
 				permissionTempl, remark);
@@ -96,6 +99,7 @@ public class T_DataMap2Bean {
 		emp.setWorkDate(workDate);
 		emp.setFullhalf(fullhalf);
 		emp.setJobRemark(jobRemark);
+		emp.setOpenAndclose(openAndclose);
 
 		return emp;
 	}// end method MapToEmp
@@ -107,9 +111,11 @@ public class T_DataMap2Bean {
 		String category = (String) map.get("category");
 		String describe = (String) map.get("describe");
 		String org = (String) map.get("org");
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 
 		Course course = new Course(uuid, name, category, describe);
 		course.setOrg(org);
+		course.setOpenAndclose(openAndclose);
 
 		return course;
 	}// end method MapToEmp
@@ -134,11 +140,14 @@ public class T_DataMap2Bean {
 		String parentName2 = (String)map.get("parentName2");//1.11新增家长名字字段
 		String parentPhone2 = (String)map.get("parentPhone2");//1.11新增家长电话字段
 		String parentRela2 = (String)map.get("parentRela2");//1.11新增家长备注字段
+		
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 		Student stu = new Student(uuid, name, studentID, school, grade, phone,
 				date, parentName, parentPhone, address, remark,parentName2,parentPhone2,parentRela2);
 		stu.setSex(sex);
 		stu.setOrg(org);
 		stu.setParentRela(parentRela);
+		stu.setOpenAndclose(openAndclose);
 		return stu;
 	}// end method MapToStudent
 
@@ -185,6 +194,7 @@ public class T_DataMap2Bean {
 		String totalCount = (String) map.get("totalCount");
 		String totalPrice = (String) map.get("totalPrice");
 		String sumLineUpA = (String) map.get("sumLineUpA");
+		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 		if(sumLineUpA==null){
 			sumLineUpA="0";
 		}
@@ -214,6 +224,7 @@ public class T_DataMap2Bean {
 		Contrtext contrtext = new Contrtext(uuid, cNum, stuUuid, cDate, org,
 				totalCount, totalPrice, Integer.parseInt(sumLineUpA),
 				Integer.parseInt(sumLineDownB), conList);
+		contrtext.setOpenAndclose(openAndclose);
 		return contrtext;
 	}// end method MapToEmp
 

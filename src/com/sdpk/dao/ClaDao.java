@@ -23,6 +23,8 @@ public interface ClaDao {
   public Cla getByUuid(String uuid);
 
   public ArrayList<Cla> getList();
+
+public boolean updateOnOff(String uuid, String oAc);
   
 
 }

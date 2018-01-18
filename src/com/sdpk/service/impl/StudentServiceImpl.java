@@ -166,4 +166,26 @@ public class StudentServiceImpl implements StudentService {
 		return flag;
 	}
 
+	@Override
+	public String getonoff(Student student) {
+		// TODO Auto-generated method stub
+		String uuid = student.getUuid();
+		if(uuid!=null&&uuid!="")
+	    {
+		  String oAc = student.getOpenAndclose();
+	      boolean daoFlag = studentDao.updateOnOff(uuid,oAc);
+	      
+	        if(daoFlag)
+	        {
+	        return "操作成功";
+	        }else{
+	          return "操作失败,dao层执行有出错地方,请联系管理员";
+	        }
+	    }else{
+	      String msg="studentServiceImpl getonoff方法中的uuid为空，或格式不正确，请重新选择";
+	      System.out.println(msg);
+	      return msg;
+	    }
+	}//end method
+
 }// end class StudentServiceImpl

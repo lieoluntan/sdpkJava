@@ -16,12 +16,14 @@ public class Employee {
   private String permissionTempl;
   private String remark;
   
-  private String claTeacher;
+  private String claTeacher;//前台选项，是否为班主任
   private String sex;
   private String org;
   private String workDate;
   private String fullhalf;
   private String jobRemark;
+  
+  private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
   
   public String getSex() {
     return sex;
@@ -193,6 +195,14 @@ public class Employee {
   public void setCreateDate(String createDate) {
     this.createDate = createDate;
   }
+
+public String getOpenAndclose() {
+	return openAndclose;
+}
+
+public void setOpenAndclose(String openAndclose) {
+	this.openAndclose = openAndclose;
+}
   
   
 

@@ -26,4 +26,6 @@ public interface ContrtextService {
 	  public String getStuByName(Contrtext contract);
 		
 		public String getStuByName1(Contrtext contract);
+
+		String getonoff(Contrtext contrtext);
 }

@@ -28,4 +28,6 @@ public interface EmployeeService {
 	
 	public String getStuByName1(Employee employee);
 
+	String getonoff(Employee employee);
+
 }

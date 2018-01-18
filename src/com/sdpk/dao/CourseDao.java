@@ -24,4 +24,6 @@ public interface CourseDao {
 
   public Course getByUuid(String uuid);
 
+public boolean updateOnOff(String uuid, String oAc);
+
 }

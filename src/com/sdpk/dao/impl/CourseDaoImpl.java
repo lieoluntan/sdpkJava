@@ -38,13 +38,14 @@ public class CourseDaoImpl implements CourseDao {
     try {
       connection = DBUtility.open();//打开数据库连接
        preparedStatement = connection
-          .prepareStatement("insert into t_course(uuid,name,category,describeA,org) values (?,?, ?,?,?)");
+          .prepareStatement("insert into t_course(uuid,name,category,describeA,org,openAndclose) values (?,?, ?,?,?,?)");
       // Parameters start with 1
       preparedStatement.setString(1, course.getUuid());
       preparedStatement.setString(2, course.getName());
       preparedStatement.setString(3, course.getCategory());
       preparedStatement.setString(4, course.getDescribe());
       preparedStatement.setString(5, course.getOrg());
+      preparedStatement.setString(6, "open");//新增统一为打开open
       preparedStatement.executeUpdate();
 
       System.out.println("^^在执行CourseDaoImpl中的添加insert");
@@ -183,5 +184,32 @@ public class CourseDaoImpl implements CourseDao {
     return courseResult;
 
   }// end method getByUuid
+
+@Override
+public boolean updateOnOff(String uuid, String oAc) {
+	// TODO Auto-generated method stub
+	PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
+    try {
+      connection = DBUtility.open();//打开数据库连接
+       preparedStatement = connection
+          .prepareStatement("UPDATE t_course SET openAndclose = ?  WHERE uuid = ? ");
+      // Parameters start with 1
+      preparedStatement.setString(1, oAc);
+      preparedStatement.setString(2, uuid);
+      preparedStatement.executeUpdate();
+
+      System.out.println("^^在执行ClassRoomDaoImpl中的修改update");
+      daoFlag = true;
+      return daoFlag;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("^^在执行ClassRoomDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+      daoFlag = false;
+      return daoFlag;
+    }finally{
+      ResultSet rs = null; 
+      DBUtility.close(rs, preparedStatement, connection);   
+     }//finally关闭jdbc与数据库连接 
+}//end method
 
 }//end class CourseDaoImpl

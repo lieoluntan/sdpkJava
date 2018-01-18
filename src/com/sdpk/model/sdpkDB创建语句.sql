@@ -16,7 +16,9 @@ CREATE TABLE t_student (
   
   parentName2 varchar(30) DEFAULT NULL,
   parentPhone2 varchar(30) DEFAULT NULL,
-  address2 varchar(30) DEFAULT NULL,
+  parentRela2 varchar(30) DEFAULT NULL,
+  
+  openAndclose varchar(10) DEFAULT NULL,
   
   sex varchar(30) DEFAULT NULL,
   org varchar(30) DEFAULT NULL,
@@ -52,6 +54,7 @@ CREATE TABLE t_employee (
   workDate varchar(30) DEFAULT NULL,
   fullhalf varchar(30) DEFAULT NULL,
   jobRemark varchar(30) DEFAULT NULL,
+  openAndclose varchar(10) DEFAULT NULL,
   
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
@@ -70,6 +73,7 @@ CREATE TABLE t_course (
   category varchar(30) DEFAULT NULL,
   describeA varchar(255) DEFAULT NULL,
   org varchar(30) DEFAULT NULL,
+  openAndclose varchar(10) DEFAULT NULL,
   
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
@@ -204,6 +208,7 @@ CREATE TABLE t_class (
   status varchar(50) DEFAULT NULL,
   remark varchar(30) DEFAULT NULL,
   claNum varchar(30) DEFAULT NULL,
+  openAndclose varchar(10) DEFAULT NULL,
   
   org varchar(50) DEFAULT NULL,
   createDate datetime DEFAULT NULL,

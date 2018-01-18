@@ -110,6 +110,7 @@ public class MyStuDaoImpl implements MyStuDao {
 				student.setSex(rs.getString("sex"));
 				student.setOrg(rs.getString("org"));
 				student.setParentRela(rs.getString("parentRela"));
+				student.setOpenAndclose(rs.getString("openAndclose"));
 
 			}
 		} catch (SQLException e) {

@@ -45,7 +45,7 @@ public class StudentControl extends HttpServlet {
 		String qqiu = request.getParameter("qqiu");
 
 		if (qqiu.equals("test") || qqiu.equals("add") || qqiu.equals("delete")
-				|| qqiu.equals("edit") || qqiu.equals("getOne")) {
+				|| qqiu.equals("edit") || qqiu.equals("getOne")|| qqiu.equals("on_off")) {
 			// 2 将前台json数据字符串转成实体对象
 			T_DataControl t_data = new T_DataControl();
 			String str = t_data.getRequestPayload(request);
@@ -88,12 +88,14 @@ public class StudentControl extends HttpServlet {
 		boolean delete = false;
 		boolean edit = false;
 		boolean getOne = false;
+		boolean on_off = false;
 
 		test = qqiu.equals("test");
 		add = qqiu.equals("add");
 		delete = qqiu.equals("delete");
 		edit = qqiu.equals("edit");
 		getOne = qqiu.equals("getOne");
+		on_off = qqiu.equals("on_off");
 
 		if (test) {
 			backResult.setMessage("信息值,测试成功");
@@ -143,6 +145,23 @@ public class StudentControl extends HttpServlet {
 			backResult.setQingqiu("getOne查询列表");
 			backResult.setData(resultList);
 		}
+		if (on_off) {
+	    	//判断openAndclose参数规范
+	    	String oAc = student.getOpenAndclose();
+	    	String flagQqiu = "初始值";
+	    	String result = "初始值";
+	    	if(oAc.equals("open")||oAc.equals("close")){
+	    		if(oAc.equals("open")){flagQqiu = "on";}
+	    		if(oAc.equals("close")){flagQqiu = "off";}
+	    		 result = studentService.getonoff(student);
+	    	}else { flagQqiu = "err"; result = "操作失败：开关参数不规范"+"("+oAc+")";}
+	        
+	        ArrayList<String> resultList = new ArrayList<String>();
+	        resultList.add(result);
+	        backResult.setMessage(result);
+	        backResult.setQingqiu(flagQqiu);
+	        backResult.setData(resultList);
+	      }//end on_off
 
 	}// end method qqiuChoice
 

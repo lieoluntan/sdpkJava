@@ -25,4 +25,6 @@ public interface EmployeeDao {
 
   public ArrayList<Employee> getclaTeaList();
 
+public boolean updateOnOff(String uuid, String oAc);
+
 }

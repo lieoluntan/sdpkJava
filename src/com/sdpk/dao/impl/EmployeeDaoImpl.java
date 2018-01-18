@@ -36,7 +36,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     try {
       connection = DBUtility.open();//打开数据库连接
        preparedStatement = connection
-          .prepareStatement("insert into t_employee(uuid,name,empNum,phone,depart,job,remark,claTeacher,sex,org,workDate,fullhalf,jobRemark) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+          .prepareStatement("insert into t_employee(uuid,name,empNum,phone,depart,job,remark,claTeacher,sex,org,workDate,fullhalf,jobRemark,openAndclose) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
       // Parameters start with 1
       preparedStatement.setString(1, employee.getUuid());
       preparedStatement.setString(2, employee.getName());
@@ -52,6 +52,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
       preparedStatement.setString(11, employee.getWorkDate());
       preparedStatement.setString(12, employee.getFullhalf());
       preparedStatement.setString(13, employee.getJobRemark());
+      preparedStatement.setString(14, "open");//新增统一为打开open
       preparedStatement.executeUpdate();
 
       System.out.println("^^在执行EmployeeDaoImpl中的insert添加");
@@ -195,6 +196,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
           employee.setWorkDate(rs.getString("workDate"));
           employee.setFullhalf(rs.getString("fullhalf"));
           employee.setJobRemark(rs.getString("jobRemark"));
+          employee.setOpenAndclose(rs.getString("openAndclose"));
           
           employeeList.add(employee);
         }
@@ -253,5 +255,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     
   }//emd method getclaTeaList
+
+@Override
+public boolean updateOnOff(String uuid, String oAc) {
+	// TODO Auto-generated method stub
+	PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
+    try {
+      connection = DBUtility.open();//打开数据库连接
+       preparedStatement = connection
+          .prepareStatement("UPDATE t_employee SET openAndclose = ?  WHERE uuid = ? ");
+      // Parameters start with 1
+      preparedStatement.setString(1, oAc);
+      preparedStatement.setString(2, uuid);
+      preparedStatement.executeUpdate();
+
+      System.out.println("^^在执行ClassRoomDaoImpl中的修改update");
+      daoFlag = true;
+      return daoFlag;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("^^在执行ClassRoomDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+      daoFlag = false;
+      return daoFlag;
+    }finally{
+      ResultSet rs = null; 
+      DBUtility.close(rs, preparedStatement, connection);   
+     }//finally关闭jdbc与数据库连接 
+}//end method
 
 }//end class

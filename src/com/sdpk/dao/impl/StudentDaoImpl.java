@@ -30,8 +30,8 @@ System.out.println(stu.getName());
 		PreparedStatement preparedStatement = null; // 关闭数据库连接insert和update和delete用到
 		try {
 			preparedStatement = connection
-					.prepareStatement("insert into t_student(uuid,name,studentID,school,grade,phone,date,parentName,parentPhone,address,remark,sex,org,parentRela,parentName2,parentPhone2,parentRela2) "
-							+ "	values (?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into t_student(uuid,name,studentID,school,grade,phone,date,parentName,parentPhone,address,remark,sex,org,parentRela,parentName2,parentPhone2,parentRela2,openAndclose) "
+							+ "	values (?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, stu.getUuid());
 			preparedStatement.setString(2, stu.getName());
@@ -51,6 +51,7 @@ System.out.println(stu.getName());
 			preparedStatement.setString(15, stu.getParentName2());
 			preparedStatement.setString(16, stu.getParentPhone2());
 			preparedStatement.setString(17, stu.getParentRela2());
+			preparedStatement.setString(18, "open");//新增统一为打开open
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行StudentDao中的insert添加");
@@ -171,6 +172,8 @@ System.out.println(stu.getName());
 				student.setParentName2(rs.getString("parentName2"));
 				student.setParentPhone2(rs.getString("parentPhone2"));
 				student.setParentRela2(rs.getString("parentRela2"));
+				
+				student.setOpenAndclose(rs.getString("openAndclose"));
 
 				studentList.add(student);
 			}
@@ -265,5 +268,32 @@ System.out.println(stu.getName());
 
 		return studentResult;
 	}
+
+	@Override
+	public boolean updateOnOff(String uuid, String oAc) {
+		// TODO Auto-generated method stub
+		 PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
+		    try {
+		      connection = DBUtility.open();//打开数据库连接
+		       preparedStatement = connection
+		          .prepareStatement("UPDATE t_student SET openAndclose = ?  WHERE uuid = ? ");
+		      // Parameters start with 1
+		      preparedStatement.setString(1, oAc);
+		      preparedStatement.setString(2, uuid);
+		      preparedStatement.executeUpdate();
+
+		      System.out.println("^^在执行StudentDaoImpl中的修改update");
+		      daoFlag = true;
+		      return daoFlag;
+		    } catch (SQLException e) {
+		      e.printStackTrace();
+		      System.out.println("^^在执行StudentDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+		      daoFlag = false;
+		      return daoFlag;
+		    }finally{
+		      ResultSet rs = null; 
+		      DBUtility.close(rs, preparedStatement, connection);   
+		     }//finally关闭jdbc与数据库连接 
+	}//end method
 
 }// end class StudentDaoImpl

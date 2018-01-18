@@ -72,6 +72,7 @@ public class MyClaDaoImpl implements MyClaDao{
 				cla.setRemark(rs.getString("remark"));
 				cla.setOrg(rs.getString("org"));
 				cla.setClaNum(rs.getString("claNum"));
+				cla.setOpenAndclose(rs.getString("openAndclose"));
 				
 			}
 		} catch (SQLException e) {

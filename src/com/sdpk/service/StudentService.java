@@ -24,4 +24,6 @@ public interface StudentService {
 	
   public String getStuByName1(Student student);
 
+String getonoff(Student student);
+
 }

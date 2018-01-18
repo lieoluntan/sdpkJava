@@ -37,7 +37,7 @@ public class ClaDaoImpl implements ClaDao {
     try {
       connection = DBUtility.open();//打开数据库连接
        preparedStatement = connection
-          .prepareStatement("insert into t_class(uuid,org,name,empUuid,classDate,status,remark,claNum) values (?,?,?,?,?,?,?,?)");
+          .prepareStatement("insert into t_class(uuid,org,name,empUuid,classDate,status,remark,claNum,openAndclose) values (?,?,?,?,?,?,?,?,?)");
       // Parameters start with 1
       preparedStatement.setString(1, cla.getUuid());
       preparedStatement.setString(2, cla.getOrg());
@@ -47,6 +47,7 @@ public class ClaDaoImpl implements ClaDao {
       preparedStatement.setString(6, cla.getStatus());
       preparedStatement.setString(7, cla.getRemark());
       preparedStatement.setString(8, cla.getClaNum());
+      preparedStatement.setString(9, "open");//新增统一为打开open
       preparedStatement.executeUpdate();
 
       System.out.println("^^在执行ContractDaoImpl中的添加insert");
@@ -179,6 +180,7 @@ public class ClaDaoImpl implements ClaDao {
           cla.setRemark(rs.getString("remark"));
           cla.setOrg(rs.getString("org"));
           cla.setClaNum(rs.getString("claNum"));
+          cla.setOpenAndclose(rs.getString("openAndclose"));
           
           claList.add(cla);
         }
@@ -198,4 +200,34 @@ public class ClaDaoImpl implements ClaDao {
 
     
   }//emd method getList
+
+  @Override
+  public boolean updateOnOff(String uuid, String oAc) {
+	// TODO Auto-generated method stub
+	  PreparedStatement preparedStatement = null; //关闭数据库连接insert和update和delete用到
+	    try {
+	      connection = DBUtility.open();//打开数据库连接
+	       preparedStatement = connection
+	          .prepareStatement("UPDATE t_class SET openAndclose = ?  WHERE uuid = ? ");
+	      // Parameters start with 1
+	      preparedStatement.setString(1, oAc);
+	      preparedStatement.setString(2, uuid);
+	      preparedStatement.executeUpdate();
+
+	      System.out.println("^^在执行ClassDaoImpl中的修改update");
+	      daoFlag = true;
+	      return daoFlag;
+	    } catch (SQLException e) {
+	      e.printStackTrace();
+	      System.out.println("^^在执行ClassDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+	      daoFlag = false;
+	      return daoFlag;
+	    }finally{
+	      ResultSet rs = null; 
+	      DBUtility.close(rs, preparedStatement, connection);   
+	     }//finally关闭jdbc与数据库连接 
+ }//end method
+  
+  
+  
 }// end class

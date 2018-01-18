@@ -31,4 +31,6 @@ public String getClaByName(Cla cla);
 	
 public String getClaByName1(Cla cla);
 
+String getonoff(Cla cla);
+
 }//end class interface ClaService

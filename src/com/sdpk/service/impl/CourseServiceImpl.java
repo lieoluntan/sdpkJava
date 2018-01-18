@@ -163,5 +163,27 @@ public class CourseServiceImpl implements CourseService{
 		return flag;
 	}
 
+	@Override
+	public String getonoff(Course course) {
+		// TODO Auto-generated method stub
+		String uuid = course.getUuid();
+		if(uuid!=null&&uuid!="")
+	    {
+		  String oAc = course.getOpenAndclose();
+	      boolean daoFlag = courseDao.updateOnOff(uuid,oAc);
+	      
+	        if(daoFlag)
+	        {
+	        return "操作成功";
+	        }else{
+	          return "操作失败,dao层执行有出错地方,请联系管理员";
+	        }
+	    }else{
+	      String msg="ClassRoomServiceImpl delete方法中的uuid为空，或格式不正确，请重新选择";
+	      System.out.println(msg);
+	      return msg;
+	    }
+	}//end method
+
 
 }//end class CourseServiceImpl

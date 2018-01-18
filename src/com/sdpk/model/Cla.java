@@ -27,6 +27,8 @@ public class Cla {
   private String org;
   private String claNum;
   private String empName;
+  
+  private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
 
   public Cla() {
     super();
@@ -153,6 +155,14 @@ public class Cla {
   public void setEmpName(String empName) {
     this.empName = empName;
   }
+
+public String getOpenAndclose() {
+	return openAndclose;
+}
+
+public void setOpenAndclose(String openAndclose) {
+	this.openAndclose = openAndclose;
+}
   
   
 

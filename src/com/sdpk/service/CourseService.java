@@ -27,4 +27,6 @@ public interface CourseService {
 	
   public String getCourByName1(Course cour);
 
+  public  String getonoff(Course course);
+
 }

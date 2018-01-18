@@ -36,12 +36,13 @@ public class ClassRoomDaoImpl implements ClassRoomDao{
     try {
       connection = DBUtility.open();//打开数据库连接
        preparedStatement = connection
-          .prepareStatement("insert into t_classroom(uuid,name,campus,remark) values (?,?,?,?)");
+          .prepareStatement("insert into t_classroom(uuid,name,campus,remark,openAndclose) values (?,?,?,?,?)");
       // Parameters start with 1
       preparedStatement.setString(1, classRoom.getUuid());
       preparedStatement.setString(2, classRoom.getName());
       preparedStatement.setString(3, classRoom.getCampus());
       preparedStatement.setString(4, classRoom.getRemark());
+      preparedStatement.setString(5, "open");//新增统一为打开open
       preparedStatement.executeUpdate();
 
       System.out.println("^^在执行ClassRoomDaoImpl中的添加insert");

@@ -26,6 +26,8 @@ public class Student {
   private String  parentName2;//家长姓名
   private String parentPhone2;//家长电话
   private String parentRela2;//家庭住址
+  
+  private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
 
 
 
@@ -231,6 +233,14 @@ public String getParentRela2() {
 
 public void setParentRela2(String parentRela2) {
 	this.parentRela2 = parentRela2;
+}
+
+public String getOpenAndclose() {
+	return openAndclose;
+}
+
+public void setOpenAndclose(String openAndclose) {
+	this.openAndclose = openAndclose;
 }
 
 }// end class student

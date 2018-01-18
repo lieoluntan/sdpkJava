@@ -23,6 +23,8 @@ public class Contrtext {
 	private int sumLineDownB; //线下课的次数，排课限制参照点
 
 	private List<ConPrice> conPriceList;
+	
+	private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
 
 
 
@@ -178,6 +180,14 @@ public class Contrtext {
 
 	public void setSumLineDownB(int sumLineDownB) {
 		this.sumLineDownB = sumLineDownB;
+	}
+
+	public String getOpenAndclose() {
+		return openAndclose;
+	}
+
+	public void setOpenAndclose(String openAndclose) {
+		this.openAndclose = openAndclose;
 	}
 
 }// end class
