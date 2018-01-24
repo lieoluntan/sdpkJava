@@ -102,7 +102,7 @@ public class EmployeeControl extends HttpServlet {
 
     test = qqiu.equals("test");
     add = qqiu.equals("add");
-    delete = qqiu.equals("delete");
+//    delete = qqiu.equals("delete");
     edit = qqiu.equals("edit");
     getOne = qqiu.equals("getOne");
     on_off = qqiu.equals("on_off");

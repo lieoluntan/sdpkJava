@@ -63,5 +63,5 @@ public class MyConController extends HttpServlet {
 			backResult.setData((ArrayList) stuList);
 		}
 
-	}
-}
+	}//end method qqiuChoice
+}//end class

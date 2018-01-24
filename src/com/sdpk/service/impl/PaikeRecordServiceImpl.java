@@ -300,6 +300,10 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		// 步骤三更新操作
 		String uuid = paikeRecord.getUuid();
 		if (uuid != null && uuid != "") {
+			
+			//存入班级名
+			Cla cla = claDao.getByUuid(paikeRecord.getClaUuid());
+			paikeRecord.setClaName(cla.getName());
 
 			boolean daoFlag = paikeRecordDao.update(paikeRecord);
 
