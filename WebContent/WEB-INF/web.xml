@@ -384,4 +384,13 @@
     <url-pattern>/aaQuery</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>aaMyContrtextN</servlet-name>
+    <servlet-class>com.sdpk.query.controller.MyContrtextController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaMyContrtextN</servlet-name>
+    <url-pattern>/aaMyContrtext</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

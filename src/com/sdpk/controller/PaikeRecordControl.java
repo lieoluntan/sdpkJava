@@ -252,6 +252,10 @@ public class PaikeRecordControl extends HttpServlet {
 
 		String pkType = (String) map.get("pkType");
 		String pkTypeName = (String) map.get("pkTypeName");
+		
+		String courseName = (String) map.get("courseName");
+		String empName = (String) map.get("empName");
+		String croomName = (String) map.get("croomName");
 
 		PaikeRecord paikeRecord = new PaikeRecord(uuid, claUuid, courseUuid,
 				empUuid, classroomUuid, keDateTime, keStartTime, keLongTime,
@@ -259,6 +263,10 @@ public class PaikeRecordControl extends HttpServlet {
 		paikeRecord.setWeekSome(weekSome);// 修改的时候要用到
 		paikeRecord.setPkType(pkType);
 		paikeRecord.setPkTypeName(pkTypeName);
+		paikeRecord.setCourseName(courseName);
+		paikeRecord.setEmpName(empName);
+		paikeRecord.setCroomName(croomName);
+		
 		return paikeRecord;
 	}// end method MapToPaikeRecord
 
