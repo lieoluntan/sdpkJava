@@ -342,6 +342,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>aaUserPKpassN</servlet-name>
+  	<servlet-class>com.sdpk.system.controller.UserPKpassController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>aaUserPKpassN</servlet-name>
+  	<url-pattern>/aaUserPKpass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>aaDengLuN</servlet-name>
     <servlet-class>com.sdpk.controller.DengLuControl</servlet-class>
   </servlet>
