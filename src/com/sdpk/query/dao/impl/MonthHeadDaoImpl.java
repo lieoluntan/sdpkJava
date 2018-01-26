@@ -72,6 +72,8 @@ public class MonthHeadDaoImpl implements MonthHeadDao {
 					paikeRecordView.setKeStartTime(rs.getString("keStartTime"));
 					paikeRecordView.setPkType(rs.getString("pkType"));
 					paikeRecordView.setStatus(rs.getString("status"));
+					paikeRecordView.setWeekSome(rs.getString("weekSome"));
+					paikeRecordView.setPkTypeName(rs.getString("pkTypeName"));
 					paikeList.add(paikeRecordView);
 					//System.out.println(paikeList.size());
 			}
