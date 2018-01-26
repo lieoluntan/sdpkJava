@@ -30,7 +30,6 @@ public class MonthHeadController extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.doPost(request, response);
-
 	}
 	
 	@SuppressWarnings("null")

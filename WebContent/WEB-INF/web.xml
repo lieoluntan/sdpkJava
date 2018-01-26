@@ -47,6 +47,15 @@
     <url-pattern>/aaContrtext</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>aaQueCountCtextN</servlet-name>
+  	<servlet-class>com.sdpk.query.controller.QueCountCtextController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>aaQueCountCtextN</servlet-name>
+  	<url-pattern>/aaQueCountCtext</url-pattern>
+  </servlet-mapping>
+  
   <!-- ConPriceController -->
    <servlet>
     <servlet-name>ConPriceController</servlet-name>
