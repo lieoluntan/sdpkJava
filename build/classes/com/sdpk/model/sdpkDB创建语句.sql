@@ -132,6 +132,9 @@ CREATE TABLE t_contrtext (
   sumLineUpA int NOT NULL,
   sumLineDownB int NOT NULL,
   
+  remark varchar(250) DEFAULT NULL,
+  nameTcname varchar(250) DEFAULT NULL,
+  
   createDate datetime DEFAULT NULL,
   modifyDate datetime DEFAULT NULL,
   createPeople varchar(50) DEFAULT NULL,

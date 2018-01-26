@@ -32,7 +32,7 @@ public class ContrtextDaoImpl implements ContrtextDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("insert into t_contrtext(uuid,cNum,stuUuid,cDate,org,totalCount,totalPrice,sumLineUpA,sumLineDownB,openAndclose) values (?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into t_contrtext(uuid,cNum,stuUuid,cDate,org,totalCount,totalPrice,sumLineUpA,sumLineDownB,openAndclose,remark) values (?,?,?,?,?,?,?,?,?,?,?)");
 			// Parameters start with 1
 			preparedStatement.setString(1, contrtext.getUuid());
 			preparedStatement.setString(2, contrtext.getcNum());
@@ -44,6 +44,7 @@ public class ContrtextDaoImpl implements ContrtextDao {
 			preparedStatement.setInt(8, contrtext.getSumLineUpA());
 			preparedStatement.setInt(9, contrtext.getSumLineDownB());
 			preparedStatement.setString(10, "open");//新增统一为打开open
+			preparedStatement.setString(11, contrtext.getRemark());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行ContrtextDaoImpl中的添加insert");
@@ -95,7 +96,7 @@ public class ContrtextDaoImpl implements ContrtextDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			preparedStatement = connection
-					.prepareStatement("UPDATE t_contrtext SET cNum = ?, stuUuid = ?,cDate = ?, org = ?, totalCount = ?, totalPrice = ?,sumLineUpA = ?,sumLineDownB = ?  WHERE uuid = ? ");
+					.prepareStatement("UPDATE t_contrtext SET cNum = ?, stuUuid = ?,cDate = ?, org = ?, totalCount = ?, totalPrice = ?,sumLineUpA = ?,sumLineDownB = ?,remark = ?  WHERE uuid = ? ");
 			preparedStatement.setString(1, contrtext.getcNum());
 			preparedStatement.setString(2, contrtext.getStuUuid());
 			preparedStatement.setString(3, contrtext.getcDate());
@@ -104,7 +105,8 @@ public class ContrtextDaoImpl implements ContrtextDao {
 			preparedStatement.setString(6, contrtext.getTotalPrice());
 			preparedStatement.setLong(7, contrtext.getSumLineUpA());
 			preparedStatement.setLong(8, contrtext.getSumLineDownB());
-			preparedStatement.setString(9, contrtext.getUuid());
+			preparedStatement.setString(9, contrtext.getRemark());
+			preparedStatement.setString(10, contrtext.getUuid());
 			preparedStatement.executeUpdate();
 
 			System.out.println("^^在执行ContrtextDaoImpl中的修改update");
@@ -144,6 +146,7 @@ public class ContrtextDaoImpl implements ContrtextDao {
 				contract.setSumLineUpA(rs.getInt("sumLineUpA"));
 				contract.setSumLineDownB(rs.getInt("sumLineDownB"));
 				contract.setOpenAndclose(rs.getString("openAndclose"));
+				contract.setRemark(rs.getString("remark"));
 				contractList.add(contract);
 			}
 		} catch (SQLException e) {

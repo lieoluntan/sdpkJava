@@ -25,7 +25,10 @@ public class Contrtext {
 	private List<ConPrice> conPriceList;
 	
 	private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
-
+	
+	private String remark; //备注
+	
+	private String nameTcname;//别名，学生名和编号
 
 
 	public Contrtext(String uuid, String cNum, String stuUuid, String cDate,
@@ -189,5 +192,21 @@ public class Contrtext {
 	public void setOpenAndclose(String openAndclose) {
 		this.openAndclose = openAndclose;
 	}
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+  public String getNameTcname() {
+    return nameTcname;
+  }
+
+  public void setNameTcname(String nameTcname) {
+    this.nameTcname = nameTcname;
+  }
 
 }// end class
