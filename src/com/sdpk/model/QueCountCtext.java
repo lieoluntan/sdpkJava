@@ -20,7 +20,7 @@ public class QueCountCtext {
 	
 	
 	public QueCountCtext() {
-		super();
+		this.cTextCount="0";this.keTotal="0";this.keDayBefore="0";this.keDayAfter="0";this.paikeSum="0";
 	}
 
 
