@@ -194,6 +194,7 @@ public class T_DataMap2Bean {
 		String totalCount = (String) map.get("totalCount");
 		String totalPrice = (String) map.get("totalPrice");
 		String sumLineUpA = (String) map.get("sumLineUpA");
+		String remark = (String) map.get("remark");//合同的备注字段
 		String openAndclose = (String) map.get("openAndclose");// 改变开关状态才用到，新增和编辑没有值
 		if(sumLineUpA==null){
 			sumLineUpA="0";
@@ -225,6 +226,7 @@ public class T_DataMap2Bean {
 				totalCount, totalPrice, Integer.parseInt(sumLineUpA),
 				Integer.parseInt(sumLineDownB), conList);
 		contrtext.setOpenAndclose(openAndclose);
+		contrtext.setRemark(remark);
 		return contrtext;
 	}// end method MapToEmp
 

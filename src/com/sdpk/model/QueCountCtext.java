@@ -13,8 +13,9 @@ public class QueCountCtext {
 	private String cTextCount;//关联合同数量
 	private String keTotal;//合同总课数
 	private String keDayBefore;//已消课（今天以前已上过的课）
-	private String keDayAfter;//合同可上课数---等于合同总课数减已消课数---keTotal减keDayBefore
+	private String keDayAfter;//合同可上课数---等于合同已排课数减已消课数---paikeSum减keDayBefore
 	private String paikeSum;//合同已排课数
+	private String cMoreThan;//合同剩余次数---等于合同总课数减已消课数---keTotal减keDayBefore
 	
 	
 	
@@ -147,6 +148,20 @@ public class QueCountCtext {
 	public void setPaikeSum(String paikeSum) {
 		this.paikeSum = paikeSum;
 	}
+
+
+
+
+  public String getcMoreThan() {
+    return cMoreThan;
+  }
+
+
+
+
+  public void setcMoreThan(String cMoreThan) {
+    this.cMoreThan = cMoreThan;
+  }
 	
 	
 	
