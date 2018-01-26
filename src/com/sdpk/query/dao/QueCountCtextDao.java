@@ -10,4 +10,6 @@ import com.sdpk.model.QueCountCtext;
  */
 public interface QueCountCtextDao {
 	public ArrayList<QueCountCtext> queryCountCtext(String uuid);
+	
+	public ArrayList<String> queryAllstuUuid();
 }

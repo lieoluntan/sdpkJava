@@ -42,25 +42,46 @@ public class QueCountCtextController extends HttpServlet{
 		//获取请求体参数
 		T_DataControl t_data = new T_DataControl();
 		String str = t_data.getRequestPayload(request);
-		Map<String, Object> map = t_data.JsonStrToMap(str);
-		ArrayList stuidList=(ArrayList) map.get("stuUuidList");
-		ArrayList<ArrayList<QueCountCtext>> list=new ArrayList<ArrayList<QueCountCtext>>();
 		ArrayList<QueCountCtext> ctextList=new ArrayList<QueCountCtext>();
+		ArrayList<ArrayList<QueCountCtext>> list=new ArrayList<ArrayList<QueCountCtext>>();
+		
 		
 		//前台传来的uuid
-		if(qqiu.equals("list") && stuidList!=null){
+		if(qqiu.equals("list") ){
+			Map<String, Object> map = t_data.JsonStrToMap(str);
+			ArrayList stuidList=(ArrayList) map.get("stuUuidList");
 			
+			
+			if( stuidList!=null){
 			for (int i = 0; i < stuidList.size(); i++) {
 				System.out.println(stuidList.size()+"===================前台传来集合大小");
 				System.out.println("前台传来的uuid=============="+stuidList.get(i));
 				ctextList=qccs.queryCountCtext((String) stuidList.get(i));
+				list.add(ctextList);
+			  }
+			
+			}
+			
+			backResult.setMessage("信息值:成功");
+			backResult.setQingqiu("list查询列表");
+			backResult.setData(list);
+		}
+		else if(qqiu.equals("stuAll") ){
+			
+			ArrayList<String> allstuUuid = qccs.queryAllstuUuid();
+			
+			for (int i = 0; i < allstuUuid.size(); i++) {
+				System.out.println(allstuUuid.size()+"===================前台传来集合大小");
+				System.out.println("前台传来的uuid=============="+allstuUuid.get(i));
+				ctextList=qccs.queryCountCtext((String) allstuUuid.get(i));
 				list.add(ctextList);
 			}
 			
 			backResult.setMessage("信息值:成功");
 			backResult.setQingqiu("list查询列表");
 			backResult.setData(list);
-		}else{
+		}
+		else{
 			System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 		}
 		Gson gson = new Gson();

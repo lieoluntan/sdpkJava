@@ -16,4 +16,11 @@ public class QueCountCtextServiceImpl implements QueCountCtextService {
 		return qccd.queryCountCtext(uuid);
 	}
 
+	@Override
+	public ArrayList<String> queryAllstuUuid() {
+		// TODO Auto-generated method stub
+		QueCountCtextDao qccd=new QueCountCtextDaoImpl();
+		return qccd.queryAllstuUuid();
+	}
+
 }

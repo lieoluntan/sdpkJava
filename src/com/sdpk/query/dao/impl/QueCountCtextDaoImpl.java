@@ -2,12 +2,14 @@ package com.sdpk.query.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.sdpk.model.QueCountCtext;
+import com.sdpk.model.Student;
 import com.sdpk.query.dao.QueCountCtextDao;
 import com.sdpk.utility.DBUtility;
 /*
@@ -71,7 +73,7 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 				}
 			
 				while(rs2.next()){
-					//合同总课数
+					//已排课
 					kesum++;
 					kesumm=kesum+"";
 					qcc.setPaikeSum(kesumm);
@@ -89,6 +91,7 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 					//没上过的课
 					keafter=kesum-kebefore;
 					keafterr=keafter+"";
+					
 					qcc.setKeDayAfter(keafterr);
 					
 					
@@ -105,10 +108,24 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 			
 				while(rs4.next()){
 					qcc.setKeTotal(rs4.getString("sum(totalCount)"));
+					String keTotalstr=rs4.getString("sum(totalCount)");
+
+						try {
+						    int keTotal_int = Integer.valueOf(keTotalstr).intValue();
+						  //合同剩余次数
+							int cMoreThan=keTotal_int-Integer.valueOf(qcc.getKeDayBefore()).intValue();
+							String cMoreThann=cMoreThan+"";
+							qcc.setcMoreThan(cMoreThann);
+						} catch (NumberFormatException e) {
+						    e.printStackTrace();
+						}
+
+					
 				}
 				
 			
 			ctextList.add(qcc);
+			
 			System.out.println("合同数量==============="+qcc.getcTextCount());
 			System.out.println("合同已排课==============="+qcc.getPaikeSum());
 			System.out.println("已上过的课==============="+qcc.getKeDayBefore());
@@ -116,6 +133,7 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 			System.out.println("学生名字==============="+qcc.getStuName());
 			System.out.println("学生id==============="+qcc.getStuUuid());
 			System.out.println("合同总课数==============="+qcc.getKeTotal());
+			System.out.println("合同剩余课数==============="+qcc.getcMoreThan());
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("MonthHeadDaoImpl的queryMonthKeByClaUuid查询失败");
@@ -131,5 +149,36 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 		}
 		return ctextList;
 	}
+	@Override
+	public ArrayList<String> queryAllstuUuid() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<String> studentList = new ArrayList<String>();
+		connection = DBUtility.open();// 打开数据库连接
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select uuid from t_student");
+			while (rs.next()) {
+
+				String stuUuid=rs.getString("uuid");
+				
+				studentList.add(stuUuid);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("StudentDaoImpl的getByUuid查询失败");
+			ArrayList<String> listX = new ArrayList<String>();
+			listX.add("StudentDaoImpl的getByUuid查询失败");
+			return listX;
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return studentList;
+	}
+
 
 }
