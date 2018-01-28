@@ -3,6 +3,7 @@ package com.sdpk.utility;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.sdpk.model.And_ClassCourse;
 import com.sdpk.model.And_ClassEmp;
@@ -15,6 +16,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Contrtext;
 import com.sdpk.model.Course;
 import com.sdpk.model.Course_Emp;
+import com.sdpk.model.Department;
 import com.sdpk.model.Employee;
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Student;
@@ -64,6 +66,20 @@ public class T_DataMap2Bean {
 		classRoom.setOpenAndclose(openAndclose);
 		return classRoom;
 	}// end method MapToEmp
+	
+	public Department MapToDepartment(Map<String, Object> map){
+		String name=(String) map.get("name");
+		String remark=(String) map.get("remark");
+		String createDate=(String) map.get("createDate");
+		String modifyDate=(String) map.get("modifyDate");
+		String createPeople=(String) map.get("createPeople");
+		String modifyPeople=(String) map.get("modifyPeople");
+		String openAndclose=(String) map.get("modifyPeople");
+		String uuid=UUID.randomUUID().toString();
+		Department department=new Department(uuid,name,remark);
+		return department;
+		
+	}
 
 	public Role MapToRole(Map<String, Object> map) {
 		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
