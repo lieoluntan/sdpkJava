@@ -242,6 +242,23 @@ CREATE TABLE t_classroom (
 );
 
 --------------------------------------
+-- 部门表t_department
+
+CREATE TABLE t_department (
+  uuid varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
+  remark varchar(250) DEFAULT NULL,
+  openAndclose varchar(10) DEFAULT NULL,
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
+--------------------------------------
 --9、角色表t_role
 
 CREATE TABLE t_role (

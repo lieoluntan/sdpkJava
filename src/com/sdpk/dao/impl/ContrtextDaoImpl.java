@@ -201,6 +201,7 @@ public class ContrtextDaoImpl implements ContrtextDao {
 				contract.setSumLineUpA(rs.getInt("sumLineUpA"));
 				contract.setSumLineDownB(rs.getInt("sumLineDownB"));
 				contract.setOpenAndclose(rs.getString("openAndclose"));
+				contract.setRemark(rs.getString("remark"));
 				contractResult = contract;
 			}
 		} catch (SQLException e) {
