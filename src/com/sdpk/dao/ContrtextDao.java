@@ -26,6 +26,8 @@ public interface ContrtextDao {
 	public Contrtext getByCnum(String cNum);
 
 	public boolean updateOnOff(String uuid, String oAc);
+
+
 	
 	
 	
