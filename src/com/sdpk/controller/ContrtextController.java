@@ -125,15 +125,24 @@ public class ContrtextController extends HttpServlet {
 			backResult.setQingqiu("delete删除" + contrtext.getUuid());
 			backResult.setData(resultList);
 		}
+//		if (edit) {
+//			
+//			String result = contrtextService.update(contrtext);
+//			ArrayList<String> resultList = new ArrayList<String>();
+//			resultList.add(result);
+//			backResult.setMessage(result=="yes"?"(已存在重复名字)"+contrtext.getcNum():"修改成功!");
+//		      backResult.setQingqiu(result=="yes"?"yes":"no");
+//			backResult.setData(resultList);
+//		}
 		if (edit) {
-			
-			String result = contrtextService.update(contrtext);
-			ArrayList<String> resultList = new ArrayList<String>();
-			resultList.add(result);
-			backResult.setMessage(result=="yes"?"(已存在重复名字)"+contrtext.getcNum():"修改成功!");
-		      backResult.setQingqiu(result=="yes"?"yes":"no");
-			backResult.setData(resultList);
-		}
+          
+          String result = contrtextService.updateLimit(contrtext);
+          ArrayList<String> resultList = new ArrayList<String>();
+          resultList.add(result);
+          backResult.setMessage(result);
+            backResult.setQingqiu("合同修改功能updateLimit");
+          backResult.setData(resultList);
+      }
 		if (getOne) {
 			Contrtext result = contrtextService.getByUuid(contrtext.getUuid());
 			ArrayList<Contrtext> resultList = new ArrayList<Contrtext>();
