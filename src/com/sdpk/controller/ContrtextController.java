@@ -53,35 +53,19 @@ public class ContrtextController extends HttpServlet {
 				Map<String, Object> map = t_data.JsonStrToMap(str);// 固定，不用改
 				T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
 				contrtext = t_map2bean.MapToContrtext(map);
-				qqiuChoice(qqiu, contrtext);
+
 			} else {
 				System.out.println("前台传入post请求体数据为空，请联系管理员！");
-				backResult.setMessage("信息值：失败");
-				backResult.setQingqiu("前台传入post请求体数据为空，请联系管理员！");
-				
 			}
 
 			// 3 执行qqiu里面的增或删或改或查 的操作
-			
+			qqiuChoice(qqiu, contrtext);
 		} else if (qqiu.equals("list")) {
 			// TODO 待完成
-			T_DataControl t_data = new T_DataControl();
-			String str = t_data.getRequestPayload(request);// 固定，不用改
-			Contrtext contrtext = new Contrtext();
-			if (str != null && str != "" && str.length() != 0) { // 非空判断，防止前台传空报500服务器错误中的空指针
-				Map<String, Object> map = t_data.JsonStrToMap(str);// 固定，不用改
-				T_DataMap2Bean t_map2bean = new T_DataMap2Bean();
-				contrtext = t_map2bean.MapToContrtext(map);
-				ArrayList<Contrtext> resultList = contrtextService.getList();
-				backResult.setMessage("信息值：成功");
-				backResult.setQingqiu("list查询列表");
-				backResult.setData(resultList);
-			} else {
-				System.out.println("前台传入post请求体数据为空，请联系管理员！");
-				backResult.setMessage("信息值：失败");
-				backResult.setQingqiu("前台传入post请求体数据为空，请联系管理员！");
-			}
-			
+			ArrayList<Contrtext> resultList = contrtextService.getList();
+			backResult.setMessage("信息值：成功");
+			backResult.setQingqiu("list查询列表");
+			backResult.setData(resultList);
 
 		} else {
 			System.out.println("qqiu请求参数  " + qqiu + "  不规范");
