@@ -16,4 +16,6 @@ public interface MyContrtextService {
 
   List<Contrtext> getAllSpeedList();
 
+  List<Contrtext> getnameTcnameList();
+
 }//end interface

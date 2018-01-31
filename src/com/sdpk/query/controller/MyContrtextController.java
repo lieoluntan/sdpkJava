@@ -40,7 +40,7 @@ public class MyContrtextController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String qqiu = request.getParameter("qqiu");
-		if (qqiu.equals("list")||qqiu.equals("test")||qqiu.equals("speedList")) {
+		if (qqiu.equals("list")||qqiu.equals("test")||qqiu.equals("speedList")||qqiu.equals("nameTcnameList")) {
 			String empUuid = request.getParameter("empUuid");
 
 			qqiuChoice(qqiu, empUuid);
@@ -62,10 +62,12 @@ public class MyContrtextController extends HttpServlet {
 		boolean test = false;
 		boolean list = false;
 		boolean speedList = false;
+		boolean nameTcnameList = false;
 
 		test = qqiu.equals("test");
 		list = qqiu.equals("list");
 		speedList = qqiu.equals("speedList");
+		nameTcnameList = qqiu.equals("nameTcnameList");
 		
 		if (test) {
 		      backResult.setMessage("信息值,测试成功");
@@ -86,6 +88,13 @@ public class MyContrtextController extends HttpServlet {
 		
 		if (speedList) {
           List<Contrtext> ctextList = ctextService.getAllSpeedList();
+          backResult.setMessage("信息值,成功");
+          backResult.setQingqiu("我的合同浏览");
+          backResult.setData((ArrayList) ctextList);
+      }
+		
+		if (nameTcnameList) {
+          List<Contrtext> ctextList = ctextService.getnameTcnameList();
           backResult.setMessage("信息值,成功");
           backResult.setQingqiu("我的合同浏览");
           backResult.setData((ArrayList) ctextList);

@@ -15,6 +15,8 @@ public interface MyContrtextDao {
 	//--------------分割线，以上方法是查我的合同，以下方法是提升所有合同的速度查询方法
     ArrayList<Contrtext> getAllSpeedList();
 
+    ArrayList<Contrtext> getnameTcnameList();
+
 
 
 }//end interface

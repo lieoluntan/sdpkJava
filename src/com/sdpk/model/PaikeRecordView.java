@@ -36,6 +36,7 @@ public class PaikeRecordView {
  private String empName;
  private String croomName;
  private String categoryName;//课程价格类别名
+ private String claName;//班级名
  
  //全校今日课程特有的字段
  private String claTeaUuid;//班主任uuid   班主任的id和name统一用headTeaUuid和headTeaName
@@ -326,6 +327,16 @@ public String getPkTypeName() {
 
 public void setPkTypeName(String pkTypeName) {
 	this.pkTypeName = pkTypeName;
+}
+
+
+public String getClaName() {
+  return claName;
+}
+
+
+public void setClaName(String claName) {
+  this.claName = claName;
 }
 
 

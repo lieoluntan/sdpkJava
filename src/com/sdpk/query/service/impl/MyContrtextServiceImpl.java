@@ -115,4 +115,13 @@ public class MyContrtextServiceImpl implements MyContrtextService{
         return contractlist;
 	  }//end method
 
+
+  @Override
+  public List<Contrtext> getnameTcnameList() {
+    // TODO Auto-generated method stub
+    ArrayList<Contrtext> contractlist =  myContrtextDao.getnameTcnameList();
+
+    return contractlist;
+  }//end method
+
 }//end class 

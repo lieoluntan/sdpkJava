@@ -125,6 +125,39 @@ public class MyContrtextDaoImpl implements MyContrtextDao{
         return contractList;
       }//end method
 
+      @Override
+      public ArrayList<Contrtext> getnameTcnameList() {
+        // TODO Auto-generated method stub
+        ArrayList<Contrtext> contractList = new ArrayList<Contrtext>();
+        Statement statement = null;// finally关闭数据库连接
+        ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+        try {
+            connection = DBUtility.open();// 打开数据库连接
+            statement = connection.createStatement();
+            rs = statement.executeQuery("SELECT * FROM t_contrtext ;");
+            while (rs.next()) {
+                Contrtext contract = new Contrtext();
+                contract.setUuid(rs.getString("uuid"));
+                contract.setcNum(rs.getString("cNum"));
+                contract.setNameTcname(rs.getString("nameTcname"));
+         
+                contractList.add(contract);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("ContrtextDaoImpl的getList查询失败");
+            Contrtext contractX = new Contrtext();
+            contractX.setUuid("ContrtextDaoImpl的getList失败返回的uuid");
+            ArrayList<Contrtext> contractListX = new ArrayList<Contrtext>();
+            contractListX.add(contractX);
+            return contractListX;
+        } finally {
+            DBUtility.close(rs, statement, connection);
+        }// finally关闭jdbc与数据库连接
+
+        return contractList;
+      }//end method
+
 	
 
 }//end class
