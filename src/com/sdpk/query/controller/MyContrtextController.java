@@ -40,7 +40,7 @@ public class MyContrtextController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String qqiu = request.getParameter("qqiu");
-		if (qqiu.equals("list")||qqiu.equals("test")) {
+		if (qqiu.equals("list")||qqiu.equals("test")||qqiu.equals("speedList")) {
 			String empUuid = request.getParameter("empUuid");
 
 			qqiuChoice(qqiu, empUuid);
@@ -61,9 +61,11 @@ public class MyContrtextController extends HttpServlet {
 		// TODO Auto-generated method stub
 		boolean test = false;
 		boolean list = false;
+		boolean speedList = false;
 
 		test = qqiu.equals("test");
 		list = qqiu.equals("list");
+		speedList = qqiu.equals("speedList");
 		
 		if (test) {
 		      backResult.setMessage("信息值,测试成功");
@@ -81,6 +83,13 @@ public class MyContrtextController extends HttpServlet {
 			backResult.setQingqiu("我的合同浏览");
 			backResult.setData((ArrayList) ctextListt);
 		}
+		
+		if (speedList) {
+          List<Contrtext> ctextList = ctextService.getAllSpeedList();
+          backResult.setMessage("信息值,成功");
+          backResult.setQingqiu("我的合同浏览");
+          backResult.setData((ArrayList) ctextList);
+      }
 
 	}//end method qqiuChoice
 

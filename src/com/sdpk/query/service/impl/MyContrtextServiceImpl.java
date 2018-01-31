@@ -104,4 +104,15 @@ public class MyContrtextServiceImpl implements MyContrtextService{
 		return contrtext;
 	}//end method
 
+	
+	//--------------分割线，以上方法是查我的合同，以下方法是提升所有合同的速度查询方法（纯净合同列表，不带金额）-----------------------
+	
+	@Override
+	  public List<Contrtext> getAllSpeedList() {
+	    // TODO Auto-generated method stub
+	  ArrayList<Contrtext> contractlist =  myContrtextDao.getAllSpeedList();
+
+        return contractlist;
+	  }//end method
+
 }//end class 

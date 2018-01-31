@@ -55,7 +55,7 @@ public class Contrtext {
 
 	@Override
 	public String toString() {
-		return "Contrtext [uuid=" + uuid + ", createDate=" + createDate
+		return "Contrtext 新合同[uuid=" + uuid + ", createDate=" + createDate
 				+ ", modifyDate=" + modifyDate + ", createPeople="
 				+ createPeople + ", modifyPeople=" + modifyPeople + ", cNum="
 				+ cNum + ", stuUuid=" + stuUuid + ", stuName=" + stuName

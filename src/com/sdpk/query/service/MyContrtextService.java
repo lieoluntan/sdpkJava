@@ -14,4 +14,6 @@ public interface MyContrtextService {
 
 	List<Contrtext> getHeadList(String empUuid);
 
+  List<Contrtext> getAllSpeedList();
+
 }//end interface
