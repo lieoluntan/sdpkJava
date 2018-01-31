@@ -74,6 +74,7 @@ public class MonthHeadDaoImpl implements MonthHeadDao {
 					paikeRecordView.setStatus(rs.getString("status"));
 					paikeRecordView.setWeekSome(rs.getString("weekSome"));
 					paikeRecordView.setPkTypeName(rs.getString("pkTypeName"));
+					paikeRecordView.setClaName(rs.getString("claName"));
 					paikeList.add(paikeRecordView);
 					//System.out.println(paikeList.size());
 			}
