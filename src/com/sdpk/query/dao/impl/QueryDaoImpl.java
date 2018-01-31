@@ -78,6 +78,8 @@ public class QueryDaoImpl implements QueryDao {
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
+				
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
@@ -259,6 +261,8 @@ public class QueryDaoImpl implements QueryDao {
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
+				
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
