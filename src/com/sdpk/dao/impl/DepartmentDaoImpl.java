@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.sdpk.dao.DepartmentDao;
@@ -19,39 +20,36 @@ import com.sdpk.utility.DBUtility;
 public class DepartmentDaoImpl implements DepartmentDao {
 
 	private Connection connection;
+	boolean daoFlag = false;
 
 	public DepartmentDaoImpl() {
 		System.out.println("connection对象在DepartmentDaoImpl连接!");
 	}
 
 	@Override
-	public boolean insertDepartment(Department department) {
+	public boolean insert(Department department) {
 		// TODO Auto-generated method stub
 		PreparedStatement preparedStatement = null;
-
 		connection = DBUtility.open();
+		
 		try {
 			preparedStatement = connection
-					.prepareStatement("insert into t_department(uuid,name,remark,openAndclose,createDate,modifyDate,createPeople,modifyPeople) values(?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into t_department(uuid,name,remark,openAndclose) values(?,?,?,?)");
 			preparedStatement.setString(1, department.getUuid());
 			preparedStatement.setString(2, department.getName());
 			preparedStatement.setString(3, department.getRemark());
 			preparedStatement.setString(4, "open");
-			preparedStatement.setString(5, department.getCreateDate());
-			preparedStatement.setString(6, department.getModifyDate());
-			preparedStatement.setString(7, department.getCreatePeople());
-			preparedStatement.setString(8, department.getModifyPeople());
 			preparedStatement.executeUpdate();
 			System.out.println("^^在执行DepartmentDaoImpl中的添加insert");
-			System.out.println(department.getName() + "================="
-					+ department.getUuid());
-			return true;
+			daoFlag = true;
+			return daoFlag;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out
 					.println("^^在执行DepartmentDaoImpl中insert,出现sql语法执行错误，请联系管理员!");
 			e.printStackTrace();
-			return false;
+			daoFlag = false;
+			return daoFlag;
 		} finally {
 			ResultSet rs = null;
 			DBUtility.close(rs, preparedStatement, connection);
@@ -60,85 +58,95 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	@Override
-	public String serachDepartmentName(Department department) {
-		Statement statement = null;
-		ResultSet rs = null;
-		String name = null;
+	public List<Department> getdMByName(Department dM) {
+		// 重名校验
+		// TODO Auto-generated method stub
+		List<Department> depList=new ArrayList<Department>();
+		Statement statement=null;
+		ResultSet rs=null;
+		connection = DBUtility.open();
 		try {
-			connection = DBUtility.open();
-			statement = connection.createStatement();
-
-			rs = statement
-					.executeQuery("select name from t_department where name='"
-							+ department.getName() + "'");
-			while (rs.next()) {
-				name = rs.getString("name");
+			statement=connection.createStatement();
+			rs=statement.executeQuery("select * from t_department where name='"+dM.getName()+"'");
+			while(rs.next()){
+				Department department=new Department();
+				department.setUuid(rs.getString("uuid"));
+				depList.add(department);
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("DepartmentDaoImpl的serachDepartmentName查询失败");
-		} finally {
+			System.out.println("DepartmentDaoImpl中的getdMByName查询失败");
+		}finally{
 			DBUtility.close(rs, statement, connection);
 		}
-		return name;
-		// TODO Auto-generated method stub
-
+		
+		return depList;
 	}
 
 	@Override
-	public void deleteDepartment(String uuid) {
+	public boolean delete(String uuid) {
 		// TODO Auto-generated method stub
-		PreparedStatement ps = null;
+		PreparedStatement PSdelete = null;
 		connection = DBUtility.open();
+		
 		try {
-			ps = connection
+			PSdelete = connection
 					.prepareStatement("delete from t_department where uuid='"
 							+ uuid + "'");
-			ps.executeUpdate();
-			System.out.println("^^在执行DepartmentDaoImpl中的删除deleteDepartment");
+			PSdelete.executeUpdate();
+			System.out.println("^^在执行DepartmentDaoImpl中的删除delete");
+			daoFlag = true;
+			return daoFlag;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out
-					.println("^^在执行DepartmentDaoImpl中deleteDepartment,出现sql语法执行错误，请联系管理员!");
+					.println("^^在执行DepartmentDaoImpl中delete,出现sql语法执行错误，请联系管理员!");
+			daoFlag = false;
+			return daoFlag;
 		} finally {
 			ResultSet rs = null;
-			DBUtility.close(rs, ps, connection);
+			DBUtility.close(rs, PSdelete, connection);
 		}
+
 	}
 
 	@Override
-	public void updateDepartment(Department department) {
+	public boolean update(Department department) {
 		// TODO Auto-generated method stub
-		PreparedStatement ps = null;
+		PreparedStatement preparedStatement = null;
 		connection = DBUtility.open();
 		try {
-			ps = connection
-					.prepareStatement("update t_department set name=? , remark=? where uuid=?");
-			ps.setString(1, department.getName());
-			ps.setString(2, department.getRemark());
-			ps.setString(3, department.getUuid());
-			ps.executeUpdate();
-			System.out.println("^^在执行DepartmentDaoImpl中的修改updateDepartment");
+			preparedStatement = connection
+					.prepareStatement("update t_department set name=?,remark=? where uuid=?");
+			preparedStatement.setString(1, department.getName());
+			preparedStatement.setString(2, department.getRemark());
+			preparedStatement.setString(3, department.getUuid());
+			preparedStatement.executeUpdate();
+			System.out.println("^^在执行DepartmentDaoImpl中的修改update");
+			daoFlag = true;
+			return daoFlag;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out
 					.println("^^在执行DepartmentDaoImpl中update,出现sql语法执行错误，请联系管理员!");
+			daoFlag = false;
+			return daoFlag;
 		} finally {
 			ResultSet rs = null;
-			DBUtility.close(rs, ps, connection);
+			DBUtility.close(rs, preparedStatement, connection);
 		}
 	}
 
 	@Override
-	public ArrayList<Department> listDepartment() {
+	public ArrayList<Department> getList() {
 		// TODO Auto-generated method stub
+		ArrayList<Department> departmentList = new ArrayList<Department>();
 		Statement statement = null;
 		ResultSet rs = null;
 		connection = DBUtility.open();
-
-		ArrayList<Department> list = new ArrayList<Department>();
 		try {
 			statement = connection.createStatement();
 			rs = statement.executeQuery("select * from t_department");
@@ -147,65 +155,81 @@ public class DepartmentDaoImpl implements DepartmentDao {
 				department.setName(rs.getString("name"));
 				department.setUuid(rs.getString("uuid"));
 				department.setRemark(rs.getString("remark"));
-				list.add(department);
+				department.setOpenAndclose(rs.getString("openAndclose"));
+				departmentList.add(department);
 			}
+			return departmentList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out
-					.println("^^在执行DepartmentDaoImpl中listDepartment,出现sql语法执行错误，请联系管理员!");
+			System.out.println("DepartmentDaoImpl的查询部门列表失败");
+			Department department = new Department();
+			department.setUuid("DepartmentDaoImpl查询失败返回的uuid");
+			ArrayList<Department> listDepartment = new ArrayList<Department>();
+			listDepartment.add(department);
+			return listDepartment;
 		} finally {
 			DBUtility.close(rs, statement, connection);
 		}
-		return list;
+
 	}
 
 	@Override
-	public Department serachOneDepartment(String uuid) {
+	public Department getByUuid(String uuid) {
 		// TODO Auto-generated method stub
+		Department departmentResult = new Department();
 		Statement statement = null;
 		ResultSet rs = null;
 		connection = DBUtility.open();
-		Department department = new Department();
 		try {
 			statement = connection.createStatement();
 			rs = statement
 					.executeQuery("select * from t_department where uuid='"
 							+ uuid + "'");
 			while (rs.next()) {
-				department.setUuid(uuid);
+				Department department = new Department();
 				department.setName(rs.getString("name"));
+				department.setUuid(rs.getString("uuid"));
 				department.setRemark(rs.getString("remark"));
+				department.setOpenAndclose(rs.getString("openAndclose"));
+				departmentResult = department;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out
-					.println("^^在执行DepartmentDaoImpl中serachOneDepartment,出现sql语法执行错误，请联系管理员!");
+			System.out.println("DepartmentDaoImpl的查询单个部门失败");
+			Department department = new Department();
+			department.setUuid("DepartmentDaoImpl失败返回的uuid");
+			return department;
 		} finally {
 			DBUtility.close(rs, statement, connection);
 		}
-
-		return department;
+		return departmentResult;
 	}
 
 	@Override
-	public void updateOnOff(String uuid, String oac) {
+	public boolean updateOnOff(String uuid, String oac) {
 		// TODO Auto-generated method stub
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+		PreparedStatement preparedStatement = null;
 		connection = DBUtility.open();
 		try {
-			ps = connection
+			preparedStatement = connection
 					.prepareStatement("update t_department set openAndclose='"
 							+ oac + "' where uuid='" + uuid + "'");
-			ps.executeUpdate();
+			preparedStatement.executeUpdate();
+			System.out.println("在执行DepartmentDaoImpl中的修改update");
+			daoFlag = true;
+			return daoFlag;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("^^在执行DepartmentDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
-		}finally{
-			DBUtility.close(rs, ps, connection);
+			System.out
+					.println("^^在执行DepartmentDaoImpl中updateOnOff,出现sql语法执行错误，请联系管理员!");
+			daoFlag = false;
+			return daoFlag;
+		} finally {
+			ResultSet rs = null;
+			DBUtility.close(rs, preparedStatement, connection);
 		}
 	}
 }

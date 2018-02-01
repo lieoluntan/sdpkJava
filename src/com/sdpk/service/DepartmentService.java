@@ -9,18 +9,19 @@ import com.sdpk.model.Department;
  * @date 2018-1-28 11：52
  */
 public interface DepartmentService {
-	//新增部门
-	public boolean insertDepartment(Department department);
+String insert(Department department);
 	
-	public String serachDepartmentName(Department department);
+	String delete(String uuid);
 	
-	public void deleteDepartment(String uuid);
+	String update(Department department);
 	
-	public void updateDepartment(Department department);
+	Department getByUuid(String uuid);
 	
-	public ArrayList<Department> listDepartment();
+	ArrayList<Department> getList();
 	
-	public Department serachOneDepartment(String uuid);
+	public String getDepartmentByName(Department dM);
 	
-	public void updateOnOff(String uuid, String oac);
+	public String getDepaartmentByName1(Department dM);
+	
+	String getonoff(Department department);
 }
