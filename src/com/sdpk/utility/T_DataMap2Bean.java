@@ -75,7 +75,8 @@ public class T_DataMap2Bean {
 		String createPeople=(String) map.get("createPeople");
 		String modifyPeople=(String) map.get("modifyPeople");
 		String openAndclose=(String) map.get("modifyPeople");
-		String uuid=UUID.randomUUID().toString();
+		String uuid=(String) map.get("uuid");
+		//String uuid=UUID.randomUUID().toString();
 		Department department=new Department(uuid,name,remark);
 		return department;
 		

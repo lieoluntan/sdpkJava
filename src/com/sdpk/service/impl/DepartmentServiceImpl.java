@@ -1,6 +1,8 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import com.sdpk.dao.DepartmentDao;
 import com.sdpk.dao.impl.DepartmentDaoImpl;
@@ -12,43 +14,138 @@ import com.sdpk.service.DepartmentService;
  */
 public class DepartmentServiceImpl implements DepartmentService {
 	
-	private DepartmentDao departmentDao=new DepartmentDaoImpl();
+	private DepartmentDao departmentDao = new DepartmentDaoImpl();
+
 	@Override
-	public boolean insertDepartment(Department department) {
+	public String insert(Department department) {
+		// TODO Auto-generated method stub
+		String flag = this.getDepaartmentByName1(department);
+		if (flag.equals("yes")) {
+			return flag;
+		} else {
+			department.setUuid(UUID.randomUUID().toString());
+			System.out.println("^^在DepartmentServiceImpl收到数据 ："
+					+ department.toString() + "收到结束!");
+			boolean daoFlag = departmentDao.insert(department);
+			if (daoFlag) {
+				return department.getUuid();
+			} else {
+				return "插入不成功,dao层执行有出错地方,请联系管理员";
+			}
+		}
+	}
+
+	@Override
+	public String delete(String uuid) {
+		// TODO Auto-generated method stub
 		
-		return departmentDao.insertDepartment(department);
-		// TODO Auto-generated method stub
-		
+		if (uuid != null && uuid != "") {
+			boolean daoFlag = departmentDao.delete(uuid);
+			if (daoFlag) {
+				return uuid;
+			} else {
+				return "删除不成功,dao层执行有出错地方,请联系管理员";
+			}
+		} else {
+			String msg = "DepartmentServiceImpl delete方法中的uuid为空，或格式不正确，请重新选择";
+			System.out.println(msg);
+			return msg;
+		}
 	}
+
 	@Override
-	public String serachDepartmentName(Department department) {
+	public String update(Department department) {
 		// TODO Auto-generated method stub
-		return departmentDao.serachDepartmentName(department);
+		String flag = this.getDepaartmentByName1(department);
+		if (flag.equals("yes")) {
+			return flag;
+		} else {
+			String uuid = department.getUuid();
+			if (uuid != null && uuid != "") {
+				boolean daoFlag = departmentDao.update(department);
+				if (daoFlag) {
+					return uuid;
+				} else {
+					return "修改不成功,dao层执行有出错地方,请联系管理员";
+				}
+			} else {
+				String msg = "DepartmentServiceImpl update方法中的uuid为空，或格式不正确，请重新选择";
+				System.out.println(msg);
+				return msg;
+			}
+		}
 	}
+
 	@Override
-	public void deleteDepartment(String uuid) {
+	public Department getByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		departmentDao.deleteDepartment(uuid);
+		if (uuid != null && uuid != "") {
+			return departmentDao.getByUuid(uuid);
+		} else {
+			System.out
+					.println("DepartmentServiceImpl getByUuid方法中的uuid为空，或格式不正确，请联系管理员");
+			return new Department();
+		}
 	}
+
 	@Override
-	public void updateDepartment(Department department) {
+	public ArrayList<Department> getList() {
 		// TODO Auto-generated method stub
-		departmentDao.updateDepartment(department);
+		return departmentDao.getList();
 	}
+
 	@Override
-	public ArrayList<Department> listDepartment() {
+	public String getDepartmentByName(Department dM) {
 		// TODO Auto-generated method stub
-		return departmentDao.listDepartment();
+		String flag = "";
+		List<Department> depList = departmentDao.getdMByName(dM);
+		for (Department dM2 : depList) {
+			if (dM2.getUuid() != null) {
+				flag = "(有重名)" + dM2.getName();
+				return flag;
+			}
+		}
+		flag = "(无重名)" + dM.getName();
+		return flag;
 	}
+
 	@Override
-	public Department serachOneDepartment(String uuid) {
+	public String getDepaartmentByName1(Department dM) {
 		// TODO Auto-generated method stub
-		return departmentDao.serachOneDepartment(uuid);
+		String flag = "";
+		List<Department> depList = departmentDao.getdMByName(dM);
+		for (Department dM2 : depList) {
+			String uuid2 = dM2.getUuid();
+			boolean flagSelf = uuid2.equals(dM.getUuid());
+			boolean flagNotSelf = !flagSelf;
+			if (flagNotSelf) {
+				if (dM2.getUuid() != null) {
+					flag = "yes";
+					return flag;
+				}
+			}
+		}
+		flag = "no";
+		return flag;
 	}
+
 	@Override
-	public void updateOnOff(String uuid, String oac) {
+	public String getonoff(Department department) {
 		// TODO Auto-generated method stub
-		departmentDao.updateOnOff(uuid, oac);
+		String uuid = department.getUuid();
+		if (uuid != null && uuid != "") {
+			String oac = department.getOpenAndclose();
+			boolean daoFlag = departmentDao.updateOnOff(uuid, oac);
+			if (daoFlag) {
+				return "操作成功";
+			} else {
+				return "操作失败,dao层执行有出错地方,请联系管理员";
+			}
+		} else {
+			String msg = "DepartmentServiceImpl getonoff方法中的uuid为空，或格式不正确，请重新选择";
+			System.out.println(msg);
+			return msg;
+		}
 	}
 
 }
