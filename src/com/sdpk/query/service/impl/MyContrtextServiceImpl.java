@@ -124,4 +124,53 @@ public class MyContrtextServiceImpl implements MyContrtextService{
     return contractlist;
   }//end method
 
+
+  @Override
+  public List<Contrtext> getHeadSpeedList(String empUuid) {
+    // TODO Auto-generated method stub
+    List<String> ClassIdList = myContrtextDao.getClaId(empUuid);
+    // 去重复
+    Set set = new HashSet();
+    List<String> newClassIdList = new ArrayList<String>();// 新的资源集合，用来存放去重复后的资源id
+    for (String cd : ClassIdList) {// foreach
+        if (set.add(cd)) {
+            newClassIdList.add(cd);
+        }
+
+    }// end forech 去重复完成
+    List<String> ConIdList = this.getConId(newClassIdList);//调用本service层里面的方法使用this
+    List<Contrtext> ConList = this.getConListSpeed(ConIdList);
+
+    return ConList;
+  }//end method
+  
+  //我的合同HeadSpeedList速度版，回调1
+  public List<Contrtext> getConListSpeed(List<String> ConIdList) {
+    // TODO Auto-generated method stub
+    List<Contrtext> ConList = new ArrayList<Contrtext>();
+    for (String str : ConIdList) {
+        Contrtext ctext = getByUuidSpeed(str);
+        // System.out.println(student.getName());
+        ConList.add(ctext);
+    }
+
+    return ConList;
+}//end method
+  
+   //我的合同HeadSpeedList速度版，回调2
+  public Contrtext getByUuidSpeed(String uuid) {
+    // TODO Auto-generated method stub
+    Contrtext contrtext = contrtextDao.getOne(uuid);
+
+    Student stu = studentDao.getByUuid(contrtext.getStuUuid());
+    contrtext.setStuName(stu.getName());
+
+    //速度版不需要查金额
+//    List<ConPrice> conPriceList = ConPriceDao.getByContrUuid(contrtext
+//            .getUuid());
+//    contrtext.setConPriceList(conPriceList);
+
+    return contrtext;
+}//end method
+
 }//end class 

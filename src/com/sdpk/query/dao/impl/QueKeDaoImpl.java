@@ -52,6 +52,8 @@ public class QueKeDaoImpl implements QueKeDao{
 				PaikeRecord.setWeekSome(rs.getString("weekSome"));
 				PaikeRecord.setPkType(rs.getString("pkType"));
 				PaikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				PaikeRecord.setClaName(rs.getString("claName"));
+				
 				empPaikeList.add(PaikeRecord);
 			}
 		} catch (SQLException e) {

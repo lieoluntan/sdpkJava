@@ -56,6 +56,7 @@ public class QueKeAllDaoImpl implements QueKeAllDao{
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
 				paikeRecordList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
