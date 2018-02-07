@@ -3,6 +3,8 @@ package com.sdpk.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.CourseDao;
 import com.sdpk.dao.Course_EmpDao;
 import com.sdpk.dao.EmployeeDao;
@@ -30,6 +32,7 @@ public class Course_EmpServiceImpl implements Course_EmpService{
   private CourseDao courseDao = new CourseDaoImpl();
   private EmployeeDao employeeDao = new EmployeeDaoImpl();
   public M_msg m_msg = new M_msg();
+  Logger logger = Logger.getLogger(Course_EmpServiceImpl.class);
   
   @Override
   public M_msg getMsg() {
@@ -72,6 +75,7 @@ public class Course_EmpServiceImpl implements Course_EmpService{
         if (daoFlag) {
           return course_Emp.getUuid();
         } else {
+        	logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
           String msg = "插入不成功,dao层执行有出错地方,请联系管理员";
           m_msg.setAddMsg(msg);
           return msg;
@@ -103,6 +107,7 @@ public class Course_EmpServiceImpl implements Course_EmpService{
         {
         return uuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -124,6 +129,7 @@ public class Course_EmpServiceImpl implements Course_EmpService{
         {
         return courseUuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{

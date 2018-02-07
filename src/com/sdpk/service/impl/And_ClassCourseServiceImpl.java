@@ -3,6 +3,8 @@ package com.sdpk.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.And_ClassCourseDao;
 import com.sdpk.dao.ClaDao;
 import com.sdpk.dao.CourseDao;
@@ -30,6 +32,7 @@ public class And_ClassCourseServiceImpl implements And_ClassCourseService{
   private ClaDao claDao = new ClaDaoImpl();
   private CourseDao courseDao = new CourseDaoImpl();
   public M_msg m_msg = new M_msg();
+  Logger logger = Logger.getLogger(And_ClassCourseServiceImpl.class);
   
   @Override
   public M_msg getMsg() {
@@ -72,6 +75,7 @@ public class And_ClassCourseServiceImpl implements And_ClassCourseService{
         if (daoFlag) {
           return and_ClassCourse.getUuid();
         } else {
+        	logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
           String msg = "插入不成功,dao层执行有出错地方,请联系管理员";
           m_msg.setAddMsg(msg);
           return msg;
@@ -79,12 +83,14 @@ public class And_ClassCourseServiceImpl implements And_ClassCourseService{
         }
 
       } else {
+    	  logger.error("数据库里查到的员工名为空，导致关系数据不添加");
         String msg = "数据库里查到的员工名为空，导致关系数据不添加";
         m_msg.setAddMsg(msg);
         return msg;
       }
 
     } else {
+    	logger.error("数据库里查到的班级名为空，导致关系数据不添加");
       String msg = "数据库里查到的班级名为空，导致关系数据不添加";
       m_msg.setAddMsg(msg);
       return msg;
@@ -103,6 +109,7 @@ public class And_ClassCourseServiceImpl implements And_ClassCourseService{
         {
         return uuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -124,6 +131,7 @@ public class And_ClassCourseServiceImpl implements And_ClassCourseService{
         {
         return classUuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{

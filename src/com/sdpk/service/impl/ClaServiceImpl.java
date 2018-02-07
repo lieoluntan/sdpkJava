@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.And_ClassCourseDao;
 import com.sdpk.dao.And_ClassEmpDao;
 import com.sdpk.dao.And_ClassStuDao;
@@ -41,6 +43,7 @@ public class ClaServiceImpl implements ClaService{
   private NameReClaDao nameReClaDao=new NameReClaDaoImpl();
   public M_msg m_msg = new M_msg();
   private EmployeeDao employeeDao = new EmployeeDaoImpl();
+  Logger logger = Logger.getLogger(ClaServiceImpl.class);
   
   @Override
   public M_msg getMsg() {
@@ -66,6 +69,7 @@ public class ClaServiceImpl implements ClaService{
     {
     return cla.getUuid();
     }else{
+    	logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
       return "插入不成功,dao层执行有出错地方,请联系管理员";
     	}
 	  }
@@ -85,6 +89,7 @@ public class ClaServiceImpl implements ClaService{
         {
         return uuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -114,6 +119,7 @@ public class ClaServiceImpl implements ClaService{
         {
         return uuid;
         }else{
+        	logger.error("修改不成功,dao层执行有出错地方,请联系管理员");
           return "修改不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -213,6 +219,7 @@ public class ClaServiceImpl implements ClaService{
 	        {
 	        return "操作成功";
 	        }else{
+	        	logger.error("操作失败,dao层执行有出错地方,请联系管理员");
 	          return "操作失败,dao层执行有出错地方,请联系管理员";
 	        }
 	    }else{

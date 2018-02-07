@@ -3,6 +3,8 @@ package com.sdpk.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.ContractDao;
 import com.sdpk.dao.impl.ContractDaoImpl;
 import com.sdpk.model.Contract;
@@ -19,6 +21,7 @@ import com.sdpk.service.ContractService;
 public class ContractServiceImpl implements ContractService{
 
   private ContractDao contractDao= new ContractDaoImpl();
+  Logger logger = Logger.getLogger(ContractServiceImpl.class);
   
   @Override
   public String insert(Contract contract) {
@@ -32,6 +35,7 @@ public class ContractServiceImpl implements ContractService{
     {
     return contract.getUuid();
     }else{
+    	logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
       return "插入不成功,dao层执行有出错地方,请联系管理员";
     }
 
@@ -56,6 +60,7 @@ public class ContractServiceImpl implements ContractService{
         {
         return uuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -78,6 +83,7 @@ public class ContractServiceImpl implements ContractService{
         {
         return uuid;
         }else{
+        	logger.error("修改不成功,dao层执行有出错地方,请联系管理员");
           return "修改不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{

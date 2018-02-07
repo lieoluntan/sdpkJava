@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.And_ClassEmpDao;
 import com.sdpk.dao.ClaDao;
 import com.sdpk.dao.ClassRoomDao;
@@ -58,6 +60,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 	private ClassRoomDao classRoomDao = new ClassRoomDaoImpl();
 	private CourseDao courseDao = new CourseDaoImpl();
 	private EmployeeDao employeeDao = new EmployeeDaoImpl();
+	Logger logger = Logger.getLogger(PaikeRecordServiceImpl.class);
 
 	private ContrtextDao contrtextDao = new ContrtextDaoImpl();
 	private Class_ContractDao class_ContractDao = new Class_ContractDaoImpl();
@@ -82,6 +85,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		if (daoFlag) {
 			return paikeRecord.getUuid();
 		} else {
+			logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
 			return "插入不成功,dao层执行有出错地方,请联系管理员";
 		}
 	}// end method insert
@@ -207,6 +211,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			if (daoFlag) {
 				return uuid;
 			} else {
+				logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
 				return "删除不成功,dao层执行有出错地方,请联系管理员";
 			}
 		} else {
@@ -312,6 +317,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 				return uuid;
 
 			} else {
+				logger.error("没有修改,dao层执行有出错地方,请重新操作");
 				String msg = "没有修改，dao层执行有出错地方,请重新操作";
 				m_msg.setEditMsg(msg);
 				return msg;
