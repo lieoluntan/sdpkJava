@@ -94,7 +94,7 @@ public class DepartmentController extends HttpServlet {
 		on_off = qqiu.equals("on_off");
 		
 		if (test) {
-		  logger.error("test,log4j日志测试成功！");
+		  logger.error("test,log4j日志测试成功！DepartmentController!");
 	      backResult.setMessage("信息值,测试成功");
 	      backResult.setQingqiu("test新增");
 	      ArrayList<String> resultList = new ArrayList<String>();
