@@ -14,4 +14,11 @@ public interface QueKeAllDao {
 	
 	public ArrayList<PaikeRecordView> getList();
 
+  public ArrayList<PaikeRecordView> getListSpeed();
+
+  public ArrayList<PaikeRecordView> getMonpaikeSpeed(String year, String month, String today);
+
+  //实时速度查询排课表所有记录
+  ArrayList<PaikeRecordView> getListSpeed5Biao();
+
 }

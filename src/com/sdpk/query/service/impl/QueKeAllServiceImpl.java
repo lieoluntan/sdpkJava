@@ -101,6 +101,22 @@ public class QueKeAllServiceImpl implements QueKeAllService {
 		}// end 步骤
 		return reAddNameList;
 	}//end method  getAllpaike
+
+  @Override
+  public ArrayList<PaikeRecordView> getAllpaikeSpeed(PaikeRecord paikeRecord) {
+    // TODO Auto-generated method stub
+    //速度非实时查询
+//    ArrayList<PaikeRecordView> prViewList = queKeAllDao.getListSpeed();
+    //速度实时查询
+    ArrayList<PaikeRecordView> prViewList = queKeAllDao.getListSpeed5Biao();
+    return prViewList;
+  }//end method
+
+  @Override
+  public ArrayList<PaikeRecordView> getMonpaikeSpeed(String year, String month, String today) {
+    ArrayList<PaikeRecordView> prViewList = queKeAllDao.getMonpaikeSpeed( year,  month,  today);
+    return prViewList;
+  }//end method
 	
 
 }// end class

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.sdpk.model.BackResult;
+import com.sdpk.model.Cla;
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.PaikeRecordView;
 import com.sdpk.query.service.QueKeAllService;
@@ -45,7 +46,7 @@ public class QueKeAllController extends HttpServlet{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String qqiu = request.getParameter("qqiu");
-		if (qqiu.equals("list")) {
+		if (qqiu.equals("list")||qqiu.equals("speedList")) {
 			T_DataControl t_data = new T_DataControl();
 			String str = t_data.getRequestPayload(request);
 			PaikeRecord paikeRecord = new PaikeRecord();
@@ -57,7 +58,20 @@ public class QueKeAllController extends HttpServlet{
 				System.out.println("前台传入post请求体数据为空，请联系管理员！");
 			}
 			qqiuChoice(qqiu, paikeRecord);
-		} else {
+		}
+		else if (qqiu.equals("monthList")) {
+	      // TODO 待完成
+		  String year ="wu";String month ="wu";String today ="wu";
+		   year = request.getParameter("year");
+           month = request.getParameter("month");
+           today = request.getParameter("today");
+           
+           ArrayList<PaikeRecordView> resultList = queKeAllService.getMonpaikeSpeed(year,month,today);
+           backResult.setMessage("信息值,全校周课查询成功");
+           backResult.setQingqiu("全校周课speedList");
+           backResult.setData(resultList);
+	    } 
+		else {
 			System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 		}
 		Gson gson = new Gson();
@@ -74,8 +88,10 @@ public class QueKeAllController extends HttpServlet{
 	private void qqiuChoice(String qqiu, PaikeRecord paikeRecord) {
 		// TODO Auto-generated method stub
 		boolean list = false;
+		boolean speedList = false;
 
 		list = qqiu.equals("list");
+		speedList = qqiu.equals("speedList");
 
 		if (list) {
 			backResult.setMessage("信息值,全校周课查询成功");
@@ -84,6 +100,13 @@ public class QueKeAllController extends HttpServlet{
 
 			backResult.setData(resultList);
 		}
+		if (speedList) {
+          backResult.setMessage("信息值,全校周课查询成功");
+          backResult.setQingqiu("全校周课speedList");
+          ArrayList<PaikeRecordView> resultList = queKeAllService.getAllpaikeSpeed(paikeRecord);
+
+          backResult.setData(resultList);
+      }
 	}//end qqiuChoice
 
 }//end class

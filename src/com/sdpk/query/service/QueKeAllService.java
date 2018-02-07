@@ -15,4 +15,8 @@ public interface QueKeAllService {
 
 	ArrayList<PaikeRecordView> getAllpaike(PaikeRecord paikeRecord);
 
+  ArrayList<PaikeRecordView> getAllpaikeSpeed(PaikeRecord paikeRecord);
+
+  ArrayList<PaikeRecordView> getMonpaikeSpeed(String year, String month, String today);
+
 }
