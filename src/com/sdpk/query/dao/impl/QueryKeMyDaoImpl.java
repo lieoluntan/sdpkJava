@@ -37,10 +37,15 @@ public class QueryKeMyDaoImpl implements QueryKeMyDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all where empUuid='"
+//							+ paikeRecord1.getEmpUuid() + "' and KeDateTime ='"
+//							+ paikeRecord1.getKeDateTime() + "'");
+			//老师今日课,优化实时查班级名
 			rs = statement
-					.executeQuery("select * from t_paike_all where empUuid='"
-							+ paikeRecord1.getEmpUuid() + "' and KeDateTime ='"
-							+ paikeRecord1.getKeDateTime() + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND t_paike_all.empUuid='"
+                            + paikeRecord1.getEmpUuid() + "' and KeDateTime ='"
+                            + paikeRecord1.getKeDateTime() + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 
@@ -56,7 +61,8 @@ public class QueryKeMyDaoImpl implements QueryKeMyDao {
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
-				paikeRecord.setClaName(rs.getString("claName"));
+//				paikeRecord.setClaName(rs.getString("claName"));
+				paikeRecord.setClaName(rs.getString("claNameBiao"));
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
