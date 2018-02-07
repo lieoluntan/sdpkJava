@@ -57,7 +57,10 @@ public class MonthHeadDaoImpl implements MonthHeadDao {
 			sf=yearr+"-"+monthh+"-31";//月末
 			System.out.println(sd+"=========月初");
 			System.out.println(sf+"=========月末");
-			rs = statement.executeQuery("select * from t_paike_all tpa where tpa.claUuid in (select tce.classUuid from t_class_emp tce where tce.empUuid='"+claUuid+"') and tpa.keDateTime<='"+sf+"' and tpa.keDateTime>='"+sd+"';");
+//			rs = statement.executeQuery("select * from t_paike_all tpa where tpa.claUuid in (select tce.classUuid from t_class_emp tce where tce.empUuid='"+claUuid+"') and tpa.keDateTime<='"+sf+"' and tpa.keDateTime>='"+sd+"';");
+			rs = statement.executeQuery("SELECT t_class.name AS claNameBiao,tpa.* FROM t_class,t_paike_all tpa WHERE t_class.uuid = tpa.claUuid AND tpa.claUuid in (select tce.classUuid from t_class_emp tce where tce.empUuid='"+claUuid+"') and tpa.keDateTime<='"+sf+"' and tpa.keDateTime>='"+sd+"';");
+			//System.out.println("SELECT t_class.name AS claNameBiao,tpa.* FROM t_class,t_paike_all tpa WHERE t_class.uuid = tpa.claUuid AND tpa.claUuid in (select tce.classUuid from t_class_emp tce where tce.empUuid='"+claUuid+"') and tpa.keDateTime<='"+sf+"' and tpa.keDateTime>='"+sd+"';");
+			
 			while (rs.next()) {
 				PaikeRecordView paikeRecordView=new PaikeRecordView();
 					paikeRecordView.setClassroomUuid(rs.getString("classroomUuid"));
@@ -74,7 +77,8 @@ public class MonthHeadDaoImpl implements MonthHeadDao {
 					paikeRecordView.setStatus(rs.getString("status"));
 					paikeRecordView.setWeekSome(rs.getString("weekSome"));
 					paikeRecordView.setPkTypeName(rs.getString("pkTypeName"));
-					paikeRecordView.setClaName(rs.getString("claName"));
+//					paikeRecordView.setClaName(rs.getString("claName"));
+					paikeRecordView.setClaName(rs.getString("claNameBiao"));
 					paikeList.add(paikeRecordView);
 					//System.out.println(paikeList.size());
 			}
