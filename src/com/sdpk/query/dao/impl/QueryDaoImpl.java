@@ -59,10 +59,15 @@ public class QueryDaoImpl implements QueryDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all where empUuid='"
+//							+ paikeSearch.getUuid() + "' and KeDateTime >='"
+//							+ sd + "' and KeDateTime <='" + sf + "'");
+			//我的月课--老师,优化班级名实时
 			rs = statement
-					.executeQuery("select * from t_paike_all where empUuid='"
-							+ paikeSearch.getUuid() + "' and KeDateTime >='"
-							+ sd + "' and KeDateTime <='" + sf + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND t_paike_all.empUuid='"
+                            + paikeSearch.getUuid() + "' and KeDateTime >='"
+                            + sd + "' and KeDateTime <='" + sf + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 
@@ -243,9 +248,14 @@ public class QueryDaoImpl implements QueryDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all where KeDateTime >='"
+//							+ sd + "' and KeDateTime <='" + sf + "'");
+			//所有老师月课,优化，班级名实时
 			rs = statement
-					.executeQuery("select * from t_paike_all where KeDateTime >='"
-							+ sd + "' and KeDateTime <='" + sf + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND KeDateTime >='"
+                        + sd + "' and KeDateTime <='" + sf + "'");
+			
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 
@@ -261,7 +271,8 @@ public class QueryDaoImpl implements QueryDao {
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
-				paikeRecord.setClaName(rs.getString("claName"));
+//				paikeRecord.setClaName(rs.getString("claName"));
+				paikeRecord.setClaName(rs.getString("claNameBiao"));
 				
 				empPaikeList.add(paikeRecord);
 			}
