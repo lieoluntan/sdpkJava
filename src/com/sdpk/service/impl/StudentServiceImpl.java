@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.StudentDao;
 import com.sdpk.dao.impl.StudentDaoImpl;
 import com.sdpk.model.Course;
@@ -16,6 +18,7 @@ public class StudentServiceImpl implements StudentService {
 
 	private StudentDao studentDao = new StudentDaoImpl();
 	private NameReStuDao nameReStuDao = new NameReStuDaoImpl();
+	Logger logger = Logger.getLogger(StudentServiceImpl.class);
 
 	@Override
 	public String insert(Student stu) {
@@ -35,6 +38,7 @@ public class StudentServiceImpl implements StudentService {
 			if (daoFlag) {
 				return stu.getUuid();
 			} else {
+				logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
 				return "插入不成功,dao层执行有出错地方,请联系管理员";
 			}
 
@@ -51,6 +55,7 @@ public class StudentServiceImpl implements StudentService {
 			if (daoFlag) {
 				return uuid;
 			} else {
+				logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
 				return "删除不成功,dao层执行有出错地方,请联系管理员";
 			}
 		} else {
@@ -79,6 +84,7 @@ public class StudentServiceImpl implements StudentService {
 				if (daoFlag) {
 					return uuid;
 				} else {
+					logger.error("修改不成功,dao层执行有出错地方,请联系管理员");
 					return "修改不成功,dao层执行有出错地方,请联系管理员";
 				}
 			} else {
@@ -179,6 +185,7 @@ public class StudentServiceImpl implements StudentService {
 	        {
 	        return "操作成功";
 	        }else{
+	        	logger.error("操作失败,dao层执行有出错地方,请联系管理员");
 	          return "操作失败,dao层执行有出错地方,请联系管理员";
 	        }
 	    }else{

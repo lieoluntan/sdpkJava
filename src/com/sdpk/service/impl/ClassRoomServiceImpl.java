@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.ClassRoomDao;
 import com.sdpk.dao.impl.ClassRoomDaoImpl;
 import com.sdpk.model.Cla;
@@ -22,6 +24,7 @@ import com.sdpk.service.ClassRoomService;
 public class ClassRoomServiceImpl implements ClassRoomService {
 	private NameReCRoomDao nameReCRoomDao = new NameReCRoomDaoImpl();
 	private ClassRoomDao classRoomDao = new ClassRoomDaoImpl();
+	Logger logger = Logger.getLogger(ClassRoomServiceImpl.class);
 
 	@Override
 	public String insert(ClassRoom classRoom) {
@@ -39,6 +42,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 			if (daoFlag) {
 				return classRoom.getUuid();
 			} else {
+				logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
 				return "插入不成功,dao层执行有出错地方,请联系管理员";
 			}
 		}
@@ -53,6 +57,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 			if (daoFlag) {
 				return uuid;
 			} else {
+				logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
 				return "删除不成功,dao层执行有出错地方,请联系管理员";
 			}
 		} else {
@@ -76,6 +81,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 				if (daoFlag) {
 					return uuid;
 				} else {
+					logger.error("修改不成功,dao层执行有出错地方,请联系管理员");
 					return "修改不成功,dao层执行有出错地方,请联系管理员";
 				}
 			} else {
@@ -162,6 +168,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 			if (daoFlag) {
 				return "操作成功";
 			} else {
+				logger.error("操作失败,dao层执行有出错地方,请联系管理员");
 				return "操作失败,dao层执行有出错地方,请联系管理员";
 			}
 		} else {

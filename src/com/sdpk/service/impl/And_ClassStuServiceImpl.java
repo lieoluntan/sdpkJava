@@ -3,6 +3,8 @@ package com.sdpk.service.impl;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.dao.And_ClassStuDao;
 import com.sdpk.dao.ClaDao;
 import com.sdpk.dao.StudentDao;
@@ -30,6 +32,7 @@ public class And_ClassStuServiceImpl implements And_ClassStuService{
   private ClaDao claDao = new ClaDaoImpl();
   private StudentDao studentDao = new StudentDaoImpl();
   public M_msg m_msg = new M_msg();
+  Logger logger = Logger.getLogger(And_ClassStuServiceImpl.class);
   
   @Override
   public M_msg getMsg() {
@@ -80,6 +83,7 @@ public class And_ClassStuServiceImpl implements And_ClassStuService{
         if (daoFlag) {
           return and_ClassStu.getUuid();
         } else {
+        	logger.error("插入不成功,dao层执行有出错地方,请联系管理员");
           String msg = "插入不成功,dao层执行有出错地方,请联系管理员";
           m_msg.setAddMsg(msg);
           return msg;
@@ -111,6 +115,7 @@ public class And_ClassStuServiceImpl implements And_ClassStuService{
         {
         return uuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{
@@ -132,6 +137,7 @@ public class And_ClassStuServiceImpl implements And_ClassStuService{
         {
         return classUuid;
         }else{
+        	logger.error("删除不成功,dao层执行有出错地方,请联系管理员");
           return "删除不成功,dao层执行有出错地方,请联系管理员";
         }
     }else{

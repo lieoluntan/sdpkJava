@@ -18,7 +18,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	
 	private DepartmentDao departmentDao = new DepartmentDaoImpl();
 	Logger logger = Logger.getLogger(DepartmentServiceImpl.class);
-
+	
 	@Override
 	public String insert(Department department) {
 		// TODO Auto-generated method stub
