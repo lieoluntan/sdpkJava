@@ -34,9 +34,15 @@ public class QueKeDaoImpl implements QueKeDao{
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all where KeDateTime ='"
+//							+ pkr.getKeDateTime() + "'");
+			
 			rs = statement
-					.executeQuery("select * from t_paike_all where KeDateTime ='"
-							+ pkr.getKeDateTime() + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND KeDateTime ='"
+                        + pkr.getKeDateTime() + "'");
+//			System.out.println("全校今日课优化............................................");
+			
 			while (rs.next()) {
 				PaikeRecordView PaikeRecord = new PaikeRecordView();
 
@@ -52,7 +58,8 @@ public class QueKeDaoImpl implements QueKeDao{
 				PaikeRecord.setWeekSome(rs.getString("weekSome"));
 				PaikeRecord.setPkType(rs.getString("pkType"));
 				PaikeRecord.setPkTypeName(rs.getString("pkTypeName"));
-				PaikeRecord.setClaName(rs.getString("claName"));
+//				PaikeRecord.setClaName(rs.getString("claName"));
+				PaikeRecord.setClaName(rs.getString("claNameBiao"));
 				
 				empPaikeList.add(PaikeRecord);
 			}
