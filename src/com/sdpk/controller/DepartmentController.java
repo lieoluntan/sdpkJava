@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.sdpk.model.BackResult;
 import com.sdpk.model.ClassRoom;
@@ -26,6 +28,7 @@ import com.sdpk.utility.T_DataMap2Bean;
  */
 public class DepartmentController extends HttpServlet {
 	private static final long serialVersionUID = -1060747765670586355L;
+	Logger logger = Logger.getLogger(DepartmentController.class);
 
 	DepartmentService departmentService = new DepartmentServiceImpl();
 	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
@@ -44,7 +47,7 @@ public class DepartmentController extends HttpServlet {
 		String qqiu = request.getParameter("qqiu");
 
 		if (qqiu.equals("add") || qqiu.equals("delete") || qqiu.equals("edit")
-				|| qqiu.equals("getOne") || qqiu.equals("on_off")) {
+				|| qqiu.equals("getOne") || qqiu.equals("on_off")|| qqiu.equals("test")) {
 			T_DataControl t_data = new T_DataControl();
 			String str = t_data.getRequestPayload(request);
 			Department department = new Department();
@@ -81,12 +84,25 @@ public class DepartmentController extends HttpServlet {
 		boolean edit = false;
 		boolean getOne = false;
 		boolean on_off = false;
+		boolean test = false;
 
+		test = qqiu.equals("test");
 		add = qqiu.equals("add");
 		delete = qqiu.equals("delete");
 		edit = qqiu.equals("edit");
 		getOne = qqiu.equals("getOne");
 		on_off = qqiu.equals("on_off");
+		
+		if (test) {
+		  logger.error("test,log4j日志测试成功！");
+	      backResult.setMessage("信息值,测试成功");
+	      backResult.setQingqiu("test新增");
+	      ArrayList<String> resultList = new ArrayList<String>();
+	      resultList.add("部门内容值,测试成功1");
+	      resultList.add("部门内容值,测试成功2");
+	      resultList.add("部门内容值,测试成功3");
+	      backResult.setData(resultList);
+	    }
 
 		if (add) {
 			String result = departmentService.insert(department);

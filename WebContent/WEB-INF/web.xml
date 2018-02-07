@@ -12,6 +12,19 @@
 		<welcome-file>index.jsp</welcome-file> <welcome-file>default.html</welcome-file> 
 		<welcome-file>default.htm</welcome-file> <welcome-file>default.jsp</welcome-file> 
 		</welcome-file-list> -->
+    
+    
+    <!-- log4j日志使用配置  start -->
+    <servlet>
+    <servlet-name>Log4jinit</servlet-name>
+    <servlet-class>com.sdpk.controller.Log4jinit</servlet-class>
+    <init-param>
+      <param-name>log4jxpp</param-name>
+      <param-value>WEB-INF/classes/log4j.properties</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+   <!-- log4j日志使用配置  end -->
 
 	<welcome-file-list>
 		<welcome-file>login.html</welcome-file>
