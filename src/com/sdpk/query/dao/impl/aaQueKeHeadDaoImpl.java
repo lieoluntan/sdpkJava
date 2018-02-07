@@ -125,16 +125,20 @@ public class aaQueKeHeadDaoImpl implements aaQueKeHeadDao{
 	
 	@Override
 	public ArrayList<PaikeRecordView> getListByclaUuid(String claUuid,String KeDateTime) {
-		// TODO Auto-generated method stub
+		// 班主任今日课,加了班级名（实时）
 		ArrayList<PaikeRecordView> paikeRecordList = new ArrayList<PaikeRecordView>();
 		Statement statement = null;// finally关闭数据库连接
 		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all WHERE claUuid ="
+//							+ "'" + claUuid + "'"+"and KeDateTime="+"'" + KeDateTime + "'");
+			//优化，把select * from t_paike_all WHERE  替换  SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND
 			rs = statement
-					.executeQuery("select * from t_paike_all WHERE claUuid ="
-							+ "'" + claUuid + "'"+"and KeDateTime="+"'" + KeDateTime + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND claUuid ="
+                        + "'" + claUuid + "'"+"and KeDateTime="+"'" + KeDateTime + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 				paikeRecord.setUuid(rs.getString("uuid"));
@@ -149,7 +153,8 @@ public class aaQueKeHeadDaoImpl implements aaQueKeHeadDao{
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
-				paikeRecord.setClaName(rs.getString("claName"));
+//				paikeRecord.setClaName(rs.getString("claName"));
+				paikeRecord.setClaName(rs.getString("claNameBiao"));
 			    
 				paikeRecordList.add(paikeRecord);
 			}
