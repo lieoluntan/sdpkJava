@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.sdpk.model.BackResult;
 import com.sdpk.service.ConPriceService;
 import com.sdpk.service.impl.ConPriceServiceImpl;
@@ -15,7 +17,7 @@ import com.sdpk.service.impl.ConPriceServiceImpl;
 public class ConPriceController extends HttpServlet {
 	private ConPriceService conPriceService = new ConPriceServiceImpl();
 	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
-
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.doPost(request, response);

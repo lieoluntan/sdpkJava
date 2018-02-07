@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.BackResult;
@@ -32,6 +34,7 @@ public class And_ClassEmpControl extends HttpServlet {
   And_ClassEmpService and_ClassEmpService = new And_ClassEmpServiceImpl();
   BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
   public M_msg m_msg = new M_msg();
+  Logger logger = Logger.getLogger(And_ClassEmpControl.class);
   
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -108,6 +111,7 @@ public class And_ClassEmpControl extends HttpServlet {
     
 
     if (test) {
+    	logger.error("test,log4j日志测试成功,And_ClassEmpControl");
       backResult.setMessage("信息值,测试成功");
       backResult.setQingqiu("test新增");
       ArrayList<String> resultList = new ArrayList<String>();

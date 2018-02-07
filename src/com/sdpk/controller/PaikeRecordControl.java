@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -42,6 +44,7 @@ public class PaikeRecordControl extends HttpServlet {
 	PaikeRecordService paikeRecordService = new PaikeRecordServiceImpl();
 	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
 	public M_msg m_msg = new M_msg();
+	Logger logger=Logger.getLogger(PaikeRecordControl.class);
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -327,6 +330,7 @@ public class PaikeRecordControl extends HttpServlet {
 		listKeDate = qqiu.equals("listKeDate");
 
 		if (test) {
+			logger.error("test,log4j日志测试成功,PaikeRecordControl");
 			backResult.setMessage("信息值,测试成功");
 			backResult.setQingqiu("test新增");
 			ArrayList<String> resultList = new ArrayList<String>();

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sdpk.model.BackResult;
@@ -38,6 +40,7 @@ public class CourseControl extends HttpServlet {
 
   CourseService courseService = new CourseServiceImpl();
   BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);
+  Logger logger=Logger.getLogger(CourseControl.class);
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -108,6 +111,7 @@ public class CourseControl extends HttpServlet {
     on_off = qqiu.equals("on_off");
 
     if (test) {
+    	logger.error("test,log4j日志测试成功,CourseControl");
       backResult.setMessage("信息值,测试成功");
       backResult.setQingqiu("test新增");
       ArrayList<String> resultList = new ArrayList<String>();
