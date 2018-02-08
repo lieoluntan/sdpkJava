@@ -421,9 +421,15 @@ public class PaikeRecordDaoImpl implements PaikeRecordDao {
 		try {
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
+//			rs = statement
+//					.executeQuery("select * from t_paike_all WHERE keDateTime ="
+//							+ "'" + keDateTime + "'");
 			rs = statement
-					.executeQuery("select * from t_paike_all WHERE keDateTime ="
-							+ "'" + keDateTime + "'");
+                .executeQuery("SELECT t_class.name AS claNameBiao,t_paike_all.* FROM t_class,t_paike_all WHERE t_class.uuid = t_paike_all.claUuid AND keDateTime ="
+                        + "'" + keDateTime + "'");
+			
+//			System.out.println("新的查询班级实时查询listkeDate");
+			
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 				paikeRecord.setUuid(rs.getString("uuid"));
@@ -438,7 +444,8 @@ public class PaikeRecordDaoImpl implements PaikeRecordDao {
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
-				paikeRecord.setClaName(rs.getString("claName"));
+//				paikeRecord.setClaName(rs.getString("claName"));
+				paikeRecord.setClaName(rs.getString("claNameBiao"));
 				paikeRecordList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
