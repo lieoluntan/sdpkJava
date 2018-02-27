@@ -51,7 +51,7 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 			String keafterr = "";
 			// 获取当前时间
 			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMdd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 			statement1 = connection.createStatement();
 			statement2 = connection.createStatement();
@@ -62,18 +62,26 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 			rs1 = statement1
 					.executeQuery("select DISTINCT tcc.* from t_class_contract tcc,t_contrtext tc where tcc.classUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
 							+ uuid + "') and tc.openAndclose='open';");
+			System.out.println("1,,,根据单个学生id查询所对应的几个班级--->"+"select DISTINCT tcc.* from t_class_contract tcc,t_contrtext tc where tcc.classUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
+                            + uuid + "') and tc.openAndclose='open';");
 			// 根据学生id查询所对应的几个班级，几个班级所对应的几节课
 			rs2 = statement2
 					.executeQuery("select tpa.* from t_paike_all tpa where tpa.claUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
 							+ uuid + "')");
+			System.out.println("2,,,根据学生id查询所对应的几个班级--->"+"select tpa.* from t_paike_all tpa where tpa.claUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
+                            + uuid + "')");
 			// 根据学生id查询学生姓名和id
 			rs3 = statement3
 					.executeQuery("select * from t_student where uuid='" + uuid
 							+ "';");
+			System.out.println("3,,,根据学生id查询学生姓名和id--->"+"select * from t_student where uuid='" + uuid
+                            + "';");
 			// 根据学生id查询合同表中学生对应总课数
 			rs4 = statement4
 					.executeQuery("select sum(totalCount) from t_contrtext where stuUuid='"
 							+ uuid + "' and openAndclose='open';");
+			System.out.println("4,,,根据学生id查询合同表中学生对应总课数--->"+"select sum(totalCount) from t_contrtext where stuUuid='"
+                            + uuid + "' and openAndclose='open';");
 
 			while (rs1.next()) {
 				rowcount++;
@@ -87,9 +95,15 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 				kesum++;
 				kesumm = kesum + "";
 				qcc.setPaikeSum(kesumm);
-				// 已上过的课
-				if (sdf.parse(rs2.getString("keDateTime")).getTime() > date
-						.getTime()) {
+				// 已上过的课----------------------------------------------------------------pingccc
+				//平完成现在时间转换年月日----start
+				Date YYMMDDdateNow = sdf.parse(sdf.format(new Date()));
+				Date aDay = sdf.parse(rs2.getString("keDateTime"));
+				boolean flag = sdf.parse(rs2.getString("keDateTime")).getTime() < YYMMDDdateNow
+                    .getTime();
+				System.out.println(sdf.parse(rs2.getString("keDateTime"))+"< 小于 "+YYMMDDdateNow+flag+"---"+sdf.parse(rs2.getString("keDateTime")).getTime()+"--小于--"+YYMMDDdateNow.getTime());
+				//平完成现在时间转换年月日----end  这部分内容是调试输出，不涉及逻辑，可注释
+				if (YYMMDDdateNow.after(aDay)) {
 					kebefore++;
 					// System.out.println("上的课==="+kebefore);
 					kebeforee = kebefore + "";
