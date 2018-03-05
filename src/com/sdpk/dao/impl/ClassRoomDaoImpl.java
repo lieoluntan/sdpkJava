@@ -155,7 +155,7 @@ public class ClassRoomDaoImpl implements ClassRoomDao{
     try {
       connection = DBUtility.open();//打开数据库连接
          statement = connection.createStatement();
-         rs = statement.executeQuery("select * from t_classroom");
+         rs = statement.executeQuery("select * from t_classroom  order by name");
         while (rs.next()) {
           ClassRoom classRoom = new ClassRoom();
           classRoom.setUuid(rs.getString("uuid"));

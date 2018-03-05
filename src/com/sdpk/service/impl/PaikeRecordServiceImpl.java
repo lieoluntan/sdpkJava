@@ -287,6 +287,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		System.out.println("线上SumLineUpA合同排" + sumcountAZong + "线下SumLineDownB合同排"
 				+ sumcountBZong);
 		// 分步5，合同总数和要排的总和比较，超过次数不执行后面语句return，不超过就继续执行
+		has1200all = has1200all-1;//编辑调课的时候，减1不计算自身那次课
 		if (has1200all > sumcountAZong) {
 			String msg = "没有保存，线上课程超次数,预览排:" + count1200yu + "已排:"
 					+ count1200db + "~总排:" + has1200all + "~总可排:"
@@ -294,6 +295,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			m_msg.setEditMsg(msg);
 			return msg;
 		}
+		has1500all = has1500all-1;//编辑调课的时候，减1不计算自身那次课
 		if (has1500all > sumcountBZong) {
 			String msg = "没有保存，线下课程超次数,预览排:" + count1500yu + "已排:"
 					+ count1500db + "~总排:" + has1500all + "~总可排:"
