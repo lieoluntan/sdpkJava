@@ -257,13 +257,16 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 				.getListByclaUuid(claUuid);
 		int count1200db = 0;
 		int count1500db = 0;
+		String selfUuid = paikeRecord.getUuid();//计算数据库里的数量，过滤自身
 		for (PaikeRecord one : db_List) {
 			String pkType = one.getPkType();
 			if (pkType.equals("LineUpA")) {
-				count1200db++;
-				System.out.println(count1200db);
+			    if(selfUuid.equals(one.getUuid())){System.out.println("线上LineUpA调课过滤了自身uuid");}else{count1200db++;};
+				
+//				System.out.println(count1200db);
 			} else if (pkType.equals("LineDownB")) {
-				count1500db++;
+			  if(selfUuid.equals(one.getUuid())){System.out.println("线下LineDownB调课过滤了自身uuid");}else{count1500db++;};
+				
 			} else {
 				System.out.println("排课表，上课类型类别有错误,不是LineUpA，LineDownB");
 			}
@@ -287,18 +290,18 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		System.out.println("线上SumLineUpA合同排" + sumcountAZong + "线下SumLineDownB合同排"
 				+ sumcountBZong);
 		// 分步5，合同总数和要排的总和比较，超过次数不执行后面语句return，不超过就继续执行
-		has1200all = has1200all-1;//编辑调课的时候，减1不计算自身那次课
+	
 		if (has1200all > sumcountAZong) {
 			String msg = "没有保存，线上课程超次数,预览排:" + count1200yu + "已排:"
-					+ count1200db + "~总排:" + has1200all + "~总可排:"
+					+ count1200db + "~总排:" + has1200all + "~!总可排:"
 					+ sumcountAZong;
 			m_msg.setEditMsg(msg);
 			return msg;
 		}
-		has1500all = has1500all-1;//编辑调课的时候，减1不计算自身那次课
+	
 		if (has1500all > sumcountBZong) {
 			String msg = "没有保存，线下课程超次数,预览排:" + count1500yu + "已排:"
-					+ count1500db + "~总排:" + has1500all + "~总可排:"
+					+ count1500db + "~总排:" + has1500all + "~!总可排:"
 					+ sumcountBZong;
 			m_msg.setEditMsg(msg);
 			return msg;
