@@ -284,6 +284,8 @@ public class ContrtextServiceImpl implements ContrtextService {
     String nowEditTotal = contrtext.getTotalCount();
     Contrtext dbContrtext = contrtextDao.getOne(contrtext.getUuid());
     String dbTotal = dbContrtext.getTotalCount();
+    if(keTotal==null){keTotal="0";}
+    if(dbTotal==null){dbTotal="0";}
      int keTotal_int = Integer.valueOf(keTotal).intValue();//没修改前的
      int dbTotal_int = Integer.valueOf(dbTotal).intValue();//本次原合同次数
      int nowEditTotal_int = Integer.valueOf(nowEditTotal).intValue(); //本次原合同要修改次数
