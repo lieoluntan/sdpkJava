@@ -112,7 +112,7 @@ public class LogGXController extends HttpServlet{
 		      backResult.setData(resultList);
 		    }
 		    if (deleteBatch) {
-		    	HttpServletRequest request1;
+		    	HttpServletRequest request1 = null;
 		    	String[] uuid = request1.getParameterValues("uuid");
 		    	String result = lgxs.deleteBatch(uuid);
 			    ArrayList<String> resultList = new ArrayList<String>();
