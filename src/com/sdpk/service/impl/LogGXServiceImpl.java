@@ -1,6 +1,8 @@
 package com.sdpk.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -43,15 +45,15 @@ public class LogGXServiceImpl implements LogGXService{
 	}
 
 	@Override
-	public String deleteBatch(String[] uuid) {
+	public String deleteBatch(List<String> uuid) {
 		// TODO Auto-generated method stub
 		if (uuid != null) {
 			boolean daoFlag = false;
-	        for (int i = 0; i < uuid.length; i++) {
-	        	daoFlag =  lgd.delete(uuid[i]);
+	        for (int i = 0; i < uuid.size(); i++) {
+	        	daoFlag =  lgd.delete(uuid.get(i));
 			}
 	        if (daoFlag) {
-	            return "true";
+	            return uuid.get(0);
 	        } else {
 	            logger.error("删除不成功,service层执行有出错地方,请联系管理员");
 	            return "删除不成功,service层执行有出错地方,请联系管理员";
@@ -73,6 +75,27 @@ public class LogGXServiceImpl implements LogGXService{
 	public M_msg getMsg() {
 		// TODO Auto-generated method stub
 		return m_msg;
+	}
+
+	@Override
+	public String insert(LogGX log) {
+		// TODO Auto-generated method stub
+		log.setUuid(UUID.randomUUID().toString());
+		if (log.getUuid() != null && log.getUuid() != "") {
+	        System.out.println("^^在LogGXServiceImpl收到数据 ：" + log.toString()
+	                + "收到结束!");
+	        boolean daoFlag = lgd.insert(log);
+	        if (daoFlag) {
+	            return log.getUuid();
+	        } else {
+	            logger.error("插入不成功,service层执行有出错地方,请联系管理员");
+	            m_msg.setAddMsg("插入不成功,service层执行有出错地方,请联系管理员LogstuServiceImpl");
+	            return "插入不成功,service层执行有出错地方,请联系管理员";
+	        }
+	    } else {
+	        m_msg.setAddMsg("该意向学员不存在");
+	        return "该意向学员不存在";
+	    }
 	}
 	
 }
