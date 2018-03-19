@@ -203,7 +203,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_paike_all where KeDateTime >='"
+					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and KeDateTime >='"
 							+ sd + "' and KeDateTime <='" + sf + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();

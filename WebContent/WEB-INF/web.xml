@@ -473,5 +473,14 @@
 		<servlet-name>aaStuKeXiaoN</servlet-name>
 		<url-pattern>/aaStuKeXiao</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aaTeacherNameN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.TeacherNameController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaTeacherNameN</servlet-name>
+		<url-pattern>/aaTeacherName</url-pattern>
+	</servlet-mapping>
 
 </web-app>
