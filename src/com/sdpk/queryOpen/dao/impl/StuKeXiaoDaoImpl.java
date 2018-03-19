@@ -69,6 +69,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
 				stuPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
@@ -131,6 +132,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
@@ -159,7 +161,6 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 							+ uuid + "'");
 			while (rs.next()) {
 				String Claid = rs.getString("classUuid");
-
 				claIdList.add(Claid);
 			}
 		} catch (SQLException e) {
@@ -219,6 +220,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
 				paikeRecord.setPkType(rs.getString("pkType"));
 				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
 				stuPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
@@ -282,7 +284,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
 				paikeRecord.setStatus(rs.getString("status"));
 				paikeRecord.setWeekSome(rs.getString("weekSome"));
-
+				paikeRecord.setClaName(rs.getString("claName"));
 				empPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
