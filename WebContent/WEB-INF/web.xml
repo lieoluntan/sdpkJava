@@ -48,6 +48,7 @@
 		<url-pattern>/aaQueKeAll</url-pattern>
 	</servlet-mapping>
 	<servlet>
+	
 		<servlet-name>ContrtextController</servlet-name>
 		<servlet-class>com.sdpk.controller.ContrtextController</servlet-class>
 	</servlet>
@@ -444,6 +445,15 @@
 	<servlet-mapping>
 		<servlet-name>aaQueryMonthHead</servlet-name>
 		<url-pattern>/aaQueryMonthHead</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aaClaNameN</servlet-name>
+		<servlet-class>com.sdpk.query.controller.MonthHeadController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaClaNameN</servlet-name>
+		<url-pattern>/aaClaName</url-pattern>
 	</servlet-mapping>
 
 </web-app>
