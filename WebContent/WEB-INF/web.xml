@@ -464,5 +464,14 @@
 		<servlet-name>aaClaNameN</servlet-name>
 		<url-pattern>/aaClaName</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aaStuKeXiaoN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.StuKeXiaoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaStuKeXiaoN</servlet-name>
+		<url-pattern>/aaStuKeXiao</url-pattern>
+	</servlet-mapping>
 
 </web-app>
