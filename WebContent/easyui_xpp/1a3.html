@@ -232,7 +232,7 @@
                     uuid = $('#stuUuid').combobox('getValue');
                     year = $('#nDate').combobox('getValue')||thisYear;
                     month = $('#yDate').combobox('getValue')||thisMonth;
-                    var newUrl = '/sdpk/aaQueryStu?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today='+currentTime;
+                    var newUrl = '/sdpk/aaStuKeXiao?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today='+currentTime;
                     $.ajax({
 
                         url: String(newUrl),
@@ -256,7 +256,7 @@
                 onChange: function () {
                     month = $('#yDate').combobox('getValue');
                     year = $('#nDate').combobox('getValue')||thisYear;
-                    newUrl = '/sdpk/aaQueryStu?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today=2018-01-03';
+                    newUrl = '/sdpk/aaStuKeXiao?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today=2018-01-03';
                     $.ajax({
 
                         url: String(newUrl),
@@ -279,7 +279,7 @@
                 onChange: function () {
                     year = $('#nDate').combobox('getValue');
                     month = $('#yDate').combobox('getValue')||thisMonth;
-                    newUrl = '/sdpk/aaQueryStu?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today=2018-01-03';
+                    newUrl = '/sdpk/aaStuKeXiao?qqiu=list&stuUuid='+uuid+'&year='+year+'&&month='+month+'&&today=2018-01-03';
                     $.ajax({
 
                         url: String(newUrl),
