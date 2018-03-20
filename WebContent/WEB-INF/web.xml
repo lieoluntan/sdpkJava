@@ -478,9 +478,27 @@
 		<servlet-name>aaTeacherNameN</servlet-name>
 		<servlet-class>com.sdpk.queryOpen.controller.TeacherNameController</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>KeDelBatchController</servlet-name>
+    <servlet-class>com.sdpk.queryOpen.controller.KeDelBatchController</servlet-class>
+  </servlet>
+
 	<servlet-mapping>
 		<servlet-name>aaTeacherNameN</servlet-name>
 		<url-pattern>/aaTeacherName</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>KeDelBatchController</servlet-name>
+    <url-pattern>/servlet/KeDelBatchController</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  <servlet-name>aaKeDelBatchN</servlet-name>
+  <servlet-class>com.sdpk.queryOpen.controller.KeDelBatchController</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>aaKeDelBatchN</servlet-name>
+  <url-pattern>/aaKeDelBatch</url-pattern>
+ </servlet-mapping>
 
 </web-app>
