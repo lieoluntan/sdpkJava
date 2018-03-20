@@ -210,7 +210,7 @@
                     teaValue = $('#selTeacher').combobox('getValue');
                     year = $('#nDate').combobox('getValue')||thisYear;
                     month = $('#yDate').combobox('getValue')||thisMonth;
-                    var url = '/sdpk/aaQuery?qqiu=list&empUuid='+teaValue+'&year='+year+'&&month='+month+'&&today='+currentTime;
+                    var url = '/sdpk/aaTeaKeXiao?qqiu=list&empUuid='+teaValue+'&year='+year+'&&month='+month+'&&today='+currentTime;
                     $.ajax({
                         url: String(url),
                         type: "POST",
@@ -232,7 +232,7 @@
                 onChange:function () {
                     Year = $("#nDate").combobox("getValue");
                     Month = $("#yDate").combobox("getValue")||thisMonth;
-                    var url = "/sdpk/aaQuery?qqiu=list&empUuid="+teaValue+"&year="+Year+"&&month="+Month+"&&today="+currentTime;
+                    var url = "/sdpk/aaTeaKeXiao?qqiu=list&empUuid="+teaValue+"&year="+Year+"&&month="+Month+"&&today="+currentTime;
                     console.log(url);
                     $.ajax({
                         url:String(url),
@@ -250,7 +250,7 @@
                 onChange:function () {
                     Month = $("#yDate").combobox("getValue");
                     Year = $("#nDate").combobox("getValue")||thisYear;
-                    var url = "/sdpk/aaQuery?qqiu=list&empUuid="+teaValue+"&year="+Year+"&&month="+Month+"&&today="+currentTime;
+                    var url = "/sdpk/aaTeaKeXiao?qqiu=list&empUuid="+teaValue+"&year="+Year+"&&month="+Month+"&&today="+currentTime;
                     console.log(url);
                     $.ajax({
                         url:String(url),
