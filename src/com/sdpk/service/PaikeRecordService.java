@@ -32,7 +32,7 @@ public interface PaikeRecordService {
    * @return
    * 关系：调用了单个保存的dao
    */
-  String insert_batch(ArrayList<PaikeRecord> PR_List);
+  String insert_batch(ArrayList<PaikeRecord> PR_List,String userUuid,String userName);
 
   String delete(String uuid);
 

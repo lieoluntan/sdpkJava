@@ -18,6 +18,7 @@ import com.sdpk.dao.ContractDao;
 import com.sdpk.dao.ContrtextDao;
 import com.sdpk.dao.CourseDao;
 import com.sdpk.dao.EmployeeDao;
+import com.sdpk.dao.LogGXDao;
 import com.sdpk.dao.PaikeRecordDao;
 import com.sdpk.dao.impl.And_ClassEmpDaoImpl;
 import com.sdpk.dao.impl.ClaDaoImpl;
@@ -27,6 +28,7 @@ import com.sdpk.dao.impl.ContractDaoImpl;
 import com.sdpk.dao.impl.ContrtextDaoImpl;
 import com.sdpk.dao.impl.CourseDaoImpl;
 import com.sdpk.dao.impl.EmployeeDaoImpl;
+import com.sdpk.dao.impl.LogGXDaoImpl;
 import com.sdpk.dao.impl.PaikeRecordDaoImpl;
 import com.sdpk.model.And_ClassEmp;
 import com.sdpk.model.Cla;
@@ -36,6 +38,7 @@ import com.sdpk.model.Contract;
 import com.sdpk.model.Contrtext;
 import com.sdpk.model.Course;
 import com.sdpk.model.Employee;
+import com.sdpk.model.LogGX;
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.PaikeRecordPre;
 import com.sdpk.model.PaikeRecordView;
@@ -66,6 +69,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 	private Class_ContractDao class_ContractDao = new Class_ContractDaoImpl();
 	private And_ClassEmpDao and_ClassEmpDao = new And_ClassEmpDaoImpl();
 	public M_msg m_msg = new M_msg();
+	private LogGXDao logGXDao = new LogGXDaoImpl();
 
 	@Override
 	public M_msg getMsg() {
@@ -91,7 +95,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 	}// end method insert
 
 	@Override
-	public String insert_batch(ArrayList<PaikeRecord> PR_List) {
+	public String insert_batch(ArrayList<PaikeRecord> PR_List,String userUuid,String userName) {
 		// TODO Auto-generated method stub
 		// 11月15日
 		// 步骤一，检查排课条数在合同条数内
@@ -199,6 +203,27 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			}
 		}// end for 结束for循环
 		String recount = String.valueOf(count);
+		//返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
+		LogGX lg = new LogGX();
+		lg.setUuid(UUID.randomUUID().toString());
+		lg.setUserUuid(userUuid);
+		lg.setUserName(userName);
+		lg.setTableName("t_paike_all");
+		lg.setTableNameChina("排课表");
+		lg.setDataUuid("无uuid");
+		Cla cla = new Cla();
+		cla = claDao.getByUuid(pr.getClaUuid());
+		lg.setDataName(cla.getName());
+		lg.setUserAction("批量新增");
+		String str = "一共排入(" + recount +")次课";
+		lg.setDataGxChina(str);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String da = sdf.format(date);
+		lg.setUpdateTime(da);
+		logGXDao.insert(lg);
+		
+		//返回前增加日志写入0320 end
 		return recount;
 	}// end method insert_batch
 
@@ -310,15 +335,39 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		// 步骤三更新操作
 		String uuid = paikeRecord.getUuid();
 		if (uuid != null && uuid != "") {
-			
+		  
 			//存入班级名
 			Cla cla = claDao.getByUuid(paikeRecord.getClaUuid());
 			paikeRecord.setClaName(cla.getName());
+			
+			//返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
+	          LogGX lg = new LogGX();
+	          lg.setUuid(UUID.randomUUID().toString());
+	          lg.setUserUuid(paikeRecord.getUserUuid());
+	          lg.setUserName(paikeRecord.getUserName());
+	          lg.setTableName("t_paike_all");
+	          lg.setTableNameChina("排课表");
+	          lg.setDataUuid(paikeRecord.getUuid());
+	          lg.setDataName(cla.getName());
+	          lg.setUserAction("调课");
+	          
+	          PaikeRecord dbPaiRecord= paikeRecordDao.getByUuid(paikeRecord.getUuid());
+	          String str = "原来的课(" + dbPaiRecord.getClaName()+","+dbPaiRecord.getCourseName()+","+dbPaiRecord.getEmpName()+","+dbPaiRecord.getClassroomUuid() +")";
+	          str = str + "调成新课(" + paikeRecord.getClaName()+","+paikeRecord.getCourseName()+","+paikeRecord.getEmpName()+","+paikeRecord.getClassroomUuid() +")";
+	          lg.setDataGxChina(str);
+	          Date date = new Date();
+	          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	          String da = sdf.format(date);
+	          lg.setUpdateTime(da);
+	          logGXDao.insert(lg);
+	          
+	          //返回前增加日志写入0320 end
 
 			boolean daoFlag = paikeRecordDao.update(paikeRecord);
 
 			if (daoFlag) {
 				m_msg.setEditMsg("修改成功");
+				
 				return uuid;
 
 			} else {
