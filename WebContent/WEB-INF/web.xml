@@ -500,5 +500,17 @@
   <servlet-name>aaKeDelBatchN</servlet-name>
   <url-pattern>/aaKeDelBatch</url-pattern>
  </servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aaTeaKeXiaoN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.TeaKeXiaoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaTeaKeXiaoN</servlet-name>
+		<url-pattern>/aaTeaKeXiao</url-pattern>
+	</servlet-mapping>
+
+
+
 
 </web-app>
