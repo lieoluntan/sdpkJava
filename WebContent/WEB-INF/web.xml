@@ -524,7 +524,14 @@
   <servlet-mapping>
     <servlet-name>StudentIDController</servlet-name>
     <url-pattern>/servlet/StudentIDController</url-pattern>
-  </servlet-mapping>
-  
+   </servlet-mapping>
+	<servlet>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.CtextKeXiaoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<url-pattern>/aaCtextKeXiao</url-pattern>
+	</servlet-mapping>
 
 </web-app>

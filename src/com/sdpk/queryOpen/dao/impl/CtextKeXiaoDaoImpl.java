@@ -55,26 +55,26 @@ public class CtextKeXiaoDaoImpl implements CtextKeXiaoDao{
 
 			// 根据单个学生id查询所对应的几个班级，几个班级所对应的几个合同
 			rs1 = statement1
-					.executeQuery("select DISTINCT tcc.* from t_class_contract tcc,t_contrtext tc,t_class tcl,t_student ts  where ts.uuid = tc.stuUuid and ts.openAndclose='open' and  tcl.uuid=tcc.classUuid and tcc.classUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
-							+ uuid + "') and tc.openAndclose='open' and tcl.openAndclose='open';");
+					.executeQuery("select DISTINCT tcc.* from t_class_contract tcc,t_contrtext tc,t_class tcl,t_student ts where tc.stuUuid=ts.uuid and ts.openAndclose='open' and tc.uuid=tcc.contrUuid and tcl.uuid=tcc.classUuid and tcl.openAndclose='open' and tcc.classUuid in(select tcs.classUuid from t_class_stu tcs,t_student ts,t_class tcl where tcs.stuUuid = ts.uuid and tcl.uuid = tcs.classUuid and ts.openAndclose='open' and tcl.openAndclose='open' and tcs.stuUuid='"
+							+ uuid + "') and tc.openAndclose='open';");
 			System.out.println("1,,,根据单个学生id查询所对应的几个班级--->"+"select DISTINCT tcc.* from t_class_contract tcc,t_contrtext tc where tcc.classUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
                             + uuid + "') and tc.openAndclose='open';");
 			// 根据学生id查询所对应的几个班级，几个班级所对应的几节课
 			rs2 = statement2
-					.executeQuery("select tpa.* from t_paike_all tpa,t_class tc where tc.uuid=tpa.claUuid and and tc.openAndclose='open' tpa.claUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
+					.executeQuery("select tpa.* from t_paike_all tpa,t_class tc where tc.uuid=tpa.claUuid and tc.openAndclose='open' and tpa.claUuid in(select tcs.classUuid from t_class_stu tcs,t_student ts,t_class tcl where tcs.stuUuid = ts.uuid and tcl.uuid = tcs.classUuid and ts.openAndclose='open' and tcl.openAndclose='open' and tcs.stuUuid='"
 							+ uuid + "')");
 			System.out.println("2,,,根据学生id查询所对应的几个班级--->"+"select tpa.* from t_paike_all tpa where tpa.claUuid in(select tcs.classUuid from t_class_stu tcs where tcs.stuUuid='"
                             + uuid + "')");
 			// 根据学生id查询学生姓名和id
 			rs3 = statement3
-					.executeQuery("select * from t_student where uuid='" + uuid
-							+ "' and openAndclose='open';");
+					.executeQuery("select * from t_student where openAndclose='open' and uuid='" + uuid
+							+ "';");
 			System.out.println("3,,,根据学生id查询学生姓名和id--->"+"select * from t_student where uuid='" + uuid
                             + "';");
 			// 根据学生id查询合同表中学生对应总课数
 			rs4 = statement4
-					.executeQuery("select sum(totalCount) from t_contrtext tt,t_class tc,t_student ts  where ts.uuid=tt.stuUuid and stuUuid='"
-							+ uuid + "' and tt.openAndclose='open' and tc.openAndclose='open' and ts.openAndclose='open';");
+					.executeQuery("select sum(totalCount) from t_contrtext tc, t_student ts where tc.stuUuid = ts.uuid and  stuUuid='"
+							+ uuid + "' and tc.openAndclose='open' and ts.openAndclose='open' ;");
 			System.out.println("4,,,根据学生id查询合同表中学生对应总课数--->"+"select sum(totalCount) from t_contrtext where stuUuid='"
                             + uuid + "' and openAndclose='open';");
 
@@ -175,7 +175,7 @@ public class CtextKeXiaoDaoImpl implements CtextKeXiaoDao{
 		try {
 
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select uuid from t_student where openAndclose='open'");
+			rs = statement.executeQuery("select uuid from t_student where openAndclose = 'open'");
 			while (rs.next()) {
 
 				String stuUuid = rs.getString("uuid");
