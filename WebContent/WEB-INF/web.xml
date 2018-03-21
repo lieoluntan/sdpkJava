@@ -55,7 +55,7 @@
 	<servlet-mapping>
 		<servlet-name>ContrtextController</servlet-name>
 		<url-pattern>/aaContrtext</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>   
 
 	<servlet>
 		<servlet-name>aaLogGXN</servlet-name>
@@ -500,17 +500,38 @@
   <servlet-name>aaKeDelBatchN</servlet-name>
   <url-pattern>/aaKeDelBatch</url-pattern>
  </servlet-mapping>
-	
+ <servlet>
+   <servlet-name>aastudentIDN</servlet-name>
+  <servlet-class>com.sdpk.queryOpen.controller.StudentIDController</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>aastudentIDN</servlet-name>
+  <url-pattern>/aastudentID</url-pattern>
+ </servlet-mapping>
 	<servlet>
 		<servlet-name>aaTeaKeXiaoN</servlet-name>
 		<servlet-class>com.sdpk.queryOpen.controller.TeaKeXiaoController</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>StudentIDController</servlet-name>
+    <servlet-class>com.sdpk.queryOpen.controller.StudentIDController</servlet-class>
+  </servlet>
+
 	<servlet-mapping>
 		<servlet-name>aaTeaKeXiaoN</servlet-name>
 		<url-pattern>/aaTeaKeXiao</url-pattern>
 	</servlet-mapping>
-
-
-
+  <servlet-mapping>
+    <servlet-name>StudentIDController</servlet-name>
+    <url-pattern>/servlet/StudentIDController</url-pattern>
+   </servlet-mapping>
+	<servlet>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.CtextKeXiaoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<url-pattern>/aaCtextKeXiao</url-pattern>
+	</servlet-mapping>
 
 </web-app>

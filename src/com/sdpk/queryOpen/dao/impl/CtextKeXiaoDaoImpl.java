@@ -1,4 +1,4 @@
-package com.sdpk.query.dao.impl;
+package com.sdpk.queryOpen.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,20 +9,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.sdpk.model.QueCountCtext;
-import com.sdpk.model.Student;
-import com.sdpk.query.dao.QueCountCtextDao;
+import com.sdpk.queryOpen.dao.CtextKeXiaoDao;
 import com.sdpk.utility.DBUtility;
 
-/*
- * @author 刘鑫
- * @date 2018-01-25 18:17
- */
-public class QueCountCtextDaoImpl implements QueCountCtextDao {
+public class CtextKeXiaoDaoImpl implements CtextKeXiaoDao{
 	private Connection connection;
 	boolean dao = false;
 
-	public QueCountCtextDaoImpl() {
-		System.out.println("connection对象在QueCountCtextDaoImpl连接!");
+	public CtextKeXiaoDaoImpl() {
+		System.out.println("connection对象在CtextKeXiaoDaoImpl连接!");
 	}
 
 	@Override
@@ -199,5 +194,4 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 
 		return studentList;
 	}
-
 }

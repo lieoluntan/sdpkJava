@@ -203,7 +203,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select * from t_paike_all as tp,t_class as tc,t_employee te,t_class_emp tcp where tp.claUuid = tcp.classUuid and te.uuid = tp.empUuid and tcp.classUuid = tc.uuid  and tc.openAndclose='open' and tp.KeDateTime >='"
+					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and  tc.openAndclose='open'  and tp.KeDateTime >='"
 							+ sd + "' and tp.KeDateTime <='" + sf + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
@@ -211,7 +211,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setUuid(rs.getString("tp.uuid"));
 				paikeRecord.setClaUuid(rs.getString("tp.claUuid"));
 				paikeRecord.setCourseUuid(rs.getString("tp.courseUuid"));
-				paikeRecord.setEmpUuid(rs.getString("tcp.empUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
 				paikeRecord.setClassroomUuid(rs.getString("tp.classroomUuid"));
 				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
 				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
@@ -223,7 +223,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 				paikeRecord.setClaName(rs.getString("tp.claName"));
 				paikeRecord.setCourseName(rs.getString("tp.courseName"));
 				paikeRecord.setCroomName(rs.getString("tp.croomName"));
-				paikeRecord.setEmpName(rs.getString("te.name"));
+				paikeRecord.setEmpName(rs.getString("empName"));
 				stuPaikeList.add(paikeRecord);
 			}
 		} catch (SQLException e) {
