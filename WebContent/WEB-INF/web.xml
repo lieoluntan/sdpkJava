@@ -55,7 +55,7 @@
 	<servlet-mapping>
 		<servlet-name>ContrtextController</servlet-name>
 		<url-pattern>/aaContrtext</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>   
 
 	<servlet>
 		<servlet-name>aaLogGXN</servlet-name>
