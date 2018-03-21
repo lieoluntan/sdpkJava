@@ -509,5 +509,14 @@
 		<servlet-name>aaTeaKeXiaoN</servlet-name>
 		<url-pattern>/aaTeaKeXiao</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<servlet-class>com.sdpk.queryOpen.controller.CtextKeXiaoController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>aaCtextKeXiaoN</servlet-name>
+		<url-pattern>/aaCtextKeXiao</url-pattern>
+	</servlet-mapping>
 
 </web-app>
