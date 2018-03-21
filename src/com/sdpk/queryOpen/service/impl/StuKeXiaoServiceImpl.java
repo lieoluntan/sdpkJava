@@ -162,8 +162,13 @@ public class StuKeXiaoServiceImpl implements StuKeXiaoService{
 		// 步骤、加入班主任名
 		for (PaikeRecordView one : reAddNameList) {
 			// 1、加入班主任名
-			Employee claTea = employeeDao.getByUuid(one.getEmpUuid());
-			one.setHeadTeaName(claTea.getName());
+			String claUuid = one.getClaUuid();
+			And_ClassEmp and_ClassEmp = and_ClassEmpDao.getBycla(claUuid);
+			String claTeaUuid = and_ClassEmp.getEmpUuid();
+			Employee claTea = employeeDao.getByUuid(claTeaUuid);
+			String claTeaName = claTea.getName();
+			one.setHeadTeaUuid(claTeaUuid);
+			one.setHeadTeaName(claTeaName);
 
 		}// end 步骤
 
