@@ -108,18 +108,6 @@ public class QueCountCtextDaoImpl implements QueCountCtextDao {
 					// System.out.println("上的课==="+kebefore);
 					kebeforee = kebefore + "";
 					qcc.setKeDayBefore(kebeforee);
-					// System.out.println(sdf.parse(rs2.getString("keDateTime")).getTime());
-					// System.out.println(date.getTime());
-					// System.out.println(sdf.parse(rs2.getString("keDateTime")).getTime()<date.getTime());
-					/*
-					 * System.out.println("排课时间=========="+sdf.parse(rs2.getString
-					 * ("keDateTime")));
-					 * System.out.println("当前时间=========="+date);
-					 * System.out.println("已上课次数============"+kebefore);
-					 * System.out
-					 * .println("排课时间是否在当前时间之前============"+sdf.parse(rs2
-					 * .getString("keDateTime")).before(date));
-					 */
 				}
 				// 没上过的课
 				keafter = kesum - kebefore;
