@@ -16,7 +16,7 @@ import com.sdpk.utility.M_msg;
  */
 public interface ContrtextService {
 
-  String insert(Contrtext contrtext);
+  String insert(Contrtext contrtext,String userUuid,String userName);
 
   ArrayList<Contrtext> getList();
 

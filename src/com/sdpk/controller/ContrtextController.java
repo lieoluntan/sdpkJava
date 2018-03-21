@@ -112,7 +112,7 @@ public class ContrtextController extends HttpServlet {
 		}
 		if (add) {
 			
-			String result = contrtextService.insert(contrtext);
+			String result = contrtextService.insert(contrtext,"测试用户uuid","测试用户name");
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);

@@ -1,6 +1,8 @@
 package com.sdpk.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,13 +10,17 @@ import org.apache.log4j.Logger;
 
 import com.sdpk.dao.ConPriceDao;
 import com.sdpk.dao.ContrtextDao;
+import com.sdpk.dao.LogGXDao;
 import com.sdpk.dao.StudentDao;
 import com.sdpk.dao.impl.ConPriceDaoImpl;
 import com.sdpk.dao.impl.ContrtextDaoImpl;
+import com.sdpk.dao.impl.LogGXDaoImpl;
 import com.sdpk.dao.impl.StudentDaoImpl;
+import com.sdpk.model.Cla;
 import com.sdpk.model.ConPrice;
 import com.sdpk.model.Contract;
 import com.sdpk.model.Contrtext;
+import com.sdpk.model.LogGX;
 import com.sdpk.model.QueCountCtext;
 import com.sdpk.model.Student;
 import com.sdpk.query.dao.QueCountCtextDao;
@@ -38,8 +44,10 @@ public class ContrtextServiceImpl implements ContrtextService {
 	private StudentDao studentDao = new StudentDaoImpl();
 	private NameReContrDao nameReContrDao = new NameReContrDaoImpl();
 	private QueCountCtextDao qccd=new QueCountCtextDaoImpl();
+	private LogGXDao logGXDao = new LogGXDaoImpl();
 	public M_msg m_msg = new M_msg();
 	Logger logger = Logger.getLogger(ContrtextServiceImpl.class);
+	
 	  
 	  @Override
 	  public M_msg getMsg() {
@@ -48,7 +56,7 @@ public class ContrtextServiceImpl implements ContrtextService {
 	  }
 
 	@Override
-	public String insert(Contrtext contrtext) {
+	public String insert(Contrtext contrtext,String userUuid,String userName) {
 		String flag1 = this.getStuByName1(contrtext);
 		if (flag1.equals("yes")) {
 
@@ -69,6 +77,28 @@ public class ContrtextServiceImpl implements ContrtextService {
 				}
 				boolean flag = contrtextDao.insert(contrtext);// 添加合同
 				if (flag) {
+				//返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
+			        LogGX lg = new LogGX();
+			        lg.setUuid(UUID.randomUUID().toString());
+			        lg.setUserUuid(userUuid);
+			        lg.setUserName(userName);
+			        lg.setTableName("t_contrtext");
+			        lg.setTableNameChina("合同表");
+			        lg.setDataUuid(contrtext.getUuid());
+			        
+			        lg.setDataName(contrtext.getNameTcname());
+			        lg.setUserAction("新增");
+			        List<ConPrice> conPriceList = contrtext.getConPriceList();
+			        int count = conPriceList.size();
+			        String str = "合同新增1条，金额新增(" + count +")条.";
+			        lg.setDataGxChina(str);
+			        Date date = new Date();
+			        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			        String da = sdf.format(date);
+			        lg.setUpdateTime(da);
+			        logGXDao.insert(lg);
+			        
+			        //返回前增加日志写入0320 end
 					return contrtext.getUuid();
 
 				} else {

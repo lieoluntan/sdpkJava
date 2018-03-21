@@ -392,3 +392,25 @@ CREATE TABLE t_role_resource (
   
   PRIMARY KEY (uuid)
 );
+
+-- 日志关系表t_loggx
+
+CREATE TABLE t_loggx (
+  uuid varchar(50) NOT NULL,
+  userUuid varchar(50) NOT NULL,
+  userName varchar(50) NOT NULL,
+  tableName varchar(50) NOT NULL,
+  tableNameChina varchar(50) DEFAULT NULL,
+  dataUuid varchar(50) DEFAULT NULL,
+  dataName varchar(50) DEFAULT NULL,
+  userAction varchar(50) DEFAULT NULL,
+  updateTime datetime NOT NULL,
+  
+  dataGxUuid varchar(50) DEFAULT NULL,
+  dataGxChina varchar(250) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
+
+==============
+
