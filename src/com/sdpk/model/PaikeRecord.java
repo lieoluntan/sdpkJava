@@ -59,6 +59,9 @@ public class PaikeRecord {
   //班级课程冲突  作用：一个班级同一时间不能有两次课，发生课程冲突要修改时间，修改课程没用
   //false表示没冲突， true表示有冲突
   private boolean courConflict;
+  
+  private String userUuid;
+  private String userName;
 
   public PaikeRecord() {
   }
@@ -278,6 +281,22 @@ public String getClaName() {
 
 public void setClaName(String claName) {
 	this.claName = claName;
+}
+
+public String getUserUuid() {
+  return userUuid;
+}
+
+public void setUserUuid(String userUuid) {
+  this.userUuid = userUuid;
+}
+
+public String getUserName() {
+  return userName;
+}
+
+public void setUserName(String userName) {
+  this.userName = userName;
 }
   
   //新增end

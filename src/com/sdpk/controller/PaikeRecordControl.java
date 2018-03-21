@@ -123,7 +123,7 @@ public class PaikeRecordControl extends HttpServlet {
 			}
 			System.out.println("数组转换出来的列表数据!!!!!" + pr_List);
 			// end前台数据转换
-			String count = paikeRecordService.insert_batch(pr_List);
+			String count = paikeRecordService.insert_batch(pr_List,"测试uuid前台传","测试name前台传PaikeRecordControl");
 			backResult.setMessage("信息值：成功" + "插入数量" + count);
 			backResult.setQingqiu("add_batch查询列表");
 			ArrayList<PaikeRecord> resultList = new ArrayList<PaikeRecord>();
