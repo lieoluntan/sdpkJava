@@ -243,7 +243,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 //							+ sd + "' and KeDateTime <='" + sf + "'");
 			//所有老师月课,优化，班级名实时
 			rs = statement
-                .executeQuery("select * from t_paike_all as tp,t_class as tc,t_employee te,t_class_emp tcp where tp.claUuid = tcp.classUuid and te.uuid = tp.empUuid and tcp.classUuid = tc.uuid  and tc.openAndclose='open' and KeDateTime >='"
+                .executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and  tc.openAndclose='open'  and KeDateTime >='"
                         + sd + "' and KeDateTime <='" + sf + "'");
 			
 			while (rs.next()) {
@@ -252,7 +252,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 				paikeRecord.setUuid(rs.getString("tp.uuid"));
 				paikeRecord.setClaUuid(rs.getString("tp.claUuid"));
 				paikeRecord.setCourseUuid(rs.getString("tp.courseUuid"));
-				paikeRecord.setEmpUuid(rs.getString("tcp.empUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
 				paikeRecord.setClassroomUuid(rs.getString("tp.classroomUuid"));
 				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
 				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
@@ -264,7 +264,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 				paikeRecord.setClaName(rs.getString("tp.claName"));
 				paikeRecord.setCourseName(rs.getString("tp.courseName"));
 				paikeRecord.setCroomName(rs.getString("tp.croomName"));
-				paikeRecord.setEmpName(rs.getString("te.name"));
+				paikeRecord.setEmpName(rs.getString("empName"));
 				
 				empPaikeList.add(paikeRecord);
 			}
