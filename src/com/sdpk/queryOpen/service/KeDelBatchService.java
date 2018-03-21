@@ -6,5 +6,5 @@ public interface KeDelBatchService {
 	 /**
 	  * 批量删除paike
 	  */
-	 public String deleteBatch(List<String> uuidList);
+	 public String deleteBatch(List<String> uuidList,String userUuid,String userName);
 }

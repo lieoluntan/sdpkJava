@@ -92,7 +92,7 @@ public class KeDelBatchController extends HttpServlet {
 			      backResult.setData(resultList);
 			    }
 		    if (deleteBatch) {
-				String result = kdbs.deleteBatch(uuidList);
+				String result = kdbs.deleteBatch(uuidList,"测试用户uuid","测试用户名");
 				System.out.println("删除功能传进来的uuid================="
 						+ result);
 				ArrayList<String> resultList = new ArrayList<String>();
