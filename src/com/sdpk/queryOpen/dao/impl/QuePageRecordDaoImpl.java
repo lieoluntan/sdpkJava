@@ -43,9 +43,8 @@ public class QuePageRecordDaoImpl implements QuePageRecordDao{
 			return recordList;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("QuePageRecordDaoImpl的分页查询跟踪记录表列表失败");
 			Record record = new Record();
-			record.setStuUuid("RecordDaoImpl查询失败返回的stuUid"+stuUid);
+			record.setStuUuid(stuUid);
 			ArrayList<Record> listRecord = new ArrayList<Record>();
 			listRecord.add(record);
 			return listRecord;
