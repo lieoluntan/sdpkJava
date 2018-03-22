@@ -20,6 +20,7 @@ import com.sdpk.model.Department;
 import com.sdpk.model.Employee;
 import com.sdpk.model.LogGX;
 import com.sdpk.model.PaikeRecord;
+import com.sdpk.model.Record;
 import com.sdpk.model.Student;
 import com.sdpk.system.model.Resource;
 import com.sdpk.system.model.Role;
@@ -305,6 +306,27 @@ public class T_DataMap2Bean {
 		return paiKeRecord;
 	}// end method MapToAnd_ClassCourse
 
+	public Record MapToRecord(Map<String, Object> map){
+		String uuid=(String) map.get("uuid");
+		String createDate=(String) map.get("createDate");
+		String modifyDate=(String) map.get("modifyDate");
+		String createPeople=(String) map.get("createPeople");
+		String modifyPeople=(String) map.get("modifyPeople");
+		String ditchUuid=(String) map.get("ditchUuid");
+		String ditchName=(String) map.get("ditchName");
+		String recordDate=(String) map.get("recordDate");
+		String remarkText=(String) map.get("remarkText");
+		String userUuid=(String) map.get("userUuid");
+		String userName=(String) map.get("userName");
+		String stuUuid = (String) map.get("stuUuid");
+		Record record=new Record( uuid,  ditchUuid,  recordDate,  remarkText);
+		record.setUserUuid(userUuid);
+		record.setUserName(userName);
+		record.setStuUuid(stuUuid);
+		//record.setDitchName(ditchName);
+		return record;
+	}
+	
 	public Course_Emp MapToCourse_Emp(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
