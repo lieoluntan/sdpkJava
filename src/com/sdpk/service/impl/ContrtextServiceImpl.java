@@ -281,7 +281,7 @@ public class ContrtextServiceImpl implements ContrtextService {
 	}//end method
 
   @Override
-  public String updateLimit(Contrtext contrtext) {
+  public String updateLimit(Contrtext contrtext,String userUuid,String userName) {
     // 步骤一：验证重名
     List<Contrtext> conList = nameReContrDao.getStuByName(contrtext);
     for (Contrtext one : conList) {
@@ -342,6 +342,30 @@ public class ContrtextServiceImpl implements ContrtextService {
            }
 
            if (daoFlag) {
+             
+           //返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
+             LogGX lg = new LogGX();
+             lg.setUuid(UUID.randomUUID().toString());
+             lg.setUserUuid(userUuid);
+             lg.setUserName(userName);
+             lg.setTableName("t_contrtext");
+             lg.setTableNameChina("合同表");
+             lg.setDataUuid(contrtext.getUuid());
+             
+             lg.setDataName(contrtext.getNameTcname());
+             lg.setUserAction("编辑");
+             List<ConPrice> conPriceList = contrtext.getConPriceList();
+             int count = conPriceList.size();
+             String str = "合同编辑1条，金额编辑(" + count +")条.";
+             lg.setDataGxChina(str);
+             Date date = new Date();
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+             String da = sdf.format(date);
+             lg.setUpdateTime(da);
+             logGXDao.insert(lg);
+             
+             //返回前增加日志写入0320 end
+             
                return "修改成功";
            } else {
         	   logger.error("修改不成功,dao层执行有出错地方,请联系管理员");

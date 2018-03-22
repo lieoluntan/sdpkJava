@@ -26,7 +26,7 @@ public interface ContrtextService {
   String update(Contrtext contrtext);
 
   // 新更新方法，有合同数量变化限制
-  String updateLimit(Contrtext contrtext);
+  String updateLimit(Contrtext contrtext,String userUuid,String userName);
 
   Contrtext getByUuid(String uuid);
 

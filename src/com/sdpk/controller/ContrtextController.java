@@ -139,7 +139,7 @@ public class ContrtextController extends HttpServlet {
 //		}
 		if (edit) {
           
-          String result = contrtextService.updateLimit(contrtext);
+          String result = contrtextService.updateLimit(contrtext,"测试用户uuid","测试用户name");
           ArrayList<String> resultList = new ArrayList<String>();
           resultList.add(result);
           backResult.setMessage(result);
