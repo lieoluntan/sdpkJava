@@ -508,6 +508,16 @@
   <servlet-name>aastudentIDN</servlet-name>
   <url-pattern>/aastudentID</url-pattern>
  </servlet-mapping>
+		<!--  分页 -->
+ <servlet>
+   <servlet-name>aaQuePageRecordN</servlet-name>
+  <servlet-class>com.sdpk.queryOpen.controller.QuePageRecordController</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>aaQuePageRecordN</servlet-name>
+  <url-pattern>/aaQuePageRecord </url-pattern>
+ </servlet-mapping>
+ 
 	<servlet>
 		<servlet-name>aaTeaKeXiaoN</servlet-name>
 		<servlet-class>com.sdpk.queryOpen.controller.TeaKeXiaoController</servlet-class>
@@ -529,6 +539,11 @@
 		<servlet-name>aaCtextKeXiaoN</servlet-name>
 		<servlet-class>com.sdpk.queryOpen.controller.CtextKeXiaoController</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>QuePageRecordController</servlet-name>
+    <servlet-class>com.sdpk.queryOpen.controller.QuePageRecordController</servlet-class>
+  </servlet>
+
 	<servlet-mapping>
 		<servlet-name>aaCtextKeXiaoN</servlet-name>
 		<url-pattern>/aaCtextKeXiao</url-pattern>
@@ -542,5 +557,9 @@
 		<servlet-name>aaRecordN</servlet-name>
 		<url-pattern>/aaRecord</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QuePageRecordController</servlet-name>
+    <url-pattern>/servlet/QuePageRecordController</url-pattern>
+  </servlet-mapping>
 
 </web-app>
