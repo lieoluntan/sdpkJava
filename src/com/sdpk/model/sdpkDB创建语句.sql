@@ -413,4 +413,18 @@ CREATE TABLE t_loggx (
 );
 
 ==============
+-- 跟踪记录  t_record
 
+CREATE TABLE t_record (
+  uuid varchar(50) NOT NULL,
+  stuUuid varchar(50) NOT NULL,
+  recordDate varchar(50) DEFAULT NULL,
+  remarkText varchar(250) DEFAULT NULL,
+  
+  createDate datetime DEFAULT NULL,
+  modifyDate datetime DEFAULT NULL,
+  createPeople varchar(50) DEFAULT NULL,
+  modifyPeople varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
