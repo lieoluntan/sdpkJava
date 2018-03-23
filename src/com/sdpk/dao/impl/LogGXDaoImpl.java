@@ -10,7 +10,12 @@ import java.util.ArrayList;
 import com.sdpk.dao.LogGXDao;
 import com.sdpk.model.LogGX;
 import com.sdpk.utility.DBUtility;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class LogGXDaoImpl implements LogGXDao{
 
 	private Connection connection;
