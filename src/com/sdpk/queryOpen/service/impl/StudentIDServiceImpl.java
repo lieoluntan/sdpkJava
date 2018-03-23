@@ -9,7 +9,12 @@ import com.sdpk.queryOpen.dao.impl.StudentIDDaoImpl;
 import com.sdpk.queryOpen.service.StudentIDService;
 import com.sdpk.utility.M_msg;
 
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class StudentIDServiceImpl implements StudentIDService{
 	private StudentIDDao stuIDDao = new StudentIDDaoImpl();
 	public M_msg m_msg = new M_msg();
