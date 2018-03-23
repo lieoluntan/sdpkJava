@@ -21,7 +21,12 @@ import com.sdpk.service.impl.LogGXServiceImpl;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class LogGXController extends HttpServlet{
 	LogGXService lgxs = new LogGXServiceImpl();
 	BackResult backResult = new BackResult("信息值：默认","请求值：默认",null);

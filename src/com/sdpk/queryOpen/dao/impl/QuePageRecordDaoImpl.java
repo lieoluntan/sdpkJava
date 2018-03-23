@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import com.sdpk.model.Record;
 import com.sdpk.queryOpen.dao.QuePageRecordDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class QuePageRecordDaoImpl implements QuePageRecordDao{
 	private Connection connection = null;
 	
@@ -43,9 +48,8 @@ public class QuePageRecordDaoImpl implements QuePageRecordDao{
 			return recordList;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("QuePageRecordDaoImpl的分页查询跟踪记录表列表失败");
 			Record record = new Record();
-			record.setStuUuid("RecordDaoImpl查询失败返回的stuUid"+stuUid);
+			record.setStuUuid(stuUid);
 			ArrayList<Record> listRecord = new ArrayList<Record>();
 			listRecord.add(record);
 			return listRecord;

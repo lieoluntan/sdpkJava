@@ -11,7 +11,12 @@ import com.sdpk.dao.impl.LogGXDaoImpl;
 import com.sdpk.model.LogGX;
 import com.sdpk.service.LogGXService;
 import com.sdpk.utility.M_msg;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class LogGXServiceImpl implements LogGXService{
 	
 	public LogGXDao lgd = new LogGXDaoImpl();

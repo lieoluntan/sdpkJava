@@ -21,7 +21,12 @@ import com.sdpk.queryOpen.dao.impl.KeDelBatchDaoImpl;
 import com.sdpk.queryOpen.service.KeDelBatchService;
 import com.sdpk.service.impl.LogGXServiceImpl;
 import com.sdpk.utility.M_msg;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class KeDelBatchServiceImpl implements KeDelBatchService{
 	public KeDelBatchDao kdbDao=new KeDelBatchDaoImpl();
 	Logger logger = Logger.getLogger(LogGXServiceImpl.class);

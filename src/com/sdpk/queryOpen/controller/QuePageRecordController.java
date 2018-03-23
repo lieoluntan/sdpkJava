@@ -17,7 +17,12 @@ import com.sdpk.queryOpen.service.QuePageRecordService;
 import com.sdpk.queryOpen.service.impl.QuePageRecordServiceImpl;
 import com.sdpk.utility.T_DataControl;
 
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class QuePageRecordController extends HttpServlet {
 	
 	QuePageRecordService quePageRecordService=new QuePageRecordServiceImpl();
@@ -27,7 +32,6 @@ public class QuePageRecordController extends HttpServlet {
 			throws ServletException, IOException {
 
 	}
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	     response.setContentType("text/html;charset=utf-8");

@@ -7,7 +7,12 @@ import java.sql.SQLException;
 
 import com.sdpk.queryOpen.dao.KeDelBatchDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ * 树袋老师
+ * @author 作者毕书富
+ * @version 创建时间 2018-03-23 上午11.30
+ * 类说明
+ */
 public class KeDelBatchDaoImpl implements KeDelBatchDao{
 	private Connection connection;
 	boolean daoFlag = false;
