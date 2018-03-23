@@ -19,6 +19,13 @@ import com.sdpk.queryOpen.service.CtextKeXiaoService;
 import com.sdpk.queryOpen.service.impl.CtextKeXiaoServiceImpl;
 import com.sdpk.utility.T_DataControl;
 
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
+
 public class CtextKeXiaoController extends HttpServlet{
 	CtextKeXiaoService qccs=new CtextKeXiaoServiceImpl();
 	

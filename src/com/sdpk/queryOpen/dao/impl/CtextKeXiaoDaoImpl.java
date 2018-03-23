@@ -11,7 +11,12 @@ import java.util.Date;
 import com.sdpk.model.QueCountCtext;
 import com.sdpk.queryOpen.dao.CtextKeXiaoDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class CtextKeXiaoDaoImpl implements CtextKeXiaoDao{
 	private Connection connection;
 	boolean dao = false;

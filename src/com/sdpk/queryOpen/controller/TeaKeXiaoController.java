@@ -18,7 +18,12 @@ import com.sdpk.query.service.impl.QueryServiceImpl;
 import com.sdpk.queryOpen.service.TeaKeXiaoService;
 import com.sdpk.queryOpen.service.impl.TeaKeXiaoServiceImpl;
 import com.sdpk.utility.M_msg;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class TeaKeXiaoController extends HttpServlet{
 	TeaKeXiaoService queryService = new TeaKeXiaoServiceImpl();
 	BackResult_Query backResult = new BackResult_Query("信息值,默认", "请求值,默认", 0,

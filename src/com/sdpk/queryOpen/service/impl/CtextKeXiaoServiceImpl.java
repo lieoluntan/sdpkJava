@@ -8,7 +8,12 @@ import com.sdpk.query.dao.impl.QueCountCtextDaoImpl;
 import com.sdpk.queryOpen.dao.CtextKeXiaoDao;
 import com.sdpk.queryOpen.dao.impl.CtextKeXiaoDaoImpl;
 import com.sdpk.queryOpen.service.CtextKeXiaoService;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class CtextKeXiaoServiceImpl implements CtextKeXiaoService{
 	
 	

@@ -18,7 +18,12 @@ import com.sdpk.query.service.impl.QueryStuServiceImpl;
 import com.sdpk.queryOpen.service.StuKeXiaoService;
 import com.sdpk.queryOpen.service.impl.StuKeXiaoServiceImpl;
 import com.sdpk.utility.M_msg;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class StuKeXiaoController extends HttpServlet{
 	StuKeXiaoService queryStuService = new StuKeXiaoServiceImpl();
 	BackResult_Query backResult = new BackResult_Query("信息值,默认", "请求值,默认", 0,

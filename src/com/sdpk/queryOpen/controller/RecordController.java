@@ -19,7 +19,12 @@ import com.sdpk.queryOpen.service.RecordService;
 import com.sdpk.queryOpen.service.impl.RecordServiceImpl;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class RecordController extends HttpServlet{
 	private static final long serialVersionUID = -1060747765670586355L;
 	RecordService recordService = new RecordServiceImpl();

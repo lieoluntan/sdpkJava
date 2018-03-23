@@ -20,7 +20,12 @@ import com.sdpk.queryOpen.service.StuNameService;
 import com.sdpk.queryOpen.service.impl.StuNameServiceImpl;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class StuNameController extends HttpServlet {
 
 	BackResult backResult = new BackResult("信息值,默认", "请求值,默认", null);

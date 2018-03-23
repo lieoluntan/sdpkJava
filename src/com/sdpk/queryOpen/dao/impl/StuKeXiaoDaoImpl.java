@@ -11,7 +11,12 @@ import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
 import com.sdpk.queryOpen.dao.StuKeXiaoDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 	private Connection connection;
 	boolean dao = false;

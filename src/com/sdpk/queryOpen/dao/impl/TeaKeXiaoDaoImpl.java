@@ -10,7 +10,12 @@ import com.sdpk.model.PaikeRecordView;
 import com.sdpk.model.PaikeSearch;
 import com.sdpk.queryOpen.dao.TeaKeXiaoDao;
 import com.sdpk.utility.DBUtility;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 	private Connection connection;
 	boolean dao = false;
@@ -178,7 +183,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 			connection = DBUtility.open();// 打开数据库连接
 			statement = connection.createStatement();
 			rs = statement
-					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and empUuid='"
+					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and tp.empUuid='"
 							+ paikeSearch.getUuid() + "' and KeDateTime >='"
 							+ sd + "' and KeDateTime <='" + sf
 							+ "' and KeDateTime <= '" + paikeSearch.getToday()
@@ -189,7 +194,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 				paikeRecord.setUuid(rs.getString("uuid"));
 				paikeRecord.setClaUuid(rs.getString("claUuid"));
 				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
-				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setEmpUuid(rs.getString("tp.empUuid"));
 				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
 				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
 				paikeRecord.setKeStartTime(rs.getString("keStartTime"));

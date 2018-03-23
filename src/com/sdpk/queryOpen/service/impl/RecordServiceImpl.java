@@ -14,7 +14,12 @@ import com.sdpk.model.Record;
 import com.sdpk.queryOpen.dao.RecordDao;
 import com.sdpk.queryOpen.dao.impl.RecordDaoImpl;
 import com.sdpk.queryOpen.service.RecordService;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class RecordServiceImpl implements RecordService{
 	private LogGXDao lgg = new LogGXDaoImpl();
 	private RecordDao recordDao = new RecordDaoImpl();

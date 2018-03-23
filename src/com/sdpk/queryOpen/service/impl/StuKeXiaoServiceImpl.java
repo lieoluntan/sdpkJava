@@ -23,7 +23,12 @@ import com.sdpk.queryOpen.dao.StuKeXiaoDao;
 import com.sdpk.queryOpen.dao.impl.StuKeXiaoDaoImpl;
 import com.sdpk.queryOpen.service.StuKeXiaoService;
 import com.sdpk.utility.T_EndTime;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class StuKeXiaoServiceImpl implements StuKeXiaoService{
 	private StuKeXiaoDao queryStuDao = new StuKeXiaoDaoImpl();
 	private ClassRoomDao classRoomDao = new ClassRoomDaoImpl();

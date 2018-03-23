@@ -24,7 +24,12 @@ import com.sdpk.queryOpen.dao.impl.TeaKeXiaoDaoImpl;
 import com.sdpk.queryOpen.service.TeaKeXiaoService;
 import com.sdpk.utility.M_msg;
 import com.sdpk.utility.T_EndTime;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class TeaKeXiaoServiceImpl implements TeaKeXiaoService{
 	private TeaKeXiaoDao queryDao = new TeaKeXiaoDaoImpl();
 	private ClassRoomDao classRoomDao = new ClassRoomDaoImpl();
