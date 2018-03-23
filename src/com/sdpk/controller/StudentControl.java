@@ -25,7 +25,12 @@ import com.sdpk.service.StudentService;
 import com.sdpk.service.impl.StudentServiceImpl;
 import com.sdpk.utility.T_DataControl;
 import com.sdpk.utility.T_DataMap2Bean;
-
+/**
+ *树袋老师
+ * @author 作者 罗浩
+ * @version 创建时间：2018-03-23 
+ * 类说明
+ */
 public class StudentControl extends HttpServlet {
 
 	StudentService studentService = new StudentServiceImpl();
