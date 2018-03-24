@@ -85,8 +85,8 @@ public class ContrtextServiceImpl implements ContrtextService {
 			        lg.setTableName("t_contrtext");
 			        lg.setTableNameChina("合同表");
 			        lg.setDataUuid(contrtext.getUuid());
-			        
-			        lg.setDataName(contrtext.getNameTcname());
+			        Contrtext dbOne = contrtextDao.getOne(contrtext.getUuid());
+			        lg.setDataName(dbOne.getNameTcname());
 			        lg.setUserAction("新增");
 			        List<ConPrice> conPriceList = contrtext.getConPriceList();
 			        int count = conPriceList.size();
@@ -352,7 +352,8 @@ public class ContrtextServiceImpl implements ContrtextService {
              lg.setTableNameChina("合同表");
              lg.setDataUuid(contrtext.getUuid());
              
-             lg.setDataName(contrtext.getNameTcname());
+             Contrtext dbOne = contrtextDao.getOne(contrtext.getUuid());
+             lg.setDataName(dbOne.getNameTcname());
              lg.setUserAction("编辑");
              List<ConPrice> conPriceList = contrtext.getConPriceList();
              int count = conPriceList.size();

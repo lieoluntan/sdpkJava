@@ -45,6 +45,9 @@ public class ContrtextController extends HttpServlet {
 
 		// 1 获取url问号后面的Query 参数
 		String qqiu = request.getParameter("qqiu");
+		String userUuid = request.getParameter("userUuid");//url传的用户uuid
+        String userName = request.getParameter("userName");//url传的用户name
+        
 		if (qqiu.equals("test") || qqiu.equals("add") || qqiu.equals("delete")
 				|| qqiu.equals("edit") || qqiu.equals("getOne")|| qqiu.equals("on_off")) {
 			// 2 将前台json数据字符串转成实体对象
@@ -61,7 +64,7 @@ public class ContrtextController extends HttpServlet {
 			}
 
 			// 3 执行qqiu里面的增或删或改或查 的操作
-			qqiuChoice(qqiu, contrtext);
+			qqiuChoice(qqiu, contrtext,userUuid,userName);
 		} else if (qqiu.equals("list")) {
 			// TODO 待完成
 			ArrayList<Contrtext> resultList = contrtextService.getList();
@@ -84,7 +87,7 @@ public class ContrtextController extends HttpServlet {
 
 	}// end method doPost 主入口
 
-	private void qqiuChoice(String qqiu, Contrtext contrtext) {
+	private void qqiuChoice(String qqiu, Contrtext contrtext,String userUuid,String userName) {
 		// TODO Auto-generated method stub
 		boolean test = false;
 		boolean add = false;
@@ -112,7 +115,7 @@ public class ContrtextController extends HttpServlet {
 		}
 		if (add) {
 			
-			String result = contrtextService.insert(contrtext,"测试用户uuid","测试用户name");
+			String result = contrtextService.insert(contrtext,userUuid,userName);
 			System.out.println("插入的uuid是：" + result);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
@@ -139,7 +142,7 @@ public class ContrtextController extends HttpServlet {
 //		}
 		if (edit) {
           
-          String result = contrtextService.updateLimit(contrtext,"测试用户uuid","测试用户name");
+          String result = contrtextService.updateLimit(contrtext,userUuid,userName);
           ArrayList<String> resultList = new ArrayList<String>();
           resultList.add(result);
           backResult.setMessage(result);

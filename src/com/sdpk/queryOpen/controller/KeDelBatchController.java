@@ -49,6 +49,8 @@ public class KeDelBatchController extends HttpServlet {
 
 		    // 1 获取url问号后面的Query 参数
 		    String qqiu = request.getParameter("qqiu");
+		    String userUuid = request.getParameter("userUuid");//url传的用户uuid
+		    String userName = request.getParameter("userName");//url传的用户name
 
 		    if (qqiu.equals("test") || qqiu.equals("deleteBatch")) {
 		      // 2 将前台json数据字符串转成实体对象
@@ -64,7 +66,7 @@ public class KeDelBatchController extends HttpServlet {
 		      }
 
 		      // 3 执行qqiu里面的增或删或改或查 的操作
-		      qqiuChoice(qqiu, uuidList);
+		      qqiuChoice(qqiu, uuidList,userUuid,userName);
 		    } else {
 		      System.out.println("qqiu请求参数  " + qqiu + "  不规范");
 		    }
@@ -80,7 +82,7 @@ public class KeDelBatchController extends HttpServlet {
 
 		  }// end method doPost 主入口
 
-		  private void qqiuChoice(String qqiu, List<String> uuidList) {
+		  private void qqiuChoice(String qqiu, List<String> uuidList,String userUuid,String userName) {
 		    // TODO Auto-generated method stub
 			boolean test = false;
 		    boolean deleteBatch =false;
@@ -97,7 +99,7 @@ public class KeDelBatchController extends HttpServlet {
 			      backResult.setData(resultList);
 			    }
 		    if (deleteBatch) {
-				String result = kdbs.deleteBatch(uuidList,"测试用户uuid","测试用户名");
+				String result = kdbs.deleteBatch(uuidList,userUuid,userName);
 				System.out.println("删除功能传进来的uuid================="
 						+ result);
 				ArrayList<String> resultList = new ArrayList<String>();
