@@ -60,6 +60,8 @@ public class PaikeRecordControl extends HttpServlet {
 
 		// 1 获取url问号后面的Query 参数
 		String qqiu = request.getParameter("qqiu");
+		String userUuid = request.getParameter("userUuid");//url传的用户uuid
+        String userName = request.getParameter("userName");//url传的用户name
 
 		if (qqiu.equals("test") || qqiu.equals("add") || qqiu.equals("delete")
 				|| qqiu.equals("edit") || qqiu.equals("getOne")
@@ -68,7 +70,7 @@ public class PaikeRecordControl extends HttpServlet {
 			// 2 将前台json数据转成实体对象
 			PaikeRecord paikeRecord = json2PaikeRecord(request);
 			// 3 执行qqiu里面的增或删或改或查 的操作
-			qqiuChoice(qqiu, paikeRecord);
+			qqiuChoice(qqiu, paikeRecord,userUuid,userName);
 		} else if (qqiu.equals("list")) {
 			ArrayList<PaikeRecord> resultList = paikeRecordService.getList();
 			backResult.setMessage("信息值：成功");
@@ -123,7 +125,7 @@ public class PaikeRecordControl extends HttpServlet {
 			}
 			System.out.println("数组转换出来的列表数据!!!!!" + pr_List);
 			// end前台数据转换
-			String count = paikeRecordService.insert_batch(pr_List,"测试uuid前台传","测试name前台传PaikeRecordControl");
+			String count = paikeRecordService.insert_batch(pr_List,userUuid,userName);
 			backResult.setMessage("信息值：成功" + "插入数量" + count);
 			backResult.setQingqiu("add_batch查询列表");
 			ArrayList<PaikeRecord> resultList = new ArrayList<PaikeRecord>();
@@ -309,7 +311,7 @@ public class PaikeRecordControl extends HttpServlet {
 		return prp;
 	}// end method MapToPaikeRecordPre
 
-	private void qqiuChoice(String qqiu, PaikeRecord paikeRecord) {
+	private void qqiuChoice(String qqiu, PaikeRecord paikeRecord,String userUuid,String userName) {
 		// TODO Auto-generated method stub
 		boolean test = false;
 		boolean add = false;
@@ -364,7 +366,7 @@ public class PaikeRecordControl extends HttpServlet {
 				if (paikeRecord.equals("LineDownB")) {
 					paikeRecord.setPkTypeName("线下");
 				}
-			String result = paikeRecordService.update(paikeRecord);
+			String result = paikeRecordService.update(paikeRecord,userUuid,userName);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
 			m_msg = paikeRecordService.getMsg();

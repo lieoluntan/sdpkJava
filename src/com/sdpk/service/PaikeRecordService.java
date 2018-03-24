@@ -36,7 +36,7 @@ public interface PaikeRecordService {
 
   String delete(String uuid);
 
-  String update(PaikeRecord paikeRecord);
+  String update(PaikeRecord paikeRecord,String userUuid,String userName);
 
   /**
    * 获取数据库表里所有的记录

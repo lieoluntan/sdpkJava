@@ -203,6 +203,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			}
 		}// end for 结束for循环
 		String recount = String.valueOf(count);
+		if(count>0){
 		//返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
 		LogGX lg = new LogGX();
 		lg.setUuid(UUID.randomUUID().toString());
@@ -224,6 +225,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 		logGXDao.insert(lg);
 		
 		//返回前增加日志写入0320 end
+		}
 		return recount;
 	}// end method insert_batch
 
@@ -249,7 +251,7 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 	}// end method delete
 
 	@Override
-	public String update(PaikeRecord paikeRecord) {
+	public String update(PaikeRecord paikeRecord,String userUuid,String userName) {
 		// TODO Auto-generated method stub
 		ArrayList<PaikeRecord> PR_List = new ArrayList<PaikeRecord>();
 		PR_List.add(paikeRecord);
@@ -343,8 +345,8 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 			//返回前增加日志写入0320 start(批量排入课，用户uuid,用户名通过URL地址传入)
 	          LogGX lg = new LogGX();
 	          lg.setUuid(UUID.randomUUID().toString());
-	          lg.setUserUuid(paikeRecord.getUserUuid());
-	          lg.setUserName(paikeRecord.getUserName());
+	          lg.setUserUuid(userUuid);
+	          lg.setUserName(userName);
 	          lg.setTableName("t_paike_all");
 	          lg.setTableNameChina("排课表");
 	          lg.setDataUuid(paikeRecord.getUuid());
@@ -352,8 +354,12 @@ public class PaikeRecordServiceImpl implements PaikeRecordService {
 	          lg.setUserAction("调课");
 	          
 	          PaikeRecord dbPaiRecord= paikeRecordDao.getByUuid(paikeRecord.getUuid());
-	          String str = "原来的课(" + dbPaiRecord.getClaName()+","+dbPaiRecord.getCourseName()+","+dbPaiRecord.getEmpName()+","+dbPaiRecord.getClassroomUuid() +")";
-	          str = str + "调成新课(" + paikeRecord.getClaName()+","+paikeRecord.getCourseName()+","+paikeRecord.getEmpName()+","+paikeRecord.getClassroomUuid() +")";
+	          Cla dbcla = claDao.getByUuid(dbPaiRecord.getClaUuid());
+	          Course dbcourse = courseDao.getByUuid(dbPaiRecord.getCourseUuid());
+	          Employee dbemp = employeeDao.getByUuid(dbPaiRecord.getEmpUuid());
+	          ClassRoom dbclassRoom = classRoomDao.getByUuid(dbPaiRecord.getClassroomUuid());
+	          String str = "原来的课(" + dbcla.getName()+","+dbcourse.getName()+","+dbemp.getName()+","+dbclassRoom.getName()+"," +dbPaiRecord.getKeDateTime()+"号"+dbPaiRecord.getKeStartTime()+")";
+	          str = str + "调成新课(" + paikeRecord.getClaName()+","+paikeRecord.getCourseName()+","+paikeRecord.getEmpName()+","+paikeRecord.getCroomName()+"," +paikeRecord.getKeDateTime()+"号"+paikeRecord.getKeStartTime()+")";
 	          lg.setDataGxChina(str);
 	          Date date = new Date();
 	          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
