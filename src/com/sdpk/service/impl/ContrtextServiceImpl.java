@@ -136,12 +136,35 @@ public class ContrtextServiceImpl implements ContrtextService {
 	}
 
 	@Override
-	public String delete(String uuid) {
+	public String delete(String uuid,String userUuid,String userName) {
 		// TODO Auto-generated method stub
 		if (uuid != null && uuid != "") {
+		//返回前增加日志写入0320 start(用户uuid,用户名通过URL地址传入)
+          LogGX lg = new LogGX();
+          lg.setUuid(UUID.randomUUID().toString());
+          lg.setUserUuid(userUuid);
+          lg.setUserName(userName);
+          lg.setTableName("t_contrtext");
+          lg.setTableNameChina("合同表");
+          lg.setDataUuid(uuid);
+          
+          Contrtext dbOne = contrtextDao.getOne(uuid);
+          lg.setDataName(dbOne.getNameTcname());
+          lg.setUserAction("删除");
+          String str = "合同删除1条，合同关联金额同时删除";
+          lg.setDataGxChina(str);
+          Date date = new Date();
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+          String da = sdf.format(date);
+          lg.setUpdateTime(da);
+          logGXDao.insert(lg);
+          
+          //返回前增加日志写入0320 end
+		  
 			boolean daoFlag = contrtextDao.deleteByUuid(uuid);
 			ConPriceDao.deleteByContrUuid(uuid);
 			if (daoFlag) {
+			
 				return uuid;
 			} else {
 				logger.error("删除不成功,dao层执行有出错地方,请联系管理员");

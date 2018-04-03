@@ -20,7 +20,7 @@ public interface ContrtextService {
 
   ArrayList<Contrtext> getList();
 
-  String delete(String uuid);
+  String delete(String uuid,String userUuid,String userName);
 
   // 原来的更新方法，没有做合同数量变化限制,暂时不用
   String update(Contrtext contrtext);

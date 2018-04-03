@@ -124,7 +124,7 @@ public class ContrtextController extends HttpServlet {
 			backResult.setData(resultList);
 		}
 		if (delete) {
-			String result = contrtextService.delete(contrtext.getUuid());
+			String result = contrtextService.delete(contrtext.getUuid(),userUuid,userName);
 			ArrayList<String> resultList = new ArrayList<String>();
 			resultList.add(result);
 			backResult.setMessage("信息值：成功");
