@@ -51,7 +51,41 @@ public class PaikeRecordView {
  private String pkType;// 上课类型：LineUpA    LineDownB  
  private String pkTypeName;// 上课类型中文名：  线上                                线下
  
- public String getHeadTeaUuid() {
+ private int MonthSumHour;//月总课时
+ private int EndSumHour;//月已课时
+ private int LastSumHour;//月末课时
+ 
+ public int getMonthSumHour() {
+	return MonthSumHour;
+}
+
+
+public void setMonthSumHour(int monthSumHour) {
+	MonthSumHour = monthSumHour;
+}
+
+
+public int getEndSumHour() {
+	return EndSumHour;
+}
+
+
+public void setEndSumHour(int endSumHour) {
+	EndSumHour = endSumHour;
+}
+
+
+public int getLastSumHour() {
+	return LastSumHour;
+}
+
+
+public void setLastSumHour(int lastSumHour) {
+	LastSumHour = lastSumHour;
+}
+
+
+public String getHeadTeaUuid() {
 	return headTeaUuid;
 }
 

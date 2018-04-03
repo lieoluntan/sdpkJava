@@ -89,7 +89,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 	}
 
 	@Override
-	public int SumDayBefore(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 
 		String sd = "";// 月初
@@ -148,7 +148,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 			DBUtility.close(rs, statement, connection);
 		}// finally关闭jdbc与数据库连接
 
-		return empPaikeList.size();
+		return empPaikeList;
 	}
 
 	@Override
@@ -243,7 +243,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 	}//end method
 	
 	@Override
-	public int SumDayBefore1(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 
 		String sd = "";// 月初
@@ -303,7 +303,130 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 			DBUtility.close(rs, statement, connection);
 		}// finally关闭jdbc与数据库连接
 
-		return empPaikeList.size();
+		return empPaikeList;
 	}//end method
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		String sd = "";// 月初
+		String sf = "";
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
+		String[] s = d.split("-");
+		s[0] += "-";
+		s[1] += "-";
+
+		s[2] = "01";
+		for (String string : s) {
+			sd += string;
+		}
+
+		s[2] = "31";
+		for (String string : s) {
+			sf += string;
+		}
+
+		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and  KeDateTime >='"
+							+ sd
+							+ "' and KeDateTime <='"
+							+ sf
+							+ "' and KeDateTime >= '"
+							+ paikeSearch.getToday()
+							+ "'");
+			while (rs.next()) {
+				PaikeRecordView paikeRecord = new PaikeRecordView();
+
+				paikeRecord.setUuid(rs.getString("uuid"));
+				paikeRecord.setClaUuid(rs.getString("claUuid"));
+				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
+				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
+				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
+				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
+				paikeRecord.setStatus(rs.getString("status"));
+				paikeRecord.setWeekSome(rs.getString("weekSome"));
+				paikeRecord.setClaName(rs.getString("claName"));
+				empPaikeList.add(paikeRecord);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ResourceDaoImpl的getByUuid查询失败");
+
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return empPaikeList;
+	}
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		String sd = "";// 月初
+		String sf = "";
+		String year = paikeSearch.getYear();
+		String month = paikeSearch.getMonth();
+		String d = year + "-" + month + "-" + "1";
+		String[] s = d.split("-");
+		s[0] += "-";
+		s[1] += "-";
+		s[2] = "01";
+		for (String string : s) {
+			sd += string;
+		}
+
+		s[2] = "31";
+		for (String string : s) {
+			sf += string;
+		}
+
+		ArrayList<PaikeRecordView> empPaikeList = new ArrayList<PaikeRecordView>();// 老师本月的所有排课集合
+		Statement statement = null;// finally关闭数据库连接
+		ResultSet rs = null;// 关闭数据库连接get和getlist会用到
+		try {
+			connection = DBUtility.open();// 打开数据库连接
+			statement = connection.createStatement();
+			rs = statement
+					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and claUuid='"
+							+ paikeSearch.getClaUuid() + "' and KeDateTime >='"
+							+ sd + "' and KeDateTime <='" + sf
+							+ "' and KeDateTime >= '" + paikeSearch.getToday()
+							+ "'");
+			while (rs.next()) {
+				PaikeRecordView paikeRecord = new PaikeRecordView();
+
+				paikeRecord.setUuid(rs.getString("uuid"));
+				paikeRecord.setClaUuid(rs.getString("claUuid"));
+				paikeRecord.setCourseUuid(rs.getString("courseUuid"));
+				paikeRecord.setEmpUuid(rs.getString("empUuid"));
+				paikeRecord.setClassroomUuid(rs.getString("classroomUuid"));
+				paikeRecord.setKeDateTime(rs.getString("keDateTime"));
+				paikeRecord.setKeStartTime(rs.getString("keStartTime"));
+				paikeRecord.setKeLongTime(rs.getString("keLongTime"));
+				paikeRecord.setStatus(rs.getString("status"));
+				paikeRecord.setWeekSome(rs.getString("weekSome"));
+				paikeRecord.setPkType(rs.getString("pkType"));
+				paikeRecord.setPkTypeName(rs.getString("pkTypeName"));
+				paikeRecord.setClaName(rs.getString("claName"));
+				empPaikeList.add(paikeRecord);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("ResourceDaoImpl的getByUuid查询失败");
+
+		} finally {
+			DBUtility.close(rs, statement, connection);
+		}// finally关闭jdbc与数据库连接
+
+		return empPaikeList;
+	}
 
 }

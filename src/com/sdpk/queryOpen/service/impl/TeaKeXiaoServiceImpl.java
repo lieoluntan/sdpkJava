@@ -104,7 +104,7 @@ public class TeaKeXiaoServiceImpl implements TeaKeXiaoService{
 	}
 
 	@Override
-	public int SumDayBefore(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 		return queryDao.SumDayBefore(paikeSearch);
 	}
@@ -143,9 +143,21 @@ public class TeaKeXiaoServiceImpl implements TeaKeXiaoService{
 	}
 
 	@Override
-	public int SumDayBefore1(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 		return queryDao.SumDayBefore1(paikeSearch);
+	}
+
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		return queryDao.SumDayBeforeDan(paikeSearch);
+	}
+
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		return queryDao.SumDayBefore2(paikeSearch);
 	}
 
 }
