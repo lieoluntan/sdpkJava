@@ -17,7 +17,11 @@ public interface TeaKeXiaoDao {
 	
 	int SumEmpPaike(PaikeSearch paikeSearch);
 	
-	int SumDayBefore(PaikeSearch paikeSearch);
+	ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch);
 	
-	int SumDayBefore1(PaikeSearch paikeSearch);
+	ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch);
+	
+	ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch);
+	
+	ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch);
 }

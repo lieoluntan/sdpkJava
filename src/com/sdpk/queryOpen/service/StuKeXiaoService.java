@@ -28,11 +28,15 @@ public interface StuKeXiaoService {
 	 * @param uuid
 	 * @return 学生当月到今天的排课数
 	 */
-	int SumDayBefore(PaikeSearch paikeSearch);
+	 ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch);
+	
+	public ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch);
 	/**
 	 * 
 	 * @param uuid
 	 * @return 所有学生当月到今天的排课数
 	 */
-	int SumDayBefore1(PaikeSearch paikeSearch);
+	ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch);
+	
+	public ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch);
 }

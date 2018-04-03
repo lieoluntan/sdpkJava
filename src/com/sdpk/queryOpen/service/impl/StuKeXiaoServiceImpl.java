@@ -97,11 +97,11 @@ public class StuKeXiaoServiceImpl implements StuKeXiaoService{
 	}
 
 	@Override
-	public int SumDayBefore(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 		List<String> claList = queryStuDao.getClaidByStuId(paikeSearch
 				.getStuUuid());
-		int sum = 0;
+		ArrayList<PaikeRecordView> sum = new ArrayList<PaikeRecordView>();
 		for (String string : claList) {
 			paikeSearch.setClaUuid(string);
 			sum = queryStuDao.SumDayBefore(paikeSearch);
@@ -181,8 +181,28 @@ public class StuKeXiaoServiceImpl implements StuKeXiaoService{
 	}//end method
 
 	@Override
-	public int SumDayBefore1(PaikeSearch paikeSearch) {
+	public ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch) {
 		// TODO Auto-generated method stub
 		return queryStuDao.SumDayBefore1(paikeSearch);
 	}//end method
+
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		return queryStuDao.SumDayBefore2(paikeSearch);
+	}
+
+	@Override
+	public ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch) {
+		// TODO Auto-generated method stub
+		List<String> claList = queryStuDao.getClaidByStuId(paikeSearch
+				.getStuUuid());
+		ArrayList<PaikeRecordView> sum = new ArrayList<PaikeRecordView>();
+		for (String string : claList) {
+			paikeSearch.setClaUuid(string);
+			sum = queryStuDao.SumDayBefore(paikeSearch);
+
+		}
+		return sum;
+	}
 }

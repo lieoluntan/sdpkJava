@@ -15,8 +15,35 @@ public class BackResult_Query {
 	int SumEmpPaike;//月份总课数
 	int SumDayBefore;//今天以前的课
 	int SumDayAfter;//今天及今天以后的课
+	int MonthSumHour;//月总课时
+	int EndSumHour;//月已课时
+	int LastSumHour;//月末课时
 	
-	  ArrayList<?> data;
+	  public int getMonthSumHour() {
+		return MonthSumHour;
+	}
+
+	public void setMonthSumHour(int monthSumHour) {
+		MonthSumHour = monthSumHour;
+	}
+
+	public int getEndSumHour() {
+		return EndSumHour;
+	}
+
+	public void setEndSumHour(int endSumHour) {
+		EndSumHour = endSumHour;
+	}
+
+	public int getLastSumHour() {
+		return LastSumHour;
+	}
+
+	public void setLastSumHour(int lastSumHour) {
+		LastSumHour = lastSumHour;
+	}
+
+	ArrayList<?> data;
 
 	@Override
 	public String toString() {

@@ -11,6 +11,7 @@ import com.sdpk.model.PaikeSearch;
  * 类说明
  */
 public interface TeaKeXiaoService {
+	ArrayList<PaikeRecordView> SumDayBefore2(PaikeSearch paikeSearch);
 	/**
 	 * 
 	 * @param uuid
@@ -34,11 +35,13 @@ public interface TeaKeXiaoService {
 	 * @param uuid
 	 * @return 老师当月到今天的排课数
 	 */
-	int SumDayBefore(PaikeSearch paikeSearch);
+	ArrayList<PaikeRecordView> SumDayBefore(PaikeSearch paikeSearch);
 	/**
 	 * 
 	 * @param paikeSearch
 	 * @return  所有老师当月到今天的排课数
 	 */
-	int SumDayBefore1(PaikeSearch paikeSearch);
+	ArrayList<PaikeRecordView> SumDayBefore1(PaikeSearch paikeSearch);
+	
+	ArrayList<PaikeRecordView> SumDayBeforeDan(PaikeSearch paikeSearch);
 }
