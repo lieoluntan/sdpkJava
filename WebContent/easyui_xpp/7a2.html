@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="jquery-easyui-136/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="DataTables/datatables.js"></script>
     <script type="text/javascript" src="../xppjs/jquery.serialize-object.js"></script>
-	
 	<link   rel="stylesheet" type="text/css" href="jquery-easyui-136/themes/gray/easyui.css"/>
 	<link   rel="stylesheet" type="text/css" href="jquery-easyui-136/themes/icon.css"/>
     <link   rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
@@ -76,7 +75,7 @@
 
             var viewArr = $.cookie("rsList").split(",");
             for (var i = 0; i < viewArr.length; i++) {
-//                if(viewArr[i]=="Gb2") {$( "#delbut" ).show();}
+//               if(viewArr[i]=="Gb2") {$( "#delbut" ).show();}
                 if(viewArr[i]=="Gb1") {$( "#opener" ).show();}
             }//end for
         }
@@ -175,6 +174,7 @@
         } );
     //步骤2，列表选择
     var selectTable = $('#exampleMain tbody').on( 'click', 'tr', function () {
+
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -200,9 +200,12 @@
          send_data.uuid = Auuid;
          // alert( "选择的行的uuid: "+send_data);
          //调用ajax方法传给后台接口
+        var userName = $.cookie("ckUserName");
+        var userUuid = $.cookie("ckUserEmpUuid");
+        var newUrl = "/sdpk/aaContrtext?qqiu=delete&userUuid="+userUuid+"&userName="+userName;
+        console.log(newUrl);
          $.ajax({
-
-                url:"/sdpk/aaContrtext?qqiu=delete",
+                url:newUrl,
                 type: "POST",
                 //data: JSON.stringify(param),
                 data: JSON.stringify(send_data),
@@ -289,6 +292,7 @@
         var delRowData = {},date = {},send_one = {};
         //获取选择那一行的数据
          delRowData = tableMain.row('.selected').data();
+         console.log(delRowData);
          send_one.uuid = delRowData.uuid;
 
           //查询单条数据
@@ -407,19 +411,6 @@
 
     });//end 5 外圈 opener 结束打开对话框
 
-        // //选择事件写在函数体外
-        // var selectTable = $('#examplePrice tbody tr').click(function () {
-        //     if ($(this).hasClass('selected')) {
-        //         $(this).removeClass('selected');
-        //     }
-        //     else {
-        //         tablePrice.$('tr.selected').removeClass('selected');
-        //         $(this).addClass('selected');
-        //
-        //     }//end if
-        //
-        // });//end 2 外圈 $('#examplePrice tbody').on
-
         //步骤2，列表选择
         var selectTable = $('#examplePrice tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
@@ -486,9 +477,12 @@
                 param.conPriceList.push(RowsDataList[i]);
             }
             console.log(param);
+        var userName = $.cookie("ckUserName");
+        var userUuid = $.cookie("ckUserEmpUuid");
+        var newUrl = "/sdpk/aaContrtext?qqiu=edit&userUuid="+userUuid+"&userName="+userName;
             $.ajax({
 
-                url:"/sdpk/aaContrtext?qqiu=edit",
+                url:newUrl,
                 type: "POST",
                 data: JSON.stringify(param),
                 // data: JSON.stringify(send_edit_data),
@@ -541,7 +535,7 @@
 			<!-- 留空结束 -->
 
                     <!--start div id="listTable" 列表展示开始 -->
-            		<div id="listTable" >
+            		<div >
                     <table id="exampleMain" class="display tab-mians" cellspacing="0" width="100%">
                         <thead class="tab-tit">
                             <tr>
@@ -832,7 +826,7 @@
           function yzxsmc() {
             var sel = $('#stuUuid').combobox("getValue");
             if(sel=="请选择学生" || sel == "" || sel == null){
-              alert("请选择学生名称");
+              alert("请选择学生");
               return false;
             }else{
               return true;
@@ -863,10 +857,10 @@
               talpri();//总价格，总课数计算结束
 
               if($( "#dialogSave" ).is(":hidden")){
-                if (f1 == true && f2 == true && f3 == true && f4 == true && f5 == true && f6 == true) {
+                if (f1 == true && f2 == true && f3 == true && f5 == true && f6 == true) {
                   flag = true;
                 }
-                console.log(f1,f2,f3,f4,f5,f6);
+                console.log(f1,f2,f3,f5,f6);
                 if (flag) {
 
                   $( "#dialogSave" ).dialog( "open" );

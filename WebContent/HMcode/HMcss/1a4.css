@@ -9,7 +9,7 @@
 /*最外面的tab样式*/
 .tab-con{
     min-width: 1100px;
-    height: 850px;
+    height: 900px;
     padding:40px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -41,7 +41,7 @@
 .tj-block li{
     display: block;
     float: left;
-    width: 365px;
+    width: 600px;
     color: #4c4c4c;
     font-size: 16px;
 }

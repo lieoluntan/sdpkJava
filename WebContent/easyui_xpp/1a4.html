@@ -92,7 +92,9 @@
                 $('#zykid')[0].innerHTML = a2obj.SumEmpPaike;
                 $('#yxkid')[0].innerHTML = a2obj.SumDayBefore;
                 $('#wxkid')[0].innerHTML = a2obj.SumDayAfter;
-
+                $('#MonthSumHour')[0].innerHTML = a2obj.MonthSumHour;
+                $('#EndSumHour')[0].innerHTML = a2obj.EndSumHour;
+                $('#LastSumHour')[0].innerHTML = a2obj.LastSumHour;
                 var a2data = a2obj.data;
                 console.log(a2data);
 
@@ -186,7 +188,7 @@
 
             /*加载老师下拉框*/
             $.ajax({
-                url:'/sdpk/aaEmp?qqiu=list',
+                url:'/sdpk/aaTeacherName?qqiu=list',
                 type:"POST",
                 contentType:"application/json;charset=UTF-8",
                 success:function (mes) {
@@ -322,6 +324,7 @@
                 <!-- 第二行 -->
                 <ul class="tj-block">
                     <li style="padding-left: 2px;line-height: 40px;">月份总课数<em id="zykid">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月已消课<em id="yxkid">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月未消课<em id="wxkid">0</em></li>
+                    <li style="padding-left: 2px;line-height: 40px;">月份总课时<em id="MonthSumHour">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月已消课时<em id="EndSumHour">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月未消课时<em id="LastSumHour">0</em></li>
                 </ul>
             </div>
         </div>

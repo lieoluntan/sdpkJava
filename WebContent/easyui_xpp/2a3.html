@@ -60,10 +60,12 @@
             function funBtn(){
                 $( "#delbut" ).hide();
                 $( "#opener" ).hide();
+                $( "#genjin" ).hide();
                 var viewArr = $.cookie("rsList").split(",");
                 for (var i = 0; i < viewArr.length; i++) {
                     // if(viewArr[i]=="Bc2") {$( "#delbut" ).show();}
                     if(viewArr[i]=="Bc1") {$( "#opener" ).show();}
+                    if(viewArr[i]=="Bc3") {$( "#genjin" ).show();}
                 }//end for
             }
             funBtn();
@@ -311,7 +313,24 @@
 
 
             });//end submitForm
-
+            /*渠道链接跳转*/
+            $('#genjin').click(function(){
+            var delRowData = {};
+            delRowData = table.row('.selected').data();
+            console.log(delRowData);
+            $.cookie('ck_uuid_ditch', delRowData.uuid);//工作
+            $.cookie('ck_parentName', delRowData.parentName);//uuid
+            $.cookie('ck_parentPhone', delRowData.parentPhone);//uuid
+            $.cookie('ck_name', delRowData.name);//姓名
+            $.cookie('ck_phone', delRowData.phone);//电话
+            $.cookie('ck_weixin', delRowData.weixin);//微信
+            $.cookie('ck_empName', delRowData.empName);//负责人
+            $.cookie('ck_rank', delRowData.rank);//等级
+            $.cookie('ck_school', delRowData.school);//单位
+            $.cookie('ck_grade', delRowData.grade);//工作
+            console.log($.cookie());
+            window.location.href="2a2_gx1.html";
+          });
             //步骤7，关闭修改对话框
             $( "#close" ).click(function() {
                 // alert("进入关闭方法");
@@ -348,6 +367,7 @@
         <div style="position: relative;z-index: 999;width:500px;">
             <button id="delbut" class="btn-class">删除</button>
             <button id="opener" class="btn-class">编辑</button>
+            <button id="genjin" class="btn-class">学员跟进</button>
         </div>
         <!--start div id="listTable" 列表展示开始 -->
         <div id="listTable">

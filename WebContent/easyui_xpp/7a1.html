@@ -10,8 +10,7 @@
 	<script type="text/javascript" src="jquery-easyui-136/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="DataTables/datatables.js"></script>
 	<script type="text/javascript" src="../xppjs/jquery.serialize-object.js"></script>
-
-	
+	<script src="../xppjs/jquery.cookie.js" type="text/javascript"></script>
 	<link   rel="stylesheet" type="text/css" href="jquery-easyui-136/themes/gray/easyui.css"/>
 	<link   rel="stylesheet" type="text/css" href="jquery-easyui-136/themes/icon.css"/>
 	<link   rel="stylesheet" type="text/css" href="../HMcode/HMcss/7a1.css">
@@ -137,7 +136,7 @@
             function yzxsmc() {
               var sel = $('#stuUuid').combobox("getValue");
               if(sel=="请选择学生" || sel == "" || sel == null){
-                alert("请选择学生名称");
+                alert("请选择学生");
                 return false;
               }else{
                 return true;
@@ -472,9 +471,12 @@
                     param.conPriceList.push(RowDataList[i]);
                 }
                 console.log(param);
+                var userName = $.cookie("ckUserName");
+				var userUuid = $.cookie("ckUserEmpUuid");
+                var newUrl = "/sdpk/aaContrtext?qqiu=add&userUuid="+userUuid+"&userName="+userName;
+//                console.log(newUrl);
                 $.ajax({
-
-                    url: "/sdpk/aaContrtext?qqiu=add",
+                    url: newUrl,
                     type: "POST",
                     //data: JSON.stringify(param),
                     data: JSON.stringify(param),

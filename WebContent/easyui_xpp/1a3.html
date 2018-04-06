@@ -93,13 +93,16 @@
                 $('#sumTeaMon')[0].innerHTML = a2obj.SumEmpPaike;
                 $('#sumDayBefore')[0].innerHTML = a2obj.SumDayBefore;
                 $('#sumDayAfter')[0].innerHTML = a2obj.SumDayAfter;
-
+                $('#MonthSumHour')[0].innerHTML = a2obj.MonthSumHour;
+                $('#EndSumHour')[0].innerHTML = a2obj.EndSumHour;
+                $('#LastSumHour')[0].innerHTML = a2obj.LastSumHour;
                 var a2data = a2obj.data;
                 console.log(a2data);
 
                 table = $('#example').DataTable( {
                     "dom":'frtpi',
                     bSort:true,
+                    "order": [[ 4, "asc" ]],
                     "bLengthChange":false,
                     language: {
                         "sProcessing": "处理中...",
@@ -131,6 +134,7 @@
                         { "data": "claName" },
                         { "data": "courseName" },
                         { "data": "pkTypeName" },
+                        { "data": "claName" },
                         { "data": "keDateTime" },
                         { "data": "keStartTime" },
                         { "data": "weekSome" },
@@ -149,7 +153,7 @@
             send_R4.claUuid = "name";
             $.ajax({
                 url:"/sdpk/aaStuName?qqiu=list",
-                type: "POST",
+                type: "GET",
                 //data: JSON.stringify(param),
                 data: JSON.stringify(send_R4),
                 contentType: "application/json;charset=UTF-8",
@@ -372,6 +376,7 @@
                 <!-- 第二行 -->
                 <ul class="tj-block">
                     <li style="padding-left: 2px;line-height: 40px;">月份总课数<em id="sumTeaMon">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月已消课<em id="sumDayBefore">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月未消课<em id="sumDayAfter">0</em></li>
+                    <li style="padding-left: 2px;line-height: 40px;">月份总课时<em id="MonthSumHour">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月已消课时<em id="EndSumHour">0</em>&nbsp;&nbsp;&nbsp;&nbsp;月未消课时<em id="LastSumHour">0</em></li>
                 </ul>
             </div>
         </div>
@@ -381,9 +386,10 @@
             <table id="example" class="display tab-mians" cellspacing="0" width="100%">
                 <thead class="tab-tit">
                 <tr>
-                    <th style="min-width:100px;">班级名称</th>
+                    <th style="min-width:100px;">班级名</th>
                     <th style="min-width:100px;">课程名称</th>
                     <th style="min-width:100px;">类别</th>
+                    <th style="min-width:100px;">班级</th>
                     <th style="min-width:100px;">上课日期</th>
                     <th style="min-width:100px;">上课时间</th>
                     <th style="min-width:100px;">星期</th>
@@ -395,9 +401,10 @@
                 </thead>
                 <tfoot class="tab-tit">
                 <tr>
-                    <th style="min-width:100px;">班级名称</th>
+                    <th style="min-width:100px;">班级名</th>
                     <th style="min-width:100px;">课程名称</th>
                     <th style="min-width:100px;">类别</th>
+                    <th style="min-width:100px;">班级</th>
                     <th style="min-width:100px;">上课日期</th>
                     <th style="min-width:100px;">上课时间</th>
                     <th style="min-width:100px;">星期</th>

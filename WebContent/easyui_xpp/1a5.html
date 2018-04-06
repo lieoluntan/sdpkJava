@@ -112,6 +112,7 @@
                 table = $('#example').DataTable( {
                    "dom":'frtpi',
                     "bLengthChange":false,
+                    "order": [[ 4, "asc" ]],
                     bSort:true,
                     language: {
         "sProcessing": "处理中...",
@@ -219,9 +220,10 @@
                 //步骤,展示列表数据
                 var send_cData = {};
                 send_cData.keDateTime = adayStr;
+                send_cData.empUuid = $.cookie('ckUserEmpUuid');
                 $.ajax({
 
-                    url:"/sdpk/aaPaiKe?qqiu=listKeDate",
+                    url:"/sdpk/aaQueKeMy?qqiu=list",
                     type: "POST",
                     //data: JSON.stringify(param),
                     data: JSON.stringify(send_cData),
