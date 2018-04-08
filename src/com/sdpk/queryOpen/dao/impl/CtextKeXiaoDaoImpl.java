@@ -131,7 +131,10 @@ public class CtextKeXiaoDaoImpl implements CtextKeXiaoDao{
 				String keTotalstr = rs4.getString("sum(totalCount)");
 
 				try {
-					int keTotal_int = Integer.valueOf(keTotalstr).intValue();
+					Integer keTotal_int = 0;
+					if(keTotalstr!=null){
+						keTotal_int = Integer.valueOf(keTotalstr).intValue();
+					}
 					// 合同剩余次数
 					int cMoreThan = keTotal_int
 							- Integer.valueOf(qcc.getKeDayBefore()).intValue();

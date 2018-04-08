@@ -92,14 +92,14 @@ public class TeaKeXiaoController extends HttpServlet{
 			int EndLong = 0;
 			for (int i = 0; i <  queryService.SumDayBefore(paikeSearch).size(); i++) {
 				EndLong = Integer.parseInt(queryService.SumDayBefore(paikeSearch).get(i).getKeLongTime());
-				EndMonth += keLong;
+				EndMonth += EndLong;
 			}
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			int LastMonth = 0;
 			int LastLong= 0;
 			for (int i = 0; i < queryService.SumDayBeforeDan(paikeSearch).size(); i++) {
 				LastLong = Integer.parseInt(queryService.SumDayBeforeDan(paikeSearch).get(i).getKeLongTime());
-				LastMonth += keLong;
+				LastMonth += LastLong;
 			}
 			backResult.setMonthSumHour(sumMonth);
 			backResult.setSumEmpPaike(SumEmpPaike);
@@ -131,14 +131,14 @@ public class TeaKeXiaoController extends HttpServlet{
 			int EndLong = 0;
 			for (int i = 0; i <  queryService.SumDayBefore1(paikeSearch).size(); i++) {
 				EndLong = Integer.parseInt(queryService.SumDayBefore1(paikeSearch).get(i).getKeLongTime());
-				EndMonth += keLong;
+				EndMonth += EndLong;
 			}
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			int LastMonth = 0;
 			int LastLong= 0;
 			for (int i = 0; i < queryService.SumDayBefore2(paikeSearch).size(); i++) {
 				LastLong = Integer.parseInt(queryService.SumDayBefore2(paikeSearch).get(i).getKeLongTime());
-				LastMonth += keLong;
+				LastMonth += LastLong;
 			}
 			backResult.setMonthSumHour(sumMonth);
 			backResult.setSumEmpPaike(SumEmpPaike);

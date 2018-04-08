@@ -120,7 +120,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and claUuid='"
 							+ paikeSearch.getClaUuid() + "' and KeDateTime >='"
 							+ sd + "' and KeDateTime <='" + sf
-							+ "' and KeDateTime <= '" + paikeSearch.getToday()
+							+ "' and KeDateTime < '" + paikeSearch.getToday()
 							+ "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
@@ -276,7 +276,7 @@ public class StuKeXiaoDaoImpl implements StuKeXiaoDao{
 							+ sd
 							+ "' and KeDateTime <='"
 							+ sf
-							+ "' and KeDateTime <= '"
+							+ "' and KeDateTime < '"
 							+ paikeSearch.getToday()
 							+ "'");
 			while (rs.next()) {

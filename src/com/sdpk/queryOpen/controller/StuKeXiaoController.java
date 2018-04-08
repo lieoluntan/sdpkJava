@@ -91,16 +91,18 @@ public class StuKeXiaoController extends HttpServlet{
 			int SumDayBefore = queryStuService.SumDayBefore(paikeSearch).size();// 老师在本月到今天的所有排课总量
 			int EndMonth = 0;
 			int EndLong = 0;
-			for (int i = 0; i <  queryStuService.SumDayBefore(paikeSearch).size(); i++) {
+			int size =  queryStuService.SumDayBefore(paikeSearch).size();
+			for (int i = 0; i <size  ; i++) {
 				EndLong = Integer.parseInt(queryStuService.SumDayBefore(paikeSearch).get(i).getKeLongTime());
-				EndMonth += keLong;
+				EndMonth += EndLong;
 			}
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			int LastMonth = 0;
 			int LastLong= 0;
-			for (int i = 0; i < queryStuService.SumDayBeforeDan(paikeSearch).size(); i++) {
+			int size1 = queryStuService.SumDayBeforeDan(paikeSearch).size();
+			for (int i = 0; i < size1; i++) {
 				LastLong = Integer.parseInt(queryStuService.SumDayBeforeDan(paikeSearch).get(i).getKeLongTime());
-				LastMonth += keLong;
+				LastMonth += LastLong;
 			}
 			backResult.setMonthSumHour(sumMonth);
 			backResult.setSumEmpPaike(SumEmpPaike);
@@ -132,13 +134,13 @@ public class StuKeXiaoController extends HttpServlet{
 			int EndLong = 0;
 			for (int i = 0; i <  queryStuService.SumDayBefore1(paikeSearch).size(); i++) {
 				EndLong = Integer.parseInt(queryStuService.SumDayBefore1(paikeSearch).get(i).getKeLongTime());
-				EndMonth += keLong;
+				EndMonth += EndLong;
 			}
 			int LastMonth = 0;
 			int LastLong= 0;
 			for (int i = 0; i < queryStuService.SumDayBefore2(paikeSearch).size(); i++) {
 				LastLong = Integer.parseInt(queryStuService.SumDayBefore2(paikeSearch).get(i).getKeLongTime());
-				LastMonth += keLong;
+				LastMonth += LastLong;
 			}
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
 			backResult.setMonthSumHour(sumMonth);

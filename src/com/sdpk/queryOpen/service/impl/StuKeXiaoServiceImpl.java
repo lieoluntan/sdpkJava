@@ -200,7 +200,7 @@ public class StuKeXiaoServiceImpl implements StuKeXiaoService{
 		ArrayList<PaikeRecordView> sum = new ArrayList<PaikeRecordView>();
 		for (String string : claList) {
 			paikeSearch.setClaUuid(string);
-			sum = queryStuDao.SumDayBefore(paikeSearch);
+			sum = queryStuDao.SumDayBeforeDan(paikeSearch);
 
 		}
 		return sum;

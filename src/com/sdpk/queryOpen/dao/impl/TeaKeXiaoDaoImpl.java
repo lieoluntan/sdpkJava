@@ -125,7 +125,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 			rs = statement
 					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and empUuid='"
 							+ paikeSearch.getUuid() + "' and KeDateTime >='"
-							+ sd + "' and KeDateTime <='" + sf + "'");
+							+ sd + "' and KeDateTime <'" + sf + "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
 
@@ -186,7 +186,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 					.executeQuery("select tp.* from t_paike_all as tp,t_class as tc where tp.claUuid=tc.uuid and tc.openAndclose='open' and tp.empUuid='"
 							+ paikeSearch.getUuid() + "' and KeDateTime >='"
 							+ sd + "' and KeDateTime <='" + sf
-							+ "' and KeDateTime <= '" + paikeSearch.getToday()
+							+ "' and KeDateTime < '" + paikeSearch.getToday()
 							+ "'");
 			while (rs.next()) {
 				PaikeRecordView paikeRecord = new PaikeRecordView();
@@ -318,7 +318,7 @@ public class TeaKeXiaoDaoImpl implements TeaKeXiaoDao{
 							+ sd
 							+ "' and KeDateTime <='"
 							+ sf
-							+ "' and KeDateTime <= '"
+							+ "' and KeDateTime < '"
 							+ paikeSearch.getToday()
 							+ "'");
 			while (rs.next()) {
