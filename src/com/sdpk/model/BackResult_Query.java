@@ -20,8 +20,8 @@ public class BackResult_Query {
 	int LastSumHour;//月末课时,分钟
 	
 	float MonthSumHourFloat;//月总课时,小时，保留2位小数
-	float EndSumHourFloat;//月已课时,小时，保留2位小数
-	float LastSumHourFloat;//月末课时,分钟
+    float EndSumHourFloat;//月已课时,小时，保留2位小数
+	float LastSumHourFloat;//月末课时,小时，保留2位小数
 	
 	  public int getMonthSumHour() {
 		return MonthSumHour;
@@ -119,6 +119,31 @@ public class BackResult_Query {
 	public void setData(ArrayList<?> data) {
 		this.data = data;
 	}
+	
+	
+	public float getMonthSumHourFloat() {
+	    return MonthSumHourFloat;
+	  }
+
+	  public void setMonthSumHourFloat(float monthSumHourFloat) {
+	    MonthSumHourFloat = monthSumHourFloat;
+	  }
+
+	  public float getEndSumHourFloat() {
+	    return EndSumHourFloat;
+	  }
+
+	  public void setEndSumHourFloat(float endSumHourFloat) {
+	    EndSumHourFloat = endSumHourFloat;
+	  }
+
+	  public float getLastSumHourFloat() {
+	    return LastSumHourFloat;
+	  }
+
+	  public void setLastSumHourFloat(float lastSumHourFloat) {
+	    LastSumHourFloat = lastSumHourFloat;
+	  }
 
 
 
