@@ -15,9 +15,13 @@ public class BackResult_Query {
 	int SumEmpPaike;//月份总课数
 	int SumDayBefore;//今天以前的课
 	int SumDayAfter;//今天及今天以后的课
-	int MonthSumHour;//月总课时
-	int EndSumHour;//月已课时
-	int LastSumHour;//月末课时
+	int MonthSumHour;//月总课时,分钟
+	int EndSumHour;//月已课时,分钟
+	int LastSumHour;//月末课时,分钟
+	
+	float MonthSumHourFloat;//月总课时,小时，保留2位小数
+	float EndSumHourFloat;//月已课时,小时，保留2位小数
+	float LastSumHourFloat;//月末课时,分钟
 	
 	  public int getMonthSumHour() {
 		return MonthSumHour;
