@@ -10,8 +10,12 @@ import org.apache.log4j.Logger;
 
 import com.sdpk.dao.LogGXDao;
 import com.sdpk.dao.impl.LogGXDaoImpl;
+import com.sdpk.dao.impl.StudentDaoImpl;
+import com.sdpk.model.Logdata;
 import com.sdpk.model.Record;
+import com.sdpk.model.Student;
 import com.sdpk.queryOpen.dao.RecordDao;
+import com.sdpk.queryOpen.dao.impl.LogdataDaoImpl;
 import com.sdpk.queryOpen.dao.impl.RecordDaoImpl;
 import com.sdpk.queryOpen.service.RecordService;
 /**
@@ -21,26 +25,27 @@ import com.sdpk.queryOpen.service.RecordService;
  * 类说明
  */
 public class RecordServiceImpl implements RecordService{
-	private LogGXDao lgg = new LogGXDaoImpl();
+	private LogdataDaoImpl lgg = new LogdataDaoImpl();
 	private RecordDao recordDao = new RecordDaoImpl();
+	private StudentDaoImpl stu = new StudentDaoImpl();
 	//DitchDao ditchDao = new DitchDaoImpl();
 	Logger logger = Logger.getLogger(RecordServiceImpl.class);
 	@Override
 	public String insert(Record record) {
 		// TODO Auto-generated method stub
-		//Ditch ditch = ditchDao.getByUuid(record.getDitchUuid());
+		Student ditch = stu.getByUuid(record.getStuUuid());
 		if (record.getUuid() != null || record.getUuid() != "") {
 			record.setUuid(UUID.randomUUID().toString());
 			System.out.println("^^在RecordServiceImpl收到数据 ：" + record.toString()
 					+ "收到结束!");
 			boolean daoFlag = recordDao.insert(record);
-			/*LogGX lg = new LogGX();
+			Logdata lg = new Logdata();
 	        lg.setUuid(UUID.randomUUID().toString());
 	        lg.setUserUuid(record.getUserUuid());
 	        lg.setUserName(record.getUserName());
 	        lg.setTableName("t_record");
 	        lg.setTableNameChina("跟踪记录表");
-	        lg.setDataUuid(record.getDitchUuid());
+	        lg.setDataUuid(record.getStuUuid());
 	        lg.setDataName(ditch.getName());
 	        lg.setUserAction("新增");
 	        Date date = new Date();
@@ -49,7 +54,7 @@ public class RecordServiceImpl implements RecordService{
 	        lg.setUpdateTime(da);
 	        lg.setDataGxUuid(record.getUuid());
 	        lg.setDataGxChina(record.getRemarkText());
-	        lgg.insert(lg);*/
+	        lgg.insert(lg);
 			if (daoFlag) {
 				Date dateModify = new Date();
 	            SimpleDateFormat sdfModify = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -70,24 +75,24 @@ public class RecordServiceImpl implements RecordService{
 	public String delete(Record re) {
 		// TODO Auto-generated method stub
 		if (re.getUuid() != null && re.getUuid() != "") {
-			/*LogGX lg = new LogGX();
+			Logdata lg = new Logdata();
 	        lg.setUuid(UUID.randomUUID().toString());
 	        lg.setUserUuid(re.getUserUuid());
 	        lg.setUserName(re.getUserName());
 	        lg.setTableName("t_record");
 	        lg.setTableNameChina("跟踪记录表");
-	        List<Record> rec=recordDao.findIdShow(re.getUuid());
-	        lg.setDataUuid(rec.get(0).getDitchUuid());
-	        Ditch yx = ditchDao.getByUuid(rec.get(0).getDitchUuid());
+	        Record rec=recordDao.findIdShow(re.getUuid());
+	        lg.setDataUuid(rec.getStuUuid());
+	        Student yx = stu.getByUuid(rec.getStuUuid());
 	        lg.setDataName(yx.getName());
 	        lg.setUserAction("删除");
 	        Date date = new Date();
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        String da = sdf.format(date);
 	        lg.setUpdateTime(da);
-	        lg.setDataGxUuid(rec.get(0).getUuid());
-	        lg.setDataGxChina(rec.get(0).getRemarkText());
-	        lgg.insert(lg);*/
+	        lg.setDataGxUuid(rec.getUuid());
+	        lg.setDataGxChina(rec.getRemarkText());
+	        lgg.insert(lg);
 			boolean daoFlag = recordDao.delete(re.getUuid());
 			if (daoFlag) {
 				return re.getUuid();
@@ -107,24 +112,24 @@ public class RecordServiceImpl implements RecordService{
 	public String deleteByDitchUuid(Record record) {
 		// TODO Auto-generated method stub
 		if (record.getStuUuid() != null && record.getStuUuid()  != "") {
-			/*LogGX lg = new LogGX();
+			Logdata lg = new Logdata();
 	        lg.setUuid(UUID.randomUUID().toString());
 	        lg.setUserUuid(record.getUserUuid());
 	        lg.setUserName(record.getUserName());
 	        lg.setTableName("t_record");
 	        lg.setTableNameChina("跟踪记录表");
-	        List<Record> rec=recordDao.findIdShow(record.getDitchUuid());
-	        lg.setDataUuid(rec.get(0).getDitchUuid());
-	        Ditch yx = ditchDao.getByUuid(rec.get(0).getDitchUuid());
+	        Record rec=recordDao.findIdShow(record.getUuid());
+	        lg.setDataUuid(rec.getStuUuid());
+	        Student yx = stu.getByUuid(rec.getStuUuid());
 	        lg.setDataName(yx.getName());
-	        lg.setUserAction("删除");
+	        lg.setUserAction("编辑");
 	        Date date = new Date();
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        String da = sdf.format(date);
 	        lg.setUpdateTime(da);
-	        lg.setDataGxUuid(rec.get(0).getUuid());
-	        lg.setDataGxChina(rec.get(0).getRemarkText());
-	        lgg.insert(lg);*/
+	        lg.setDataGxUuid(rec.getUuid());
+	        lg.setDataGxChina(rec.getRemarkText());
+	        lgg.insert(lg);
 			boolean daoFlag = recordDao.deleteByDitchUuid(record.getStuUuid());
 			if (daoFlag) {
 				return record.getStuUuid();
@@ -146,24 +151,24 @@ public class RecordServiceImpl implements RecordService{
 		String uuid = record.getUuid();
 		if (uuid != null && uuid != "") {
 			boolean daoFlag = recordDao.update(record);
-			/*LogGX lg = new LogGX();
+			Logdata lg = new Logdata();
 	        lg.setUuid(UUID.randomUUID().toString());
 	        lg.setUserUuid(record.getUserUuid());
 	        lg.setUserName(record.getUserName());
 	        lg.setTableName("t_record");
 	        lg.setTableNameChina("跟踪记录表");
-	        List<Record> rec=recordDao.findIdShow(record.getUuid());
-	        lg.setDataUuid(rec.get(0).getDitchUuid());
-	        Ditch yx = ditchDao.getByUuid(rec.get(0).getDitchUuid());
+	        Record rec=recordDao.findIdShow(record.getUuid());
+	        lg.setDataUuid(rec.getStuUuid());
+	        Student yx = stu.getByUuid(rec.getStuUuid());
 	        lg.setDataName(yx.getName());
-	        lg.setUserAction("编辑");
+	        lg.setUserAction("修改");
 	        Date date = new Date();
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        String da = sdf.format(date);
 	        lg.setUpdateTime(da);
 	        lg.setDataGxUuid(record.getUuid());
 	        lg.setDataGxChina(record.getRemarkText());
-	        lgg.insert(lg);*/
+	        lgg.insert(lg);
 			if (daoFlag) {
 				return uuid;
 			} else {

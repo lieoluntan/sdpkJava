@@ -6,6 +6,7 @@ package com.sdpk.queryOpen.dao;
  * 类说明
  */
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.Record;
 
@@ -34,4 +35,7 @@ public interface RecordDao {
 
 	// 设置开关
 	public boolean updateOnOff(String uuid, String oac);
+	
+	//根据ID查询
+    Record findIdShow(String uuid);
 }

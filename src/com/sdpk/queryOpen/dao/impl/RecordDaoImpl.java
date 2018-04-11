@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sdpk.model.Record;
 import com.sdpk.queryOpen.dao.RecordDao;
@@ -258,5 +259,36 @@ public class RecordDaoImpl implements RecordDao{
 			ResultSet rs = null;
 			DBUtility.close(rs, ps, connection);
 		}
+	}
+
+	@Override
+	public Record findIdShow(String uuid) {
+		// TODO Auto-generated method stub
+		Record record = new Record();
+		Statement statement = null;
+	    ResultSet rs = null;
+	    connection = DBUtility.open();
+	    try {
+	        statement = connection.createStatement();
+	        rs = statement.executeQuery("select * from t_record where uuid='"+uuid+"'");
+	        while (rs.next()) {
+	            record.setUuid(rs.getString("uuid"));
+	            record.setStuUuid(rs.getString("stuUuid"));
+	            record.setRecordDate(rs.getString("recordDate"));
+	            record.setRemarkText(rs.getString("remarkText"));
+	        }
+	        return record;
+	    } catch (SQLException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	        System.out.println("RecordDaoImpl的查询跟踪记录表列表失败");
+	        Record record1 = new Record();
+	        record1.setStuUuid("RecordDaoImpl查询失败返回的uuid");
+	        ArrayList<Record> listRecord = new ArrayList<Record>();
+	        listRecord.add(record1);
+	        return record1;
+	    } finally {
+	        DBUtility.close(rs, statement, connection);
+	    }
 	}
 }

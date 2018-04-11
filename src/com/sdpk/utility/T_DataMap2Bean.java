@@ -19,6 +19,7 @@ import com.sdpk.model.Course_Emp;
 import com.sdpk.model.Department;
 import com.sdpk.model.Employee;
 import com.sdpk.model.LogGX;
+import com.sdpk.model.Logdata;
 import com.sdpk.model.PaikeRecord;
 import com.sdpk.model.Record;
 import com.sdpk.model.Student;
@@ -56,6 +57,24 @@ public class T_DataMap2Bean {
 		return cla;
 	}// end method MapToEmp
 
+  public Logdata MapToLogdata(Map<String, Object> map) {
+		
+		String uuid = (String) map.get("uuid");
+		String userUuid = (String) map.get("userUuid");
+		String userName = (String) map.get("userName");
+		String tableName = (String) map.get("tableName");
+		String tableNameChina = (String) map.get("tableNameChina");
+		String dataUuid = (String) map.get("dataUuid");
+		String dataName = (String) map.get("dataName");
+		String userAction = (String) map.get("userAction");
+		String updateTime = (String) map.get("updateTime");
+		String dataGxChina = (String) map.get("dataGxChina");
+		
+		Logdata logQD = new Logdata(uuid, userUuid, userName, tableName, tableNameChina, dataUuid, dataName, userAction, updateTime, null, dataGxChina);
+		
+		return logQD;
+	}
+	
 	public LogGX MapToLogGX(Map<String, Object> map) {
 	    String uuid = (String) map.get("uuid");// 删除和修改的时候会有值，新增和查询的时候没有值
 	    String userUuid = (String) map.get("userUuid");
