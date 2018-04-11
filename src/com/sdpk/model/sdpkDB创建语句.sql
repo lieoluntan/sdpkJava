@@ -428,3 +428,23 @@ CREATE TABLE t_record (
   
   PRIMARY KEY (uuid)
 );
+
+
+-- 记录日志表t_logdata
+
+CREATE TABLE t_logdata (
+  uuid varchar(50) NOT NULL,
+  userUuid varchar(50) NOT NULL,
+  userName varchar(50) NOT NULL,
+  tableName varchar(50) NOT NULL,
+  tableNameChina varchar(50) DEFAULT NULL,
+  dataUuid varchar(50) DEFAULT NULL,
+  dataName varchar(50) DEFAULT NULL,
+  userAction varchar(50) DEFAULT NULL,
+  updateTime datetime NOT NULL,
+  
+  dataGxUuid varchar(50) DEFAULT NULL,
+  dataGxChina varchar(250) DEFAULT NULL,
+  
+  PRIMARY KEY (uuid)
+);
