@@ -2,6 +2,7 @@ package com.sdpk.queryOpen.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -104,6 +105,27 @@ public class StuKeXiaoController extends HttpServlet{
 				LastLong = Integer.parseInt(queryStuService.SumDayBeforeDan(paikeSearch).get(i).getKeLongTime());
 				LastMonth += LastLong;
 			}
+			float sumM = (float)sumMonth/60;
+			int   scale  =   2;//设置位数  
+			int   roundingMode  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd  =   new  BigDecimal((double)sumM);  
+			bd   =  bd.setScale(scale,roundingMode);
+			sumM   =  bd.floatValue(); 
+			float sumM1 = (float)EndMonth/60;
+			int   scale1 =   2;//设置位数  
+			int   roundingMode1  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd1  =   new  BigDecimal((double)sumM1);  
+			bd1  =  bd1.setScale(scale1,roundingMode1);
+			sumM1  =  bd1.floatValue();
+			float sumM2 = (float)LastMonth/60;
+			int   scale2  =   2;//设置位数  
+			int   roundingMode2  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd2  =   new  BigDecimal((double)sumM2);  
+			bd2   =  bd2.setScale(scale2,roundingMode2);
+			sumM2   =  bd2.floatValue();
+			backResult.setMonthSumHourFloat(sumM);
+			backResult.setEndSumHourFloat(sumM1);
+			backResult.setLastSumHourFloat(sumM2);
 			backResult.setMonthSumHour(sumMonth);
 			backResult.setSumEmpPaike(SumEmpPaike);
 			backResult.setSumDayBefore(SumDayBefore);
@@ -143,6 +165,27 @@ public class StuKeXiaoController extends HttpServlet{
 				LastMonth += LastLong;
 			}
 			int SumDayAfter = SumEmpPaike - SumDayBefore;// 老师这个月剩下的排课总量
+			float sumM = (float)sumMonth/60;
+			int   scale  =   2;//设置位数  
+			int   roundingMode  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd  =   new  BigDecimal((double)sumM);  
+			bd   =  bd.setScale(scale,roundingMode);
+			sumM   =  bd.floatValue(); 
+			float sumM1 = (float)EndMonth/60;
+			int   scale1 =   2;//设置位数  
+			int   roundingMode1  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd1  =   new  BigDecimal((double)sumM1);  
+			bd1  =  bd1.setScale(scale1,roundingMode1);
+			sumM1  =  bd1.floatValue();
+			float sumM2 = (float)LastMonth/60;
+			int   scale2  =   2;//设置位数  
+			int   roundingMode2  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.  
+			BigDecimal   bd2  =   new  BigDecimal((double)sumM2);  
+			bd2   =  bd2.setScale(scale2,roundingMode2);
+			sumM2   =  bd2.floatValue();
+			backResult.setMonthSumHourFloat(sumM);
+			backResult.setEndSumHourFloat(sumM1);
+			backResult.setLastSumHourFloat(sumM2);
 			backResult.setMonthSumHour(sumMonth);
 			backResult.setSumEmpPaike(SumEmpPaike);
 			backResult.setSumDayBefore(SumDayBefore);
