@@ -155,7 +155,7 @@ System.out.println(stu.getName());
 		try {
 
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select ts.*,tr.recordDate as recordDate,te.`name` as tempName from t_student ts,t_record tr,t_employee te,t_class tc,t_class_stu tcs where ts.uuid = tr.stuUuid and ts.uuid = tcs.stuUuid and tcs.classUuid=tc.uuid and tc.empUuid=te.uuid and te.claTeacher='true' GROUP BY ts.name ORDER BY tr.recordDate ");
+			rs = statement.executeQuery("SELECT ts.*, te.`name` AS empName, (select max(recordDate) from t_record where stuUuid = ts.uuid) as recordDate FROM t_student ts left join t_class_stu tcs on ts.uuid = tcs.stuUuid left join t_class tc on tc.uuid = tcs.classUuid left join t_class_emp tce on tc.uuid = tce.classUuid left join t_employee te on te.uuid = tce.empUuid and te.claTeacher='true'");
 			while (rs.next()) {
 				Student student = new Student();
 				student.setUuid(rs.getString("uuid"));
