@@ -155,7 +155,7 @@ System.out.println(stu.getName());
 		try {
 
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from t_student");
+			rs = statement.executeQuery("select ts.*,tr.recordDate as recordDate,te.`name` as tempName from t_student ts,t_record tr,t_employee te,t_class tc,t_class_stu tcs where ts.uuid = tr.stuUuid and ts.uuid = tcs.stuUuid and tcs.classUuid=tc.uuid and tc.empUuid=te.uuid and te.claTeacher='true' GROUP BY ts.name ORDER BY tr.recordDate ");
 			while (rs.next()) {
 				Student student = new Student();
 				student.setUuid(rs.getString("uuid"));
@@ -177,6 +177,9 @@ System.out.println(stu.getName());
 				student.setParentName2(rs.getString("parentName2"));
 				student.setParentPhone2(rs.getString("parentPhone2"));
 				student.setParentRela2(rs.getString("parentRela2"));
+				
+				student.setRecordDate(rs.getString("recordDate"));
+				student.setTempName(rs.getString("tempName"));
 				
 				student.setOpenAndclose(rs.getString("openAndclose"));
 

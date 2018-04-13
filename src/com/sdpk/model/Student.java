@@ -29,9 +29,27 @@ public class Student {
   
   private String openAndclose;    //布尔值为true表示open打开，为false表示close关闭
 
+  private String recordDate;//最近跟踪时间
+  private String tempName;//班主任姓名
 
 
-  public String getParentName2() {
+  public String getRecordDate() {
+	return recordDate;
+}
+
+public void setRecordDate(String recordDate) {
+	this.recordDate = recordDate;
+}
+
+public String getTempName() {
+	return tempName;
+}
+
+public void setTempName(String tempName) {
+	this.tempName = tempName;
+}
+
+public String getParentName2() {
 	return parentName2;
 }
 
